@@ -176,3 +176,41 @@
 
     });
   </script>
+
+  <!-- Added Personal Functions -->
+  <script>
+    function showNotification(icon, message, type, from, align){
+    $.notify({
+          icon: icon,
+          message: message
+      },{
+          type: type,
+          timer: 4000,
+          placement: {
+              from: from,
+              align: align
+          }
+      });
+    }
+
+    // Show Swal Alert
+    function showSwal(title, text, icon, confirmButtonText, confirmedTitle, confirmedText, confirmIcon ){
+      Swal.fire({
+        title: title,
+        text: text,
+        icon: icon,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: confirmButtonText
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            confirmedTitle,
+            confirmedText,
+            confirmIcon
+          )
+        }
+      })
+    }
+  </script>
