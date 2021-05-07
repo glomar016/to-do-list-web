@@ -4,21 +4,15 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+      <div class="logo"><a href="" class="simple-text logo-normal">
+          BRS
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
           <li <?php if($this->router->fetch_class() == 'dashboard') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" href="<?php echo base_url()?>user/dashboard">
+            <a class="nav-link" href="<?php echo base_url()?>">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
-            </a>
-          </li>
-          <li <?php if($this->router->fetch_class() == 'projects') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" href="<?php echo base_url()?>user/projects">
-              <i class="material-icons">assignment</i>
-              <p>Projects</p>
             </a>
           </li>
         </ul>

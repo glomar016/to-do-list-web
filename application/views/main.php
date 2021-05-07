@@ -52,7 +52,6 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- END OF WRAPPER -->
 
   <!-- FIXED PLUGINS -->
-  <?php $this->load->view('includes/fixed_plugins.php')?>
   
   <!-- FIXED PLUGINS -->
   <?php $this->load->view('includes/core_js_files.php')?>
