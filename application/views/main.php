@@ -35,7 +35,12 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
-            
+            <pre>
+              <?php 
+                print_r($data['data']);
+              ?>
+            </pre>
+              
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>
