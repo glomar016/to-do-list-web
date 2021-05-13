@@ -36,9 +36,7 @@ The above copyright notice and this permission notice shall be included in all c
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
             <pre>
-              <?php 
-                print_r($data['data']);
-              ?>
+            this is master branch
             </pre>
               
             <!-- CLOSING TAG OF CONTENT -->
