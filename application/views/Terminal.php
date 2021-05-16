@@ -66,7 +66,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <th>Terminal</th>
                             <th>Address</th>
                             <th>Email</th>
-                            <th>Date Created</th>
+                            <th>Contact Person</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -93,16 +93,69 @@ The above copyright notice and this permission notice shall be included in all c
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form id="TerminalForm">
+                    <div class="modal-body">
+                        <input disabled hidden type="text" class="form-control" name="TerminalId" id="TerminalId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Terminal</label>
+                        <input disabled type="text" class="form-control" name="TerminalName" id="TerminalName" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Address</label>
+                        <input disabled type="text" class="form-control" name="TerminalAddress" id="TerminalAddress" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input disabled type="email" class="form-control" name="TerminalEmail" id="TerminalEmail" aria-describedby="emailHelp">
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="editTerminalInfoModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terminal Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 <form id="editTerminalForm">
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="editTerminalId" id="editTerminalId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Terminal</label>
                         <input type="text" class="form-control" name="editTerminalName" id="editTerminalName" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Address</label>
                         <input type="text" class="form-control" name="editTerminalAddress" id="editTerminalAddress" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Email</label>
                         <input type="email" class="form-control" name="editTerminalEmail" id="editTerminalEmail" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editTerminalStatus" id="editTerminalStatus" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success">
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="deleteTerminalInfoModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terminal Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="deleteTerminalForm">
+                    <div class="modal-body">
+                        <input hidden type="text" class="form-control" name="deleteTerminalId" id="deleteTerminalId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Terminal</label>
+                        <input disabled type="text" class="form-control" name="deleteTerminalName" id="deleteTerminalName" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Address</label>
+                        <input disabled type="text" class="form-control" name="deleteTerminalAddress" id="deleteTerminalAddress" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input disabled type="email" class="form-control" name="deleteTerminalEmail" id="deleteTerminalEmail" aria-describedby="emailHelp">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-danger">
                     </div>
                 </form>
                 </div>
@@ -127,22 +180,19 @@ The above copyright notice and this permission notice shall be included in all c
 <script>
     // DATA TABLES
     function loadtable(){
-        userDataTable = $('#userTable').DataTable( {
-            "ajax": "<?php echo base_url()?>user/show_user",
+        terminalDataTable = $('#terminalTable').DataTable( {
+            "ajax": "<?php echo base_url()?>terminal/show_terminal",
             "columns": [
                 { data: "id"},
-                { data: "firstName", render: function(data, type, row){
-                        return `${row.firstName} ${row.lastName}`
-                    }
-                },
-                { data: "lastName"},
+                { data: "name"},
+                { data: "address"},
                 { data: "email"},
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
                             return '<div class="btn-group">'+
                                     '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
-                                    '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
+                                    '<button class="btn btn-warning btn-sm btn_edit" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
                                     '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
                         }   
                         else{
@@ -162,9 +212,9 @@ The above copyright notice and this permission notice shall be included in all c
     loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>user/show_user";
+        var url = "<?php echo base_url()?>terminal/show_terminal";
 
-        userDataTable.ajax.url(url).load();
+        terminalDataTable.ajax.url(url).load();
     }
 
     // CREATE TERMINAL
@@ -207,6 +257,7 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var terminalInfo = data.data;
 
+<<<<<<< HEAD
                 $('#editTerminalId').val(id);
                 $('#editTerminalName').val(terminalInfo.name);
                 $('#editTerminalAddress').val(terminalInfo.address);
@@ -214,12 +265,45 @@ The above copyright notice and this permission notice shall be included in all c
                 $('#editTerminalStatus').val(terminalInfo.status);
 
                 $('#terminalInfo').modal('show');
+=======
+                $('#TerminalId').val(id);
+                $('#TerminalName').val(terminalInfo.name);
+                $('#TerminalAddress').val(terminalInfo.address);
+                $('#TerminalEmail').val(terminalInfo.email);
+
+                $('#terminalInfoModal').modal('show');
+>>>>>>> testbranch
             }
         // ajax closing tag
         })
     });
 
     // EDIT TERMINAL
+    $(document).on("click", ".btn_edit", function(){
+        var id = this.value;
+        // console.log(id);
+
+        $.ajax({
+            url: '<?php echo base_url()?>terminal/get_one_terminal',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data);
+                var terminalInfo = data.data;
+
+                $('#editTerminalId').val(id);
+                $('#editTerminalName').val(terminalInfo.name);
+                $('#editTerminalAddress').val(terminalInfo.address);
+                $('#editTerminalEmail').val(terminalInfo.email);
+
+                $('#editTerminalInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+
     $('#editTerminalForm').on('submit', function(e){
         e.preventDefault();
 
@@ -240,6 +324,61 @@ The above copyright notice and this permission notice shall be included in all c
                 $("#addTerminalForm").trigger("reset");
                 // End of Confirmation
                 $('#terminalInfoModal').modal('hide');
+                
+                alert(data.message);
+            }
+        // ajax closing tag
+        })
+    });
+
+    // DELETE TERMINAL
+    $(document).on("click", ".btn_delete", function(){
+        var id = this.value;
+        // console.log(id);
+
+        $.ajax({
+            url: '<?php echo base_url()?>terminal/get_one_terminal',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data);
+                var deleteTerminalInfo = data.data;
+
+                $('#deleteTerminalId').val(id);
+                $('#deleteTerminalName').val(deleteTerminalInfo.name);
+                $('#deleteTerminalEmail').val(deleteTerminalInfo.email);
+                $('#deleteTerminalAddress').val(deleteTerminalInfo.address);
+
+                $('#deleteTerminalInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+    
+    $('#deleteTerminalForm').on('submit', function(e){
+        e.preventDefault();
+
+        $('#deleteTerminalInfoModal').modal('show');
+
+        console.log('working');
+
+        var form = $('#deleteTerminalForm'); 
+
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>terminal/delete_terminal',
+            type: "POST",
+            data: form.serialize(),
+            dataType: "JSON",
+        
+            success: function(data){
+                refresh();
+
+                $("#addTerminalForm").trigger("reset");
+                // End of Confirmation
+                $('#deleteTerminalInfoModal').modal('hide');
                 
                 alert(data.message);
             }

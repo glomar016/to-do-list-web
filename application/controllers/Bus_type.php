@@ -27,11 +27,9 @@ class Bus_type extends CI_Controller {
     {
         $name = $this->input->post('busTypeName');
         $description = $this->input->post('busTypeDescription');
-        $status = $this->input->post('busTypeStatus');
 
         $data = array("name" => $name
-						, "description" => $description
-						, "status" => $status);
+						, "description" => $description);
 
 		$postdata = json_encode($data);
 
@@ -59,11 +57,11 @@ class Bus_type extends CI_Controller {
 
     }
 
-	public function show_user(){
+	public function show_bus_type(){
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/user',
+		CURLOPT_URL => 'http://localhost:3600/api/v1/bus_type/',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -71,9 +69,6 @@ class Bus_type extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIwNzM1NzI2LCJleHAiOjE2MjA3NDI5MjZ9.Zo-9CV0godm7IUv_CGh0A5QLfKAYnvLO9AbjeAeCA5U',
-		),
 		));
 
 		$response = curl_exec($curl);
@@ -98,10 +93,13 @@ class Bus_type extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
+<<<<<<< HEAD
 		CURLOPT_POSTFIELDS => $postdata,
 		CURLOPT_HTTPHEADER => array(
 			'Content-Type: application/json'
 		),
+=======
+>>>>>>> testbranch
 		));
 
 		$response = curl_exec($curl);
@@ -113,12 +111,10 @@ class Bus_type extends CI_Controller {
 	public function edit_bus_type(){
 		$name = $this->input->post('editBusTypeName');
         $description = $this->input->post('editBusTypeDescription');
-        $status = $this->input->post('editBusTypeStatus');;
 		$id = $this->input->post('editBusTypeId');
 
         $data = array("name" => $name
-						, "description" => $description
-						, "status" => $status);
+						, "description" => $description);
 
 		$postdata = json_encode($data);
 
@@ -147,7 +143,7 @@ class Bus_type extends CI_Controller {
 	}
 
 	public function delete_bus_type(){
-		$id = $this->input->post('editBusTypeId');
+		$id = $this->input->post('deleteBusTypeId');
 
         $data = array("status" => "Inactive");
 
