@@ -198,21 +198,22 @@ The above copyright notice and this permission notice shall be included in all c
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>user/get_one_user',
+            url: '<?php echo base_url()?>terminal/get_one_terminal',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var userInfo = data.data;
+                var terminalInfo = data.data;
 
-                $('#editUserId').val(id);
-                $('#editFirstName').val(userInfo.firstName);
-                $('#editLastName').val(userInfo.lastName);
-                $('#editEmail').val(userInfo.email);
+                $('#editTerminalId').val(id);
+                $('#editTerminalName').val(terminalInfo.name);
+                $('#editTerminalAddress').val(terminalInfo.address);
+                $('#editTerminalEmail').val(terminalInfo.email);
+                $('#editTerminalStatus').val(terminalInfo.status);
 
-                $('#userInfoModal').modal('show');
+                $('#terminalInfo').modal('show');
             }
         // ajax closing tag
         })

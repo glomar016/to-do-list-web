@@ -221,21 +221,21 @@ The above copyright notice and this permission notice shall be included in all c
 
     // VIEW BUS TYPE
     $.ajax({
-            url: '<?php echo base_url()?>user/get_one_user',
+            url: '<?php echo base_url()?>bus_type/get_one_bus_type',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var userInfo = data.data;
+                var busTypeInfo = data.data;
 
-                $('#editUserId').val(id);
-                $('#editFirstName').val(userInfo.firstName);
-                $('#editLastName').val(userInfo.lastName);
-                $('#editEmail').val(userInfo.email);
+                $('#editBusTypeId').val(id);
+                $('#editBusTypeName').val(busTypeInfo.name);
+                $('#editBusTypeDescription').val(busTypeInfo.description);
+                $('#editBusTypeStatus').val(busTypeInfo.status);
 
-                $('#userInfoModal').modal('show');
+                $('#busTypeInfoModal').modal('hide');
             }
         // ajax closing tag
         })

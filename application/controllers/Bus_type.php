@@ -83,14 +83,14 @@ class Bus_type extends CI_Controller {
 
 	}
 
-	public function get_one_user(){
+	public function get_one_bus_type(){
 
 		$id = $this->input->post('id');
 			
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/user/'.$id,
+		CURLOPT_URL => 'http://localhost:3600/api/v1/bus_type/'.$id,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -98,8 +98,9 @@ class Bus_type extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
+		CURLOPT_POSTFIELDS => $postdata,
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIwNzM1NzI2LCJleHAiOjE2MjA3NDI5MjZ9.Zo-9CV0godm7IUv_CGh0A5QLfKAYnvLO9AbjeAeCA5U'
+			'Content-Type: application/json'
 		),
 		));
 
