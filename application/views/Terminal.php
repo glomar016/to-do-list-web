@@ -127,15 +127,12 @@ The above copyright notice and this permission notice shall be included in all c
 <script>
     // DATA TABLES
     function loadtable(){
-        userDataTable = $('#userTable').DataTable( {
-            "ajax": "<?php echo base_url()?>user/show_user",
+        terminalDataTable = $('#terminalTable').DataTable( {
+            "ajax": "<?php echo base_url()?>terminal/show_terminal",
             "columns": [
                 { data: "id"},
-                { data: "firstName", render: function(data, type, row){
-                        return `${row.firstName} ${row.lastName}`
-                    }
-                },
-                { data: "lastName"},
+                { data: "name"},
+                { data: "address"},
                 { data: "email"},
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
@@ -162,9 +159,9 @@ The above copyright notice and this permission notice shall be included in all c
     loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>user/show_user";
+        var url = "<?php echo base_url()?>terminal/show_terminal";
 
-        userDataTable.ajax.url(url).load();
+        terminalDataTable.ajax.url(url).load();
     }
 
     // CREATE TERMINAL
@@ -198,21 +195,22 @@ The above copyright notice and this permission notice shall be included in all c
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>user/get_one_user',
+            url: '<?php echo base_url()?>terminal/get_one_terminal',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var userInfo = data.data;
+                var terminalInfo = data.data;
 
-                $('#editUserId').val(id);
-                $('#editFirstName').val(userInfo.firstName);
-                $('#editLastName').val(userInfo.lastName);
-                $('#editEmail').val(userInfo.email);
+                $('#editTerminalId').val(id);
+                $('#editTerminalName').val(terminalInfo.name);
+                $('#editTerminalAddress').val(terminalInfo.address);
+                $('#editTerminalEmail').val(terminalInfo.email);
+                $('#editTerminalStatus').val(terminalInfo.status);
 
-                $('#userInfoModal').modal('show');
+                $('#terminalInfoModal').modal('show');
             }
         // ajax closing tag
         })

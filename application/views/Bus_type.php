@@ -49,13 +49,6 @@ The above copyright notice and this permission notice shall be included in all c
                             <label for="exampleInputEmail1">Description</label>
                             <input type="text" class="form-control" name="busTypeDescription"  id="busTypeDescription" aria-describedby="emailHelp">
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Status</label>
-                            <select class="form-control" name="busTypeStatus"  id="busTypeStatus" aria-describedby="emailHelp">
-                                <option value="Active">Active</option>
-                                <option value="Inactive">Inactive</option>
-                            </select>
-                        </div>
                         <input type="submit" class="btn btn-primary">
                     </form>
                 </div>
@@ -99,8 +92,11 @@ The above copyright notice and this permission notice shall be included in all c
                 <form id="editBusTypeForm">
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Bus Type</label>
                         <input type="text" class="form-control" name="editBusTypeName" id="editBusTypeName" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Description</label>
                         <input type="text" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Status</label>
                         <input type="text" class="form-control" name="editBusTypeStatus" id="editBusTypeStatus" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
@@ -153,24 +149,20 @@ The above copyright notice and this permission notice shall be included in all c
 <script>
     // DATA TABLES
     function loadtable(){
-        function loadtable(){
-        userDataTable = $('#userTable').DataTable( {
-            "ajax": "<?php echo base_url()?>user/show_user",
+        busTypeDataTable = $('#busTypeTable').DataTable( {
+            "ajax": "<?php echo base_url()?>bus_type/show_bus_type",
             "columns": [
                 { data: "id"},
-                { data: "firstName", render: function(data, type, row){
-                        return `${row.firstName} ${row.lastName}`
-                    }
-                },
-                { data: "lastName"},
-                { data: "email"},
+                { data: "name"},
+                { data: "description"},
+                { data: "status"},
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
                             return '<div class="btn-group">'+
                                     '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
                                     '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
-                                    '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
+                                    '<button class="btn btn-danger btn-sm btn_view" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
                         }   
                         else{
                             return '<button>Activate</button>';
@@ -189,9 +181,9 @@ The above copyright notice and this permission notice shall be included in all c
     loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>user/show_user";
+        var url = "<?php echo base_url()?>bus_type/show_bus_type/";
 
-        userDataTable.ajax.url(url).load();
+        busTypeDataTable.ajax.url(url).load();
     }
 
     // CREATE BUS TYPE
@@ -220,22 +212,26 @@ The above copyright notice and this permission notice shall be included in all c
     });
 
     // VIEW BUS TYPE
-    $.ajax({
-            url: '<?php echo base_url()?>user/get_one_user',
+    $(document).on("click", ".btn_view", function(){
+        var id = this.value;
+        // console.log(id);
+
+        $.ajax({
+            url: '<?php echo base_url()?>bus_type/get_one_bus_type/',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var userInfo = data.data;
+                var busTypeInfo = data.data;
 
-                $('#editUserId').val(id);
-                $('#editFirstName').val(userInfo.firstName);
-                $('#editLastName').val(userInfo.lastName);
-                $('#editEmail').val(userInfo.email);
+                $('#editBusTypeId').val(id);
+                $('#editBusTypeName').val(busTypeInfo.name);
+                $('#editBusTypeDescription').val(busTypeInfo.description);
+                $('#editBusTypeStatus').val(busTypeInfo.status);
 
-                $('#userInfoModal').modal('show');
+                $('#busTypeInfoModal').modal('show');
             }
         // ajax closing tag
         })
@@ -269,12 +265,16 @@ The above copyright notice and this permission notice shall be included in all c
         })
     });
 
-    $(document).on("click", ".btn_delete", function(){
-        var id = this.value;
-        // console.log(id);
+    $('#deleteBusTypeForm').on('submit', function(e){
+        e.preventDefault();
+
+        $('#deleteBusTypeInfoModal').modal('show');
+
+        console.log('working');
 
         var form = $('#deleteBusTypeForm'); 
 
+        // ajax opening tag
         $.ajax({
             url: '<?php echo base_url()?>bus_type/delete_bus_type/',
             type: "POST",
@@ -282,10 +282,12 @@ The above copyright notice and this permission notice shall be included in all c
             dataType: "JSON",
         
             success: function(data){
-                console.log(data);
+                refresh();
 
-                $('#deleteBusTypeInfoModal').modal('show');
-
+                $("#addBusTypeForm").trigger("reset");
+                // End of Confirmation
+                $('#busTypeInfoModal').modal('hide');
+                
                 alert(data.message);
             }
         // ajax closing tag
