@@ -106,12 +106,14 @@ class Terminal extends CI_Controller {
 	public function edit_terminal(){
 		$name = $this->input->post('editTerminalName');
         $address = $this->input->post('editTerminalAddress');
-        $email = $this->input->post('editTerminalEmail');;
+        $email = $this->input->post('editTerminalEmail');
+		$status = $this->input->post('editTerminalStatus');
 		$id = $this->input->post('editTerminalId');
 
         $data = array("name" => $name
 						, "address" => $address
-						, "email" => $email);
+						, "email" => $email
+						, "status" => $status);
 
 		$postdata = json_encode($data);
 

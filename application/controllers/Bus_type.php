@@ -138,7 +138,7 @@ class Bus_type extends CI_Controller {
 	}
 
 	public function delete_bus_type(){
-		$id = $this->input->post('editBusTypeId');
+		$id = $this->input->post('deleteBusTypeId');
 
         $data = array("status" => "Inactive");
 

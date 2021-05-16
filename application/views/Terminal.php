@@ -66,7 +66,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <th>Terminal</th>
                             <th>Address</th>
                             <th>Email</th>
-                            <th>Date Created</th>
+                            <th>Contact Person</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -96,10 +96,17 @@ The above copyright notice and this permission notice shall be included in all c
                 <form id="editTerminalForm">
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="editTerminalId" id="editTerminalId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Terminal</label>
                         <input type="text" class="form-control" name="editTerminalName" id="editTerminalName" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Address</label>
                         <input type="text" class="form-control" name="editTerminalAddress" id="editTerminalAddress" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Email</label>
                         <input type="email" class="form-control" name="editTerminalEmail" id="editTerminalEmail" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editTerminalStatus" id="editTerminalStatus" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Status</label>
+                        <select class="form-control" id="editTerminalStatus" name="editTerminalStatus" aria-describedby="emailHelp">
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success">
