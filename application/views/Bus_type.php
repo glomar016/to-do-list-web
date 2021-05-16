@@ -245,17 +245,12 @@ The above copyright notice and this permission notice shall be included in all c
     });
 
     // VIEW BUS TYPE
-<<<<<<< HEAD
-    $.ajax({
-            url: '<?php echo base_url()?>bus_type/get_one_bus_type',
-=======
     $(document).on("click", ".btn_view", function(){
         var id = this.value;
         // console.log(id);
 
         $.ajax({
             url: '<?php echo base_url()?>bus_type/get_one_bus_type/',
->>>>>>> testbranch
             type: "POST",
             data: { id: id },
             dataType: "JSON",
@@ -264,20 +259,11 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var busTypeInfo = data.data;
 
-<<<<<<< HEAD
-                $('#editBusTypeId').val(id);
-                $('#editBusTypeName').val(busTypeInfo.name);
-                $('#editBusTypeDescription').val(busTypeInfo.description);
-                $('#editBusTypeStatus').val(busTypeInfo.status);
-
-                $('#busTypeInfoModal').modal('hide');
-=======
                 $('#BusTypeId').val(id);
                 $('#BusTypeName').val(busTypeInfo.name);
                 $('#BusTypeDescription').val(busTypeInfo.description);
 
                 $('#busTypeInfoModal').modal('show');
->>>>>>> testbranch
             }
         // ajax closing tag
         })
@@ -394,5 +380,4 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/fixed_scripts.php')?>
 
 </html>
-
 

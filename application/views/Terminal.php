@@ -1,4 +1,4 @@
-<!--
+	<!--
 =========================================================
 Material Dashboard - v2.1.2
 =========================================================
@@ -257,22 +257,12 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var terminalInfo = data.data;
 
-<<<<<<< HEAD
-                $('#editTerminalId').val(id);
-                $('#editTerminalName').val(terminalInfo.name);
-                $('#editTerminalAddress').val(terminalInfo.address);
-                $('#editTerminalEmail').val(terminalInfo.email);
-                $('#editTerminalStatus').val(terminalInfo.status);
-
-                $('#terminalInfo').modal('show');
-=======
                 $('#TerminalId').val(id);
                 $('#TerminalName').val(terminalInfo.name);
                 $('#TerminalAddress').val(terminalInfo.address);
                 $('#TerminalEmail').val(terminalInfo.email);
 
                 $('#terminalInfoModal').modal('show');
->>>>>>> testbranch
             }
         // ajax closing tag
         })
@@ -391,5 +381,3 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/fixed_scripts.php')?>
 
 </html>
-
-
