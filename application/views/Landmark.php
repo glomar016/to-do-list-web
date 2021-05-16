@@ -153,6 +153,7 @@ The above copyright notice and this permission notice shall be included in all c
   
 </body>
 <script>
+
  //DATA TABLES
    function loadtable(){
        landmarkDataTable = $('#landmarkTable').DataTable( {
