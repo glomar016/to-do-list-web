@@ -183,18 +183,22 @@ The above copyright notice and this permission notice shall be included in all c
 <script>
     // DATA TABLES
     function loadtable(){
-        busTypeDataTable = $('#busTypeTable').DataTable( {
-            "ajax": "<?php echo base_url()?>bus_type/show_bus_type",
+        userDataTable = $('#userTable').DataTable( {
+            "ajax": "<?php echo base_url()?>user/show_user",
             "columns": [
                 { data: "id"},
-                { data: "name"},
-                { data: "description"},
+                { data: "firstName", render: function(data, type, row){
+                        return `${row.firstName} ${row.lastName}`
+                    }
+                },
+                { data: "lastName"},
+                { data: "email"},
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
                             return '<div class="btn-group">'+
                                     '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
-                                    '<button class="btn btn-warning btn-sm btn_edit" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
+                                    '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
                                     '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
                         }   
                         else{
@@ -206,17 +210,17 @@ The above copyright notice and this permission notice shall be included in all c
 
             ],
 
-            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 3] }],
-            "order": [[3, "desc"]]
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 4] }],
+            "order": [[4, "desc"]]
         })
     }
 
     loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>bus_type/show_bus_type/";
+        var url = "<?php echo base_url()?>user/show_user";
 
-        busTypeDataTable.ajax.url(url).load();
+        userDataTable.ajax.url(url).load();
     }
 
     // CREATE BUS TYPE
