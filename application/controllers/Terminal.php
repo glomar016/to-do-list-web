@@ -28,7 +28,6 @@ class Terminal extends CI_Controller {
         $name = $this->input->post('terminalName');
         $address = $this->input->post('terminalAddress');
         $email = $this->input->post('terminalEmail');
-        $status = $this->input->post('terminalStatus');
 
         $data = array("name" => $name
 						, "address" => $address
@@ -107,13 +106,11 @@ class Terminal extends CI_Controller {
 		$name = $this->input->post('editTerminalName');
         $address = $this->input->post('editTerminalAddress');
         $email = $this->input->post('editTerminalEmail');
-		$status = $this->input->post('editTerminalStatus');
 		$id = $this->input->post('editTerminalId');
 
         $data = array("name" => $name
 						, "address" => $address
-						, "email" => $email
-						, "status" => $status);
+						, "email" => $email);
 
 		$postdata = json_encode($data);
 
@@ -138,6 +135,34 @@ class Terminal extends CI_Controller {
 
 		curl_close($curl);
 		echo $response;
+
+	}
+
+	public function delete_terminal(){
+		$id = $this->input->post('deleteTerminalId');
+
+        $data = array("status" => "Inactive");
+
+		$postdata = json_encode($data);
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'http://localhost:3600/api/v1/terminal/'.$id,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'DELETE',
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		echo $response;
+
 
 	}
 }

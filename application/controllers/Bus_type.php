@@ -104,12 +104,10 @@ class Bus_type extends CI_Controller {
 	public function edit_bus_type(){
 		$name = $this->input->post('editBusTypeName');
         $description = $this->input->post('editBusTypeDescription');
-        $status = $this->input->post('editBusTypeStatus');;
 		$id = $this->input->post('editBusTypeId');
 
         $data = array("name" => $name
-						, "description" => $description
-						, "status" => $status);
+						, "description" => $description);
 
 		$postdata = json_encode($data);
 

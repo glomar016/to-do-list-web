@@ -93,22 +93,43 @@ The above copyright notice and this permission notice shall be included in all c
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editBusTypeForm">
+                <form id="BusTypeForm">
                     <div class="modal-body">
-                        <input hidden type="text" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
+                        <input disabled hidden type="text" class="form-control" name="BusTypeId" id="BusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <select class="form-control" id="editBusTypeName" name="editBusTypeName" aria-describedby="emailHelp">
+                        <select disabled class="form-control" id="BusTypeName" name="BusTypeName" aria-describedby="emailHelp">
                                 <option value="Ordinary">Ordinary</option>
                                 <option value="Air-Conditioned">Air-Conditioned</option>
                                 <option value="Deluxe">Deluxe</option>
                         </select>
                         <label for="exampleInputEmail1">Description</label>
-                        <input type="text" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Status</label>
-                        <select class="form-control" id="editBusTypeStatus" name="editBusTypeStatus" aria-describedby="emailHelp">
-                            <option value="Active">Active</option>
-                            <option value="Inactive">Inactive</option>
+                        <input disabled type="text" class="form-control" name="BusTypeDescription" id="BusTypeDescription" aria-describedby="emailHelp">
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+
+        <div id="editBusTypeInfoModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Bus Type Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editBusTypeForm">
+                    <div class="modal-body">
+                        <input hidden type="text" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Bus Type</label>
+                        <select class="form-control" id="editBusTypeName" name="editBusTypeName" aria-describedby="emailHelp">
+                            <option value="Ordinary">Ordinary</option>
+                            <option value="Air-Conditioned">Air-Conditioned</option>
+                            <option value="Deluxe">Deluxe</option>
                         </select>
+                        <label for="exampleInputEmail1">Description</label>
+                        <input type="text" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success">
@@ -131,11 +152,9 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="deleteBusTypeId" id="deleteBusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <input type="text" class="form-control" name="deleteBusTypeName" id="deleteBusTypeName" aria-describedby="emailHelp">
+                        <input disabled type="text" class="form-control" name="deleteBusTypeName" id="deleteBusTypeName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Description</label>
-                        <input type="text" class="form-control" name="deleteBusTypeDescription" id="deleteBusTypeDescription" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Status</label>
-                        <input type="text" class="form-control" name="deleteBusTypeStatus" id="deleteBusTypeStatus" aria-describedby="emailHelp">
+                        <input disabled type="text" class="form-control" name="deleteBusTypeDescription" id="deleteBusTypeDescription" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-danger">
@@ -175,7 +194,7 @@ The above copyright notice and this permission notice shall be included in all c
                         if(data == "Active"){
                             return '<div class="btn-group">'+
                                     '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
-                                    '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
+                                    '<button class="btn btn-warning btn-sm btn_edit" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
                                     '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
                         }   
                         else{
@@ -240,10 +259,9 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var busTypeInfo = data.data;
 
-                $('#editBusTypeId').val(id);
-                $('#editBusTypeName').val(busTypeInfo.name);
-                $('#editBusTypeDescription').val(busTypeInfo.description);
-                $('#editBusTypeStatus').val(busTypeInfo.status);
+                $('#BusTypeId').val(id);
+                $('#BusTypeName').val(busTypeInfo.name);
+                $('#BusTypeDescription').val(busTypeInfo.description);
 
                 $('#busTypeInfoModal').modal('show');
             }
@@ -251,7 +269,8 @@ The above copyright notice and this permission notice shall be included in all c
         })
     });
 
-    $(document).on("click", ".btn_delete", function(){
+    // EDIT BUS TYPE 
+    $(document).on("click", ".btn_edit", function(){
         var id = this.value;
         // console.log(id);
 
@@ -263,20 +282,18 @@ The above copyright notice and this permission notice shall be included in all c
         
             success: function(data){
                 console.log(data);
-                var deleteBusTypeInfo = data.data;
+                var busTypeInfo = data.data;
 
-                $('#deleteBusTypeId').val(id);
-                $('#deleteBusTypeName').val(deleteBusTypeInfo.name);
-                $('#deleteBusTypeDescription').val(deleteBusTypeInfo.description);
-                $('#deleteBusTypeStatus').val(deleteBusTypeInfo.status);
+                $('#editBusTypeId').val(id);
+                $('#editBusTypeName').val(busTypeInfo.name);
+                $('#editBusTypeDescription').val(busTypeInfo.description);
 
-                $('#deleteBusTypeInfoModal').modal('show');
+                $('#editBusTypeInfoModal').modal('show');
             }
         // ajax closing tag
         })
     });
 
-    // EDIT BUS TYPE 
     $('#editBusTypeForm').on('submit', function(e){
         e.preventDefault();
 
@@ -299,6 +316,31 @@ The above copyright notice and this permission notice shall be included in all c
                 $('#busTypeInfoModal').modal('hide');
                 
                 alert(data.message);
+            }
+        // ajax closing tag
+        })
+    });
+
+    // DELETE BUS TYPE
+    $(document).on("click", ".btn_delete", function(){
+        var id = this.value;
+        // console.log(id);
+
+        $.ajax({
+            url: '<?php echo base_url()?>bus_type/get_one_bus_type/',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data);
+                var deleteBusTypeInfo = data.data;
+
+                $('#deleteBusTypeId').val(id);
+                $('#deleteBusTypeName').val(deleteBusTypeInfo.name);
+                $('#deleteBusTypeDescription').val(deleteBusTypeInfo.description);
+
+                $('#deleteBusTypeInfoModal').modal('show');
             }
         // ajax closing tag
         })
