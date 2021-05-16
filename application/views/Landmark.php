@@ -1,4 +1,3 @@
-
 ---------------------------
 
 <!--
@@ -154,10 +153,67 @@ The above copyright notice and this permission notice shall be included in all c
   
 </body>
 <script>
-    //DATA TABLES
-   
+ //DATA TABLES
+   function loadtable(){
+       landmarkDataTable = $('#landmarkTable').DataTable( {
+           "ajax": "<?php echo base_url()?>Landmark/show_landmark",
+           "columns": [
+               { data: "id"},
+               { data: "name"},
+               { data: "kmFromOrigin"},
+               { data: "effectivityDate"},
+               { data: "created_at"},
+               { data: "status", render: function(data, type, row){
+                        if(data == "Active"){
+                            return '<div class="btn-group">'+
+                                    '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
+                                    '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
+                                    '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
+                        }   
+                        else{
+                            return '<button>Activate</button>';
+                        }
+                    }
+               } 
+           ],
+
+           "aoColumnDefs": [{ "bVisible": false, "aTargets" : [0,5] }],
+           "order": [[5, "desc"]]
+       })
+   }
+
+   loadtable();
+
+   function refresh(){
+       var url = "<?php echo base_url()?>Landmark/show_landmark";
+
+       landmarkDataTable.ajax.url(url).load();
+   }
 
     // CREATE LANDMARK
+    $('#addLandmarkForm').on('submit', function(e){
+        e.preventDefault();
+
+        var form = $('#addLandmarkForm'); 
+
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>Landmark/add_landmark',
+            type: "POST",
+            data: form.serialize(),
+            dataType: "JSON",
+        
+            success: function(data){
+                refresh();
+
+                $("#addUserForm").trigger("reset");
+                // End of Confirmation
+
+                
+            }
+        // ajax closing tag
+        })
+    });
     
 
 
