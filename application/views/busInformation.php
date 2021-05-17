@@ -224,115 +224,265 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                       <div class="form-group col-sm-12">
                       <label for="busNumberView">Bus Number</label>
-                      <input type="text" class="form-control" id="busNumberView" name="busNumberView" readonly>
+                      <input type="text" class="form-control" id="busNumberView" name="busNumberView"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                         <label for="busTypeView">Bus Type</label>
-                        <input type="text" class="form-control" id="busTypeView" name="busTypeView" readonly>
+                        <input type="text" class="form-control" id="busTypeView" name="busTypeView"  >
                       </div>
                       <div class="form-group col-sm-6">
                         <label for="busTemplateView">Bus Template</label>
-                        <input type="text" class="form-control" id="busTemplateView" name="busTemplateView" readonly>
+                        <input type="text" class="form-control" id="busTemplateView" name="busTemplateView"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                       <label for="ownerView">Owner</label>
-                      <input type="text" class="form-control" id="ownerView" name="ownerView" readonly>
+                      <input type="text" class="form-control" id="ownerView" name="ownerView"  >
                       </div>
                       <div class="form-group col-sm-6">
                       <label for="contactView">Contact Number</label>
-                      <input type="text" class="form-control" id="contactView" name="contactView" readonly>
+                      <input type="text" class="form-control" id="contactView" name="contactView"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="plateView">Plate Number</label>
-                      <input type="text" class="form-control" id="plateView" name="plateView" readonly>
+                      <input type="text" class="form-control" id="plateView" name="plateView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="engineView">Engine Number</label>
-                      <input type="text" class="form-control" id="engineView" name="engineView" readonly>
+                      <input type="text" class="form-control" id="engineView" name="engineView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="chasisView">Chasis Number</label>
-                      <input type="text" class="form-control" id="chasisView" name="chasisView" readonly>
+                      <input type="text" class="form-control" id="chasisView" name="chasisView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fileNumberView">MV File Number</label>
-                      <input type="text" class="form-control" id="fileNumberView" name="fileNumberView" readonly>
+                      <input type="text" class="form-control" id="fileNumberView" name="fileNumberView"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="denominationView">Denomination</label>
-                      <input type="text" class="form-control" id="denominationView" name="denominationView" readonly>
+                      <input type="text" class="form-control" id="denominationView" name="denominationView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="pistonView">Piston Placement</label>
-                      <input type="text" class="form-control" id="pistonView" name="pistonView" readonly>
+                      <input type="text" class="form-control" id="pistonView" name="pistonView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fuelView">Fuel</label>
-                      <input type="text" class="form-control" id="fuelView" name="fuelView" readonly> 
+                      <input type="text" class="form-control" id="fuelView" name="fuelView"  > 
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="yearView">Year Model</label>
-                      <input type="text" class="form-control" id="yearView" name="yearView" readonly>
+                      <input type="text" class="form-control" id="yearView" name="yearView"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="makeView">Make</label>
-                      <input type="text" class="form-control" id="makeView" name="makeView" readonly>
+                      <input type="text" class="form-control" id="makeView" name="makeView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="seriesView">Series</label>
-                      <input type="text" class="form-control" id="seriesView" name="seriesView" readonly>
+                      <input type="text" class="form-control" id="seriesView" name="seriesView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyView">Body Type</label>
-                      <input type="text" class="form-control" id="bodyView" name="bodyView" readonly>
+                      <input type="text" class="form-control" id="bodyView" name="bodyView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyNumberView">Body Number</label>
-                      <input type="text" class="form-control" id="bodyNumberView" name="bodyNumberView" readonly>
+                      <input type="text" class="form-control" id="bodyNumberView" name="bodyNumberView"  >
                       </div>
                   </div>
                   <div class="form-row">
                   <div class="form-group col-sm-3">
                       <label for="netCapacityView">Net Capacity</label>
-                      <input type="text" class="form-control" id="netCapacityView" name="netCapacityView" readonly>
+                      <input type="text" class="form-control" id="netCapacityView" name="netCapacityView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="grossWeightView">Gross Weight (kg)</label>
-                      <input type="text" class="form-control" id="grossWeightView" name="grossWeightView" readonly>
+                      <input type="text" class="form-control" id="grossWeightView" name="grossWeightView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="netWeightView">Net Weight (kg)</label>
-                      <input type="text" class="form-control" id="netWeightView" name="netWeightView" readonly>
+                      <input type="text" class="form-control" id="netWeightView" name="netWeightView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightView">Shipping Weight (kg)</label>
-                      <input type="text" class="form-control" id="shipWeightView" name="shipWeightView" readonly>
+                      <input type="text" class="form-control" id="shipWeightView" name="shipWeightView"  >
                       </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Television</label>
-                      <input type="text" class="form-control" id="withTvView" name="withTvView" readonly>
+                      <input type="text" class="form-control" id="withTvView" name="withTvView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Aircon</label>
-                      <input type="text" class="form-control" id="withAirconView" name="withAirconView" readonly>
+                      <input type="text" class="form-control" id="withAirconView" name="withAirconView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has WiFi</label>
-                      <input type="text" class="form-control" id="withWifiView" name="withWifiView" readonly>
+                      <input type="text" class="form-control" id="withWifiView" name="withWifiView"  >
                       </div>
                   </div>
+              </form>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editModal">Edit Bus Information</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="card-body">
+              <form id="editBusInfoForm">
+                  <div class="form-row">
+                      <div class="form-group col-sm-12">
+                      <label for="busNumberEdit">Bus Number</label>
+                      <input type="text" class="form-control" id="busNumberEdit" name="busNumberEdit"  >
+                      <input hidden type="text" class="form-control" id="idBusInformationEdit" name="idBusInformationEdit"  >
+                      </div>
+                  </div>
+                  <div class="form-row">
+                              <div class="form-group col-sm-6">
+                                <label for="busTypeEdit">Bus Type</label>
+                                <select class="form-control" id="busTypeEdit" name="busTypeEdit">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                              </div>
+                              <div class="form-group col-sm-6">
+                                <label for="busTemplateEdit">Bus Template</label>
+                                <select class="form-control" id="busTemplateEdit" name="busTemplateEdit">
+                                  <option>1</option>
+                                  <option>2</option>
+                                  <option>3</option>
+                                  <option>4</option>
+                                  <option>5</option>
+                                </select>
+                              </div>
+                          </div>
+                  <div class="form-row">
+                      <div class="form-group col-sm-6">
+                      <label for="ownerEdit">Owner</label>
+                      <input type="text" class="form-control" id="ownerEdit" name="ownerEdit"  >
+                      </div>
+                      <div class="form-group col-sm-6">
+                      <label for="contactEdit">Contact Number</label>
+                      <input type="text" class="form-control" id="contactEdit" name="contactEdit"  >
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-sm-3">
+                      <label for="plateEdit">Plate Number</label>
+                      <input type="text" class="form-control" id="plateEdit" name="plateEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="engineEdit">Engine Number</label>
+                      <input type="text" class="form-control" id="engineEdit" name="engineEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="chasisEdit">Chasis Number</label>
+                      <input type="text" class="form-control" id="chasisEdit" name="chasisEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="fileNumberEdit">MV File Number</label>
+                      <input type="text" class="form-control" id="fileNumberEdit" name="fileNumberEdit"  >
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-sm-3">
+                      <label for="denominationEdit">Denomination</label>
+                      <input type="text" class="form-control" id="denominationEdit" name="denominationEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="pistonEdit">Piston Placement</label>
+                      <input type="text" class="form-control" id="pistonEdit" name="pistonEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="fuelEdit">Fuel</label>
+                      <input type="text" class="form-control" id="fuelEdit" name="fuelEdit"  > 
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="yearEdit">Year Model</label>
+                      <input type="text" class="form-control" id="yearEdit" name="yearEdit"  >
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-sm-3">
+                      <label for="makeEdit">Make</label>
+                      <input type="text" class="form-control" id="makeEdit" name="makeEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="seriesEdit">Series</label>
+                      <input type="text" class="form-control" id="seriesEdit" name="seriesEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="bodyEdit">Body Type</label>
+                      <input type="text" class="form-control" id="bodyEdit" name="bodyEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="bodyNumberEdit">Body Number</label>
+                      <input type="text" class="form-control" id="bodyNumberEdit" name="bodyNumberEdit"  >
+                      </div>
+                  </div>
+                  <div class="form-row">
+                  <div class="form-group col-sm-3">
+                      <label for="netCapacityEdit">Net Capacity</label>
+                      <input type="text" class="form-control" id="netCapacityEdit" name="netCapacityEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="grossWeightEdit">Gross Weight (kg)</label>
+                      <input type="text" class="form-control" id="grossWeightEdit" name="grossWeightEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="netWeightEdit">Net Weight (kg)</label>
+                      <input type="text" class="form-control" id="netWeightEdit" name="netWeightEdit"  >
+                      </div>
+                      <div class="form-group col-sm-3">
+                      <label for="shipWeightEdit">Shipping Weight (kg)</label>
+                      <input type="text" class="form-control" id="shipWeightEdit" name="shipWeightEdit"  >
+                      </div>
+                  </div>
+                  <div class="form-row">
+                      <label>Check all that applies</label>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-check form-check-inline">
+                      <input  type="checkbox" id="withTelevisionEdit" name="withTelevisionEdit" value="True">
+                      <label class="form-check-label" for="withTelevisionEdit" style="padding-left: 5px;">with Television</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input  type="checkbox" id="withAirconEdit" name="withAirconEdit" value="True">
+                      <label class="form-check-label" for="withAirconEdit" style="padding-left: 5px;">with Aircon</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input  type="checkbox" id="withWifiEdit" name="withWifiEdit" value="True">
+                      <label class="form-check-label" for="withWifiEdit" style="padding-left: 5px;">with WiFi</label>
+                    </div>
+                  </div>
+                  <input type="submit" class="btn btn-primary">
               </form>
             </div>
           </div>
@@ -482,6 +632,92 @@ $(document).on("click", ".btn-view", function(){
           withWifiView.value = userInfo.hasWifi
         }
     })
+});
+
+$(document).on("click", ".btn-edit", function(){
+  var id = this.value;
+  $("#editModal").modal('show');
+  $.ajax({
+        url:'<?php echo base_url()?>busInformation/viewBusInformation',
+        type: "POST",
+        data: { id: id},
+        dataType: "JSON",
+
+        success: function(data){
+          var userInfo = data.data;
+
+          var idBusInformationEdit = document.getElementById('idBusInformationEdit');
+          var busNumberEdit = document.getElementById('busNumberEdit');
+          var busTypeEdit = document.getElementById('busTypeEdit');
+          var busTemplateEdit = document.getElementById('busTemplateEdit');
+          var ownerEdit = document.getElementById('ownerEdit');
+          var contactEdit = document.getElementById('contactEdit');
+          var plateEdit = document.getElementById('plateEdit');
+          var engineEdit = document.getElementById('engineEdit');
+          var chasisEdit = document.getElementById('chasisEdit');
+          var fileNumberEdit = document.getElementById('fileNumberEdit');
+          var denominationEdit = document.getElementById('denominationEdit');
+          var pistonEdit = document.getElementById('pistonEdit');
+          var fuelEdit = document.getElementById('fuelEdit');
+          var makeEdit = document.getElementById('makeEdit');
+          var seriesEdit = document.getElementById('seriesEdit');
+          var bodyEdit = document.getElementById('bodyEdit');
+          var bodyNumberEdit = document.getElementById('bodyNumberEdit');
+          var yearEdit = document.getElementById('yearEdit');
+          var grossWeightEdit = document.getElementById('grossWeightEdit');
+          var netWeightEdit = document.getElementById('netWeightEdit');
+          var shipWeightEdit = document.getElementById('shipWeightEdit');
+          var netCapacityEdit = document.getElementById('netCapacityEdit');
+          var withTvEdit = document.getElementById('withTvEdit');
+          var withAirconEdit = document.getElementById('withAirconEdit');
+          var withWifiEdit = document.getElementById('withWifiEdit');
+
+          idBusInformationEdit.value = userInfo.id
+          busNumberEdit.value = userInfo.number
+          busTypeEdit.value = userInfo.type
+          busTemplateEdit.value = userInfo.template
+          ownerEdit.value = userInfo.owner
+          contactEdit.value = userInfo.contactNumber
+          plateEdit.value = userInfo.plateNumber
+          engineEdit.value = userInfo.engineNumber
+          chasisEdit.value = userInfo.chasisNumber
+          fileNumberEdit.value = userInfo.fileNumber
+          denominationEdit.value = userInfo.denomination
+          pistonEdit.value = userInfo.pistonPlacement
+          fuelEdit.value = userInfo.fuel
+          makeEdit.value = userInfo.make
+          seriesEdit.value = userInfo.series
+          bodyEdit.value = userInfo.bodyType
+          bodyNumberEdit.value = userInfo.bodyNumber
+          yearEdit.value = userInfo.yearModel
+          grossWeightEdit.value = userInfo.grossWeight
+          netWeightEdit.value = userInfo.netWeight
+          shipWeightEdit.value = userInfo.shippingWeight
+          netCapacityEdit.value = userInfo.netCapacity
+          withTvEdit.value = userInfo.hasTelevision
+          withAirconEdit.value = userInfo.hasAircon
+          withWifiEdit.value = userInfo.hasWifi
+        }
+    })
+});
+
+$('#editBusInfoForm').on('submit', function(e){
+
+e.preventDefault();
+
+var form = $('#editBusInfoForm');
+
+$.ajax({
+    url:'<?php echo base_url()?>busInformation/editBusInformation',
+    type: "POST",
+    data: form.serialize(),
+    dataType: "JSON",
+
+    success: function(data){
+      $("#editModal").modal('hide');
+      refresh();
+    }
+})
 });
 </script>
 

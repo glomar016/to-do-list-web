@@ -148,4 +148,83 @@ class BusInformation extends CI_Controller {
       curl_close($curl);
       echo $response;
 	}
+
+	public function editBusInformation()
+	{
+		$idBusInformationEdit = $this->input->post('idBusInformationEdit');
+		$busNumberEdit = $this->input->post('busNumberEdit');
+		$busTypeEdit =  $this->input->post('busTypeEdit');
+		$busTemplateEdit =  $this->input->post('busTemplateEdit');
+		$ownerEdit =  $this->input->post('ownerEdit');
+		$contactEdit =  $this->input->post('contactEdit');
+		$plateEdit =  $this->input->post('plateEdit');
+		$engineEdit =  $this->input->post('engineEdit');
+		$chasisEdit =  $this->input->post('chasisEdit');
+		$fileNumberEdit =  $this->input->post('fileNumberEdit');
+		$denominationEdit =  $this->input->post('denominationEdit');
+		$pistonEdit =  $this->input->post('pistonEdit');
+		$cylindersEdit =  $this->input->post('cylindersEdit');
+		$fuelEdit =  $this->input->post('fuelEdit');
+		$makeEdit =  $this->input->post('makeEdit');
+		$seriesEdit =  $this->input->post('seriesEdit');
+		$bodyEdit =  $this->input->post('bodyEdit');
+		$bodyNumberEdit =  $this->input->post('bodyNumberEdit');
+		$yearEdit =  $this->input->post('yearEdit');
+		$grossWeightEdit =  $this->input->post('grossWeightEdit');
+		$netWeightEdit =  $this->input->post('netWeightEdit');
+		$shipWeightEdit =  $this->input->post('shipWeightEdit');
+		$netCapacityEdit =  $this->input->post('netCapacityEdit');
+		$withTelevisionEdit =  $this->input->post('withTelevisionEdit');
+		$withAirconEdit =  $this->input->post('withAirconEdit');
+		$withWifiEdit =  $this->input->post('withWifiEdit');
+
+		$data = array("number" => $busNumberEdit
+						, "owner" => $ownerEdit
+						, "contactNumber" => $contactEdit
+						, "fileNumber" => $fileNumberEdit
+						, "plateNumber" => $plateEdit
+						, "engineNumber" => $engineEdit
+						, "chasisNumber" => $chasisEdit
+						, "denomination" => $denominationEdit
+						, "pistonPlacement" => $pistonEdit
+						, "fuel" => $fuelEdit
+						, "make" => $makeEdit
+						, "series" => $seriesEdit
+						, "bodyType" => $bodyEdit
+						, "bodyNumber" => $bodyNumberEdit
+						, "yearModel" => $yearEdit
+						, "grossWeight" => $grossWeightEdit
+						, "netWeight" => $netWeightEdit
+						, "shippingWeight" => $shipWeightEdit
+						, "netCapacity" => $netCapacityEdit
+						, "hasWifi" => $withWifiEdit
+						, "hasAircon" => $withAirconEdit
+						, "hasTelevision" => $withTelevisionEdit
+						);
+		$postdata = json_encode($data);
+
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'http://localhost:3600/api/v1/bus_information/'.$idBusInformationEdit,
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'PUT',
+		CURLOPT_POSTFIELDS =>$postdata,
+		CURLOPT_HTTPHEADER => array(
+			'Content-Type: application/json'
+		),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		echo $response;
+
+}
 }
