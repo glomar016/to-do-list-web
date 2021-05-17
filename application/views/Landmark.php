@@ -87,49 +87,56 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- END OF CLOSING TAG OF CONTENT -->
 
+      <!-- VIEW MODAL -->
       <div id="LandmarkInfoModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Landmark Info</h5>
+                    <h5 class="modal-title">Landmark Information</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editLandmarkForm">
+                <form id="LandmarkForm">
                     <div class="modal-body">
-                        <input hidden type="text" class="form-control" name="editLandmarkId" id="editLandmarkId" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editName" id="editName" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editkmFromOrigin" id="editkmFromOrigin" aria-describedby="emailHelp">
-                        <input type="date" class="form-control" name="editeffectivityDate" id="editeffectivityDate" aria-describedby="">
+                        <input hidden type="text" class="form-control" name="LandmarkIdmodal" id="LandmarkIdmodal" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Landmark Name</label>
+                             <input type="text" class="form-control" name="namemodal" id="namemodal" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Kilometer From Origin</label>
+                            <input type="text" class="form-control" name="kmFromOriginmodal" id="kmFromOriginmodal" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Effectivity Date</label>
+                            <input type="text" class="form-control" name="effectivityDatemodal" id="effectivityDatemodal" aria-describedby="">
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success">
+                        <!-- <input type="submit" class="btn btn-success"> -->
                     </div>
                 </form>
                 </div>
             </div>
         </div>
 
-
-         <div id="LandmarkInfoModalView" class="modal" tabindex="-1" role="dialog">
+<!-- EDIT MODAL -->
+        <div id="editLandmarkInfoModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Landmark Info</h5>
+                    <h5 class="modal-title">Landmark Information</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form id="editLandmarkForm">
                     <div class="modal-body">
-                        <input hidden type="text" class="form-control" name="editLandmarkId" id="editLandmarkId" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editName" id="editName" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editkmFromOrigin" id="editkmFromOrigin" aria-describedby="emailHelp">
-                        <input type="date" class="form-control" name="editeffectivityDate" id="editeffectivityDate" aria-describedby="">
+                          <input hidden type="text" class="form-control" name="editLandmarkId" id="editLandmarkId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Landmark Name</label>
+                            <input type="text" class="form-control" name="editName" id="editName" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Kilometer From Origin</label>
+                            <input type="text" class="form-control" name="editkmFromOrigin" id="editkmFromOrigin" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Effectivity Date</label>
+                            <input type="date" class="form-control" name="editeffectivityDate" id="editeffectivityDate" aria-describedby="">
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <input type="submit" class="btn btn-success">
                     </div>
                 </form>
                 </div>
@@ -160,10 +167,19 @@ The above copyright notice and this permission notice shall be included in all c
            "ajax": "<?php echo base_url()?>Landmark/show_landmark",
            "columns": [
                { data: "id"},
-               { data: "name"},
+               { data: "name", render: function(data, type, row){
+                        return `${row.name}`
+                    }
+                },
                { data: "kmFromOrigin"},
-               { data: "effectivityDate"},
-               { data: "created_at"},
+               { data: "effectivityDate", render: function(data, type, row){
+                   return moment (data).format("LL");
+                    }
+               },
+               { data: "created_at", render: function(data, type, row){
+                   return moment (data).format("LL");
+                    }
+               },
                { data: "status", render: function(data, type, row){
                         if(data == "Active"){
                             return '<div class="btn-group">'+
@@ -175,13 +191,15 @@ The above copyright notice and this permission notice shall be included in all c
                             return '<button>Activate</button>';
                         }
                     }
-               } 
-           ],
+                    
+                },
 
-           "aoColumnDefs": [{ "bVisible": false, "aTargets" : [0,5] }],
-           "order": [[5, "desc"]]
-       })
-   }
+            ],
+
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, ] }],
+            "order": [[4, "desc"]]
+        })
+    }
 
    loadtable();
 
@@ -223,7 +241,34 @@ The above copyright notice and this permission notice shall be included in all c
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>Landmark/get_one_landmark',
+            url: '<?php echo base_url()?>Landmark/get_one_landmark/',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data);
+                var LandmarkInfo = data.data;
+
+                $('#LandmarkIdmodal').val(id);
+                $('#namemodal').val(LandmarkInfo.name);
+                $('#kmFromOriginmodal').val(LandmarkInfo.kmFromOrigin);
+                $('#effectivityDatemodal').val(LandmarkInfo.effectivityDate);
+
+                $('#LandmarkInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+
+    
+
+    // EDIT landmark 
+    $(document).on("click", ".btn_edit", function(){
+        var id = this.value;
+
+        $.ajax({
+            url: '<?php echo base_url()?>Landmark/get_one_landmark/',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
@@ -237,13 +282,12 @@ The above copyright notice and this permission notice shall be included in all c
                 $('#editkmFromOrigin').val(LandmarkInfo.kmFromOrigin);
                 $('#editeffectivityDate').val(LandmarkInfo.effectivityDate);
 
-                $('#LandmarkInfoModalView').modal('show');
+                $('#editLandmarkInfoModal').modal('show');
             }
         // ajax closing tag
         })
     });
 
-    // EDIT landmark 
     $('#editLandmarkForm').on('submit', function(e){
         e.preventDefault();
 
@@ -267,8 +311,9 @@ The above copyright notice and this permission notice shall be included in all c
                 
                 alert(data.message);
             }
-        // ajax closing tag
-        })
+
+ // ajax closing tag
+})
     });
 </script>
 
