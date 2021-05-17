@@ -490,7 +490,28 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
         </div>
       </div>
-      
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="deleteForm">
+              <input hidden type="text" id="deleteBusInformationId" name="deleteBusInformationId">
+              You're deactivating this Bus information
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger delete-confirm" >Deactivate</button>
+            </div>
+          </div>
+        </div>
+      </div> 
       <!-- FOOTER -->
       <?php $this->load->view('includes/footer.php')?>
 
@@ -715,6 +736,41 @@ $.ajax({
 
     success: function(data){
       $("#editModal").modal('hide');
+      refresh();
+    }
+})
+});
+$(document).on("click", ".btn-delete", function(){
+  var id = this.value;
+  $("#deleteModal").modal('show');
+  $.ajax({
+        url:'<?php echo base_url()?>busInformation/viewBusInformation',
+        type: "POST",
+        data: { id: id},
+        dataType: "JSON",
+
+        success: function(data){
+          var userInfo = data.data;
+          var deleteBusInformationId = document.getElementById('deleteBusInformationId');
+          deleteBusInformationId.value = userInfo.id
+        }
+    })
+});
+
+$('.delete-confirm').on('click', function(e){
+
+e.preventDefault();
+
+var form = $('#deleteForm');
+
+$.ajax({
+    url:'<?php echo base_url()?>busInformation/deleteBusInformation',
+    type: "POST",
+    data: form.serialize(),
+    dataType: "JSON",
+
+    success: function(data){
+      $("#deleteModal").modal('hide');
       refresh();
     }
 })
