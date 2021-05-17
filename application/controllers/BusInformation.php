@@ -32,7 +32,7 @@ class BusInformation extends CI_Controller {
 		$busTypeInput =  $this->input->post('busTypeInput');
 		$busTemplateInput =  $this->input->post('busTemplateInput');
 		$ownerInput =  $this->input->post('ownerInput');
-		$contactInput =  $this->input->post('contactInpu;t');
+		$contactInput =  $this->input->post('contactInput');
 		$plateInput =  $this->input->post('plateInput');
 		$engineInput =  $this->input->post('engineInput');
 		$chasisInput =  $this->input->post('chasisInput');
@@ -49,6 +49,7 @@ class BusInformation extends CI_Controller {
 		$grossWeightInput =  $this->input->post('grossWeightInput');
 		$netWeightInput =  $this->input->post('netWeightInput');
 		$shipWeightInput =  $this->input->post('shipWeightInput');
+		$netCapacityInput =  $this->input->post('netCapacityInput');
 		$withTelevision =  $this->input->post('withTelevision');
 		$withAircon =  $this->input->post('withAircon');
 		$withWifi =  $this->input->post('withWifi');
@@ -61,7 +62,7 @@ class BusInformation extends CI_Controller {
 						, "engineNumber" => $engineInput
 						, "chasisNumber" => $chasisInput
 						, "denomination" => $denominationInput
-						, "pistonPlacement" => $ownerInput
+						, "pistonPlacement" => $pistonInput
 						, "fuel" => $fuelInput
 						, "make" => $makeInput
 						, "series" => $seriesInput
@@ -71,7 +72,7 @@ class BusInformation extends CI_Controller {
 						, "grossWeight" => $grossWeightInput
 						, "netWeight" => $netWeightInput
 						, "shippingWeight" => $shipWeightInput
-						, "netCapacity" => $ownerInput
+						, "netCapacity" => $netCapacityInput
 						, "hasWifi" => $withWifi
 						, "hasAircon" => $withAircon
 						, "hasTelevision" => $withTelevision
@@ -99,5 +100,52 @@ class BusInformation extends CI_Controller {
 
 		curl_close($curl);
 		echo $response;
+	}
+
+
+	public function show_BusInformation(){
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://localhost:3600/api/v1/bus_information/',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'GET',
+		  ));
+		  
+		  $response = curl_exec($curl);
+		  
+		  curl_close($curl);
+		  echo $response;
+	}
+
+	public function viewBusInformation(){
+
+		$id = $this->input->post('id');
+
+		$curl = curl_init();
+
+      curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_information/'.$id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+          'Authorization: Bearer 499556c7a912094c250ff0564a01b67ae1660d9d300b0cec2577f4eb1614af72f9804527a69c2f9d6c01ec926f011f7dcbec311fb9f1aa4f87ccda47c0e155f7'
+        ),
+      ));
+
+      $response = curl_exec($curl);
+
+      curl_close($curl);
+      echo $response;
 	}
 }
