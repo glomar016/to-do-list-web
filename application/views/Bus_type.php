@@ -182,10 +182,10 @@ The above copyright notice and this permission notice shall be included in all c
 </body>
 <script>
     // DATA TABLES
-    function loadtable(){
-        userDataTable = $('#userTable').DataTable( {
-            "ajax": "<?php echo base_url()?>user/show_user",
-            "columns": [
+    function dataTable(){
+        busTypeDataTable = $('#busTypeTable').DataTable( {
+            "ajax": "<?php echo base_url()?>bus_type/busTypeDataTable",
+            "columns": [    
                 { data: "id"},
                 { data: "firstName", render: function(data, type, row){
                         return `${row.firstName} ${row.lastName}`
@@ -215,12 +215,12 @@ The above copyright notice and this permission notice shall be included in all c
         })
     }
 
-    loadtable();
+    dataTable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>user/show_user";
+        var url = "<?php echo base_url()?>bus_type/busTypeDataTable";
 
-        userDataTable.ajax.url(url).load();
+        busTypeDataTable.ajax.url(url).load();
     }
 
     // CREATE BUS TYPE
