@@ -180,6 +180,28 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
           </div>
           
+          <!-- Closing form -->
+
+          <!-- DATA TABLES -->
+          <div class="card">
+              <div class="card-body">
+                <table id="busInformationTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Bus Number</th>
+                            <th>Bus Owner</th>
+                            <th>Plate Number</th>
+                            <th>Created At </th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+              </div>
+            </div>
               
             <!-- CLOSING TAG OF CONTENT -->
           </div>
@@ -204,6 +226,39 @@ The above copyright notice and this permission notice shall be included in all c
 </body>
 
 <script>
+    // DATA TABLES
+    function loadtable(){
+        userDataTable = $('#busInformationTable').DataTable( {
+            "ajax": "<?php echo base_url()?>busInformation/show_busInformation",
+            "columns": [
+                { data: "id"},
+                { data: "number"},
+                { data: "owner"},
+                { data: "plateNumber"},
+                { data: "created_at" },
+                { data: "status", render: function(data, type, row){
+                        if(data == "Active"){
+                            return '<div class="btn-group">'+
+                                    '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
+                                    '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
+                                    '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
+                        }   
+                        else{
+                            return '<button>Activate</button>';
+                        }
+                    }
+                    
+                },
+
+            ],
+
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 4] }],
+            "order": [[4, "desc"]]
+        })
+    }
+
+    loadtable();
+
 $('#busInformationForm').on('submit', function(e){
 
     e.preventDefault();
