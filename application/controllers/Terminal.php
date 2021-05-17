@@ -58,11 +58,11 @@ class Terminal extends CI_Controller {
         echo $response;
     }
 
-    public function show_user(){
+    public function terminalDataTable(){
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/user',
+		CURLOPT_URL => 'http://localhost:3600/api/v1/terminal',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,

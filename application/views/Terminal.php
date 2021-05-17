@@ -59,7 +59,7 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
             <div class="card">
               <div class="card-body">
-                <table id="terminalTable" class="table">
+                <table id="terminalDataTable" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -179,9 +179,9 @@ The above copyright notice and this permission notice shall be included in all c
 </body>
 <script>
     // DATA TABLES
-    function loadtable(){
-        userDataTable = $('#userTable').DataTable( {
-            "ajax": "<?php echo base_url()?>user/show_user",
+    function datatable(){
+        terminalDataTable = $('#terminalDataTable').DataTable( {
+            "ajax": "<?php echo base_url()?>terminal/terminalDataTable",
             "columns": [
                 { data: "id"},
                 { data: "firstName", render: function(data, type, row){
@@ -212,12 +212,12 @@ The above copyright notice and this permission notice shall be included in all c
         })
     }
 
-    loadtable();
+    datatable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>user/show_user";
+        var url = "<?php echo base_url()?>terminal/terminalDataTable";
 
-        userDataTable.ajax.url(url).load();
+        terminalDataTable.ajax.url(url).load();
     }
 
     // CREATE TERMINAL
