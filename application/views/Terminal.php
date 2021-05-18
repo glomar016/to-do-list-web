@@ -42,16 +42,27 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="card-body">
                     <form id="addTerminalForm" name="addTerminalForm">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Terminal</label>
-                            <input type="text" class="form-control" name="terminalName" id="terminalName" aria-describedby="emailHelp">
+                            <div class="form-row">
+                                <label for="exampleInputEmail1">Terminal</label>
+                                <input type="text" class="form-control" name="terminalName" id="terminalName" aria-describedby="emailHelp">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Address</label>
-                            <input type="text" class="form-control" name="terminalAddress"  id="terminalAddress" aria-describedby="emailHelp">
+                            <div class="form-row">
+                                <label for="exampleInputEmail1">Address</label>
+                                <input type="text" class="form-control" name="terminalAddress"  id="terminalAddress" aria-describedby="emailHelp">
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="text" class="form-control" name="terminalEmail"  id="terminalEmail" aria-describedby="emailHelp">
+                            <div class="form-row">
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="text" class="form-control" name="terminalEmail"  id="terminalEmail" aria-describedby="emailHelp">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputEmail1">Contact Person</label>
+                                    <input type="text" class="form-control" name="terminalContactPerson"  id="terminalContactPerson" aria-describedby="emailHelp">
+                                </div>
                         </div>
                         <input type="submit" class="btn btn-primary">
                     </form>
@@ -67,6 +78,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <th>Address</th>
                             <th>Email</th>
                             <th>Contact Person</th>
+                            <th>Date Created</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -102,6 +114,10 @@ The above copyright notice and this permission notice shall be included in all c
                         <input disabled type="text" class="form-control" name="TerminalAddress" id="TerminalAddress" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Email</label>
                         <input disabled type="email" class="form-control" name="TerminalEmail" id="TerminalEmail" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Contact Person</label>
+                        <input disabled type="email" class="form-control" name="TerminalContactPerson" id="TerminalContactPerson" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Status</label>
+                        <input disabled type="email" class="form-control" name="TerminalStatus" id="TerminalStatus" aria-describedby="emailHelp">
                     </div>
                 </form>
                 </div>
@@ -126,6 +142,8 @@ The above copyright notice and this permission notice shall be included in all c
                         <input type="text" class="form-control" name="editTerminalAddress" id="editTerminalAddress" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Email</label>
                         <input type="email" class="form-control" name="editTerminalEmail" id="editTerminalEmail" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Contact Person</label>
+                        <input type="text" class="form-control" name="editTerminalContactPerson" id="editTerminalContactPerson" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success">
@@ -147,15 +165,11 @@ The above copyright notice and this permission notice shall be included in all c
                 <form id="deleteTerminalForm">
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="deleteTerminalId" id="deleteTerminalId" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Terminal</label>
-                        <input disabled type="text" class="form-control" name="deleteTerminalName" id="deleteTerminalName" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Address</label>
-                        <input disabled type="text" class="form-control" name="deleteTerminalAddress" id="deleteTerminalAddress" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Email</label>
-                        <input disabled type="email" class="form-control" name="deleteTerminalEmail" id="deleteTerminalEmail" aria-describedby="emailHelp">
+                        <p>Are you sure you want to delete this?</p>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-danger">
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
                     </div>
                 </form>
                 </div>
@@ -179,23 +193,21 @@ The above copyright notice and this permission notice shall be included in all c
 </body>
 <script>
     // DATA TABLES
-    function datatable(){
+    function loadtable(){
         terminalDataTable = $('#terminalDataTable').DataTable( {
-            "ajax": "<?php echo base_url()?>terminal/terminalDataTable",
+            "ajax": "<?php echo base_url()?>terminal/show_terminal",
             "columns": [
                 { data: "id"},
-                { data: "firstName", render: function(data, type, row){
-                        return `${row.firstName} ${row.lastName}`
-                    }
-                },
-                { data: "lastName"},
+                { data: "name"},
+                { data: "address"},
                 { data: "email"},
+                { data: "contactPersonUserId" },
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
                             return '<div class="btn-group">'+
                                     '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
-                                    '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
+                                    '<button class="btn btn-warning btn-sm btn_edit" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
                                     '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
                         }   
                         else{
@@ -207,15 +219,15 @@ The above copyright notice and this permission notice shall be included in all c
 
             ],
 
-            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 4] }],
-            "order": [[4, "desc"]]
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 5] }],
+            "order": [[5, "desc"]]
         })
     }
 
-    datatable();
+    loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>terminal/terminalDataTable";
+        var url = "<?php echo base_url()?>terminal/show_terminal";
 
         terminalDataTable.ajax.url(url).load();
     }
@@ -264,6 +276,7 @@ The above copyright notice and this permission notice shall be included in all c
                 $('#TerminalName').val(terminalInfo.name);
                 $('#TerminalAddress').val(terminalInfo.address);
                 $('#TerminalEmail').val(terminalInfo.email);
+                $('#TerminalStatus').val(terminalInfo.status);
 
                 $('#terminalInfoModal').modal('show');
             }
