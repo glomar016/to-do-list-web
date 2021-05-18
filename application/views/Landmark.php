@@ -252,7 +252,7 @@ The above copyright notice and this permission notice shall be included in all c
             success: function(data){
                 refresh();
 
-                $("#addUserForm").trigger("reset");
+                $("#addLandmarkForm").trigger("reset");
                 // End of Confirmation
 
                 
@@ -357,15 +357,15 @@ $(document).on("click", ".btn-delete", function(){
   var id = this.value;
   $("#deleteModal").modal('show');
   $.ajax({
-        url:'<?php echo base_url()?>landmark/viewLandmark',
+        url:'<?php echo base_url()?>landmark/deleteLandmark',
         type: "POST",
         data: { id: id},
         dataType: "JSON",
 
         success: function(data){
-          var userInfo = data.data;
+          var LandmarkInfo = data.data;
           var deleteLandmarkId = document.getElementById('deleteLandmarkId');
-          deleteLandmarkId.value = userInfo.id
+          deleteLandmarkId.value = LandmarkInfo.id
         }
     })
 });
