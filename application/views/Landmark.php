@@ -141,13 +141,40 @@ The above copyright notice and this permission notice shall be included in all c
                 </form>
                 </div>
             </div>
-        </div>
         
-      
-      <!-- FOOTER -->
-      <?php $this->load->view('includes/footer.php')?>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Landmark Information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-    </div>
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="deleteForm">
+              <input hidden type="text" id="deleteLandmark" name="deleteLandmark">
+              You're deleting this Landmark
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger delete-confirm" >Delete</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+        
     <!-- END OF MAIN CONTENT -->
 
   </div>
@@ -295,6 +322,8 @@ The above copyright notice and this permission notice shall be included in all c
 
         var form = $('#editLandmarkForm'); 
 
+
+
         // ajax opening tag
         $.ajax({
             url: '<?php echo base_url()?>landmark/edit_landmark',
@@ -311,10 +340,54 @@ The above copyright notice and this permission notice shall be included in all c
                 
                 alert(data.message);
             }
+        
 
  // ajax closing tag
 })
+
+
     });
+// DELETE Landmark
+      <!-- FOOTER -->
+      <?php $this->load->view('includes/footer.php')?>
+    }
+})
+});
+$(document).on("click", ".btn-delete", function(){
+  var id = this.value;
+  $("#deleteModal").modal('show');
+  $.ajax({
+        url:'<?php echo base_url()?>landmark/viewLandmark',
+        type: "POST",
+        data: { id: id},
+        dataType: "JSON",
+
+        success: function(data){
+          var userInfo = data.data;
+          var deleteLandmarkId = document.getElementById('deleteLandmarkId');
+          deleteLandmarkId.value = userInfo.id
+        }
+    })
+});
+
+$('.delete-confirm').on('click', function(e){
+
+e.preventDefault();
+
+var form = $('#deleteForm');
+
+$.ajax({
+    url:'<?php echo base_url()?>Landmark/deleteLandmark',
+    type: "POST",
+    data: form.serialize(),
+    dataType: "JSON",
+
+    success: function(data){
+      $("#deleteModal").modal('hide');
+      refresh();
+    }
+})
+});
 </script>
 
 <!-- FIXED SCRIPTS -->
@@ -335,8 +408,6 @@ $('.datetimepicker').datetimepicker({
     }
 });</script> -->
 </html>
-
-
 
 
 
