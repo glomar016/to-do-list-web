@@ -122,12 +122,12 @@ The above copyright notice and this permission notice shall be included in all c
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editLandmarkForm">
+                <form id="viewLandmarkForm">
                     <div class="modal-body">
-                        <input hidden type="text" class="form-control" name="editLandmarkId" id="editLandmarkId" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editName" id="editName" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editkmFromOrigin" id="editkmFromOrigin" aria-describedby="emailHelp">
-                        <input type="date" class="form-control" name="editeffectivityDate" id="editeffectivityDate" aria-describedby="">
+                        <input hidden type="text" class="form-control" name="viewLandmarkId" id=viewtLandmarkId" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" name="viewName" id="viewName" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" name="viewkmFromOrigin" id="viewkmFromOrigin" aria-describedby="emailHelp">
+                        <input type="date" class="form-control" name="vieweffectivityDate" id="vieweffectivityDate" aria-describedby="">
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">
@@ -154,8 +154,31 @@ The above copyright notice and this permission notice shall be included in all c
   
 </body>
 <script>
-    //DATA TABLES
-   
+    // DATA TABLES
+    function loadtable(){
+       landmarkDataTable = $('#landmarkTable').DataTable( {
+           "ajax": "<?php echo base_url()?>landmark/show_landmark",
+           "columns": [
+               { data: "id"},
+               { data: "name"},
+               { data: "kmFromOrigin"},
+               { data: "effectivityDate"},
+               { data: "created_at"},
+               { data: "status"},
+           ],
+
+           "aoColumnDefs": [{ "bVisible": false, "aTargets" : [0]}],
+           "order": [[0, "desc"]]
+       })
+   }
+
+   loadtable();
+
+   function refresh(){
+       var url = "<?php echo base_url()?>landmark/show_landmark";
+
+       landmarkDataTable.ajax.url(url).load();
+   }
 
     // CREATE LANDMARK
     
