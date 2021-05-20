@@ -322,15 +322,15 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                     <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Television</label>
-                      <input type="text" class="form-control" id="withTvView" name="withTvView"  >
+                      <input type="checkbox" id="withTvView" name="withTvView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Aircon</label>
-                      <input type="text" class="form-control" id="withAirconView" name="withAirconView"  >
+                      <input type="checkbox" id="withAirconView" name="withAirconView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has WiFi</label>
-                      <input type="text" class="form-control" id="withWifiView" name="withWifiView"  >
+                      <input type="checkbox" id="withWifiView" name="withWifiView"  >
                       </div>
                   </div>
               </form>
@@ -585,6 +585,7 @@ $('#busInformationForm').on('submit', function(e){
 
         success: function(data){
           document.getElementById("busInformationForm").reset();
+          showNotification('create', 'Successfully added a new bus!', 'success', 'top', 'right');
           refresh();
         }
     })
@@ -648,9 +649,10 @@ $(document).on("click", ".btn-view", function(){
           netWeightView.value = userInfo.netWeight
           shipWeightView.value = userInfo.shippingWeight
           netCapacityView.value = userInfo.netCapacity
-          withTvView.value = userInfo.hasTelevision
-          withAirconView.value = userInfo.hasAircon
-          withWifiView.value = userInfo.hasWifi
+
+          if(userInfo.hasTelevision == "True"){ withTvView.checked = true }
+          if(userInfo.hasAircon == "True"){ withAirconView.checked = true }
+          if(userInfo.hasWifi == "True"){ withWifiView.value = true }
         }
     })
 });
@@ -667,8 +669,10 @@ $(document).on("click", ".btn-edit", function(){
         success: function(data){
           var userInfo = data.data;
 
+          $('#busNumberEdit').val(userInfo.number);
+
           var idBusInformationEdit = document.getElementById('idBusInformationEdit');
-          var busNumberEdit = document.getElementById('busNumberEdit');
+          // var busNumberEdit = document.getElementById('busNumberEdit');
           var busTypeEdit = document.getElementById('busTypeEdit');
           var busTemplateEdit = document.getElementById('busTemplateEdit');
           var ownerEdit = document.getElementById('ownerEdit');
@@ -689,12 +693,12 @@ $(document).on("click", ".btn-edit", function(){
           var netWeightEdit = document.getElementById('netWeightEdit');
           var shipWeightEdit = document.getElementById('shipWeightEdit');
           var netCapacityEdit = document.getElementById('netCapacityEdit');
-          var withTvEdit = document.getElementById('withTvEdit');
+          var withTvEdit = document.getElementById('withTelevisionEdit');
           var withAirconEdit = document.getElementById('withAirconEdit');
           var withWifiEdit = document.getElementById('withWifiEdit');
 
           idBusInformationEdit.value = userInfo.id
-          busNumberEdit.value = userInfo.number
+          // busNumberEdit.value = userInfo.number
           busTypeEdit.value = userInfo.type
           busTemplateEdit.value = userInfo.template
           ownerEdit.value = userInfo.owner
@@ -715,30 +719,32 @@ $(document).on("click", ".btn-edit", function(){
           netWeightEdit.value = userInfo.netWeight
           shipWeightEdit.value = userInfo.shippingWeight
           netCapacityEdit.value = userInfo.netCapacity
-          withTvEdit.value = userInfo.hasTelevision
-          withAirconEdit.value = userInfo.hasAircon
-          withWifiEdit.value = userInfo.hasWifi
+          if(userInfo.hasTelevision == "True"){ withTvEdit.checked = true }
+          if(userInfo.hasAircon == "True"){ withAirconEdit.checked = true }
+          if(userInfo.hasWifi == "True"){ withWifiEdit.value = true }
+          
         }
     })
 });
 
 $('#editBusInfoForm').on('submit', function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-var form = $('#editBusInfoForm');
+    var form = $('#editBusInfoForm');
 
-$.ajax({
-    url:'<?php echo base_url()?>busInformation/editBusInformation',
-    type: "POST",
-    data: form.serialize(),
-    dataType: "JSON",
+    $.ajax({
+        url:'<?php echo base_url()?>busInformation/editBusInformation',
+        type: "POST",
+        data: form.serialize(),
+        dataType: "JSON",
 
-    success: function(data){
-      $("#editModal").modal('hide');
-      refresh();
-    }
-})
+        success: function(data){
+          $("#editModal").modal('hide');
+          showNotification('update', 'Successfully update bus information!', 'warning', 'top', 'right');
+          refresh();
+        }
+    })
 });
 $(document).on("click", ".btn-delete", function(){
   var id = this.value;
@@ -759,21 +765,22 @@ $(document).on("click", ".btn-delete", function(){
 
 $('.delete-confirm').on('click', function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-var form = $('#deleteForm');
+    var form = $('#deleteForm');
 
-$.ajax({
-    url:'<?php echo base_url()?>busInformation/deleteBusInformation',
-    type: "POST",
-    data: form.serialize(),
-    dataType: "JSON",
+    $.ajax({
+        url:'<?php echo base_url()?>busInformation/deleteBusInformation',
+        type: "POST",
+        data: form.serialize(),
+        dataType: "JSON",
 
-    success: function(data){
-      $("#deleteModal").modal('hide');
-      refresh();
-    }
-})
+        success: function(data){
+          $("#deleteModal").modal('hide');
+          showNotification('delete', 'Deleted a bus information!', 'danger', 'top', 'right');
+          refresh();
+        }
+    })
 });
 </script>
 
