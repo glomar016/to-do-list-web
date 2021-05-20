@@ -15,6 +15,13 @@
               <p>Dashboard</p>
             </a>
           </li>
+          <li <?php if($this->router->fetch_class() == 'user') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" href="<?php echo base_url()?>user">
+              <i class="material-icons">account_circle</i>
+              <p>User</p>
+            </a>
+          </li>
+          
         </ul>
       </div>
     </div>
