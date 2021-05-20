@@ -162,6 +162,8 @@ The above copyright notice and this permission notice shall be included in all c
         })
     }
 
+    
+
     loadtable();
     
     function refresh(){
@@ -181,7 +183,6 @@ The above copyright notice and this permission notice shall be included in all c
             url: '<?php echo base_url()?>user/add_user',
             type: "POST",
             data: form.serialize(),
-            dataType: "JSON",
         
             success: function(data){
                 refresh();

@@ -20,7 +20,7 @@ class Landmark extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('Landmark');
+		$this->load->view('landmark');
 	}
 
 	public function add_landmark()
@@ -120,9 +120,9 @@ class Landmark extends CI_Controller {
 	}
 
 	public function edit_landmark(){
-		$name = $this->input->post('editName');
-        $kmFromOrigin = $this->input->post('editkmFromOrigin');
-        $effectivityDate = $this->input->post('editeffectivityDate');
+		$name = $this->input->post('editLandmarkName');
+        $kmFromOrigin = $this->input->post('editKmFromOrigin');
+        $effectivityDate = $this->input->post('editEffectivityDate');
 		$id = $this->input->post('editLandmarkId');
 
 
@@ -143,10 +143,9 @@ class Landmark extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'PUT',
-		CURLOPT_POSTFIELDS =>$postdata,
+		CURLOPT_POSTFIELDS => $postdata,
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyNGRkYzZmLTk2NmQtNDFiNS1hMDJiLTJiYjg3MzdkNjViNCIsImVtYWlsIjoia2ltdGFleWVvbkBnbWFpbC5jb20iLCJpYXQiOjE2MjEyMzU2MDYsImV4cCI6MTYyMTI0MjgwNn0.I0K6E7fCcu_EEUlDOlj4sAURW8Z62TggcJDOMMDd2e8
-			',
+			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
 			'Content-Type: application/json'
 		),
 		));
@@ -155,23 +154,30 @@ class Landmark extends CI_Controller {
 
 		curl_close($curl);
 		echo $response;
-	}
-}
-public function deleteLandmark(){
-	
-	$deleteLandmarkId = $this->input->post('deleteLandmarkId');
 
-	$curl = curl_init(); 
+	}
+	
+	public function delete_landmark(){
+
+		$id = $this->input->post('id');
+		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/landmark/'.$deleteLandmarkId,
+		CURLOPT_URL => 'http://localhost:3600/api/v1/landmark/'.$id,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
 		CURLOPT_TIMEOUT => 0,
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'DELETE',
+		CURLOPT_CUSTOMREQUEST => 'PUT',
+		CURLOPT_POSTFIELDS =>'{
+			"status": "Inactive"
+		}',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
+			'Content-Type: application/json'
+		),
 		));
 
 		$response = curl_exec($curl);
@@ -179,4 +185,5 @@ public function deleteLandmark(){
 		curl_close($curl);
 		echo $response;
 
+	}
 }
