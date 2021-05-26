@@ -48,7 +48,6 @@ The above copyright notice and this permission notice shall be included in all c
                                 <option value="Air-Conditioned">Air-Conditioned</option>
                                 <option value="Deluxe">Deluxe</option>
                             </select>
-
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
