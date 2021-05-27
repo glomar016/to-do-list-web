@@ -613,56 +613,32 @@ $(document).on("click", ".btn-view", function(){
         success: function(data){
           var userInfo = data.data;
 
-          var busNumberView = document.getElementById('busNumberView');
-          var busTypeView = document.getElementById('busTypeView');
-          var busTemplateView = document.getElementById('busTemplateView');
-          var ownerView = document.getElementById('ownerView');
-          var contactView = document.getElementById('contactView');
-          var plateView = document.getElementById('plateView');
-          var engineView = document.getElementById('engineView');
-          var chasisView = document.getElementById('chasisView');
-          var fileNumberView = document.getElementById('fileNumberView');
-          var denominationView = document.getElementById('denominationView');
-          var pistonView = document.getElementById('pistonView');
-          var fuelView = document.getElementById('fuelView');
-          var makeView = document.getElementById('makeView');
-          var seriesView = document.getElementById('seriesView');
-          var bodyView = document.getElementById('bodyView');
-          var bodyNumberView = document.getElementById('bodyNumberView');
-          var yearView = document.getElementById('yearView');
-          var grossWeightView = document.getElementById('grossWeightView');
-          var netWeightView = document.getElementById('netWeightView');
-          var shipWeightView = document.getElementById('shipWeightView');
-          var netCapacityView = document.getElementById('netCapacityView');
-          var withTvView = document.getElementById('withTvView');
-          var withAirconView = document.getElementById('withAirconView');
-          var withWifiView = document.getElementById('withWifiView');
-
-          busNumberView.value = userInfo.number
-          busTypeView.value = userInfo.busTypeId.name
-          busTemplateView.value = userInfo.busTemplateId.name
-          ownerView.value = userInfo.owner
-          contactView.value = userInfo.contactNumber
-          plateView.value = userInfo.plateNumber
-          engineView.value = userInfo.engineNumber
-          chasisView.value = userInfo.chasisNumber
-          fileNumberView.value = userInfo.fileNumber
-          denominationView.value = userInfo.denomination
-          pistonView.value = userInfo.pistonPlacement
-          fuelView.value = userInfo.fuel
-          makeView.value = userInfo.make
-          seriesView.value = userInfo.series
-          bodyView.value = userInfo.bodyType
-          bodyNumberView.value = userInfo.bodyNumber
-          yearView.value = userInfo.yearModel
-          grossWeightView.value = userInfo.grossWeight
-          netWeightView.value = userInfo.netWeight
-          shipWeightView.value = userInfo.shippingWeight
-          netCapacityView.value = userInfo.netCapacity
+          $('#idBusInformationView').val(userInfo.id);
+          $('#busNumberView').val(userInfo.number);
+          $('#busTypeView').val(userInfo.type);
+          $('#busTemplateView').val(userInfo.template);
+          $('#ownerView').val(userInfo.owner);
+          $('#contactView').val(userInfo.contactNumber);
+          $('#plateView').val(userInfo.plateNumber);
+          $('#engineView').val(userInfo.engineNumber);
+          $('#chasisView').val(userInfo.chasisNumber);
+          $('#fileNumberView').val(userInfo.fileNumber);
+          $('#denominationView').val(userInfo.denomination);
+          $('#pistonView').val(userInfo.pistonPlacement);
+          $('#fuelView').val(userInfo.fuel);
+          $('#makeView').val(userInfo.make);
+          $('#seriesView').val(userInfo.series);
+          $('#bodyView').val(userInfo.bodyType);
+          $('#bodyNumberView').val(userInfo.bodyNumber);
+          $('#yearView').val(userInfo.yearModel);
+          $('#grossWeightView').val(userInfo.grossWeight);
+          $('#netWeightView').val(userInfo.netWeight);
+          $('#shipWeightView').val(userInfo.shippingWeight);
+          $('#netCapacityView').val(userInfo.netCapacity);
 
           if(userInfo.hasTelevision == "True"){ withTvView.checked = true }
           if(userInfo.hasAircon == "True"){ withAirconView.checked = true }
-          if(userInfo.hasWifi == "True"){ withWifiView.value = true }
+          if(userInfo.hasWifi == "True"){ withWifiView.checked = true }
         }
     })
 });
@@ -679,60 +655,31 @@ $(document).on("click", ".btn-edit", function(){
         success: function(data){
           var userInfo = data.data;
 
+          $('#idBusInformationEdit').val(userInfo.id);
           $('#busNumberEdit').val(userInfo.number);
-
-          var idBusInformationEdit = document.getElementById('idBusInformationEdit');
-          // var busNumberEdit = document.getElementById('busNumberEdit');
-          var busTypeEdit = document.getElementById('busTypeEdit');
-          var busTemplateEdit = document.getElementById('busTemplateEdit');
-          var ownerEdit = document.getElementById('ownerEdit');
-          var contactEdit = document.getElementById('contactEdit');
-          var plateEdit = document.getElementById('plateEdit');
-          var engineEdit = document.getElementById('engineEdit');
-          var chasisEdit = document.getElementById('chasisEdit');
-          var fileNumberEdit = document.getElementById('fileNumberEdit');
-          var denominationEdit = document.getElementById('denominationEdit');
-          var pistonEdit = document.getElementById('pistonEdit');
-          var fuelEdit = document.getElementById('fuelEdit');
-          var makeEdit = document.getElementById('makeEdit');
-          var seriesEdit = document.getElementById('seriesEdit');
-          var bodyEdit = document.getElementById('bodyEdit');
-          var bodyNumberEdit = document.getElementById('bodyNumberEdit');
-          var yearEdit = document.getElementById('yearEdit');
-          var grossWeightEdit = document.getElementById('grossWeightEdit');
-          var netWeightEdit = document.getElementById('netWeightEdit');
-          var shipWeightEdit = document.getElementById('shipWeightEdit');
-          var netCapacityEdit = document.getElementById('netCapacityEdit');
-          var withTvEdit = document.getElementById('withTelevisionEdit');
-          var withAirconEdit = document.getElementById('withAirconEdit');
-          var withWifiEdit = document.getElementById('withWifiEdit');
-
-          idBusInformationEdit.value = userInfo.id
-          // busNumberEdit.value = userInfo.number          
-          $('#busTypeEdit').val(userInfo.busTypeId.id)
-          // busTypeEdit.value = userInfo.busTypeId.id
-          busTemplateEdit.value = userInfo.template
-          ownerEdit.value = userInfo.owner
-          contactEdit.value = userInfo.contactNumber
-          plateEdit.value = userInfo.plateNumber
-          engineEdit.value = userInfo.engineNumber
-          chasisEdit.value = userInfo.chasisNumber
-          fileNumberEdit.value = userInfo.fileNumber
-          denominationEdit.value = userInfo.denomination
-          pistonEdit.value = userInfo.pistonPlacement
-          fuelEdit.value = userInfo.fuel
-          makeEdit.value = userInfo.make
-          seriesEdit.value = userInfo.series
-          bodyEdit.value = userInfo.bodyType
-          bodyNumberEdit.value = userInfo.bodyNumber
-          yearEdit.value = userInfo.yearModel
-          grossWeightEdit.value = userInfo.grossWeight
-          netWeightEdit.value = userInfo.netWeight
-          shipWeightEdit.value = userInfo.shippingWeight
-          netCapacityEdit.value = userInfo.netCapacity
+          $('#busTypeEdit').val(userInfo.type);
+          $('#busTemplateEdit').val(userInfo.template);
+          $('#ownerEdit').val(userInfo.owner);
+          $('#contactEdit').val(userInfo.contactNumber);
+          $('#plateEdit').val(userInfo.plateNumber);
+          $('#engineEdit').val(userInfo.engineNumber);
+          $('#chasisEdit').val(userInfo.chasisNumber);
+          $('#fileNumberEdit').val(userInfo.fileNumber);
+          $('#denominationEdit').val(userInfo.denomination);
+          $('#pistonEdit').val(userInfo.pistonPlacement);
+          $('#fuelEdit').val(userInfo.fuel);
+          $('#makeEdit').val(userInfo.make);
+          $('#seriesEdit').val(userInfo.series);
+          $('#bodyEdit').val(userInfo.bodyType);
+          $('#bodyNumberEdit').val(userInfo.bodyNumber);
+          $('#yearEdit').val(userInfo.yearModel);
+          $('#grossWeightEdit').val(userInfo.grossWeight);
+          $('#netWeightEdit').val(userInfo.netWeight);
+          $('#shipWeightEdit').val(userInfo.shippingWeight);
+          $('#netCapacityEdit').val(userInfo.netCapacity);
           if(userInfo.hasTelevision == "True"){ withTvEdit.checked = true }
           if(userInfo.hasAircon == "True"){ withAirconEdit.checked = true }
-          if(userInfo.hasWifi == "True"){ withWifiEdit.value = true }
+          if(userInfo.hasWifi == "True"){ withWifiEdit.checked = true }
           
         }
     })
