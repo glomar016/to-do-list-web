@@ -47,19 +47,13 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-group">
                                 <label for="originId">Origin</label>
                                 <select id="originId" name="originId" class="form-control" data-style="btn btn-primary btn-sm">
-                                    <option disabled selected></option>
-                                    <option value="Landmark1">Landmark1</option>
-                                    <option value="Landmark2">Landmark2</option>
-                                    <option value="Landmark3">Landmark3</option>
+                                    
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="destinationId">Destination</label>
                                 <select id="destinationId" name="destinationId" class="form-control" data-style="btn btn-primary btn-sm">
-                                    <option disabled selected></option>
-                                    <option value="Landmark1">Landmark1</option>
-                                    <option value="Landmark2">Landmark2</option>
-                                    <option value="Landmark3">Landmark3</option>
+                                
                                 </select>
                             </div>
                             <div class="form-group">
@@ -163,19 +157,13 @@ The above copyright notice and this permission notice shall be included in all c
                                 <label for="originIdEdit">Origin</label>
                                 <input hidden type="text" class="form-control" name="routeIdEdit" id="routeIdEdit" >
                                 <select id="originIdEdit" name="originIdEdit" class="form-control" data-style="btn btn-primary btn-sm">
-                                    <option disabled selected></option>
-                                    <option value="Landmark1">Landmark1</option>
-                                    <option value="Landmark2">Landmark2</option>
-                                    <option value="Landmark3">Landmark3</option>
+
                                 </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="destinationIdEdit">Destination</label>
                                     <select id="destinationIdEdit" name="destinationIdEdit" class="form-control" data-style="btn btn-primary btn-sm">
-                                        <option disabled selected></option>
-                                        <option value="Landmark1">Landmark1</option>
-                                        <option value="Landmark2">Landmark2</option>
-                                        <option value="Landmark3">Landmark3</option>
+
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -223,8 +211,8 @@ $(document).ready(function(){
             "ajax": "<?php echo base_url()?>route/show_route",
             "columns": [
                 { data: "id"},
-                { data: "originId"},
-                { data: "destinationId"},
+                { data: "origin.name"},
+                { data: "destination.name"},
                 { data: "kmDistance"},
                 { data: "effectivityDate", render: function (data, type, row){
                     return moment (data).format("LL");
@@ -249,6 +237,62 @@ $(document).ready(function(){
         })
     }
 
+    // Get terminals
+    // function get_bus_type(){
+        
+    //     $.ajax({
+    //     url: '<?php echo base_url()?>busInformation/get_bus_type',
+    //     type: "GET",
+    //     dataType: "JSON",
+
+    //     success: function(data){
+    //         var busTypeInfo = data.data;
+    //         console.log(busTypeInfo);
+
+    //         var html = ""
+
+    //         for(var i=0; i < busTypeInfo.length; i++){
+    //         html += `<option value="${busTypeInfo[i].id}">${busTypeInfo[i].name}</option>`
+    //         }
+            
+    //         $('#busTypeId').html(html);
+    //         $('#busTypeIdView').html(html);
+    //         $('#busTypeIdEdit').html(html);
+
+    //     }
+    //     })
+    // }
+
+    
+    function get_terminal(){
+        
+        $.ajax({
+            url: '<?php echo base_url() ?>route/get_terminal',
+            type: "GET",
+            dataType: "JSON",
+
+            success: function(data){
+                console.log(data);
+
+                var terminalInfo = data.data;
+                console.log(terminalInfo);
+                var html = ""
+                
+                for(var i=0; i < terminalInfo.length; i++){
+                    html += `<option value="${terminalInfo[i].id}">${terminalInfo[i].name}</option>`
+                }
+
+                $('#originId').html(html);
+                $('#destinationId').html(html);
+                $('#originIdEdit').html(html);
+                $('#destinationIdEdit').html(html);
+            }
+
+            
+        })
+    }
+
+    get_terminal();
     loadtable();
 
     function refresh(){
@@ -294,12 +338,13 @@ $(document).ready(function(){
         
             success: function(data){
                 var routeInfo = data.data;
+                console.log(routeInfo);
 
                 $('#routeIdView').val(id);
-                $('#originIdView').val(routeInfo.originId);
-                $('#destinationIdView').val(routeInfo.destinationId);
+                $('#originIdView').val(routeInfo.origin.name);
+                $('#destinationIdView').val(routeInfo.destination.name);
                 $('#kmDistanceView').val(routeInfo.kmDistance);
-                $('#effectivityDateView').val(moment(routeInfo.effectivityDate).format('MM-DD-YYYY'));
+                $('#effectivityDateView').val(moment(routeInfo.effectivityDate).format('YYYY-MM-DD'));
 
                 $('#viewrouteInfoModal').modal('show');
             }
@@ -325,9 +370,9 @@ $(document).ready(function(){
                 console.log(moment(routeInfo.effectivityDate).format('MM-DD-YYYY'))
 
                 $('#routeIdEdit').val(id);
-                $('#originIdEdit').val(routeInfo.originIdEdit);
-                $('#destinationIdEdit').val(routeInfo.destinationIdEdit);
-                $('#kmDistanceEdit').val(routeInfo.kmDistanceEdit);
+                $('#originIdEdit').val(routeInfo.origin.id);
+                $('#destinationIdEdit').val(routeInfo.destination.id);
+                $('#kmDistanceEdit').val(routeInfo.kmDistance);
                 $('#effectivityDateEdit').val(moment(routeInfo.effectivityDate).format('YYYY-MM-DD'));
 
                 $('#editrouteInfoModal').modal('show');
