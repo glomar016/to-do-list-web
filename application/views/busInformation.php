@@ -62,21 +62,13 @@ The above copyright notice and this permission notice shall be included in all c
                               <div class="form-group col-sm-6">
                                 <label for="busTypeInput">Bus Type</label>
                                 <select class="form-control" id="busTypeInput" name="busTypeInput">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                  
                                 </select>
                               </div>
                               <div class="form-group col-sm-6">
                                 <label for="busTemplateInput">Bus Template</label>
                                 <select class="form-control" id="busTemplateInput" name="busTemplateInput">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                  
                                 </select>
                               </div>
                           </div>
@@ -322,15 +314,15 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                     <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Television</label>
-                      <input type="text" class="form-control" id="withTvView" name="withTvView"  >
+                      <input type="checkbox" id="withTvView" name="withTvView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Aircon</label>
-                      <input type="text" class="form-control" id="withAirconView" name="withAirconView"  >
+                      <input type="checkbox" id="withAirconView" name="withAirconView"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has WiFi</label>
-                      <input type="text" class="form-control" id="withWifiView" name="withWifiView"  >
+                      <input type="checkbox" id="withWifiView" name="withWifiView"  >
                       </div>
                   </div>
               </form>
@@ -365,21 +357,13 @@ The above copyright notice and this permission notice shall be included in all c
                               <div class="form-group col-sm-6">
                                 <label for="busTypeEdit">Bus Type</label>
                                 <select class="form-control" id="busTypeEdit" name="busTypeEdit">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                  
                                 </select>
                               </div>
                               <div class="form-group col-sm-6">
                                 <label for="busTemplateEdit">Bus Template</label>
                                 <select class="form-control" id="busTemplateEdit" name="busTemplateEdit">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                
                                 </select>
                               </div>
                           </div>
@@ -562,6 +546,32 @@ function dataTable(){
 
 };
 
+
+function get_bus_type(){
+    
+    $.ajax({
+      url: '<?php echo base_url()?>busInformation/get_bus_type',
+      type: "GET",
+      dataType: "JSON",
+
+      success: function(data){
+        var busTypeInfo = data.data;
+        console.log(busTypeInfo);
+
+        var html = ""
+
+        for(var i=0; i < busTypeInfo.length; i++){
+          html += `<option value="${busTypeInfo[i].id}">${busTypeInfo[i].name}</option>`
+        }
+        
+        $('#busTypeInput').html(html);
+        $('#busTypeEdit').html(html);
+
+      }
+    })
+  }
+
+get_bus_type();
 dataTable();
 
 function refresh(){
@@ -585,6 +595,7 @@ $('#busInformationForm').on('submit', function(e){
 
         success: function(data){
           document.getElementById("busInformationForm").reset();
+          showNotification('create', 'Successfully added a new bus!', 'success', 'top', 'right');
           refresh();
         }
     })
@@ -624,9 +635,10 @@ $(document).on("click", ".btn-view", function(){
           $('#netWeightView').val(userInfo.netWeight);
           $('#shipWeightView').val(userInfo.shippingWeight);
           $('#netCapacityView').val(userInfo.netCapacity);
-          $('#withTvView').val(userInfo.hasTelevision);
-          $('#withAirconView').val(userInfo.hasAircon);
-          $('#withWifiView').val(userInfo.hasWifi);
+
+          if(userInfo.hasTelevision == "True"){ withTvView.checked = true }
+          if(userInfo.hasAircon == "True"){ withAirconView.checked = true }
+          if(userInfo.hasWifi == "True"){ withWifiView.checked = true }
         }
     })
 });
@@ -643,7 +655,6 @@ $(document).on("click", ".btn-edit", function(){
         success: function(data){
           var userInfo = data.data;
 
-          
           $('#idBusInformationEdit').val(userInfo.id);
           $('#busNumberEdit').val(userInfo.number);
           $('#busTypeEdit').val(userInfo.type);
@@ -666,30 +677,32 @@ $(document).on("click", ".btn-edit", function(){
           $('#netWeightEdit').val(userInfo.netWeight);
           $('#shipWeightEdit').val(userInfo.shippingWeight);
           $('#netCapacityEdit').val(userInfo.netCapacity);
-          $('#withTvEdit').val(userInfo.hasTelevision);
-          $('#withAirconEdit').val(userInfo.hasAircon);
-          $('#withWifiEdit').val(userInfo.hasWifi);
+          if(userInfo.hasTelevision == "True"){ withTvEdit.checked = true }
+          if(userInfo.hasAircon == "True"){ withAirconEdit.checked = true }
+          if(userInfo.hasWifi == "True"){ withWifiEdit.checked = true }
+          
         }
     })
 });
 
 $('#editBusInfoForm').on('submit', function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-var form = $('#editBusInfoForm');
+    var form = $('#editBusInfoForm');
 
-$.ajax({
-    url:'<?php echo base_url()?>busInformation/editBusInformation',
-    type: "POST",
-    data: form.serialize(),
-    dataType: "JSON",
+    $.ajax({
+        url:'<?php echo base_url()?>busInformation/editBusInformation',
+        type: "POST",
+        data: form.serialize(),
+        dataType: "JSON",
 
-    success: function(data){
-      $("#editModal").modal('hide');
-      refresh();
-    }
-})
+        success: function(data){
+          $("#editModal").modal('hide');
+          showNotification('update', 'Successfully update bus information!', 'warning', 'top', 'right');
+          refresh();
+        }
+    })
 });
 $(document).on("click", ".btn-delete", function(){
   var id = this.value;
@@ -710,22 +723,25 @@ $(document).on("click", ".btn-delete", function(){
 
 $('.delete-confirm').on('click', function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-var form = $('#deleteForm');
+    var form = $('#deleteForm');
 
-$.ajax({
-    url:'<?php echo base_url()?>busInformation/deleteBusInformation',
-    type: "POST",
-    data: form.serialize(),
-    dataType: "JSON",
+    $.ajax({
+        url:'<?php echo base_url()?>busInformation/deleteBusInformation',
+        type: "POST",
+        data: form.serialize(),
+        dataType: "JSON",
 
-    success: function(data){
-      $("#deleteModal").modal('hide');
-      refresh();
-    }
-})
+        success: function(data){
+          $("#deleteModal").modal('hide');
+          showNotification('delete', 'Deleted a bus information!', 'danger', 'top', 'right');
+          refresh();
+        }
+    })
 });
+
+
 </script>
 
 <!-- FIXED SCRIPTS -->

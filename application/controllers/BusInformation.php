@@ -76,6 +76,8 @@ class BusInformation extends CI_Controller {
 						, "hasWifi" => $withWifi
 						, "hasAircon" => $withAircon
 						, "hasTelevision" => $withTelevision
+						, "typeId" => $busTypeInput
+						, "templateId" => $busTemplateInput
 						);
 		$postdata = json_encode($data);
 
@@ -200,6 +202,8 @@ class BusInformation extends CI_Controller {
 						, "hasWifi" => $withWifiEdit
 						, "hasAircon" => $withAirconEdit
 						, "hasTelevision" => $withTelevisionEdit
+						, "typeId" => $busTypeEdit
+						, "templateId" => $busTemplateEdit
 						);
 		$postdata = json_encode($data);
 
@@ -226,28 +230,48 @@ class BusInformation extends CI_Controller {
 		curl_close($curl);
 		echo $response;
 
-}
-public function deleteBusInformation(){
-	
-	$deleteBusInformationId = $this->input->post('deleteBusInformationId');
+	}
+	public function deleteBusInformation(){
+		
+		$deleteBusInformationId = $this->input->post('deleteBusInformationId');
 
-	$curl = curl_init();
+		$curl = curl_init();
 
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/bus_information/'.$deleteBusInformationId,
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'DELETE',
-		));
+			curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://localhost:3600/api/v1/bus_information/'.$deleteBusInformationId,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'DELETE',
+			));
 
-		$response = curl_exec($curl);
+			$response = curl_exec($curl);
 
-		curl_close($curl);
-		echo $response;
+			curl_close($curl);
+			echo $response;
 
-}
+	}
+
+	public function get_bus_type(){
+		$curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_type/',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+	}
 }

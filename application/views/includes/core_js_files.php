@@ -6,7 +6,7 @@
   <!-- Plugin for the momentJs  -->
   <script src="<?php echo base_url()?>resources/assets/js/plugins/moment.min.js"></script>
   <!--  Plugin for Sweet Alert -->
-  <script src="<?php echo base_url()?>resources/assets/js/plugins/sweetalert2.js"></script>
+  <script src="<?php echo base_url()?>resources/assets/js/plugins/sweetalert2@11.js"></script>
   <!-- Forms Validations Plugin -->
   <script src="<?php echo base_url()?>resources/assets/js/plugins/jquery.validate.min.js"></script>
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
