@@ -43,10 +43,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-group">
                                 <label for="busTypeId">Bus Type</label>
                                 <select id="busTypeId" name="busTypeId" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
-                                    <option disabled selected></option>
-                                    <option value="Ordinary">Ordinary</option>
-                                    <option value="Deluxe">Deluxe</option>
-                                    <option value="Aircon">Aircon</option>
+                                    
                                 </select>
                             </div>
                             <div class="form-group">
@@ -119,6 +116,11 @@ The above copyright notice and this permission notice shall be included in all c
                     <form id="fareForm">
                         <div class="modal-body">
                             <input hidden type="text" class="form-control" name="fareIdView" id="fareIdView" >
+                            
+                            <label for="busTypeIdView">Bus Type</label>
+                                <select id="busTypeIdView" name="busTypeIdView" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
+                                    
+                                </select>
                             <label for="exampleInputEmail1">Initial Km</label>
                                 <input type="text" class="form-control" name="initialKmView" id="initialKmView" >
                             <label for="exampleInputEmail1">Initial Price</label>
@@ -151,6 +153,11 @@ The above copyright notice and this permission notice shall be included in all c
                     <form id="editfareForm">
                         <div class="modal-body">
                             <input hidden type="text" class="form-control" name="fareIdEdit" id="fareIdEdit" >
+
+                            <label for="busTypeIdEdit">Bus Type</label>
+                                <select id="busTypeIdEdit" name="busTypeIdEdit" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
+                                    
+                                </select>
                             <label for="exampleInputEmail1">Initial Km</label>
                                 <input type="text" class="form-control" name="initialKmEdit" id="initialKmEdit" >
                             <label for="exampleInputEmail1">Initial Price</label>
@@ -189,7 +196,7 @@ $(document).ready(function(){
             "ajax": "<?php echo base_url()?>fare/show_fare",
             "columns": [
                 { data: "id"},
-                { data: "busTypeId"},
+                { data: "typeId.name"},
                 { data: "initialKm"},
                 { data: "initialPrice"},
                 { data: "additionalKm"},
@@ -217,6 +224,33 @@ $(document).ready(function(){
         })
     }
 
+        
+    function get_bus_type(){
+        
+        $.ajax({
+        url: '<?php echo base_url()?>busInformation/get_bus_type',
+        type: "GET",
+        dataType: "JSON",
+
+        success: function(data){
+            var busTypeInfo = data.data;
+            console.log(busTypeInfo);
+
+            var html = ""
+
+            for(var i=0; i < busTypeInfo.length; i++){
+            html += `<option value="${busTypeInfo[i].id}">${busTypeInfo[i].name}</option>`
+            }
+            
+            $('#busTypeId').html(html);
+            $('#busTypeIdView').html(html);
+            $('#busTypeIdEdit').html(html);
+
+        }
+        })
+    }
+
+    get_bus_type();
     loadtable();
 
     function refresh(){

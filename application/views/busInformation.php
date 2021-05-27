@@ -62,21 +62,13 @@ The above copyright notice and this permission notice shall be included in all c
                               <div class="form-group col-sm-6">
                                 <label for="busTypeInput">Bus Type</label>
                                 <select class="form-control" id="busTypeInput" name="busTypeInput">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                  
                                 </select>
                               </div>
                               <div class="form-group col-sm-6">
                                 <label for="busTemplateInput">Bus Template</label>
                                 <select class="form-control" id="busTemplateInput" name="busTemplateInput">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                  
                                 </select>
                               </div>
                           </div>
@@ -365,21 +357,13 @@ The above copyright notice and this permission notice shall be included in all c
                               <div class="form-group col-sm-6">
                                 <label for="busTypeEdit">Bus Type</label>
                                 <select class="form-control" id="busTypeEdit" name="busTypeEdit">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                  
                                 </select>
                               </div>
                               <div class="form-group col-sm-6">
                                 <label for="busTemplateEdit">Bus Template</label>
                                 <select class="form-control" id="busTemplateEdit" name="busTemplateEdit">
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
+                                
                                 </select>
                               </div>
                           </div>
@@ -562,6 +546,32 @@ function dataTable(){
 
 };
 
+
+function get_bus_type(){
+    
+    $.ajax({
+      url: '<?php echo base_url()?>busInformation/get_bus_type',
+      type: "GET",
+      dataType: "JSON",
+
+      success: function(data){
+        var busTypeInfo = data.data;
+        console.log(busTypeInfo);
+
+        var html = ""
+
+        for(var i=0; i < busTypeInfo.length; i++){
+          html += `<option value="${busTypeInfo[i].id}">${busTypeInfo[i].name}</option>`
+        }
+        
+        $('#busTypeInput').html(html);
+        $('#busTypeEdit').html(html);
+
+      }
+    })
+  }
+
+get_bus_type();
 dataTable();
 
 function refresh(){
@@ -629,8 +639,8 @@ $(document).on("click", ".btn-view", function(){
           var withWifiView = document.getElementById('withWifiView');
 
           busNumberView.value = userInfo.number
-          busTypeView.value = userInfo.type
-          busTemplateView.value = userInfo.template
+          busTypeView.value = userInfo.busTypeId.name
+          busTemplateView.value = userInfo.busTemplateId.name
           ownerView.value = userInfo.owner
           contactView.value = userInfo.contactNumber
           plateView.value = userInfo.plateNumber
@@ -698,8 +708,9 @@ $(document).on("click", ".btn-edit", function(){
           var withWifiEdit = document.getElementById('withWifiEdit');
 
           idBusInformationEdit.value = userInfo.id
-          // busNumberEdit.value = userInfo.number
-          busTypeEdit.value = userInfo.type
+          // busNumberEdit.value = userInfo.number          
+          $('#busTypeEdit').val(userInfo.busTypeId.id)
+          // busTypeEdit.value = userInfo.busTypeId.id
           busTemplateEdit.value = userInfo.template
           ownerEdit.value = userInfo.owner
           contactEdit.value = userInfo.contactNumber
@@ -782,6 +793,8 @@ $('.delete-confirm').on('click', function(e){
         }
     })
 });
+
+
 </script>
 
 <!-- FIXED SCRIPTS -->

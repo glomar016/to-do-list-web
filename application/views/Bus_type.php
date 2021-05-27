@@ -43,11 +43,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <form id="addBusTypeForm" name="addBusTypeForm">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Bus Type</label>
-                            <select class="form-control" id="busTypeName" name="busTypeName" aria-describedby="emailHelp">
-                                <option value="Ordinary">Ordinary</option>
-                                <option value="Air-Conditioned">Air-Conditioned</option>
-                                <option value="Deluxe">Deluxe</option>
-                            </select>
+                            <input type="text" class="form-control" name="busTypeName"  id="busTypeName" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Description</label>
@@ -96,11 +92,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="modal-body">
                         <input disabled hidden type="text" class="form-control" name="BusTypeId" id="BusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <select disabled class="form-control" id="BusTypeName" name="BusTypeName" aria-describedby="emailHelp">
-                                <option value="Ordinary">Ordinary</option>
-                                <option value="Air-Conditioned">Air-Conditioned</option>
-                                <option value="Deluxe">Deluxe</option>
-                        </select>
+                        <input disabled type="text" class="form-control" name="BusTypeName" id="BusTypeName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Description</label>
                         <input disabled type="text" class="form-control" name="BusTypeDescription" id="BusTypeDescription" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Status</label>
@@ -124,11 +116,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <select class="form-control" id="editBusTypeName" name="editBusTypeName" aria-describedby="emailHelp">
-                            <option value="Ordinary">Ordinary</option>
-                            <option value="Air-Conditioned">Air-Conditioned</option>
-                            <option value="Deluxe">Deluxe</option>
-                        </select>
+                        <input type="text" class="form-control" name="editBusTypeName" id="editBusTypeName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Description</label>
                         <input type="text" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp">
                     </div>

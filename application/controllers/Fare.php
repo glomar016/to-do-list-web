@@ -29,12 +29,15 @@ class Fare extends CI_Controller {
         $initialPrice = $this->input->post('initialPrice');
         $additionalKm = $this->input->post('additionalKm');
         $discountPercentage = $this->input->post('discountPercentage');
+        $effectivityDate = $this->input->post('effectivityDate');
         $busTypeId = $this->input->post('busTypeId');
 
         $data = array("initialKm" => $initialKm
 						, "initialPrice" => $initialPrice
 						, "additionalKm" => $additionalKm
 						, "discountPercentage" => $discountPercentage
+						, "effectivityDate" => $effectivityDate
+						, "busTypeId" => $busTypeId
                     );
 
 
