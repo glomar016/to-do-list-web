@@ -25,7 +25,7 @@
           </li>
 
           <div class="mx-auto" style="height: 20px;"></div>
-          <p class="nav-link" style="line-height: 0px"><strong>Bus Information</strong></p>
+          <p class="nav-link" style="line-height: 0px"><strong>Bus Management</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
 
           <li <?php if($this->router->fetch_class() == 'businformation') {?> class="active has-sub" <?php } ?>>
@@ -42,6 +42,10 @@
             </a>
           </li>
 
+          <div class="mx-auto" style="height: 20px;"></div>
+          <p class="nav-link" style="line-height: 0px"><strong>Fare Management</strong></p>
+          <div class="mx-auto" style="height: 20px;"></div>
+
           <li <?php if($this->router->fetch_class() == 'fare') {?> class="active has-sub" <?php } ?>>
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>fare">
               <!-- <i class="material-icons">account_circle</i> -->
@@ -50,7 +54,7 @@
           </li>
           
           <div class="mx-auto" style="height: 20px;"></div>
-          <p class="nav-link" style="line-height: 0px"><strong>Routes</strong></p>
+          <p class="nav-link" style="line-height: 0px"><strong>Route Management</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
 
           <li <?php if($this->router->fetch_class() == 'terminal') {?> class="active has-sub" <?php } ?>>
@@ -73,6 +77,25 @@
               <p>Route</p>
             </a>
           </li>
+
+          <div class="mx-auto" style="height: 20px;"></div>
+          <p class="nav-link" style="line-height: 0px"><strong>Schedule Management</strong></p>
+          <div class="mx-auto" style="height: 20px;"></div>
+
+          <li <?php if($this->router->fetch_class() == 'busschedule') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>busschedule">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Bus Schedule</p>
+            </a>
+          </li>
+
+          <li <?php if($this->router->fetch_class() == 'schedule') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>schedule">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Schedule</p>
+            </a>
+          </li>
+
 
         </ul>
       </div>
