@@ -556,7 +556,6 @@ function get_bus_type(){
 
       success: function(data){
         var busTypeInfo = data.data;
-        console.log(busTypeInfo);
 
         var html = ""
 
@@ -615,7 +614,7 @@ $(document).on("click", ".btn-view", function(){
 
           $('#idBusInformationView').val(userInfo.id);
           $('#busNumberView').val(userInfo.number);
-          $('#busTypeView').val(userInfo.type);
+          $('#busTypeView').val(userInfo.busTypeId.name);
           $('#busTemplateView').val(userInfo.template);
           $('#ownerView').val(userInfo.owner);
           $('#contactView').val(userInfo.contactNumber);
@@ -657,7 +656,7 @@ $(document).on("click", ".btn-edit", function(){
 
           $('#idBusInformationEdit').val(userInfo.id);
           $('#busNumberEdit').val(userInfo.number);
-          $('#busTypeEdit').val(userInfo.type);
+          $('#busTypeEdit').val(userInfo.busTypeId.name);
           $('#busTemplateEdit').val(userInfo.template);
           $('#ownerEdit').val(userInfo.owner);
           $('#contactEdit').val(userInfo.contactNumber);

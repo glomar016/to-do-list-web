@@ -55,6 +55,7 @@ class BusInformation extends CI_Controller {
 		$withWifi =  $this->input->post('withWifi');
 
 		$data = array("number" => $busNumberInput
+						, "busTypeId" => $busTypeInput
 						, "owner" => $ownerInput
 						, "contactNumber" => $contactInput
 						, "fileNumber" => $fileNumberInput
@@ -181,6 +182,7 @@ class BusInformation extends CI_Controller {
 		$withWifiEdit =  $this->input->post('withWifiEdit');
 
 		$data = array("number" => $busNumberEdit
+						, "busTypeId" => $busTypeEdit
 						, "owner" => $ownerEdit
 						, "contactNumber" => $contactEdit
 						, "fileNumber" => $fileNumberEdit
