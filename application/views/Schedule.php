@@ -364,7 +364,7 @@ function dataTable(){
       "ajax": "<?php echo base_url()?>schedule/showSchedule",
       "columns": [
           {data: "id"},
-          {data: "route.id"},
+          {data: "route.name"},
           {data: "busType.name"},
           {"data": null, render: function (data, type, row) {
             
@@ -460,6 +460,7 @@ $('#scheduleForm').on('submit', function(e){
     e.preventDefault();
 
     var form = $('#scheduleForm');
+
 
     $.ajax({
         url:'<?php echo base_url()?>schedule/addSchedule',

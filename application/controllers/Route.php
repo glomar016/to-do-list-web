@@ -29,11 +29,13 @@ class Route extends CI_Controller {
         $destinationId = $this->input->post('destinationId');
         $kmDistance = $this->input->post('kmDistance');
         $effectivityDate = $this->input->post('effectivityDate');
+        $name = $this->input->post('routeName');
 
         $data = array("kmDistance" => $kmDistance
 						, "effectivityDate" => $effectivityDate
 						, "originId" => $originId
 						, "destinationId" => $destinationId
+						, "name" => $name
                     );
 
 

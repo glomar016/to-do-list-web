@@ -307,13 +307,16 @@ $(document).ready(function(){
     $('#addrouteForm').on('submit', function(e){
         e.preventDefault();
 
-        var form = $('#addrouteForm'); 
+        var form = $('#addrouteForm').serializeArray(); 
 
+        var routeName = $('#originId option:selected').text() + " - " + $('#destinationId option:selected').text();
+        form.push({name: "routeName", value: routeName});
+        // console.log(form);
         // ajax opening tag
         $.ajax({
             url: '<?php echo base_url()?>route/add_route',
             type: "POST",
-            data: form.serialize(),
+            data: form,
         
             success: function(data){
                 refresh();
