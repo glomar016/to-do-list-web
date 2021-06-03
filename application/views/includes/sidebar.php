@@ -64,13 +64,6 @@
             </a>
           </li>
 
-          <li <?php if($this->router->fetch_class() == 'landmark') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>landmark">
-              <!-- <i class="material-icons">account_circle</i> -->
-              <p>Landmark</p>
-            </a>
-          </li>
-
           <li <?php if($this->router->fetch_class() == 'route') {?> class="active has-sub" <?php } ?>>
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>route">
               <!-- <i class="material-icons">account_circle</i> -->

@@ -37,7 +37,7 @@ The above copyright notice and this permission notice shall be included in all c
             <!-- END OF OPENING TAG OF CONTENT -->
             <div class="card">
                 <div class="card-body">
-                    <!-- <span hidden name="routeIdView" id="routeIdView" > </span> -->
+                    <span hidden name="routeIdView" id="routeIdView" > </span>
                     <div>
                         <label for="originIdView">Origin</label><br>
                         <span name="originIdView" id="originIdView" > </span>
@@ -102,6 +102,62 @@ The above copyright notice and this permission notice shall be included in all c
                     </table>
                 </div>
                 </div>
+
+                <div id="viewLandmarkInfoModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Landmark Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="LandmarkForm">
+                        <div class="modal-body">
+                            <input hidden type="text" class="form-control" name="viewLandmarkId" id="viewLandmarkId" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1">Landmark Name</label>
+                                <input type="text" class="form-control" name="viewLandmarkName" id="viewLandmarkName" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1">Kilometer From Origin</label>
+                                <input type="text" class="form-control" name="viewKmFromOrigin" id="viewKmFromOrigin" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1">Effectivity Date</label>
+                                <input type="text" class="form-control" name="viewEffectivityDate" id="viewEffectivityDate" aria-describedby="">
+                        </div>
+                        <div class="modal-footer">
+                            <!-- <input type="submit" class="btn btn-success"> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- EDIT MODAL -->
+        <div id="editLandmarkInfoModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Landmark Information</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="editLandmarkForm">
+                        <div class="modal-body">
+                            <input hidden type="text" class="form-control" name="editLandmarkId" id="editLandmarkId" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1">Landmark Name</label>
+                                <input type="text" class="form-control" name="editLandmarkName" id="editLandmarkName" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1">Kilometer From Origin</label>
+                                <input type="text" class="form-control" name="editKmFromOrigin" id="editKmFromOrigin" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail1">Effectivity Date</label>
+                                <input type="date" class="form-control" name="editEffectivityDate" id="editEffectivityDate" aria-describedby="">
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="update" class="btn btn-warning">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> 
                 <!-- END OF TABLE -->
               
             <!-- CLOSING TAG OF CONTENT -->
@@ -183,8 +239,10 @@ view();
 
     //DATA TABLES
     function loadtable(){
+        var routeId = "<?php echo $id ?>"
+        
         landmarkDataTable = $('#landmarkTable').DataTable({
-            "ajax": "<?php echo base_url()?>RouteView/show_landmark",
+            "ajax": "<?php echo base_url()?>RouteView/show_landmark/" + routeId,
             "columns": [
                 { data: "id"},
                 { data: "name"},
@@ -214,12 +272,132 @@ view();
                 "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
                 "order": [[4, "desc"]]
         })
+        
     }
     loadtable();
 
     function refresh(){
-        var url = "<?php echo base_url()?>RouteView/show_landmark";
+        var routeId = "<?php echo $id ?>"
+
+        var url = "<?php echo base_url()?>RouteView/show_landmark/" + routeId;
 
         landmarkDataTable.ajax.url(url).load();
     }
+
+    // VIEW ONE LANDMARK 
+    $(document).on("click", ".btn_view", function(){
+        var id = this.value;
+
+        $.ajax({
+            url: '<?php echo base_url()?>RouteView/get_one_landmark/',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                var landmarkInfo = data.data;
+
+                $('#viewLandmarkId').val(id);
+                $('#viewLandmarkName').val(landmarkInfo.name);
+                $('#viewKmFromOrigin').val(landmarkInfo.kmFromOrigin);
+                $('#viewEffectivityDate').val(moment(landmarkInfo.effectivityDate).format('MM-DD-YYYY'));
+
+                $('#viewLandmarkInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+
+        
+
+    // EDIT landmark 
+    $(document).on("click", ".btn_edit", function(){
+        var id = this.value;
+
+        $.ajax({
+            url: '<?php echo base_url()?>RouteView/get_one_landmark/',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data);
+                var landmarkInfo = data.data;
+                console.log(moment(landmarkInfo.effectivityDate).format('MM-DD-YYYY'))
+
+                $('#editLandmarkId').val(id);
+                $('#editLandmarkName').val(landmarkInfo.name);
+                $('#editKmFromOrigin').val(landmarkInfo.kmFromOrigin);
+                $('#editEffectivityDate').val(moment(landmarkInfo.effectivityDate).format('YYYY-MM-DD'));
+
+                $('#editLandmarkInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+
+    $('#editLandmarkForm').on('submit', function(e){
+        e.preventDefault();
+        var form = $('#editLandmarkForm'); 
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, update it!',
+            confirmButtonColor: '#ff9800',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // ajax opening tag
+                $.ajax({
+                    url: '<?php echo base_url()?>RouteView/edit_landmark',
+                    type: "POST",
+                    data: form.serialize(),
+                
+                    success: function(data){
+                        refresh();
+                        showNotification('update', 'Successfully updated a landmark.', 'warning', 'top', 'right');
+                        $('#editLandmarkInfoModal').modal('hide');
+                    }
+                })
+                // ajax closing tag
+            }
+        })
+
+        
+    });
+
+    // DELETE landmark 
+    $(document).on("click", ".btn_delete", function(){
+        var id = this.value;
+
+
+        // Confirmation
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            confirmButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '<?php echo base_url()?>RouteView/delete_landmark/',
+                    type: "POST",
+                    data: { id: id },
+                
+                    success: function(data){
+                        refresh()
+                        showNotification('delete', 'Successfully deleted a landmark.', 'danger', 'top', 'right');
+                    }
+                // ajax closing tag
+                })
+            }
+        })
+        // End of Confirmation
+
+        
+    });
 </script>
