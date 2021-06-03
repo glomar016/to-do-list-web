@@ -168,11 +168,12 @@ view();
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>Landmark/add_landmark',
+            url: '<?php echo base_url()?>RouteView/add_landmark',
             type: "POST",
             data: form.serialize(),
         
-            success: function(data){               
+            success: function(data){              
+                refresh(); 
                 $("#addLandmarkForm").trigger("reset");
                 showNotification('create', 'Successfully created a landmark!', 'success', 'top', 'right');
             }
@@ -215,4 +216,10 @@ view();
         })
     }
     loadtable();
+
+    function refresh(){
+        var url = "<?php echo base_url()?>RouteView/show_landmark";
+
+        landmarkDataTable.ajax.url(url).load();
+    }
 </script>

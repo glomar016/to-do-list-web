@@ -28,11 +28,13 @@ class RouteView extends CI_Controller {
 	public function add_landmark()
     {
         $name = $this->input->post('name');
-        $kmFromOrigin = $this->input->post('kmFromOrigin');
+        $routeId = $this->input->post('routeId');
         $effectivityDate = $this->input->post('effectivityDate');
+		$kmFromOrigin = $this->input->post('kmFromOrigin');
 
 
         $data = array("name" => $name
+						, "routeId" => $routeId
 						, "kmFromOrigin" => $kmFromOrigin
 						, "effectivityDate" => $effectivityDate);
 
