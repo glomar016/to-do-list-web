@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Landmark extends CI_Controller {
+class RouteView extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,9 +18,11 @@ class Landmark extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function redirectView($id)
 	{
-		$this->load->view('landmark');
+		$data["id"] = $id;
+
+		$this->load->view('routeView', $data); 
 	}
 
 	public function add_landmark()
