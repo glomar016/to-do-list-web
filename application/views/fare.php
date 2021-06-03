@@ -14,6 +14,13 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
 
+<style>
+.matrixTable { 
+    margin: auto;
+    width: 475px;
+}
+</style>
+
 <!-- WRAPPER -->
 <div class="wrapper ">
 
@@ -103,12 +110,45 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
         <!-- END OF CLOSING TAG OF CONTENT -->
 
+        <!-- FARE MATRIX MODAL -->
+        <div id="generateFareMatrixModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Generate Fare Matrix</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="fareMatrixForm">
+                        <div class="modal-body">
+                            <input hidden type="text" class="form-control" name="additionalKmMatrix" id="additionalKmMatrix">
+                            <input hidden type="text" class="form-control" name="discountPercentageMatrix" id="discountPercentageMatrix">
+                            <input hidden type="text" class="form-control" name="initialKmMatrix" id="initialKmMatrix">
+                            <input hidden type="text" class="form-control" name="initialPriceMatrix" id="initialPriceMatrix">
+                            
+                            <label for="maxKmMatrix">Max No. of Kilometers</label>
+                            <input type="text" class="form-control" name="maxKmMatrix" id="maxKmMatrix">
+                            <label for="kmStepMatrix">Kilometers Step for Computation</label>
+                            <input type="text" class="form-control" name="kmStepMatrix" id="kmStepMatrix">
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-info" value="Generate">
+                        </div>
+                    </form>
+
+                    <div class="matrixTable">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- VIEW MODAL -->
         <div id="viewfareInfoModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">fare Information</h5>
+                        <h5 class="modal-title">View Fare Information</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -145,7 +185,7 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">fare Information</h5>
+                        <h5 class="modal-title">Edit Fare Information</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -208,6 +248,7 @@ $(document).ready(function(){
                 { data: "status", render: function(data, type, row){
                             if(data == "Active"){
                                 return '<div class="btn-group">'+
+                                        '<button class="btn btn-info btn-sm btn_generate" value="'+row.id+'" title="Generate" type="button" ><i class="zmdi zmdi-eye"></i>Generate</button>'+
                                         '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
                                         '<button class="btn btn-warning btn-sm btn_edit" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
                                         '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
@@ -283,6 +324,90 @@ $(document).ready(function(){
         })
     });
 
+    // GENERATE FARE MATRIX
+$(document).on("click", ".btn_generate", function(){
+        var id = this.value;
+
+        $.ajax({
+            url: '<?php echo base_url()?>fare/get_one_fare',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                var fareInfo = data.data;
+                $('#additionalKmMatrix').val(fareInfo.additionalKm);
+                $('#discountPercentageMatrix').val(fareInfo.discountPercentage);
+                $('#initialKmMatrix').val(fareInfo.initialKm);
+                $('#initialPriceMatrix').val(fareInfo.initialPrice);
+
+                $(".matrixTable").html("");
+
+                $('#generateFareMatrixModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+
+    $('#fareMatrixForm').on('submit', function(e){
+        e.preventDefault();
+        var form = $('#fareMatrixForm'); 
+
+        $.ajax({
+        url:'<?php echo base_url()?>fare/get_one_fare',
+        type: "GET",
+        data: form.serialize(),
+        dataType: "JSON",
+
+        success: function(data){
+            var additionalKm = $('#additionalKmMatrix').val();
+            var discountPercentage = $('#discountPercentageMatrix').val();
+            var initialKm = $('#initialKmMatrix').val();
+            var initialPrice = $('#initialPriceMatrix').val();
+
+            var maxKm = $('#maxKmMatrix').val();
+            var kmStep = $('#kmStepMatrix').val();
+            var addKm = initialKm;
+            var addPrice = initialPrice;
+            var html = "";
+
+            var priceDiscounted = (parseFloat(initialPrice) * (parseFloat(discountPercentage)) / 100);
+            var priceTotal = parseFloat(initialPrice) - parseFloat(priceDiscounted);
+
+            var fareMatrixTable = `<table id="fareTableMatrix" class="table table-bordered"">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Kilometer</th>
+                                <th>Regular</th>
+                                <th>Discounted</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td>${initialKm}</td>
+                                <td>Php ${initialPrice}</td>
+                                <td>Php ${priceTotal}</td>
+                            </tr>
+                    </table>`;
+
+            do{
+                addKm = parseInt(addKm) + parseInt(kmStep);
+
+                addPrice = parseFloat(addPrice) + parseFloat(initialPrice);
+                discountPrice = (parseFloat(addPrice) * (parseFloat(discountPercentage)) / 100);
+                totalPrice = parseFloat(addPrice) - parseFloat(discountPrice);
+
+                html += `<tr>
+                            <td>${addKm}</td>
+                            <td>Php ${parseFloat(addPrice, 2)}</td>
+                            <td>Php ${parseFloat(totalPrice, 2)}</td>
+                        </tr>`
+            }while(addKm < maxKm)
+            
+            $('.matrixTable').html(fareMatrixTable);
+            $('#fareTableMatrix').append(html);
+        }
+    })
+});
 
     // VIEW ONE fare 
     $(document).on("click", ".btn_view", function(){
