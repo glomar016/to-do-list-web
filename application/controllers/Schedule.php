@@ -31,8 +31,8 @@ class Schedule extends CI_Controller {
 		$routeInput = $this->input->post('routeInput');
 		$busTypeInput = $this->input->post('busTypeInput');
 		$estimatedTimeTravelInput = $this->input->post('estimatedTimeTravelInput');
-		$hourFromInput = date("Y-m-d h:M",strtotime($this->input->post('hourFromInput')));
-		$hourToInput = date("Y-m-d h:M",strtotime($this->input->post('hourToInput')));
+		$hourFromInput = date("Y-m-d H:i",strtotime($this->input->post('hourFromInput')));
+		$hourToInput = date("Y-m-d H:i",strtotime($this->input->post('hourToInput')));
 		$willArriveNextDayInput = $this->input->post('willArriveNextDayInput');
 		$mondayInput = $this->input->post('mondayInput');
 		$tuesdayInput = $this->input->post('tuesdayInput');
@@ -133,8 +133,8 @@ class Schedule extends CI_Controller {
 		$routeEdit = $this->input->post('routeEdit');
 		$busTypeEdit = $this->input->post('busTypeEdit');
 		$estimatedTimeTravelEdit = $this->input->post('estimatedTimeTravelEdit');
-		$hourFromEdit = date("Y-m-d h:M a",strtotime($this->input->post('hourFromEdit')));
-		$hourToEdit = date("Y-m-d h:M a",strtotime($this->input->post('hourToEdit')));
+		$hourFromEdit = date("Y-m-d H:i",strtotime($this->input->post('hourFromEdit')));
+		$hourToEdit = date("Y-m-d H:i",strtotime($this->input->post('hourToEdit')));
 		$willArriveNextDayEdit = $this->input->post('willArriveNextDayEdit');
 		$mondayEdit = $this->input->post('mondayEdit');
 		$tuesdayEdit = $this->input->post('tuesdayEdit');
