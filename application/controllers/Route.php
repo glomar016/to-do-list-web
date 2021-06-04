@@ -217,4 +217,11 @@ class Route extends CI_Controller {
         curl_close($curl);
         echo $response;
     }
+
+    public function view_route($id){
+
+        $data['id'] = $id;
+
+        $this->load->view('viewRoute', $data);
+    }
 }

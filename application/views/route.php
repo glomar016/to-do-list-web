@@ -333,29 +333,29 @@ $(document).ready(function(){
     $(document).on("click", ".btn_view", function(){
         var id = this.value;
 
-        $.ajax({
-            url: '<?php echo base_url()?>route/get_one_route/',
-            type: "POST",
-            data: { id: id },
-            dataType: "JSON",
+        window.location.href = "<?php echo base_url()?>route/view_route/"+id;
+
+        // $.ajax({
+        //     url: '<?php echo base_url()?>route/get_one_route/',
+        //     type: "POST",
+        //     data: { id: id },
+        //     dataType: "JSON",
         
-            success: function(data){
-                var routeInfo = data.data;
-                console.log(routeInfo);
+        //     success: function(data){
+        //         var routeInfo = data.data;
+        //         console.log(routeInfo);
 
-                $('#routeIdView').val(id);
-                $('#originIdView').val(routeInfo.origin.name);
-                $('#destinationIdView').val(routeInfo.destination.name);
-                $('#kmDistanceView').val(routeInfo.kmDistance);
-                $('#effectivityDateView').val(moment(routeInfo.effectivityDate).format('YYYY-MM-DD'));
+        //         $('#routeIdView').val(id);
+        //         $('#originIdView').val(routeInfo.origin.name);
+        //         $('#destinationIdView').val(routeInfo.destination.name);
+        //         $('#kmDistanceView').val(routeInfo.kmDistance);
+        //         $('#effectivityDateView').val(moment(routeInfo.effectivityDate).format('YYYY-MM-DD'));
 
-                $('#viewrouteInfoModal').modal('show');
-            }
-        // ajax closing tag
-        })
+        //         $('#viewrouteInfoModal').modal('show');
+        //     }
+        // // ajax closing tag
+        // })
     });
-
-        
 
     // EDIT route 
     $(document).on("click", ".btn_edit", function(){

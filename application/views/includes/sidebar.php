@@ -82,6 +82,13 @@
           <p class="nav-link" style="line-height: 0px"><strong>Schedule Management</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
 
+          <li <?php if($this->router->fetch_class() == 'schedule') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>schedule">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Schedule Setup</p>
+            </a>
+          </li>
+          
           <li <?php if($this->router->fetch_class() == 'busschedule') {?> class="active has-sub" <?php } ?>>
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>busschedule">
               <!-- <i class="material-icons">account_circle</i> -->
@@ -89,12 +96,7 @@
             </a>
           </li>
 
-          <li <?php if($this->router->fetch_class() == 'schedule') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>schedule">
-              <!-- <i class="material-icons">account_circle</i> -->
-              <p>Schedule</p>
-            </a>
-          </li>
+          
 
 
         </ul>

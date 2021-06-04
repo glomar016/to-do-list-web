@@ -310,7 +310,6 @@ $(document).ready(function(){
     $(document).on("click", ".btn_delete", function(){
         var id = this.value;
 
-
         // Confirmation
         Swal.fire({
             title: 'Are you sure?',
@@ -335,8 +334,6 @@ $(document).ready(function(){
             }
         })
         // End of Confirmation
-
-        
     });
     // CLOSING TAG
 });

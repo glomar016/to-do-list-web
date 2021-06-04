@@ -478,6 +478,8 @@ $('#scheduleForm').on('submit', function(e){
 
 $(document).on("click", ".btn-view", function(){
   var id = this.value;
+
+  
   $("#viewModal").modal('show');
   $.ajax({
         url:'<?php echo base_url()?>schedule/viewSchedule',
