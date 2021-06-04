@@ -307,17 +307,19 @@ $(document).ready(function(){
     $('#addrouteForm').on('submit', function(e){
         e.preventDefault();
 
-        var form = $('#addrouteForm'); 
+        var form = $('#addrouteForm').serializeArray(); 
 
+        var routeName = $('#originId option:selected').text() + " - " + $('#destinationId option:selected').text();
+        form.push({name: "routeName", value: routeName});
+        // console.log(form);
         // ajax opening tag
         $.ajax({
             url: '<?php echo base_url()?>route/add_route',
             type: "POST",
-            data: form.serialize(),
+            data: form,
         
             success: function(data){
                 refresh();
-                
                 $("#addrouteForm").trigger("reset");
                 showNotification('create', 'Successfully created a route!', 'success', 'top', 'right');
             }
@@ -332,28 +334,6 @@ $(document).ready(function(){
 
         window.location.href = "<?php echo base_url()?>RouteView/redirectView/" + id;
         
-        // $.ajax({
-        //     url: '<?php echo base_url()?>route/get_one_route/',
-        //     type: "POST",
-        //     data: { id: id },
-        //     dataType: "JSON",
-        
-        //     success: function(data){
-        //         var routeInfo = data.data;
-        //         console.log(routeInfo);
-
-        //         $('#routeIdView').val(id);
-        //         $('#originIdView').val(routeInfo.origin.name);
-        //         $('#destinationIdView').val(routeInfo.destination.name);
-        //         $('#kmDistanceView').val(routeInfo.kmDistance);
-        //         $('#effectivityDateView').val(moment(routeInfo.effectivityDate).format('YYYY-MM-DD'));
-
-        //         $('#viewrouteInfoModal').modal('show');
-        //     }
-        // // ajax closing tag
-        // })
-    });
-
         // $.ajax({
         //     url: '<?php echo base_url()?>route/get_one_route/',
         //     type: "POST",

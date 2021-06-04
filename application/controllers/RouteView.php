@@ -54,10 +54,9 @@ class RouteView extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS =>$postdata,
+		CURLOPT_POSTFIELDS => $postdata,
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyNGRkYzZmLTk2NmQtNDFiNS1hMDJiLTJiYjg3MzdkNjViNCIsImVtYWlsIjoia2ltdGFleWVvbkBnbWFpbC5jb20iLCJpYXQiOjE2MjEyMzU2MDYsImV4cCI6MTYyMTI0MjgwNn0.I0K6E7fCcu_EEUlDOlj4sAURW8Z62TggcJDOMMDd2e8
-			',
+			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
 			'Content-Type: application/json'
 		),
 		));
@@ -66,6 +65,7 @@ class RouteView extends CI_Controller {
 
 		curl_close($curl);
 		echo $response;
+
 
 
 		

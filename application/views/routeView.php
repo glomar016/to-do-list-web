@@ -212,9 +212,17 @@ function view(){
             }
         // ajax closing tag
         })
-}
+    }
 
-view();
+    function refresh(){
+        var routeId = "<?php echo $id ?>"
+
+        var url = "<?php echo base_url()?>RouteView/show_landmark/" + routeId;
+
+        landmarkDataTable.ajax.url(url).load();
+    }
+
+    view();
 
     // CREATE LANDMARK
     $('#addLandmarkForm').on('submit', function(e){
@@ -229,8 +237,10 @@ view();
             data: form.serialize(),
         
             success: function(data){              
-                refresh(); 
-                $("#addLandmarkForm").trigger("reset");
+                refresh();
+                $("#name").val("");
+                $("#kmFromOrigin").val("");
+                $("#effectivityDate").val("");
                 showNotification('create', 'Successfully created a landmark!', 'success', 'top', 'right');
             }
         // ajax closing tag
@@ -276,13 +286,7 @@ view();
     }
     loadtable();
 
-    function refresh(){
-        var routeId = "<?php echo $id ?>"
-
-        var url = "<?php echo base_url()?>RouteView/show_landmark/" + routeId;
-
-        landmarkDataTable.ajax.url(url).load();
-    }
+    
 
     // VIEW ONE LANDMARK 
     $(document).on("click", ".btn_view", function(){
