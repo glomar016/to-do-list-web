@@ -52,25 +52,41 @@ The above copyright notice and this permission notice shall be included in all c
                       <form id="busScheduleForm">
                           <div class="form-row">
                             <div class="form-group col-sm-6">
-                                <label class="drpdwn-label" for="busNumberInput">Bus Number</label>
-                                <select class="form-control drpdwn" id="busNumberInput" name="busNumberInput">
-                                  
-                                </select>
-                            </div>
-                            <div class="form-group col-sm-6">
                                 <label class="label-control" for="scheduleDateInput">Schedule Date</label> <br>
                                 <input type="date" class="form-control" id="scheduleDateInput" name="scheduleDateInput">
+                                <span style="color:red" class="float-right">Select schedule date first.</span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                              <button id="btnShowSched" class="btn btn-info float-right">Show Available Schedule</button>
                             </div>
                           </div>
-                          <div class="form-row">
-                            <div class= "form-group col-sm-6">
-                                <label class="drpdwn-label" for="availableBus">Available Bus</label>
-                                <select class="form-control drpdwn" id="availableBus" name="availableBus">
+                            
 
-                                </select>
+                            <div id="availableBusDiv" hidden>
+                              <div class="form-row">
+                                <div class= "form-group col-sm-6">
+                                    <label class="drpdwn-label" for="availableBus">Available Bus</label>
+                                    <select class="form-control drpdwn" id="availableBus" name="availableBus">
+                                      <option> -- Select available bus schedule -- </option>
+                                    </select>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <input type="submit" class="btn btn-primary">
+                            
+                            <div id="busNumberAvailable" hidden>
+                              <div class="form-group">
+                                    <label class="drpdwn-label" for="busNumberInput">Bus Number</label>
+                                    <select class="form-control drpdwn" id="busNumberInput" name="busNumberInput">
+                                      
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                              <input type="submit" class="btn btn-primary">
+                            </div>
+                            
+                          
                       </form>
                   </div>
               </div>
@@ -203,30 +219,6 @@ function dataTable(){
 };
 
 
-function getbusNumber(){
-    
-    $.ajax({
-      url: '<?php echo base_url()?>busSchedule/getBusNumber',
-      type: "GET",
-      dataType: "JSON",
-
-      success: function(data){
-        var busNumber = data.data;
-        console.log(busNumber);
-        var html = ""
-
-        for(var i=0; i < busNumber.length; i++){
-          html += `<option value="${busNumber[i].id}">${busNumber[i].number}</option>`
-        }
-        
-        $('#busNumberInput').html(html);
-        $('#busTypeEdit').html(html);
-
-      }
-    })
-  }
-
-getbusNumber();
 dataTable();
 
 function refresh(){
@@ -249,11 +241,18 @@ $('#busScheduleForm').on('submit', function(e){
         dataType: "JSON",
 
         success: function(data){
+          
+          $("#busNumberAvailable").attr('hidden', true);;
+          $("#availableBusDiv").attr('hidden', true);;
+
           document.getElementById("busScheduleForm").reset();
           showNotification('create', 'Successfully added a new bus schedule!', 'success', 'top', 'right');
           refresh();
+
         }
     })
+
+
 });
 
 $(document).on("click", ".btn-edit", function(){
@@ -332,41 +331,74 @@ $('.delete-confirm').on('click', function(e){
     })
 });
 
+
 //onChange scheduleDateInput looping
 
-$( "#scheduleDateInput" ).on('change', function() {
-  var rawSchedDate = new Date($(this).val());
+$( "#btnShowSched" ).click(function(e){
+
+  e.preventDefault();
+
+  $('#availableBusDiv').removeAttr('hidden');
+    
+  var rawSchedDate = new Date($("#scheduleDateInput").val());
   var date = moment(rawSchedDate).format('dddd');
-  console.log(date);
     
     $.ajax({
             url: '<?php echo base_url()?>BusSchedule/availBus/' + date,
-            type: "POST",
-            data: { date: date },
+            type: "GET",
             dataType: "JSON",
         
             success: function(data){
                 var schedInfo = data.data;
                 console.log(schedInfo);
+                if(schedInfo.length == 0){
+                  var html = `<option> -- No bus available on ${date} -- </option>`;
+                }
+                else{
+                  var html = "<option> -- Select available bus schedule -- </option>";
+                }
                 
+
+
+                for(let i=0; i < schedInfo.length; i++){
+                  let hourFrom = moment(schedInfo[i].hourFrom).format('LT')
+                  let hourTo = moment(schedInfo[i].hourTo).format('LT')
+                  html += `<option value="${schedInfo[i].busType.id}">${schedInfo[i].route.name} | ${schedInfo[i].busType.name} | ${hourFrom} - ${hourTo} </option>`
+                }
+
+                $("#availableBus").html(html);
             }
         // ajax closing tag
         })
 
-  // getScheduledBus(date)
-});
+})
 
-function getScheduledBus(date){
-  var availBus = "<option>"+ date +"</option"
-  $('#availableBus').append(availBus); 
-  }
+$('#availableBus').on('change', function(e){
+  e.preventDefault();
 
-// $("#scheduleDateInput").datepicker({
-//   var schedDate = new Date($(this).val());
-//   var date = moment(schedDate).format('dddd');
-//   getScheduledBus(date)
+  $("#busNumberAvailable").removeAttr("hidden");
 
-// });
+  $.ajax({
+            url: '<?php echo base_url()?>busSchedule/getNumberByType/' + this.value,
+            type: "GET",
+            dataType: "JSON",
+
+            success: function(data){
+              console.log(data.data);
+              var busNumber = data.data;
+              console.log(busNumber);
+              var html = ""
+
+              for(var i=0; i < busNumber.length; i++){
+                html += `<option value="${busNumber[i].id}">${busNumber[i].number} | ${busNumber[i].busTypeId.name}</option>`
+              }
+              
+              $('#busNumberInput').html(html);
+              
+            }
+  })
+})
+
 
 
 

@@ -165,4 +165,5 @@ class Bus_type extends CI_Controller {
         echo $response;
 
     }
+
 }
