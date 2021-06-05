@@ -656,7 +656,7 @@ $(document).on("click", ".btn-edit", function(){
 
           $('#idBusInformationEdit').val(userInfo.id);
           $('#busNumberEdit').val(userInfo.number);
-          $('#busTypeEdit').val(userInfo.busTypeId.name);
+          $('#busTypeEdit').val(userInfo.busTypeId.id);
           $('#busTemplateEdit').val(userInfo.template);
           $('#ownerEdit').val(userInfo.owner);
           $('#contactEdit').val(userInfo.contactNumber);
@@ -676,7 +676,7 @@ $(document).on("click", ".btn-edit", function(){
           $('#netWeightEdit').val(userInfo.netWeight);
           $('#shipWeightEdit').val(userInfo.shippingWeight);
           $('#netCapacityEdit').val(userInfo.netCapacity);
-          if(userInfo.hasTelevision == "True"){ withTvEdit.checked = true }
+          if(userInfo.hasTelevision == "True"){ withTelevisionEdit.checked = true }
           if(userInfo.hasAircon == "True"){ withAirconEdit.checked = true }
           if(userInfo.hasWifi == "True"){ withWifiEdit.checked = true }
           
