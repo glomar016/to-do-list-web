@@ -110,39 +110,7 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
         <!-- END OF CLOSING TAG OF CONTENT -->
 
-        <!-- FARE MATRIX MODAL -->
-        <div id="generateFareMatrixModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Generate Fare Matrix</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form id="fareMatrixForm">
-                        <div class="modal-body">
-                            <input hidden type="text" class="form-control" name="additionalKmMatrix" id="additionalKmMatrix">
-                            <input hidden type="text" class="form-control" name="discountPercentageMatrix" id="discountPercentageMatrix">
-                            <input hidden type="text" class="form-control" name="initialKmMatrix" id="initialKmMatrix">
-                            <input hidden type="text" class="form-control" name="initialPriceMatrix" id="initialPriceMatrix">
-                            
-                            <label for="maxKmMatrix">Max No. of Kilometers</label>
-                            <input type="text" class="form-control" name="maxKmMatrix" id="maxKmMatrix">
-                            <label for="kmStepMatrix">Kilometers Step for Computation</label>
-                            <input type="text" class="form-control" name="kmStepMatrix" id="kmStepMatrix">
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-info" value="Generate">
-                        </div>
-                    </form>
-
-                    <div class="matrixTable">
-                    </div>
-                </div>
-            </div>
-        </div>
-
+    
         <!-- VIEW MODAL -->
         <div id="viewfareInfoModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -227,6 +195,39 @@ The above copyright notice and this permission notice shall be included in all c
   <?php $this->load->view('includes/core_js_files.php')?>
   
 </body>
+
+ <!-- FARE MATRIX MODAL -->
+ <div id="generateFareMatrixModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Generate Fare Matrix</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="fareMatrixForm">
+                        <div class="modal-body">
+                            <input hidden type="text" class="form-control" name="additionalKmMatrix" id="additionalKmMatrix">
+                            <input hidden type="text" class="form-control" name="discountPercentageMatrix" id="discountPercentageMatrix">
+                            <input hidden type="text" class="form-control" name="initialKmMatrix" id="initialKmMatrix">
+                            <input hidden type="text" class="form-control" name="initialPriceMatrix" id="initialPriceMatrix">
+                            
+                            <label for="maxKmMatrix">Max No. of Kilometers</label>
+                            <input type="text" class="form-control" name="maxKmMatrix" id="maxKmMatrix">
+                            <label for="kmStepMatrix">Kilometers Step for Computation</label>
+                            <input type="text" class="form-control" name="kmStepMatrix" id="kmStepMatrix">
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-info" value="Generate">
+                        </div>
+                    </form>
+
+                    <div class="matrixTable">
+                    </div>
+                </div>
+            </div>
+        </div>
 
 <script>
 $(document).ready(function(){
@@ -389,19 +390,23 @@ $(document).on("click", ".btn_generate", function(){
                             </tr>
                     </table>`;
 
-            do{
+            do {
                 addKm = parseInt(addKm) + parseInt(kmStep);
+                var newPrice = parseFloat((addKm - initialKm) * additionalKm);
 
-                addPrice = parseFloat(addPrice) + parseFloat(initialPrice);
-                discountPrice = (parseFloat(addPrice) * (parseFloat(discountPercentage)) / 100);
-                totalPrice = parseFloat(addPrice) - parseFloat(discountPrice);
+                if(addKm <= maxKm){
+                // addPrice = parseFloat(additionalKm) * parseFloat(addKm);
+                discountPrice = (parseFloat(newPrice) * (parseFloat(discountPercentage)) / 100);
+                totalPrice = parseFloat(newPrice) - parseFloat(discountPrice);
 
                 html += `<tr>
                             <td>${addKm}</td>
-                            <td>Php ${parseFloat(addPrice, 2)}</td>
-                            <td>Php ${parseFloat(totalPrice, 2)}</td>
+                            <td>Php ${Math.round(newPrice)}</td>
+                            <td>Php ${Math.round(totalPrice)}</td>
                         </tr>`
-            }while(addKm < maxKm)
+                }
+            } 
+            while(addKm < maxKm)
             
             $('.matrixTable').html(fareMatrixTable);
             $('#fareTableMatrix').append(html);
