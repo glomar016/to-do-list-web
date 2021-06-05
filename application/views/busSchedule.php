@@ -62,6 +62,14 @@ The above copyright notice and this permission notice shall be included in all c
                                 <input type="date" class="form-control" id="scheduleDateInput" name="scheduleDateInput">
                             </div>
                           </div>
+                          <div class="form-row">
+                            <div class= "form-group col-sm-6">
+                                <label class="drpdwn-label" for="availableBus">Available Bus</label>
+                                <select class="form-control drpdwn" id="availableBus" name="availableBus">
+
+                                </select>
+                            </div>
+                          </div>
                           <input type="submit" class="btn btn-primary">
                       </form>
                   </div>
@@ -323,6 +331,43 @@ $('.delete-confirm').on('click', function(e){
         }
     })
 });
+
+//onChange scheduleDateInput looping
+
+$( "#scheduleDateInput" ).on('change', function() {
+  var rawSchedDate = new Date($(this).val());
+  var date = moment(rawSchedDate).format('dddd');
+  console.log(date);
+    
+    $.ajax({
+            url: '<?php echo base_url()?>BusSchedule/availBus/' + date,
+            type: "POST",
+            data: { date: date },
+            dataType: "JSON",
+        
+            success: function(data){
+                var schedInfo = data.data;
+                console.log(schedInfo);
+                
+            }
+        // ajax closing tag
+        })
+
+  // getScheduledBus(date)
+});
+
+function getScheduledBus(date){
+  var availBus = "<option>"+ date +"</option"
+  $('#availableBus').append(availBus); 
+  }
+
+// $("#scheduleDateInput").datepicker({
+//   var schedDate = new Date($(this).val());
+//   var date = moment(schedDate).format('dddd');
+//   getScheduledBus(date)
+
+// });
+
 
 
 </script>
