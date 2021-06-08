@@ -26,13 +26,15 @@ class busSchedule extends CI_Controller {
             
 	}
 
-	public function addBusSchedule()
+	public function addBusSchedule($optionId)
 	{
 		$busNumberInput = $this->input->post('busNumberInput');
 		$scheduleDateInput =  $this->input->post('scheduleDateInput');
+    $availableBus =  $optionId;
 
 		$data = array("busInformationId" => $busNumberInput
 						, "scheduleDate" => $scheduleDateInput
+            , "busScheduleId" => $availableBus
 						);
 		$postdata = json_encode($data);
 

@@ -233,9 +233,11 @@ $('#busScheduleForm').on('submit', function(e){
     e.preventDefault();
 
     var form = $('#busScheduleForm');
+    var optionId = $('#availableBus').find('option:selected').attr('id')  
+    console.log(optionId)
 
     $.ajax({
-        url:'<?php echo base_url()?>busSchedule/addBusSchedule',
+        url:'<?php echo base_url()?>busSchedule/addBusSchedule/' + optionId,
         type: "POST",
         data: form.serialize(),
         dataType: "JSON",
@@ -280,6 +282,7 @@ $('#editBusScheduleForm').on('submit', function(e){
 
     var form = $('#editBusScheduleForm');
     
+
     $.ajax({
         url:'<?php echo base_url()?>busSchedule/editBusSchedule',
         type: "POST",
@@ -363,7 +366,7 @@ $( "#btnShowSched" ).click(function(e){
                 for(let i=0; i < schedInfo.length; i++){
                   let hourFrom = moment(schedInfo[i].hourFrom).format('LT')
                   let hourTo = moment(schedInfo[i].hourTo).format('LT')
-                  html += `<option value="${schedInfo[i].busType.id}">${schedInfo[i].route.name} | ${schedInfo[i].busType.name} | ${hourFrom} - ${hourTo} </option>`
+                  html += `<option class="option" id="${schedInfo[i].id}" value="${schedInfo[i].busType.id}">${schedInfo[i].route.name} | ${schedInfo[i].busType.name} | ${hourFrom} - ${hourTo} </option>`
                 }
 
                 $("#availableBus").html(html);
