@@ -197,8 +197,7 @@ function show_terminal(){
 
 $( "#reserveOrigin" ).change(function() {
     show_route();
-    show_landmark();
-    show_avail_schedule();
+    
     });
 
 function show_route(){
@@ -234,6 +233,7 @@ function show_route(){
 $( "#reserveRoute" ).change(function() {
     show_landmark();
     show_avail_schedule();
+    show_landmark();
 });
 
 function show_landmark(){
@@ -291,19 +291,24 @@ function show_avail_schedule(){
   var TypeId = document.getElementById('reserveBusType').value;
   var formatDate = date + 'T00:00:00.000Z';
   dataInfo = {
-    'date': formatDate ,
-    'routeId': routeId,
-    'TypeId': TypeId
+    
   }
 
   $.ajax({
     url: '<?php echo base_url()?>Reservation/show_avail_bus/',
     type: "POST",
-    data: dataInfo,
+    data: {date: formatDate ,
+          routeId: routeId,
+          TypeId: TypeId},
+    datatype: "JSON",
+    // contentType: 'application/json',
+    
   
     success: function(data){
-      var schedule = data.data;
-      // console.log(schedule);
+      var sched = JSON.parse(data);
+      var schedule = sched.data
+      console.log(schedule);
+
       var html = "";
       
       for(var i=0; i < schedule.length; i++){
@@ -311,7 +316,7 @@ function show_avail_schedule(){
         var hourFrom = moment(`${schedule[i].busSchedule.hourFrom}`).format('LT');
         var hourTo = moment(`${schedule[i].busSchedule.hourTo}`).format('LT');
 
-        html += `<option value="${schedule[i].id}">` + date +  + hourFrom + "-" + hourTo + " | " + `${schedule[i].id}` + `</option>`;
+        html += `<option value="${schedule[i].id}">` + date + " | " + hourFrom + "-" + hourTo + " | " + `</option>`;
       }
       
       $('#reserveSchedule').html(html);
@@ -319,12 +324,9 @@ function show_avail_schedule(){
   })
 
 }
-
-
-  show_landmark();
   show_terminal();
   get_bus_type();
-  show_avail_schedule();
+  // show_avail_schedule();
 </script>
 
 </html>
