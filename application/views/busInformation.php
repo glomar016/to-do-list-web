@@ -216,99 +216,99 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                       <div class="form-group col-sm-12">
                       <label for="busNumberView">Bus Number</label>
-                      <input type="text" class="form-control" id="busNumberView" name="busNumberView" readonly>
+                      <span class="form-control-plaintext" id="busNumberView" name="busNumberView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                         <label for="busTypeView">Bus Type</label>
-                        <input type="text" class="form-control" id="busTypeView" name="busTypeView" readonly>
+                        <span class="form-control-plaintext" id="busTypeView" name="busTypeView">
                       </div>
                       <div class="form-group col-sm-6">
                         <label for="busTemplateView">Bus Template</label>
-                        <input type="text" class="form-control" id="busTemplateView" name="busTemplateView" readonly>
+                        <span class="form-control-plaintext" id="busTemplateView" name="busTemplateView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                       <label for="ownerView">Owner</label>
-                      <input type="text" class="form-control" id="ownerView" name="ownerView" readonly>
+                      <span class="form-control-plaintext" id="ownerView" name="ownerView">
                       </div>
                       <div class="form-group col-sm-6">
                       <label for="contactView">Contact Number</label>
-                      <input type="text" class="form-control" id="contactView" name="contactView" readonly>
+                      <span class="form-control-plaintext" id="contactView" name="contactView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="plateView">Plate Number</label>
-                      <input type="text" class="form-control" id="plateView" name="plateView" readonly>
+                      <span class="form-control-plaintext" id="plateView" name="plateView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="engineView">Engine Number</label>
-                      <input type="text" class="form-control" id="engineView" name="engineView" readonly>
+                      <span class="form-control-plaintext" id="engineView" name="engineView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="chasisView">Chasis Number</label>
-                      <input type="text" class="form-control" id="chasisView" name="chasisView" readonly>
+                      <span class="form-control-plaintext" id="chasisView" name="chasisView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fileNumberView">MV File Number</label>
-                      <input type="text" class="form-control" id="fileNumberView" name="fileNumberView" readonly>
+                      <span class="form-control-plaintext" id="fileNumberView" name="fileNumberView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="denominationView">Denomination</label>
-                      <input type="text" class="form-control" id="denominationView" name="denominationView" readonly>
+                      <span class="form-control-plaintext" id="denominationView" name="denominationView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="pistonView">Piston Placement</label>
-                      <input type="text" class="form-control" id="pistonView" name="pistonView" readonly>
+                      <span class="form-control-plaintext" id="pistonView" name="pistonView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fuelView">Fuel</label>
-                      <input type="text" class="form-control" id="fuelView" name="fuelView" readonly> 
+                      <span class="form-control-plaintext" id="fuelView" name="fuelView"> 
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="yearView">Year Model</label>
-                      <input type="text" class="form-control" id="yearView" name="yearView" readonly>
+                      <span class="form-control-plaintext" id="yearView" name="yearView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="makeView">Make</label>
-                      <input type="text" class="form-control" id="makeView" name="makeView" readonly>
+                      <span class="form-control-plaintext" id="makeView" name="makeView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="seriesView">Series</label>
-                      <input type="text" class="form-control" id="seriesView" name="seriesView" readonly>
+                      <span class="form-control-plaintext" id="seriesView" name="seriesView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyView">Body Type</label>
-                      <input type="text" class="form-control" id="bodyView" name="bodyView" readonly>
+                      <span class="form-control-plaintext" id="bodyView" name="bodyView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyNumberView">Body Number</label>
-                      <input type="text" class="form-control" id="bodyNumberView" name="bodyNumberView" readonly>
+                      <span class="form-control-plaintext" id="bodyNumberView" name="bodyNumberView">
                       </div>
                   </div>
                   <div class="form-row">
                   <div class="form-group col-sm-3">
                       <label for="netCapacityView">Net Capacity</label>
-                      <input type="text" class="form-control" id="netCapacityView" name="netCapacityView" readonly>
+                      <span class="form-control-plaintext" id="netCapacityView" name="netCapacityView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="grossWeightView">Gross Weight (kg)</label>
-                      <input type="text" class="form-control" id="grossWeightView" name="grossWeightView" readonly>
+                      <span class="form-control-plaintext" id="grossWeightView" name="grossWeightView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="netWeightView">Net Weight (kg)</label>
-                      <input type="text" class="form-control" id="netWeightView" name="netWeightView" readonly>
+                      <span class="form-control-plaintext" id="netWeightView" name="netWeightView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightView">Shipping Weight (kg)</label>
-                      <input type="text" class="form-control" id="shipWeightView" name="shipWeightView" readonly>
+                      <span class="form-control-plaintext" id="shipWeightView" name="shipWeightView">
                       </div>
                   </div>
                   <div class="form-row">
@@ -612,32 +612,32 @@ $(document).on("click", ".btn-view", function(){
         success: function(data){
           var userInfo = data.data;
 
-          $('#idBusInformationView').val(userInfo.id);
-          $('#busNumberView').val(userInfo.number);
-          $('#busTypeView').val(userInfo.busTypeId.name);
-          $('#busTemplateView').val(userInfo.template);
-          $('#ownerView').val(userInfo.owner);
-          $('#contactView').val(userInfo.contactNumber);
-          $('#plateView').val(userInfo.plateNumber);
-          $('#engineView').val(userInfo.engineNumber);
-          $('#chasisView').val(userInfo.chasisNumber);
-          $('#fileNumberView').val(userInfo.fileNumber);
-          $('#denominationView').val(userInfo.denomination);
-          $('#pistonView').val(userInfo.pistonPlacement);
-          $('#fuelView').val(userInfo.fuel);
-          $('#makeView').val(userInfo.make);
-          $('#seriesView').val(userInfo.series);
-          $('#bodyView').val(userInfo.bodyType);
-          $('#bodyNumberView').val(userInfo.bodyNumber);
-          $('#yearView').val(userInfo.yearModel);
-          $('#grossWeightView').val(userInfo.grossWeight);
-          $('#netWeightView').val(userInfo.netWeight);
-          $('#shipWeightView').val(userInfo.shippingWeight);
-          $('#netCapacityView').val(userInfo.netCapacity);
+          $('#idBusInformationView').html(userInfo.id);
+          $('#busNumberView').html(userInfo.number);
+          $('#busTypeView').html(userInfo.busTypeId.name);
+          $('#busTemplateView').html(userInfo.template);
+          $('#ownerView').html(userInfo.owner);
+          $('#contactView').html(userInfo.contactNumber);
+          $('#plateView').html(userInfo.plateNumber);
+          $('#engineView').html(userInfo.engineNumber);
+          $('#chasisView').html(userInfo.chasisNumber);
+          $('#fileNumberView').html(userInfo.fileNumber);
+          $('#denominationView').html(userInfo.denomination);
+          $('#pistonView').html(userInfo.pistonPlacement);
+          $('#fuelView').html(userInfo.fuel);
+          $('#makeView').html(userInfo.make);
+          $('#seriesView').html(userInfo.series);
+          $('#bodyView').html(userInfo.bodyType);
+          $('#bodyNumberView').html(userInfo.bodyNumber);
+          $('#yearView').html(userInfo.yearModel);
+          $('#grossWeightView').html(userInfo.grossWeight);
+          $('#netWeightView').html(userInfo.netWeight);
+          $('#shipWeightView').html(userInfo.shippingWeight);
+          $('#netCapacityView').html(userInfo.netCapacity);
 
-          if(userInfo.hasTelevision == "True"){ withTvView.checked = true }
-          if(userInfo.hasAircon == "True"){ withAirconView.checked = true }
-          if(userInfo.hasWifi == "True"){ withWifiView.checked = true }
+          if(userInfo.hasTelevision == "True"){ withTvView.checked = true}
+          if(userInfo.hasAircon == "True"){ withAirconView.checked = true}
+          if(userInfo.hasWifi == "True"){ withWifiView.checked = true}
         }
     })
 });
