@@ -50,8 +50,8 @@ The above copyright notice and this permission notice shall be included in all c
                               <label for="exampleInputEmail1">Bus Type</label>
                               <input type="text" class="form-control" id="busTypeName" name="busTypeName">
                         </div>
-
                           </div>
+                          
                           <div class="form-row">
                               <div class="form-group col-sm-6">
 
