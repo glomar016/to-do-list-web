@@ -129,7 +129,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="form-group col-sm-6">
                         <label class="drpdwn-label" for="editBusNumberInput">Bus Number</label>
                         <input type="text" class="form-control" id="editScheduleId" name="editScheduleId" hidden>
-                        <input type="text" class="form-control" id="editBusNumberInput" name="editBusNumberInput" readonly>
+                        <span id="editBusNumberInput" name="editBusNumberInput"> </span>
                     </div>
                     <div class="form-group col-sm-6">
                         <label class="label-control" for="editScheduleDateInput">Schedule Date</label> <br>
@@ -270,7 +270,7 @@ $(document).on("click", ".btn-edit", function(){
           var schedInfo = data.data;
 
           $('#editScheduleId').val(schedInfo.id);
-          $('#editBusNumberInput').val(schedInfo.busInformation.number);
+          $('#editBusNumberInput').html(schedInfo.busInformation.number);
           $('#editScheduleDateInput').val(schedInfo.scheduleDate);
         }
     })
