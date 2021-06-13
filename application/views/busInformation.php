@@ -216,113 +216,113 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                       <div class="form-group col-sm-12">
                       <label for="busNumberView">Bus Number</label>
-                      <input type="text" class="form-control" id="busNumberView" name="busNumberView"  >
+                      <input type="text" class="form-control" id="busNumberView" name="busNumberView" readonly>
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                         <label for="busTypeView">Bus Type</label>
-                        <input type="text" class="form-control" id="busTypeView" name="busTypeView"  >
+                        <input type="text" class="form-control" id="busTypeView" name="busTypeView" readonly>
                       </div>
                       <div class="form-group col-sm-6">
                         <label for="busTemplateView">Bus Template</label>
-                        <input type="text" class="form-control" id="busTemplateView" name="busTemplateView"  >
+                        <input type="text" class="form-control" id="busTemplateView" name="busTemplateView" readonly>
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                       <label for="ownerView">Owner</label>
-                      <input type="text" class="form-control" id="ownerView" name="ownerView"  >
+                      <input type="text" class="form-control" id="ownerView" name="ownerView" readonly>
                       </div>
                       <div class="form-group col-sm-6">
                       <label for="contactView">Contact Number</label>
-                      <input type="text" class="form-control" id="contactView" name="contactView"  >
+                      <input type="text" class="form-control" id="contactView" name="contactView" readonly>
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="plateView">Plate Number</label>
-                      <input type="text" class="form-control" id="plateView" name="plateView"  >
+                      <input type="text" class="form-control" id="plateView" name="plateView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="engineView">Engine Number</label>
-                      <input type="text" class="form-control" id="engineView" name="engineView"  >
+                      <input type="text" class="form-control" id="engineView" name="engineView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="chasisView">Chasis Number</label>
-                      <input type="text" class="form-control" id="chasisView" name="chasisView"  >
+                      <input type="text" class="form-control" id="chasisView" name="chasisView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fileNumberView">MV File Number</label>
-                      <input type="text" class="form-control" id="fileNumberView" name="fileNumberView"  >
+                      <input type="text" class="form-control" id="fileNumberView" name="fileNumberView" readonly>
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="denominationView">Denomination</label>
-                      <input type="text" class="form-control" id="denominationView" name="denominationView"  >
+                      <input type="text" class="form-control" id="denominationView" name="denominationView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="pistonView">Piston Placement</label>
-                      <input type="text" class="form-control" id="pistonView" name="pistonView"  >
+                      <input type="text" class="form-control" id="pistonView" name="pistonView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fuelView">Fuel</label>
-                      <input type="text" class="form-control" id="fuelView" name="fuelView"  > 
+                      <input type="text" class="form-control" id="fuelView" name="fuelView" readonly> 
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="yearView">Year Model</label>
-                      <input type="text" class="form-control" id="yearView" name="yearView"  >
+                      <input type="text" class="form-control" id="yearView" name="yearView" readonly>
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="makeView">Make</label>
-                      <input type="text" class="form-control" id="makeView" name="makeView"  >
+                      <input type="text" class="form-control" id="makeView" name="makeView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="seriesView">Series</label>
-                      <input type="text" class="form-control" id="seriesView" name="seriesView"  >
+                      <input type="text" class="form-control" id="seriesView" name="seriesView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyView">Body Type</label>
-                      <input type="text" class="form-control" id="bodyView" name="bodyView"  >
+                      <input type="text" class="form-control" id="bodyView" name="bodyView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyNumberView">Body Number</label>
-                      <input type="text" class="form-control" id="bodyNumberView" name="bodyNumberView"  >
+                      <input type="text" class="form-control" id="bodyNumberView" name="bodyNumberView" readonly>
                       </div>
                   </div>
                   <div class="form-row">
                   <div class="form-group col-sm-3">
                       <label for="netCapacityView">Net Capacity</label>
-                      <input type="text" class="form-control" id="netCapacityView" name="netCapacityView"  >
+                      <input type="text" class="form-control" id="netCapacityView" name="netCapacityView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="grossWeightView">Gross Weight (kg)</label>
-                      <input type="text" class="form-control" id="grossWeightView" name="grossWeightView"  >
+                      <input type="text" class="form-control" id="grossWeightView" name="grossWeightView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="netWeightView">Net Weight (kg)</label>
-                      <input type="text" class="form-control" id="netWeightView" name="netWeightView"  >
+                      <input type="text" class="form-control" id="netWeightView" name="netWeightView" readonly>
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightView">Shipping Weight (kg)</label>
-                      <input type="text" class="form-control" id="shipWeightView" name="shipWeightView"  >
+                      <input type="text" class="form-control" id="shipWeightView" name="shipWeightView" readonly>
                       </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Television</label>
-                      <input type="checkbox" id="withTvView" name="withTvView"  >
+                      <input type="checkbox" id="withTvView" name="withTvView" onclick="return false;">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has Aircon</label>
-                      <input type="checkbox" id="withAirconView" name="withAirconView"  >
+                      <input type="checkbox" id="withAirconView" name="withAirconView" onclick="return false;">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightInput">Has WiFi</label>
-                      <input type="checkbox" id="withWifiView" name="withWifiView"  >
+                      <input type="checkbox" id="withWifiView" name="withWifiView" onclick="return false;">
                       </div>
                   </div>
               </form>
