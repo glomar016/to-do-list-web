@@ -50,5 +50,42 @@ class Reservation extends CI_Controller {
 		curl_close($curl);
 		echo ($response);
 		
-	}	
+	}
+	
+	public function add_reservation()
+	{
+		$reserveName = $this->input->post('reserveName');
+		$reserveBilling = $this->input->post('reserveBilling');
+		$reserveSchedule = $this->input->post('reserveSchedule');
+
+		$data = array("name" => $reserveName
+					, "billingAddress" => $reserveBilling
+					, "scheduleId" => $reserveSchedule
+		);
+		
+		$postdata = json_encode($data);
+	
+
+		$curl = curl_init();
+
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => 'http://localhost:3600/api/v1/reservation/',
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => '',
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 0,
+		CURLOPT_FOLLOWLOCATION => true,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => 'POST',
+		CURLOPT_POSTFIELDS =>$postdata,
+		CURLOPT_HTTPHEADER => array(
+			'Content-Type: application/json'
+		),
+		));
+
+		$response = curl_exec($curl);
+
+		curl_close($curl);
+		echo $response;
+	}
 }

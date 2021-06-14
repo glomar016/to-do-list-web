@@ -129,7 +129,8 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="form-group col-sm-6">
                         <label class="drpdwn-label" for="editBusNumberInput">Bus Number</label>
                         <input type="text" class="form-control" id="editScheduleId" name="editScheduleId" hidden>
-                        <span id="editBusNumberInput" name="editBusNumberInput"> </span>
+                        <span type="text" class="form-control" id="editBusNumberInput" name="editBusNumberInput">
+                        </span>
                     </div>
                     <div class="form-group col-sm-6">
                         <label class="label-control" for="editScheduleDateInput">Schedule Date</label> <br>
