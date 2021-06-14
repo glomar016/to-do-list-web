@@ -15,6 +15,13 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
+<style>
+#editUserForm .form-row,
+#addUserForm .form-row{
+  margin-top: 15px;
+}
+</style>
+
 <body class="">
 
   <!-- WRAPPER -->
@@ -30,37 +37,47 @@ The above copyright notice and this permission notice shall be included in all c
       <?php $this->load->view('includes/navbar.php'); ?>
 
       <!-- OPENING TAG OF CONTENT -->
-      <div class="content">
+      <div class="content" style="padding-top: 0px;">
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
-
-            <div class="card card-nav-tabs" style="width: 100rem;">
-                <div class="card-header card-header-danger">
-                    Create User  
-                </div>
-                <div class="card-body">
-                    <form id="addUserForm" name="addUserForm">
-                        <div class="form-group">
+            <div class="card">
+              <h5 class="card-header">
+                  <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                      <i class="fa fa-chevron-down pull-right"></i>
+                      Add User
+                  </a>
+              </h5>
+              <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
+                  <div class="card-body">
+                  <div class="card-body">
+                  <form id="addUserForm" name="addUserForm">
+                      <div class="form-row">
+                        <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">First Name</label>
                             <input type="text" class="form-control" name="firstName" id="firstName" aria-describedby="emailHelp">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Last Name</label>
                             <input type="text" class="form-control" name="lastName"  id="lastName" aria-describedby="emailHelp">
                         </div>
-                        <div class="form-group">
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" name="email"  id="email" aria-describedby="emailHelp">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-6">
                             <label for="exampleInputPassword1">Password</label>
                             <input type="password" name="password"  class="form-control" id="password" >
                         </div>
+                      </div>
                         <input type="submit" class="btn btn-primary">
                     </form>
-                </div>
-            </div>
+                  </div>
+                  </div>
+              </div>
+          </div>
             <div class="card">
               <div class="card-body">
                 <table id="userTable" class="table">
@@ -88,29 +105,115 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- END OF CLOSING TAG OF CONTENT -->
 
-      <div id="userInfoModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">User Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form id="editUserForm">
-                    <div class="modal-body">
-                        <input hidden type="text" class="form-control" name="editUserId" id="editUserId" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editFirstName" id="editFirstName" aria-describedby="emailHelp">
-                        <input type="text" class="form-control" name="editLastName" id="editLastName" aria-describedby="emailHelp">
-                        <input type="email" class="form-control" name="editEmail" id="editEmail" aria-describedby="emailHelp">
-                    </div>
-                    <div class="modal-footer">
-                        <input type="submit" class="btn btn-success">
-                    </div>
-                </form>
-                </div>
+      <!-- VIEW USER MODAL -->
+      <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewModal">View User</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+
+            <div class="card-body">
+            <form id="viewUserForm">
+                <div class="modal-body">
+                    <div class="form-row">
+                      <div class="form-group col-sm-6">
+                        <!-- <input hidden type="text" class="form-control" name="viewUserId" id="viewUserId" aria-describedby="emailHelp"> -->
+                        <label for="viewFirstName">First Name</label>
+                        <span class="form-control" name="viewFirstName" id="viewFirstName" aria-describedby="emailHelp"></span>
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="viewLastName">Last Name</label>
+                        <span class="form-control" name="viewLastName" id="viewLastName" aria-describedby="emailHelp"></span>
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-sm-12">
+                        <label for="viewEmail">Email</label>
+                        <span class="form-control" name="viewEmail" id="viewEmail" aria-describedby="emailHelp"></span>
+                      </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+          </div>
         </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDIT USER MODAL -->
+      <div class="modal fade" id="editUserInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editUserInfoModal">Edit User</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="card-body">
+            <form id="editUserForm">
+                <div class="modal-body">
+                <div class="form-row">
+                      <div class="form-group col-sm-6">
+                        <input hidden type="text" class="form-control" name="editUserId" id="editUserId" aria-describedby="emailHelp">
+                        <label for="editFirstName">First Name</label>
+                        <input type="text" class="form-control" name="editFirstName" id="editFirstName" aria-describedby="emailHelp">
+                      </div>
+                      <div class="form-group col-sm-6">
+                        <label for="editLastName">Last Name</label>
+                        <input type="text" class="form-control" name="editLastName" id="editLastName" aria-describedby="emailHelp">
+                      </div>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-sm-12">
+                        <label for="editEmail">Email</label>
+                        <input type="text" class="form-control" name="editEmail" id="editEmail" aria-describedby="emailHelp">
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELETE USER MODAL -->
+      <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="deleteForm">
+              <input hidden type="text" id="deleteUserId" name="deleteUserId">
+              You're deactivating this user
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger delete-confirm" >Deactivate</button>
+            </div>
+          </div>
+        </div>
+      </div> 
+
       
       <!-- FOOTER -->
       <?php $this->load->view('includes/footer.php')?>
@@ -145,7 +248,7 @@ The above copyright notice and this permission notice shall be included in all c
                         if(data == "Active"){
                             return '<div class="btn-group">'+
                                     '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
-                                    '<button class="btn btn-warning btn-sm btn_view" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
+                                    '<button class="btn btn-warning btn-sm btn_edit" value="'+row.id+'" title="Edit" type="button" ><i class="zmdi zmdi-edit"></i>Edit</button>'+
                                     '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Delete</button></div>';
                         }   
                         else{
@@ -185,12 +288,10 @@ The above copyright notice and this permission notice shall be included in all c
             data: form.serialize(),
         
             success: function(data){
-                refresh();
+              document.getElementById("addUserForm").reset();
+              showNotification('create', 'Successfully added a new user!', 'success', 'top', 'right');
+              refresh();
 
-                $("#addUserForm").trigger("reset");
-                // End of Confirmation
-
-                
             }
         // ajax closing tag
         })
@@ -211,18 +312,43 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var userInfo = data.data;
 
-                $('#editUserId').val(id);
-                $('#editFirstName').val(userInfo.firstName);
-                $('#editLastName').val(userInfo.lastName);
-                $('#editEmail').val(userInfo.email);
+                $('#viewUserId').val(id);
+                $('#viewFirstName').html(userInfo.firstName);
+                $('#viewLastName').html(userInfo.lastName);
+                $('#viewEmail').html(userInfo.email);
 
-                $('#userInfoModal').modal('show');
+                $('#viewModal').modal('show');
             }
         // ajax closing tag
         })
     });
 
     // EDIT USER 
+    $(document).on("click", ".btn_edit", function(){
+        var id = this.value;
+        // console.log(id);
+
+        $.ajax({
+            url: '<?php echo base_url()?>user/get_one_user',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data);
+                var userInfo = data.data;
+
+                $('#editUserId').val(id);
+                $('#editFirstName').val(userInfo.firstName);
+                $('#editLastName').val(userInfo.lastName);
+                $('#editEmail').val(userInfo.email);
+
+                $('#editUserInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+
     $('#editUserForm').on('submit', function(e){
         e.preventDefault();
 
@@ -238,17 +364,53 @@ The above copyright notice and this permission notice shall be included in all c
             dataType: "JSON",
         
             success: function(data){
+              $("#editUserInfoModal").modal('hide');
+                showNotification('update', 'Successfully update user!', 'warning', 'top', 'right');
                 refresh();
 
-                $("#addUserForm").trigger("reset");
-                // End of Confirmation
-                $('#userInfoModal').modal('hide');
-                
-                alert(data.message);
             }
         // ajax closing tag
         })
     });
+
+  // DELETE USER
+$(document).on("click", ".btn_delete", function(){
+  var id = this.value;
+  $("#deleteModal").modal('show');
+  $.ajax({
+        url:'<?php echo base_url()?>user/get_one_user',
+        type: "POST",
+        data: { id: id},
+        dataType: "JSON",
+
+        success: function(data){
+          var userInfo = data.data;
+          var deleteUserId = document.getElementById('deleteUserId');
+          deleteUserId.value = userInfo.id
+        }
+    })
+});
+
+$('.delete-confirm').on('click', function(e){
+
+    e.preventDefault();
+
+    var form = $('#deleteForm');
+
+    $.ajax({
+        url:'<?php echo base_url()?>user/delete_user',
+        type: "POST",
+        data: form.serialize(),
+        dataType: "JSON",
+
+        success: function(data){
+          $("#deleteModal").modal('hide');
+          showNotification('delete', 'Deleted a user!', 'danger', 'top', 'right');
+          refresh();
+        }
+    })
+});
+
 </script>
 
 <!-- FIXED SCRIPTS -->

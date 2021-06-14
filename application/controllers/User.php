@@ -147,4 +147,30 @@ class User extends CI_Controller {
 		echo $response;
 
 	}
+
+	public function delete_user(){
+        $deleteUserId = $this->input->post('deleteUserId');
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/user/'.$deleteUserId,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkxZGFkMDMwLTE5YmQtNDczZi04OGZhLTA0OTZhODZhYTVhNiIsImVtYWlsIjoibmlra29jZXJhbHNvQGdtYWlsLmNvbSIsImlhdCI6MTYyMTA1MDA5OSwiZXhwIjoxNjIxMDU3Mjk5fQ.hblcGTwPCl25SsL0ZGGn2xka2aCIcu-uII-r4yXe7C8'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+    }
+
 }
