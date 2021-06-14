@@ -161,12 +161,12 @@ The above copyright notice and this permission notice shall be included in all c
               <form id="viewScheduleForm">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <label for="routeView">Route</label>
+                        <label for="routeView">Route</label> <br>
                         <span id="routeView" name="routeView">           
                         </span>
                     </div>
                     <div class="form-group col-sm-6">
-                            <label for="busTypeView">Bus Type</label>
+                            <label for="busTypeView">Bus Type</label> <br>
                             <span id="busTypeView" name="busTypeView">           
                             </span>
                         </div>
@@ -177,11 +177,11 @@ The above copyright notice and this permission notice shall be included in all c
                             <span id="estimatedTimeTravelView" name="estimatedTimeTravelView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="hourFromView">Hour From</label>
+                            <label for="hourFromView">Hour From</label> <br>
                             <span id="hourFromView" name="hourFromView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="hourToView">Hour To</label>
+                            <label for="hourToView">Hour To</label> <br>
                             <span id="hourToView" name="hourToView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
@@ -411,7 +411,6 @@ function getBusType(){
         }
         
         $('#busTypeInput').html(html);
-        $('#busTypeView').html(html);
         $('#busTypeEdit').html(html);
 
       }
@@ -435,7 +434,6 @@ $.ajax({
     }
     
     $('#routeInput').html(html);
-    $('#routeView').html(html);
     $('#routeEdit').html(html);
 
     }
@@ -491,8 +489,8 @@ $(document).on("click", ".btn-view", function(){
           console.log(scheduleInfo);
 
           $('#scheduleIdView').val(scheduleInfo.id);
-          $('#routeView').html(scheduleInfo.routeId);
-          $('#busTypeView').html(scheduleInfo.busTypeId);
+          $('#routeView').html(scheduleInfo.route.name);
+          $('#busTypeView').html(scheduleInfo.busType.name);
           $('#estimatedTimeTravelView').html(scheduleInfo.estimatedTimeTravel);
           $('#hourToView').html(moment(scheduleInfo.hourTo).format('LT'));
           $('#hourFromView').html(moment(scheduleInfo.hourFrom).format('LT'));
