@@ -1,4 +1,4 @@
-	<!--
+<!--
 =========================================================
 Material Dashboard - v2.1.2
 =========================================================
@@ -31,17 +31,24 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- OPENING TAG OF CONTENT -->
       <div class="content">
+      <div class="content" style="padding-top: 0px;">
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
+            <div class="card">
+              <h5 class="card-header">
+                  <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                      <i class="fa fa-chevron-down pull-right"></i>
+                      Add Terminal
+                  </a>
+              </h5>
 
-            <div class="card card-nav-tabs" style="width: 100rem;">
-                <div class="card-header card-header-danger">
-                    Create Terminal 
-                </div>
-                <div class="card-body">
+            <!-- CREATE CARD -->
+              <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
+                  <div class="card-body">
+                  <div class="card-body">
                     <form id="addTerminalForm" name="addTerminalForm">
-                        <div class="form-group">
+                        <div class="form-group col-sm12">
                             <div class="form-row">
                                 <label for="exampleInputEmail1">Terminal</label>
                                 <input type="text" class="form-control" name="terminalName" id="terminalName" aria-describedby="emailHelp">
@@ -68,6 +75,10 @@ The above copyright notice and this permission notice shall be included in all c
                     </form>
                 </div>
             </div>
+        </div>
+     </div></div>
+
+     <!-- TABLE -->
             <div class="card">
               <div class="card-body">
                 <table id="terminalDataTable" class="table">
@@ -88,7 +99,7 @@ The above copyright notice and this permission notice shall be included in all c
                 </table>
               </div>
             </div>
-
+    
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>
@@ -276,6 +287,7 @@ The above copyright notice and this permission notice shall be included in all c
                 $('#TerminalName').val(terminalInfo.name);
                 $('#TerminalAddress').val(terminalInfo.address);
                 $('#TerminalEmail').val(terminalInfo.email);
+                $('#TerminalEmail').val(terminalInfo.email);
                 $('#TerminalStatus').val(terminalInfo.status);
 
                 $('#terminalInfoModal').modal('show');
@@ -378,7 +390,7 @@ The above copyright notice and this permission notice shall be included in all c
         
             success: function(data){
                 refresh();
-                showNotification('delete', 'Deleted a bus type!', 'danger', 'top', 'right');
+                showNotification('delete', 'Deleted a terminal!', 'danger', 'top', 'right');
                 $('#deleteTerminalInfoModal').modal('hide');
             
             }

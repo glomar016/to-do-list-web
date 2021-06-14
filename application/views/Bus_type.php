@@ -34,25 +34,39 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
+            <div class="card">
+              <h5 class="card-header">
+                  <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                      <i class="fa fa-chevron-down pull-right"></i>
+                      Create Bus Type
+                  </a>
+              </h5>
+              <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
+                  <div class="card-body">
+                  <div class="card-body">
+                  <form id="addBusTypeForm">
+                          <div class="form-row">
+                              <div class="form-group col-sm-12">
+                              <label for="exampleInputEmail1">Bus Type</label>
+                              <input type="text" class="form-control" id="busTypeName" name="busTypeName">
+                        </div>
+                          </div>
+                          
+                          <div class="form-row">
+                              <div class="form-group col-sm-6">
 
-            <div class="card card-nav-tabs" style="width: 100rem;">
-                <div class="card-header card-header-danger">
-                    Create Bus Type  
-                </div>
-                <div class="card-body">
-                    <form id="addBusTypeForm" name="addBusTypeForm">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Bus Type</label>
-                            <input type="text" class="form-control" name="busTypeName"  id="busTypeName" aria-describedby="emailHelp">
+                              <label for="exampleInputEmail1">Description</label>
+                              <textarea type="text" class="form-control" name="busTypeDescription"  id="busTypeDescription">
+                              </textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Description</label>
-                            <input type="text" class="form-control" name="busTypeDescription"  id="busTypeDescription" aria-describedby="emailHelp">
-                        </div>
-                        <input type="submit" class="btn btn-primary">
-                    </form>
-                </div>
-            </div>
+                          </div>
+                      
+                          <input type="submit" class="btn btn-primary">
+                      </form>
+                  </div>
+                  </div>
+              </div>
+          </div>
             <div class="card">
               <div class="card-body">
                 <table id="busTypeTable" class="table">
@@ -71,6 +85,8 @@ The above copyright notice and this permission notice shall be included in all c
                 </table>
               </div>
             </div>
+    </div>
+            
 
             <!-- CLOSING TAG OF CONTENT -->
           </div>
@@ -90,13 +106,14 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <form id="BusTypeForm">
                     <div class="modal-body">
-                        <input disabled hidden type="text" class="form-control" name="BusTypeId" id="BusTypeId" aria-describedby="emailHelp">
+                        <span  class="form-control" name="BusTypeId" id="BusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <input disabled type="text" class="form-control" name="BusTypeName" id="BusTypeName" aria-describedby="emailHelp">
+                        <span  class="form-control" name="BusTypeName" id="BusTypeName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Description</label>
-                        <input disabled type="text" class="form-control" name="BusTypeDescription" id="BusTypeDescription" aria-describedby="emailHelp">
+                        <span  class="form-control" name="BusTypeDescription" id="BusTypeDescription" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Status</label>
-                        <input disabled type="text" class="form-control" name="BusTypeStatus" id="BusTypeStatus" aria-describedby="emailHelp">
+                        <span  class="form-control" name="BusTypeStatus" id="BusTypeStatus" aria-describedby="emailHelp">
+                        </span>
                     </div>
                 </form>
                 </div>
@@ -109,19 +126,21 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="modal-header">
                     <h5 class="modal-title">Bus Type Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;
+                    </span>
                     </button>
                 </div>
                 <form id="editBusTypeForm">
                     <div class="modal-body">
-                        <input hidden type="text" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
+                        <span hidden type="text" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <input type="text" class="form-control" name="editBusTypeName" id="editBusTypeName" aria-describedby="emailHelp">
+                        <span type="text" class="form-control" name="editBusTypeName" id="editBusTypeName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Description</label>
-                        <input type="text" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp">
+                        <span type="text" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" class="btn btn-success">
+                        <span type="submit" class="btn btn-success">
+                        </span>
                     </div>
                 </form>
                 </div>
@@ -134,13 +153,15 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="modal-header">
                     <h5 class="modal-title">Bus Type Info</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;
+                    </span>
                     </button>
                 </div>
                 <form id="deleteBusTypeForm">
                     <div class="modal-body">
-                        <input hidden type="text" class="form-control" name="deleteBusTypeId" id="deleteBusTypeId" aria-describedby="emailHelp">
+                        <span hidden type="text" class="form-control" name="deleteBusTypeId" id="deleteBusTypeId" aria-describedby="emailHelp">
                         <p>Are you sure you want to delete this?</p>
+                        </span>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Yes</button>
@@ -247,10 +268,10 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var busTypeInfo = data.data;
 
-                $('#BusTypeId').val(id);
-                $('#BusTypeName').val(busTypeInfo.name);
-                $('#BusTypeDescription').val(busTypeInfo.description);
-                $('#BusTypeStatus').val(busTypeInfo.status);
+                $('#BusTypeId').html(id);
+                $('#BusTypeName').html(busTypeInfo.name);
+                $('#BusTypeDescription').html(busTypeInfo.description);
+                $('#BusTypeStatus').html(busTypeInfo.status);
 
                 $('#busTypeInfoModal').modal('show');
             }
@@ -273,9 +294,9 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var busTypeInfo = data.data;
 
-                $('#editBusTypeId').val(id);
-                $('#editBusTypeName').val(busTypeInfo.name);
-                $('#editBusTypeDescription').val(busTypeInfo.description);
+                $('#editBusTypeId').html(id);
+                $('#editBusTypeName').html(busTypeInfo.name);
+                $('#editBusTypeDescription').html(busTypeInfo.description);
 
                 $('#editBusTypeInfoModal').modal('show');
             }
@@ -321,9 +342,9 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var deleteBusTypeInfo = data.data;
 
-                $('#deleteBusTypeId').val(id);
-                $('#deleteBusTypeName').val(deleteBusTypeInfo.name);
-                $('#deleteBusTypeDescription').val(deleteBusTypeInfo.description);
+                $('#deleteBusTypeId').html(id);
+                $('#deleteBusTypeName').html(deleteBusTypeInfo.name);
+                $('#deleteBusTypeDescription').html(deleteBusTypeInfo.description);
 
                 $('#deleteBusTypeInfoModal').modal('show');
             }
@@ -362,4 +383,3 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/fixed_scripts.php')?>
 
 </html>
-

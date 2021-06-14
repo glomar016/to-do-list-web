@@ -137,6 +137,27 @@ The above copyright notice and this permission notice shall be included in all c
 
 <script>
 
+
+$('#reservationForm').on('submit', function(e){
+
+e.preventDefault();
+
+var form = $('#reservationForm');
+console.log(form.serialize())
+
+$.ajax({
+    url:'<?php echo base_url()?>reservation/add_reservation',
+    type: "POST",
+    data: form.serialize(),
+    dataType: "JSON",
+
+    success: function(data){
+      document.getElementById("reservationForm").reset();
+      showNotification('create', 'Successfully added a new reservation!', 'success', 'top', 'right');
+    }
+})
+});
+
 function get_bus_type(){
     
     $.ajax({
@@ -307,7 +328,7 @@ function show_avail_schedule(){
     success: function(data){
       var sched = JSON.parse(data);
       var schedule = sched.data
-      console.log(schedule);
+      // console.log(schedule);
 
       var html = "";
       
@@ -316,7 +337,7 @@ function show_avail_schedule(){
         var hourFrom = moment(`${schedule[i].busSchedule.hourFrom}`).format('LT');
         var hourTo = moment(`${schedule[i].busSchedule.hourTo}`).format('LT');
 
-        html += `<option value="${schedule[i].id}">` + date + " | " + hourFrom + "-" + hourTo + " | " + `</option>`;
+        html += `<option value="${schedule[i].busSchedule.id}">` + date + " | " + hourFrom + "-" + hourTo + " | Bus Number: " + `${schedule[i].busInformation.number}</option>`;
       }
       
       $('#reserveSchedule').html(html);

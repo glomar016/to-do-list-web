@@ -161,34 +161,32 @@ The above copyright notice and this permission notice shall be included in all c
               <form id="viewScheduleForm">
                 <div class="form-row">
                     <div class="form-group col-sm-6">
-                        <label for="routeView">Route</label>
-                        <select class="form-control" id="routeView" name="routeView">           
-                        
-                        </select>
+                        <label for="routeView">Route</label> <br>
+                        <span id="routeView" name="routeView">           
+                        </span>
                     </div>
                     <div class="form-group col-sm-6">
-                            <label for="busTypeView">Bus Type</label>
-                            <select class="form-control" id="busTypeView" name="busTypeView">           
-                            
-                            </select>
+                            <label for="busTypeView">Bus Type</label> <br>
+                            <span id="busTypeView" name="busTypeView">           
+                            </span>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-3">
                             <label for="estimatedTimeTravelView">Estimated Time Travel</label>
-                            <input type="text" class="form-control" id="estimatedTimeTravelView" name="estimatedTimeTravelView">
+                            <span id="estimatedTimeTravelView" name="estimatedTimeTravelView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="hourFromView">Hour From</label>
-                            <input type="text" class="form-control" id="hourFromView" name="hourFromView">
+                            <label for="hourFromView">Hour From</label> <br>
+                            <span id="hourFromView" name="hourFromView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label for="hourToView">Hour To</label>
-                            <input type="text" class="form-control" id="hourToView" name="hourToView">
+                            <label for="hourToView">Hour To</label> <br>
+                            <span id="hourToView" name="hourToView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="willArriveNextDayView">Will Arrive the Next Day</label>
-                            <input type="text" class="form-control" id="willArriveNextDayView" name="willArriveNextDayView">
+                            <span id="willArriveNextDayView" name="willArriveNextDayView"> </span>
                         </div>
                     </div>
                     <div class="form-row">
@@ -413,7 +411,6 @@ function getBusType(){
         }
         
         $('#busTypeInput').html(html);
-        $('#busTypeView').html(html);
         $('#busTypeEdit').html(html);
 
       }
@@ -437,7 +434,6 @@ $.ajax({
     }
     
     $('#routeInput').html(html);
-    $('#routeView').html(html);
     $('#routeEdit').html(html);
 
     }
@@ -493,12 +489,12 @@ $(document).on("click", ".btn-view", function(){
           console.log(scheduleInfo);
 
           $('#scheduleIdView').val(scheduleInfo.id);
-          $('#routeView').val(scheduleInfo.routeId);
-          $('#busTypeView').val(scheduleInfo.busTypeId);
-          $('#estimatedTimeTravelView').val(scheduleInfo.estimatedTimeTravel);
-          $('#hourToView').val(moment(scheduleInfo.hourTo).format('LT'));
-          $('#hourFromView').val(moment(scheduleInfo.hourFrom).format('LT'));
-          $('#willArriveNextDayView').val(scheduleInfo.willArriveTheNextDay);
+          $('#routeView').html(scheduleInfo.route.name);
+          $('#busTypeView').html(scheduleInfo.busType.name);
+          $('#estimatedTimeTravelView').html(scheduleInfo.estimatedTimeTravel);
+          $('#hourToView').html(moment(scheduleInfo.hourTo).format('LT'));
+          $('#hourFromView').html(moment(scheduleInfo.hourFrom).format('LT'));
+          $('#willArriveNextDayView').html(scheduleInfo.willArriveTheNextDay);
 
           if(scheduleInfo.monday == "True"){ mondayView.checked = true }
           if(scheduleInfo.tuesday == "True"){ tuesdayView.checked = true }

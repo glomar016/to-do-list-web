@@ -35,40 +35,52 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
-                
+            <div class="card">
+              <h5 class="card-header">
+                  <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                      <i class="fa fa-chevron-down pull-right"></i>
+                      Add Route
+                  </a>
+              </h5>
+                        
                 <!-- CREATE CARD -->
-                <div class="card card-nav-tabs" style="width: 100rem;">
-                    <div class="card-header card-header-danger">
-                        Create Route 
-                    </div>
-                    
-                    <div class="card-body">
+            <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">              
+                    <div class="card-body">     
+                    <div class="card-body">             
                         <form id="addrouteForm" name="addrouteForm">
-                            <div class="form-group">
+                            <div class="form-group col-sm-12">
                                 <label for="originId">Origin</label>
                                 <select id="originId" name="originId" class="form-control" data-style="btn btn-primary btn-sm">
-                                    
+                                 
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-sm-12">
                                 <label for="destinationId">Destination</label>
                                 <select id="destinationId" name="destinationId" class="form-control" data-style="btn btn-primary btn-sm">
-                                
+                              
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="card-body">
+                            <div class="form-row">
+                            <div class="form-group col-sm-6">
                                 <label for="kmDistance">Km Distance</label>
                                 <input type="text" class="form-control" name="kmDistance" id="kmDistance" >
                             </div>
-                            <div class="form-group">
-                                <label class="label-control">Effectivity Date</label> <br>
+                            <div class="form-group col-sm-3">
+                                <label class="label-control">Effectivity Date</label> 
                                 <input type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
-                                                
+                            
+                            </div>
                             <input type="submit" class="btn btn-primary">
-                        </form>
-                    </div>
+                        </div>           
+                        
+                        </div>
+                    </form>
                 </div>
+            </div>
+        </div>
+    
                 <!-- END OF CREATE CARD -->
 
                 
@@ -100,7 +112,7 @@ The above copyright notice and this permission notice shall be included in all c
       </div>
       <!-- END OF CLOSING TAG OF CONTENT -->
 
-      
+     
     <!-- VIEW MODAL -->
     <div id="viewrouteInfoModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
@@ -113,23 +125,30 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
                 <form id="routeForm">
                     <div class="modal-body">
+                        <div class="modal-body">
                         <div class="form-group">
                             <input hidden type="text" class="form-control" name="routeIdView" id="routeIdView" >
-                            <div class="form-group">
+                            <div class="form-group col-sm-6">
                                 <label for="originIdView">Origin</label>
                                 <input type="text" class="form-control" name="originIdView" id="originIdView" >
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-sm-6">
                                 <label for="destinationIdView">Destination</label>
                                 <input type="text" class="form-control" name="destinationIdView" id="destinationIdView" >
                             </div>
-                            <div class="form-group">
+                        </div>
+                         
+
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
                                 <label for="kmDistanceView">Km Distance</label>
                                 <input type="text" class="form-control" name="kmDistanceView" id="kmDistanceView" >
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-sm-6">
                                 <label class="label-control">Effectivity Date</label> <br>
                                 <input type="date" class="form-control" id="effectivityDateView" name="effectivityDateView">
+                            </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -153,27 +172,29 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
                     <form id="editrouteForm">
                         <div class="modal-body">
-                            <div class="form-group">
+                            <div class="form-group col-sm-6">
                                 <label for="originIdEdit">Origin</label>
                                 <input hidden type="text" class="form-control" name="routeIdEdit" id="routeIdEdit" >
                                 <select id="originIdEdit" name="originIdEdit" class="form-control" data-style="btn btn-primary btn-sm">
  
                                 </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-sm-6">
                                     <label for="destinationIdEdit">Destination</label>
                                     <select id="destinationIdEdit" name="destinationIdEdit" class="form-control" data-style="btn btn-primary btn-sm">
 
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-row">
+                                <div class="form-group col-sm-6">
                                     <label for="kmDistanceEdit">Km Distance</label>
                                     <input type="text" class="form-control" name="kmDistanceEdit" id="kmDistanceEdit" >
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-sm-6">
                                     <label class="label-control">Effectivity Date</label> <br>
                                     <input type="date" class="form-control" id="effectivityDateEdit" name="effectivityDateEdit">
                                 </div>
+                                </select>
                             </div>
                         <div class="modal-footer">
                             <input type="submit" value="update" class="btn btn-warning">
