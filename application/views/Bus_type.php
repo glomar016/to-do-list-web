@@ -15,6 +15,19 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
+<style>
+#busTypeInfoModal form,
+#editBusTypeInfoModal form{
+    margin-top: -15px;
+}
+#addBusTypeForm .form-row{
+    margin-top: 10px;
+}
+textarea::-webkit-scrollbar{
+    width: 0 !important
+}
+</style>
+
 <body class="">
 
   <!-- WRAPPER -->
@@ -30,7 +43,7 @@ The above copyright notice and this permission notice shall be included in all c
       <?php $this->load->view('includes/navbar.php'); ?>
 
       <!-- OPENING TAG OF CONTENT -->
-      <div class="content">
+      <div class="content" style="padding-top: 0px;">
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
@@ -38,7 +51,7 @@ The above copyright notice and this permission notice shall be included in all c
               <h5 class="card-header">
                   <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                       <i class="fa fa-chevron-down pull-right"></i>
-                      Create Bus Type
+                      Add Bus Type
                   </a>
               </h5>
               <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
@@ -46,18 +59,16 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-body">
                   <form id="addBusTypeForm">
                           <div class="form-row">
-                              <div class="form-group col-sm-12">
+                              <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Bus Type</label>
                               <input type="text" class="form-control" id="busTypeName" name="busTypeName">
                         </div>
                           </div>
                           
                           <div class="form-row">
-                              <div class="form-group col-sm-6">
-
+                              <div class="form-group col-sm-10">
                               <label for="exampleInputEmail1">Description</label>
-                              <textarea type="text" class="form-control" name="busTypeDescription"  id="busTypeDescription">
-                              </textarea>
+                              <textarea style="margin-top: 10px;" rows="2" cols="50" class="form-control" name="busTypeDescription"  id="busTypeDescription"></textarea>
                         </div>
                           </div>
                       
@@ -95,83 +106,91 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- END OF CLOSING TAG OF CONTENT -->
 
-      <div id="busTypeInfoModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="busTypeInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Bus Type Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <h5 class="modal-title" id="busTypeInfoModal">View Bus Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                    </button>
+                </button>
                 </div>
+                <div class="modal-body">
+                <div class="card-body">
                 <form id="BusTypeForm">
                     <div class="modal-body">
-                        <span  class="form-control" name="BusTypeId" id="BusTypeId" aria-describedby="emailHelp">
+                        <input type="hidden" class="form-control" name="BusTypeId" id="BusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <span  class="form-control" name="BusTypeName" id="BusTypeName" aria-describedby="emailHelp">
+                        <span  class="form-control" name="BusTypeName" id="BusTypeName" aria-describedby="emailHelp"></span>
                         <label for="exampleInputEmail1">Description</label>
-                        <span  class="form-control" name="BusTypeDescription" id="BusTypeDescription" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Status</label>
-                        <span  class="form-control" name="BusTypeStatus" id="BusTypeStatus" aria-describedby="emailHelp">
+                        <span  class="form-control" name="BusTypeDescription" id="BusTypeDescription" aria-describedby="emailHelp"></span>
+                        <!-- <label for="exampleInputEmail1">Status</label>
+                        <span  class="form-control" name="BusTypeStatus" id="BusTypeStatus" aria-describedby="emailHelp"></span> -->
                         </span>
                     </div>
                 </form>
                 </div>
             </div>
+            </div>
+        </div>
+        </div>
         </div>
 
-        <div id="editBusTypeInfoModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal fade" id="editBusTypeInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+            <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Bus Type Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;
-                    </span>
-                    </button>
+                <h5 class="modal-title" id="editBusTypeInfoModal">Edit Bus Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 </div>
+                <div class="modal-body">
+                <div class="card-body">
                 <form id="editBusTypeForm">
                     <div class="modal-body">
-                        <span hidden type="text" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
+                        <input type="hidden" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>
-                        <span type="text" class="form-control" name="editBusTypeName" id="editBusTypeName" aria-describedby="emailHelp">
+                        <input type="text" class="form-control" name="editBusTypeName" id="editBusTypeName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Description</label>
-                        <span type="text" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp">
+                        <textarea rows="2" cols="50" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp"></textarea>
                     </div>
                     <div class="modal-footer">
-                        <span type="submit" class="btn btn-success">
-                        </span>
+                        <input type="submit" class="btn btn-primary">
                     </div>
                 </form>
                 </div>
             </div>
+            </div>
+        </div>
+        </div>
         </div>
 
-        <div id="deleteBusTypeInfoModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Bus Type Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;
-                    </span>
-                    </button>
-                </div>
+        <div class="modal fade" id="deleteBusTypeInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
                 <form id="deleteBusTypeForm">
                     <div class="modal-body">
-                        <span hidden type="text" class="form-control" name="deleteBusTypeId" id="deleteBusTypeId" aria-describedby="emailHelp">
-                        <p>Are you sure you want to delete this?</p>
+                        <input type="hidden" class="form-control" name="deleteBusTypeId" id="deleteBusTypeId" aria-describedby="emailHelp">
+                        <p>You're deactivating this bus type</p>
                         </span>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger">Yes</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger delete-confirm" >Deactivate</button>
                     </div>
                 </form>
-                </div>
-            </div>
+          </div>
         </div>
-
+      </div> 
+      </div>
       
       <!-- FOOTER -->
       <?php $this->load->view('includes/footer.php')?>
@@ -294,9 +313,9 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var busTypeInfo = data.data;
 
-                $('#editBusTypeId').html(id);
-                $('#editBusTypeName').html(busTypeInfo.name);
-                $('#editBusTypeDescription').html(busTypeInfo.description);
+                $('#editBusTypeId').val(id);
+                $('#editBusTypeName').val(busTypeInfo.name);
+                $('#editBusTypeDescription').val(busTypeInfo.description);
 
                 $('#editBusTypeInfoModal').modal('show');
             }
@@ -342,9 +361,7 @@ The above copyright notice and this permission notice shall be included in all c
                 console.log(data);
                 var deleteBusTypeInfo = data.data;
 
-                $('#deleteBusTypeId').html(id);
-                $('#deleteBusTypeName').html(deleteBusTypeInfo.name);
-                $('#deleteBusTypeDescription').html(deleteBusTypeInfo.description);
+                $('#deleteBusTypeId').val(id);
 
                 $('#deleteBusTypeInfoModal').modal('show');
             }
@@ -352,7 +369,7 @@ The above copyright notice and this permission notice shall be included in all c
         })
     });
 
-    $('#deleteBusTypeForm').on('submit', function(e){
+    $('.delete-confirm').on('click', function(e){
         e.preventDefault();
 
         $('#deleteBusTypeInfoModal').modal('show');
