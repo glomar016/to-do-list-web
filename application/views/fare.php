@@ -34,49 +34,56 @@ The above copyright notice and this permission notice shall be included in all c
     <?php $this->load->view('includes/navbar.php'); ?>
 
       <!-- OPENING TAG OF CONTENT -->
-      <div class="content">
-            <div class="container-fluid">
-                <div class="row">
+       <div class="content">
+        <div class="container-fluid">
+          <div class="row">
                 <!-- END OF OPENING TAG OF CONTENT -->
-
+                <div class="card">
+              <h5 class="card-header">
+                  <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
+                      <i class="fa fa-chevron-down pull-right"></i>
+                      Create Fare
+                  </a>
+              </h5>
                 <!-- CREATE CARD -->
-                <div class="card card-nav-tabs" style="width: 100rem;">
-                    <div class="card-header card-header-danger">
-                        Create Fare 
-                    </div>
-                    
-                    <div class="card-body">
+                <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">              
+                    <div class="card-body">            
                         <form id="addfareForm" name="addfareForm">
                             <div class="form-group">
                                 <label for="busTypeId">Bus Type</label>
-                                <select id="busTypeId" name="busTypeId" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
-                                    
+                                <select id="busTypeId" name="busTypeId" class="form-control" data-style="btn btn-primary btn-sm">
+                                 
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-sm-3">
                                 <label for="initialKm">Initial Km</label>
                                 <input type="text" class="form-control" name="initialKm" id="initialKm" >
                             </div>
-                            <div class="form-group">
+                            
+                            <div class="form-group col-sm-3">
                                 <label for="initialPrice">Initial Price</label>
                                 <input type="text" class="form-control" name="initialPrice"  id="initialPrice" >
                             </div>
-                            <div class="form-group">
+                            <div class="form-group col-sm-3">
                                 <label for="additionalKm">Additional Km</label>
                                 <input type="text" class="form-control" name="additionalKm"  id="additionalKm" >
                             </div>
-                            <div class="form-group">
+                            
+                            <div class="form-row">
+                            <div class="form-group col-sm-6">
                                 <label for="discountPercentage">Discount Percentage</label>
                                 <input type="text" class="form-control" name="discountPercentage"  id="discountPercentage" >
                             </div>
-                            <div class="form-group">
-                                <label class="label-control">Effectivity Date</label> <br>
+                            <div class="form-group col-sm-6">
+                                <label class="label-control">Effectivity Date</label> 
                                 <input type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
+                           </div>
                                                 
                             <input type="submit" class="btn btn-primary">
                         </form>
                     </div>
+                </div>
                 </div>
                 <!-- END OF CREATE CARD -->
 
@@ -112,80 +119,7 @@ The above copyright notice and this permission notice shall be included in all c
 
     
         <!-- VIEW MODAL -->
-        <div id="viewfareInfoModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">View Fare Information</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form id="fareForm">
-                        <div class="modal-body">
-                            <input hidden type="text" class="form-control" name="fareIdView" id="fareIdView" >
-                            
-                            <label for="busTypeIdView">Bus Type</label>
-                                <select id="busTypeIdView" name="busTypeIdView" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
-                                    
-                                </select>
-                            <label for="exampleInputEmail1">Initial Km</label>
-                                <input type="text" class="form-control" name="initialKmView" id="initialKmView" >
-                            <label for="exampleInputEmail1">Initial Price</label>
-                                <input type="text" class="form-control" name="initialPriceView" id="initialPriceView" >
-                            <label for="exampleInputEmail1">Additional Km</label>
-                                <input type="text" class="form-control" name="additionalKmView" id="additionalKmView" >
-                            <label for="exampleInputEmail1">Effectivity Date</label>
-                                <input type="text" class="form-control" name="discountPercentageView" id="discountPercentageView" >
-                            <label for="exampleInputEmail1">Effectivity Date</label>
-                                <input type="text" class="form-control" name="effectivityDateView" id="effectivityDateView" aria-describedby="">
-                        </div>
-                        <div class="modal-footer">
-                            <!-- <input type="submit" class="btn btn-success"> -->
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <!-- EDIT MODAL -->
-        <div id="editfareInfoModal" class="modal" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Edit Fare Information</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form id="editfareForm">
-                        <div class="modal-body">
-                            <input hidden type="text" class="form-control" name="fareIdEdit" id="fareIdEdit" >
-
-                            <label for="busTypeIdEdit">Bus Type</label>
-                                <select id="busTypeIdEdit" name="busTypeIdEdit" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
-                                    
-                                </select>
-                            <label for="exampleInputEmail1">Initial Km</label>
-                                <input type="text" class="form-control" name="initialKmEdit" id="initialKmEdit" >
-                            <label for="exampleInputEmail1">Initial Price</label>
-                                <input type="text" class="form-control" name="initialPriceEdit" id="initialPriceEdit" >
-                            <label for="exampleInputEmail1">Additional Km</label>
-                                <input type="text" class="form-control" name="additionalKmEdit" id="additionalKmEdit" >
-                            <label for="exampleInputEmail1">Effectivity Date</label>
-                                <input type="text" class="form-control" name="discountPercentageEdit" id="discountPercentageEdit" >
-                            <label for="exampleInputEmail1">Effectivity Date</label>
-                                <input type="date" class="form-control" name="effectivityDateEdit" id="effectivityDateEdit" aria-describedby="">
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" value="update" class="btn btn-warning">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        
-    </div>  
+            
     <!-- END OF MAIN CONTENT -->
 </div>
 <!-- END OF WRAPPER -->
