@@ -194,31 +194,31 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
                     <div class="form-row">
                         <div class="form-check form-check-inline">
-                            <input  type="checkbox" id="mondayView" name="mondayView" value="True">
+                            <input  type="checkbox" id="mondayView" name="mondayView" value="" onclick="return false;">
                             <label class="form-check-label" for="mondayView" style="padding-left: 5px;">Monday</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input  type="checkbox" id="tuesdayView" name="tuesdayView" value="True">
+                            <input  type="checkbox" id="tuesdayView" name="tuesdayView" value="" onclick="return false;">
                             <label class="form-check-label" for="tuesdayView" style="padding-left: 5px;">Tuesday</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input  type="checkbox" id="wednesdayView" name="wednesdayView" value="True">
+                            <input  type="checkbox" id="wednesdayView" name="wednesdayView" value="" onclick="return false;">
                             <label class="form-check-label" for="wednesdayView" style="padding-left: 5px;">Wednesday</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input  type="checkbox" id="thursdayView" name="thursdayView" value="True">
+                            <input  type="checkbox" id="thursdayView" name="thursdayView" value="" onclick="return false;">
                             <label class="form-check-label" for="thursdayView" style="padding-left: 5px;">Thursday</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input  type="checkbox" id="fridayView" name="fridayView" value="True">
+                            <input  type="checkbox" id="fridayView" name="fridayView" value="" onclick="return false;">
                             <label class="form-check-label" for="fridayView" style="padding-left: 5px;">Friday</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input  type="checkbox" id="saturdayView" name="saturdayView" value="True">
+                            <input  type="checkbox" id="saturdayView" name="saturdayView" value="" onclick="return false;">
                             <label class="form-check-label" for="saturdayView" style="padding-left: 5px;">Saturday</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input  type="checkbox" id="sundayView" name="sundayView" value="True">
+                            <input  type="checkbox" id="sundayView" name="sundayView" value="" onclick="return false;">
                             <label class="form-check-label" for="sundayView" style="padding-left: 5px;">Sunday</label>
                         </div>
                     </div>
@@ -475,7 +475,6 @@ $('#scheduleForm').on('submit', function(e){
 $(document).on("click", ".btn-view", function(){
   var id = this.value;
 
-  
   $("#viewModal").modal('show');
   $.ajax({
         url:'<?php echo base_url()?>schedule/viewSchedule',

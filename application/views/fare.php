@@ -49,36 +49,40 @@ The above copyright notice and this permission notice shall be included in all c
                 <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">              
                     <div class="card-body">            
                         <form id="addfareForm" name="addfareForm">
-                            <div class="form-group">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
                                 <label for="busTypeId">Bus Type</label>
                                 <select id="busTypeId" name="busTypeId" class="form-control" data-style="btn btn-primary btn-sm">
                                  
                                 </select>
                             </div>
-                            <div class="form-group col-sm-3">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
                                 <label for="initialKm">Initial Km</label>
                                 <input type="text" class="form-control" name="initialKm" id="initialKm" >
                             </div>
-                            
-                            <div class="form-group col-sm-3">
+                            <div class="form-group col-sm-6">
                                 <label for="initialPrice">Initial Price</label>
                                 <input type="text" class="form-control" name="initialPrice"  id="initialPrice" >
                             </div>
-                            <div class="form-group col-sm-3">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
                                 <label for="additionalKm">Additional Km</label>
                                 <input type="text" class="form-control" name="additionalKm"  id="additionalKm" >
                             </div>
-                            
-                            <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="discountPercentage">Discount Percentage</label>
                                 <input type="text" class="form-control" name="discountPercentage"  id="discountPercentage" >
                             </div>
-                            <div class="form-group col-sm-6">
+                        </div>
+                            <div class="form-group col-sm-3">
                                 <label class="label-control">Effectivity Date</label> 
                                 <input type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
-                           </div>
+                        <div class="form-row">
+                        </div>
                                                 
                             <input type="submit" class="btn btn-primary">
                         </form>
@@ -119,6 +123,62 @@ The above copyright notice and this permission notice shall be included in all c
 
     
         <!-- VIEW MODAL -->
+        <div class="modal fade" id="viewfareInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">View Fare Info</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                <form id="viewFareForm" name="viewFareForm">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="fareBusTypeView">Bus Type</label> <br>
+                                <span id="fareBusTypeView" name="fareBusTypeView">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <label for="initialKmView">Initial Km</label><br>
+                                <span name="initialKmView" id="initialKmView" >
+                                </span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="initialPriceView">Initial Price</label><br>
+                                <span name="initialPriceView"  id="initialPriceView" >
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <label for="additionalKmView">Additional Km</label><br>
+                                <span name="additionalKmView"  id="additionalKmView" >
+                                </span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="discountPercentageView">Discount Percentage</label><br>
+                                <span name="discountPercentageView"  id="discountPercentageView" >
+                                </span>
+                            </div>
+                        </div>
+                            <div class="form-group col-sm-5">
+                                <label for="effectivityDateView" class="label-control">Effectivity Date</label> <br>
+                                <span id="effectivityDateView" name="effectivityDateView">
+                                </span>
+                            </div>
+                        <div class="form-row">
+                        </div>
+                                                
+                            <input type="submit" class="btn btn-primary">
+                        </form>
+                </div>
+                </div>
+            </div>
+            </div>
             
     <!-- END OF MAIN CONTENT -->
 </div>
@@ -361,12 +421,12 @@ $(document).on("click", ".btn_generate", function(){
             success: function(data){
                 var fareInfo = data.data;
 
-                $('#fareIdView').val(id);
-                $('#initialKmView').val(fareInfo.initialKm);
-                $('#initialPriceView').val(fareInfo.initialPrice);
-                $('#additionalKmView').val(fareInfo.additionalKm);
-                $('#discountPercentageView').val(fareInfo.discountPercentage);
-                $('#effectivityDateView').val(moment(fareInfo.effectivityDate).format('MM-DD-YYYY'));
+                $('#fareBusTypeView').html(fareInfo.typeId.name);
+                $('#initialKmView').html(fareInfo.initialKm);
+                $('#initialPriceView').html(fareInfo.initialPrice);
+                $('#additionalKmView').html(fareInfo.additionalKm);
+                $('#discountPercentageView').html(fareInfo.discountPercentage);
+                $('#effectivityDateView').html(moment(fareInfo.effectivityDate).format('MM-DD-YYYY'));
 
                 $('#viewfareInfoModal').modal('show');
             }

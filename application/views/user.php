@@ -63,15 +63,17 @@ The above copyright notice and this permission notice shall be included in all c
                         </div>
                       </div>
                       <div class="form-row">
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-12">
                             <label for="exampleInputEmail1">Email address</label>
                             <input type="email" class="form-control" name="email"  id="email" aria-describedby="emailHelp">
                         </div>
-                        <div class="form-group col-sm-6">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password"  class="form-control" id="password" >
-                        </div>
                       </div>
+                      <div class="form-row">
+                            <div class="form-group col-sm-12">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" name="password"  class="form-control" id="password" >
+                            </div>
+                        </div>
                         <input type="submit" class="btn btn-primary">
                     </form>
                   </div>
