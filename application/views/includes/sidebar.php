@@ -89,7 +89,16 @@
             </a>
           </li>
 
-          
+          <div class="mx-auto" style="height: 20px;"></div>
+          <p class="nav-link" style="line-height: 0px"><strong>Reservation Management</strong></p>
+          <div class="mx-auto" style="height: 20px;"></div>
+
+          <li <?php if($this->router->fetch_class() == 'reservation') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>reservation">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Reservation</p>
+            </a>
+          </li>
 
 
         </ul>
