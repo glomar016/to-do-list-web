@@ -1,6 +1,9 @@
+<!--
+=========================================================
+Material Dashboard - v2.1.2
+=========================================================
 
-
-<!-- Product Page: https://www.creative-tim.com/product/material-dashboard
+Product Page: https://www.creative-tim.com/product/material-dashboard
 Copyright 2020 Creative Tim (https://www.creative-tim.com)
 Coded by Creative Tim
 
@@ -9,13 +12,14 @@ The above copyright notice and this permission notice shall be included in all c
 <!DOCTYPE html>
 <html lang="en">
 
-    <!-- HEAD TAG -->
-    <?php $this->load->view('includes/head.php'); ?>
+<!-- HEAD TAG -->
+<?php $this->load->view('includes/head.php'); ?>
+
 
 <body class="">
 
-<!-- WRAPPER -->
-<div class="wrapper ">
+  <!-- WRAPPER -->
+  <div class="wrapper ">
 
     <!-- SIDEBAR -->
     <?php $this->load->view('includes/sidebar.php'); ?>
@@ -23,23 +27,44 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- MAIN CONTENT -->
     <div class="main-panel">
 
-    <!-- NAVBAR -->
-    <?php $this->load->view('includes/navbar.php'); ?>
+      <!-- NAVBAR -->
+      <?php $this->load->view('includes/navbar.php'); ?>
 
       <!-- OPENING TAG OF CONTENT -->
       <div class="content">
-            <div class="container-fluid">
-                <div class="row">
-                <!-- END OF OPENING TAG OF CONTENT -->
+        <div class="container-fluid">
+          <div class="row">
+            <!-- END OF OPENING TAG OF CONTENT -->
+            <div class="card">
+                <div class="card-body">
+                    <span hidden name="routeIdView" id="routeIdView" > </span>
+                    <div>
+                        <label for="originIdView">Origin</label><br>
+                        <span name="originIdView" id="originIdView" > </span>
+                    </div>
+                    <div>
+                        <label for="destinationIdView">Destination</label><br>
+                        <span  name="destinationIdView" id="destinationIdView" > </span>
+                    </div>
+                    <div>
+                        <label for="kmDistanceView">Km Distance</label><br>
+                        <span name="kmDistanceView" id="kmDistanceView" > </span> 
+                    </div>
+                    <div>
+                        <label class="label-control">Effectivity Date</label> <br>
+                        <span id="effectivityDateView" name="effectivityDateView"> </span>
+                    </div>
+                </div>
+            </div>
 
-                <!-- CREATE CARD -->
-                <div class="card card-nav-tabs" style="width: 100rem;">
+            <div class="card card-nav-tabs" style="width: 100rem;">
                     <div class="card-header card-header-danger">
                         Create Landmark 
                     </div>
                     <div class="card-body">
                         <form id="addLandmarkForm" name="addLandmarkForm">
                             <div class="form-group">
+                                <input hidden type="text" id="routeId" name="routeId">
                                 <label for="exampleInputEmail1">Landmark Name</label>
                                 <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
                             </div>
@@ -56,7 +81,6 @@ The above copyright notice and this permission notice shall be included in all c
                         </form>
                     </div>
                 </div>
-                <!-- END OF CREATE CARD -->
 
                 <!-- TABLE  -->
                 <div class="card">
@@ -78,16 +102,8 @@ The above copyright notice and this permission notice shall be included in all c
                     </table>
                 </div>
                 </div>
-                <!-- END OF TABLE -->
 
-                <!-- CLOSING TAG OF CONTENT -->
-                </div>
-            </div>
-        </div>
-        <!-- END OF CLOSING TAG OF CONTENT -->
-
-        <!-- VIEW MODAL -->
-        <div id="viewLandmarkInfoModal" class="modal" tabindex="-1" role="dialog">
+                <div id="viewLandmarkInfoModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -141,23 +157,102 @@ The above copyright notice and this permission notice shall be included in all c
                 </div>
             </div>
         </div>
-    </div>  
-    <!-- END OF MAIN CONTENT -->
-</div>
-<!-- END OF WRAPPER -->
+    </div> 
+                <!-- END OF TABLE -->
+              
+            <!-- CLOSING TAG OF CONTENT -->
+          </div>
+        </div>
+      </div>
+      <!-- END OF CLOSING TAG OF CONTENT -->
+      
+      <!-- FOOTER -->
+      <?php $this->load->view('includes/footer.php')?>
 
+    </div>
+    <!-- END OF MAIN CONTENT -->
+
+  </div>
+  <!-- END OF WRAPPER -->
+
+  <!-- FIXED PLUGINS -->
   
   <!-- FIXED PLUGINS -->
   <?php $this->load->view('includes/core_js_files.php')?>
   
 </body>
 
+<!-- FIXED SCRIPTS -->
+<?php $this->load->view('includes/fixed_scripts.php')?>
+
+</html>
+
 <script>
-$(document).ready(function(){
+
+function view(){
+    var id = "<?php echo $id?>"
+    
+    $.ajax({
+            url: '<?php echo base_url()?>Route/get_one_route/',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                var routeInfo = data.data;
+                console.log(routeInfo);
+
+                $('#routeId').val(id);
+                $('#originIdView').html(routeInfo.origin.name);
+                $('#destinationIdView').html(routeInfo.destination.name);
+                $('#kmDistanceView').html(routeInfo.kmDistance);
+                $('#effectivityDateView').html(moment(routeInfo.effectivityDate).format('YYYY-MM-DD'));
+
+                
+            }
+        // ajax closing tag
+        })
+    }
+
+    function refresh(){
+        var routeId = "<?php echo $id ?>"
+
+        var url = "<?php echo base_url()?>RouteView/show_landmark/" + routeId;
+
+        landmarkDataTable.ajax.url(url).load();
+    }
+
+    view();
+
+    // CREATE LANDMARK
+    $('#addLandmarkForm').on('submit', function(e){
+        e.preventDefault();
+
+        var form = $('#addLandmarkForm'); 
+
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>RouteView/add_landmark',
+            type: "POST",
+            data: form.serialize(),
+        
+            success: function(data){              
+                refresh();
+                $("#name").val("");
+                $("#kmFromOrigin").val("");
+                $("#effectivityDate").val("");
+                showNotification('create', 'Successfully created a landmark!', 'success', 'top', 'right');
+            }
+        // ajax closing tag
+        })
+    });
+
     //DATA TABLES
     function loadtable(){
+        var routeId = "<?php echo $id ?>"
+        
         landmarkDataTable = $('#landmarkTable').DataTable({
-            "ajax": "<?php echo base_url()?>Landmark/show_landmark",
+            "ajax": "<?php echo base_url()?>RouteView/show_landmark/" + routeId,
             "columns": [
                 { data: "id"},
                 { data: "name"},
@@ -187,47 +282,18 @@ $(document).ready(function(){
                 "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
                 "order": [[4, "desc"]]
         })
+        
     }
-
     loadtable();
 
-    function refresh(){
-        var url = "<?php echo base_url()?>landmark/show_landmark";
-
-        landmarkDataTable.ajax.url(url).load();
-    }
-
-
-
-    // CREATE LANDMARK
-    $('#addLandmarkForm').on('submit', function(e){
-        e.preventDefault();
-
-        var form = $('#addLandmarkForm'); 
-
-        // ajax opening tag
-        $.ajax({
-            url: '<?php echo base_url()?>Landmark/add_landmark',
-            type: "POST",
-            data: form.serialize(),
-        
-            success: function(data){
-                refresh();
-                
-                $("#addLandmarkForm").trigger("reset");
-                showNotification('create', 'Successfully created a landmark!', 'success', 'top', 'right');
-            }
-        // ajax closing tag
-        })
-    });
-
+    
 
     // VIEW ONE LANDMARK 
     $(document).on("click", ".btn_view", function(){
         var id = this.value;
 
         $.ajax({
-            url: '<?php echo base_url()?>Landmark/get_one_landmark/',
+            url: '<?php echo base_url()?>RouteView/get_one_landmark/',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
@@ -253,7 +319,7 @@ $(document).ready(function(){
         var id = this.value;
 
         $.ajax({
-            url: '<?php echo base_url()?>Landmark/get_one_landmark/',
+            url: '<?php echo base_url()?>RouteView/get_one_landmark/',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
@@ -289,7 +355,7 @@ $(document).ready(function(){
             if (result.isConfirmed) {
                 // ajax opening tag
                 $.ajax({
-                    url: '<?php echo base_url()?>landmark/edit_landmark',
+                    url: '<?php echo base_url()?>RouteView/edit_landmark',
                     type: "POST",
                     data: form.serialize(),
                 
@@ -310,6 +376,7 @@ $(document).ready(function(){
     $(document).on("click", ".btn_delete", function(){
         var id = this.value;
 
+
         // Confirmation
         Swal.fire({
             title: 'Are you sure?',
@@ -321,7 +388,7 @@ $(document).ready(function(){
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '<?php echo base_url()?>Landmark/delete_landmark/',
+                    url: '<?php echo base_url()?>RouteView/delete_landmark/',
                     type: "POST",
                     data: { id: id },
                 
@@ -334,12 +401,7 @@ $(document).ready(function(){
             }
         })
         // End of Confirmation
-    });
-    // CLOSING TAG
-});
-</script>
 
-<!-- FIXED SCRIPTS -->
-    
-    <?php $this->load->view('includes/fixed_scripts.php')?>
-</html>
+        
+    });
+</script>

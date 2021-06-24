@@ -35,8 +35,8 @@ The above copyright notice and this permission notice shall be included in all c
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
-                This is new branch!
-              
+            
+              <?php echo $id; ?>
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>
@@ -63,3 +63,13 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/fixed_scripts.php')?>
 
 </html>
+
+<script>
+function get_route(){
+
+    $.ajax({
+        
+    })
+}
+
+</script>

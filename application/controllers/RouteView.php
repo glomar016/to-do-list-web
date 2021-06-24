@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Landmark extends CI_Controller {
+class RouteView extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,19 +18,23 @@ class Landmark extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
+	public function redirectView($id)
 	{
-		$this->load->view('Landmark');
+		$data["id"] = $id;
+
+		$this->load->view('routeView', $data); 
 	}
 
 	public function add_landmark()
     {
         $name = $this->input->post('name');
-        $kmFromOrigin = $this->input->post('kmFromOrigin');
+        $routeId = $this->input->post('routeId');
         $effectivityDate = $this->input->post('effectivityDate');
+		$kmFromOrigin = $this->input->post('kmFromOrigin');
 
 
         $data = array("name" => $name
+						, "routeId" => $routeId
 						, "kmFromOrigin" => $kmFromOrigin
 						, "effectivityDate" => $effectivityDate);
 
@@ -50,10 +54,9 @@ class Landmark extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS =>$postdata,
+		CURLOPT_POSTFIELDS => $postdata,
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyNGRkYzZmLTk2NmQtNDFiNS1hMDJiLTJiYjg3MzdkNjViNCIsImVtYWlsIjoia2ltdGFleWVvbkBnbWFpbC5jb20iLCJpYXQiOjE2MjEyMzU2MDYsImV4cCI6MTYyMTI0MjgwNn0.I0K6E7fCcu_EEUlDOlj4sAURW8Z62TggcJDOMMDd2e8
-			',
+			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
 			'Content-Type: application/json'
 		),
 		));
@@ -64,14 +67,17 @@ class Landmark extends CI_Controller {
 		echo $response;
 
 
+
 		
     }
 
-	public function show_landmark(){
+	public function show_landmark($routeId){
+
+
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/landmark',
+		CURLOPT_URL => 'http://localhost:3600/api/v1/landmark/allLandmark/'.$routeId,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -79,10 +85,6 @@ class Landmark extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'GET',
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyNGRkYzZmLTk2NmQtNDFiNS1hMDJiLTJiYjg3MzdkNjViNCIsImVtYWlsIjoia2ltdGFleWVvbkBnbWFpbC5jb20iLCJpYXQiOjE2MjEyMzU2MDYsImV4cCI6MTYyMTI0MjgwNn0.I0K6E7fCcu_EEUlDOlj4sAURW8Z62TggcJDOMMDd2e8
-			'
-		),
 		));
 
 		$response = curl_exec($curl);
@@ -120,9 +122,9 @@ class Landmark extends CI_Controller {
 	}
 
 	public function edit_landmark(){
-		$name = $this->input->post('editName');
-        $kmFromOrigin = $this->input->post('editkmFromOrigin');
-        $effectivityDate = $this->input->post('editeffectivityDate');
+		$name = $this->input->post('editLandmarkName');
+        $kmFromOrigin = $this->input->post('editKmFromOrigin');
+        $effectivityDate = $this->input->post('editEffectivityDate');
 		$id = $this->input->post('editLandmarkId');
 
 
@@ -143,10 +145,9 @@ class Landmark extends CI_Controller {
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 		CURLOPT_CUSTOMREQUEST => 'PUT',
-		CURLOPT_POSTFIELDS =>$postdata,
+		CURLOPT_POSTFIELDS => $postdata,
 		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQyNGRkYzZmLTk2NmQtNDFiNS1hMDJiLTJiYjg3MzdkNjViNCIsImVtYWlsIjoia2ltdGFleWVvbkBnbWFpbC5jb20iLCJpYXQiOjE2MjEyMzU2MDYsImV4cCI6MTYyMTI0MjgwNn0.I0K6E7fCcu_EEUlDOlj4sAURW8Z62TggcJDOMMDd2e8
-			',
+			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
 			'Content-Type: application/json'
 		),
 		));
@@ -155,23 +156,30 @@ class Landmark extends CI_Controller {
 
 		curl_close($curl);
 		echo $response;
-	}
-}
-public function deleteLandmark(){
-	
-	$deleteLandmarkId = $this->input->post('deleteLandmarkId');
 
-	$curl = curl_init(); 
+	}
+	
+	public function delete_landmark(){
+
+		$id = $this->input->post('id');
+		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/landmark/'.$deleteLandmarkId,
+		CURLOPT_URL => 'http://localhost:3600/api/v1/landmark/'.$id,
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
 		CURLOPT_TIMEOUT => 0,
 		CURLOPT_FOLLOWLOCATION => true,
 		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'DELETE',
+		CURLOPT_CUSTOMREQUEST => 'PUT',
+		CURLOPT_POSTFIELDS =>'{
+			"status": "Inactive"
+		}',
+		CURLOPT_HTTPHEADER => array(
+			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
+			'Content-Type: application/json'
+		),
 		));
 
 		$response = curl_exec($curl);
@@ -179,4 +187,5 @@ public function deleteLandmark(){
 		curl_close($curl);
 		echo $response;
 
+	}
 }
