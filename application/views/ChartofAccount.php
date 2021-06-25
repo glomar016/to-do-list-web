@@ -51,7 +51,7 @@ textarea::-webkit-scrollbar{
               <h5 class="card-header">
                   <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                       <i class="fa fa-chevron-down pull-right"></i>
-                      Add Chart of account
+                      Add Chart of Account
                   </a>
               </h5>
               <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
@@ -60,7 +60,7 @@ textarea::-webkit-scrollbar{
                   <form id="addChartofAccountForm">
                           <div class="form-row">
                               <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Chart of account Name</label>
+                              <label for="exampleInputEmail1">Chart of Account Name</label>
                               <input type="text" class="form-control" id="ChartofAccountName" name="ChartofAccountName">
                         </div>
                           </div>
@@ -84,7 +84,7 @@ textarea::-webkit-scrollbar{
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Chart of account Name</th>
+                            <th>Chart of Account Name</th>
                             <th>Date Created</th> 
                             <th>Actions</th>
                         </tr>
@@ -109,7 +109,7 @@ textarea::-webkit-scrollbar{
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="ChartofAccountInfoModal">Chart of account Information</h5>
+                <h5 class="modal-title" id="ChartofAccountInfoModal">Chart of Account Information</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -119,7 +119,7 @@ textarea::-webkit-scrollbar{
                 <form id="ChartofAccountForm">
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="ChartofAccountId" id="ChartofAccountId" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Chart of account Name</label>
+                        <label for="exampleInputEmail1">Chart of Account Name</label>
                         <span  class="form-control" name="ChartofAccountName" id="ChartofAccountName" aria-describedby="emailHelp"></span>
                 
                         
@@ -138,7 +138,7 @@ textarea::-webkit-scrollbar{
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="editChartofAccountInfoModal">Edit Chart of account</h5>
+                <h5 class="modal-title" id="editChartofAccountInfoModal">Edit Chart of Account</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -148,7 +148,7 @@ textarea::-webkit-scrollbar{
                 <form id="editChartofAccountForm">
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="editChartofAccountId" id="editChartofAccountId" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Chart of account</label>
+                        <label for="exampleInputEmail1">Chart of Account</label>
                         <input type="text" class="form-control" name="editChartofAccountName" id="editChartofAccountName" aria-describedby="emailHelp">
                         
                     </div>
@@ -176,7 +176,7 @@ textarea::-webkit-scrollbar{
                 <form id="deleteChartofAccountForm">
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="deleteChartofAccountId" id="deleteChartofAccountId" aria-describedby="emailHelp">
-                        <p>You're deactivating this Chart of account</p>
+                        <p>You're deactivating this Chart of Account</p>
                         </span>
                     </div>
                     <div class="modal-footer">
