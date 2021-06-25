@@ -384,9 +384,10 @@ $(document).on("click", ".btn_generate", function(){
                             </tr>
                     </table>`;
 
+
             do {
                 addKm = parseInt(addKm) + parseInt(kmStep);
-                var newPrice = parseFloat((addKm - initialKm) * additionalKm);
+                newPrice = parseFloat(((addKm - initialKm) * additionalKm) + parseFloat(initialPrice))
 
                 if(addKm <= maxKm){
                 // addPrice = parseFloat(additionalKm) * parseFloat(addKm);
