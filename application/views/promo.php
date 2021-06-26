@@ -16,8 +16,13 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/head.php'); ?>
 
 <style>
-#editUserForm .form-row,
-#addUserForm .form-row{
+#addPromoForm,
+#editPromoForm,
+#viewPromoForm .form-row{
+  margin-top: -15px;
+}
+#addPromoForm .form-row,
+#editPromoForm .form-row{
   margin-top: 15px;
 }
 </style>
@@ -51,29 +56,67 @@ The above copyright notice and this permission notice shall be included in all c
               <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
                   <div class="card-body">
                   <div class="card-body">
-                  <form id="addUserForm" name="addUserForm">
+                  <form id="addPromoForm" name="addPromoForm">
                       <div class="form-row">
-                        <div class="form-group col-sm-6">
-                            <label for="exampleInputEmail1">First Name</label>
-                            <input type="text" class="form-control" name="firstName" id="firstName" aria-describedby="emailHelp">
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label for="exampleInputEmail1">Last Name</label>
-                            <input type="text" class="form-control" name="lastName"  id="lastName" aria-describedby="emailHelp">
+                        <div class="form-group col-sm-4">
+                            <label for="exampleInputEmail1">Bus Type</label>
+                            <select class="form-control" id="busTypeInput" name="busTypeInput">           
+                                        
+                            </select>
                         </div>
                       </div>
                       <div class="form-row">
-                        <div class="form-group col-sm-12">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" name="email"  id="email" aria-describedby="emailHelp">
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Code</label>
+                            <input type="text" class="form-control" name="codeInput"  id="codeInput" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Minimum Seat Reservation</label>
+                            <input type="number" class="form-control" name="minimumSeatReservationInput"  id="minimumSeatReservationInput" aria-describedby="emailHelp">
                         </div>
                       </div>
                       <div class="form-row">
-                            <div class="form-group col-sm-12">
-                                <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="password"  class="form-control" id="password" >
-                            </div>
-                        </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Booking Date From</label>
+                              <input type="date" class="form-control" name="bookingDateFromInput" id="bookingDateFromInput">
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Booking Date To</label>
+                              <input type="date" class="form-control" name="bookingDateToInput" id="bookingDateToInput" >
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Travel Date From</label>
+                              <input type="date" class="form-control" name="travelDateFromInput" id="travelDateFromInput">
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Travel Date To</label>
+                              <input type="date" class="form-control" name="travelDateToInput" id="travelDateToInput">
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Minimum Amount</label>
+                              <input type="number" class="form-control" name="minimumAmountInput" id="minimumAmountInput">
+                          </div>
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Fixed Discount</label>
+                              <input type="number" class="form-control" name="fixedDiscountInput" id="fixedDiscountInput">
+                          </div>
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Percentage Discount</label>
+                              <input type="number" class="form-control" name="percentageDiscountInput" id="percentageDiscountInput">
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-sm-6">
+                              <label for="exampleInputPassword1">Effectivity Date</label>
+                              <input type="date" class="form-control" name="effectivityDateInput" id="effectivityDateInput">
+                          </div>
+                          <div class="form-group col-sm-6">
+                              <label for="exampleInputPassword1">Deactivation Date</label>
+                              <input type="date" class="form-control" name="deactivationDateInput" id="deactivationDateInput">
+                          </div>
+                      </div>
                         <input type="submit" class="btn btn-primary">
                     </form>
                   </div>
@@ -82,11 +125,11 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
             <div class="card">
               <div class="card-body">
-                <table id="userTable" class="table">
+                <table id="promoTable" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Promo</th>
+                            <th>Promo Code</th>
                             <th>Effectivity Date</th>
                             <th>Deactivation Date</th>
                             <th>Date Created</th>
@@ -107,12 +150,12 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- END OF CLOSING TAG OF CONTENT -->
 
-      <!-- VIEW USER MODAL -->
+      <!-- VIEW PROMO MODAL -->
       <div class="modal fade" id="viewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="viewModal">View User</h5>
+              <h5 class="modal-title" id="viewModal">View Promo</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -120,25 +163,66 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="modal-body">
 
             <div class="card-body">
-            <form id="viewUserForm">
+            <form id="viewPromoForm">
                 <div class="modal-body">
-                    <div class="form-row">
-                      <div class="form-group col-sm-6">
-                        <!-- <input hidden type="text" class="form-control" name="viewUserId" id="viewUserId" aria-describedby="emailHelp"> -->
-                        <label for="viewFirstName">First Name</label>
-                        <span class="form-control" name="viewFirstName" id="viewFirstName" aria-describedby="emailHelp"></span>
+                <div class="form-row">
+                        <div class="form-group col-sm-4">
+                            <label for="exampleInputEmail1">Bus Type</label>
+                            <span class="form-control" name="busTypeView" id="busTypeView" aria-describedby="emailHelp">
+                        </div>
                       </div>
-                      <div class="form-group col-sm-6">
-                        <label for="viewLastName">Last Name</label>
-                        <span class="form-control" name="viewLastName" id="viewLastName" aria-describedby="emailHelp"></span>
+                      <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Code</label>
+                            <span class="form-control" name="codeView"  id="codeView" aria-describedby="emailHelp"></span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Minimum Seat Reservation</label>
+                            <span class="form-control" name="minimumSeatReservationView"  id="minimumSeatReservationView" aria-describedby="emailHelp"></span>
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-sm-12">
-                        <label for="viewEmail">Email</label>
-                        <span class="form-control" name="viewEmail" id="viewEmail" aria-describedby="emailHelp"></span>
+                      <div class="form-row">
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Booking Date From</label>
+                              <span class="form-control" name="bookingDateFromView" id="bookingDateFromView"></span>
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Booking Date To</label>
+                              <span class="form-control" name="bookingDateToView" id="bookingDateToView" ></span>
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Travel Date From</label>
+                              <span class="form-control" name="travelDateFromView" id="travelDateFromView"></span>
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Travel Date To</label>
+                              <span class="form-control" name="travelDateToView" id="travelDateToView"></span>
+                          </div>
                       </div>
-                    </div>
+                      <div class="form-row">
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Minimum Amount</label>
+                              <span class="form-control" name="minimumAmountView" id="minimumAmountView"></span>
+                          </div>
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Fixed Discount</label>
+                              <span class="form-control" name="fixedDiscountView" id="fixedDiscountView"></span>
+                          </div>
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Percentage Discount</label>
+                              <span class="form-control" name="percentageDiscountView" id="percentageDiscountView"></span>
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-sm-6">
+                              <label for="exampleInputPassword1">Effectivity Date</label>
+                              <span class="form-control" name="effectivityDateView" id="effectivityDateView"></span>
+                          </div>
+                          <div class="form-group col-sm-6">
+                              <label for="exampleInputPassword1">Deactivation Date</label>
+                              <span class="form-control" name="deactivationDateView" id="deactivationDateView"></span>
+                          </div>
+                      </div>
                 </div>
                 </form>
             </div>
@@ -148,12 +232,12 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
       </div>
 
-      <!-- EDIT USER MODAL -->
-      <div class="modal fade" id="editUserInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+      <!-- EDIT PROMO MODAL -->
+      <div class="modal fade" id="editPromoInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="editUserInfoModal">Edit User</h5>
+              <h5 class="modal-title" id="editPromoInfoModal">Edit Promo</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -161,25 +245,69 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="modal-body">
 
             <div class="card-body">
-            <form id="editUserForm">
+            <form id="editPromoForm">
                 <div class="modal-body">
                 <div class="form-row">
-                      <div class="form-group col-sm-6">
-                        <input hidden type="text" class="form-control" name="editUserId" id="editUserId" aria-describedby="emailHelp">
-                        <label for="editFirstName">First Name</label>
-                        <input type="text" class="form-control" name="editFirstName" id="editFirstName" aria-describedby="emailHelp">
+                        <div class="form-group col-sm-4">
+                            <input hidden type="text" class="form-control" id="promoIdEdit" name="promoIdEdit">
+                            <label for="exampleInputEmail1">Bus Type</label>
+                            <select class="form-control" id="busTypeEdit" name="busTypeEdit">           
+                            
+                            </select>
+                        </div>
                       </div>
-                      <div class="form-group col-sm-6">
-                        <label for="editLastName">Last Name</label>
-                        <input type="text" class="form-control" name="editLastName" id="editLastName" aria-describedby="emailHelp">
+                      <div class="form-row">
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Code</label>
+                            <input type="text" class="form-control" name="codeEdit"  id="codeEdit" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Minimum Seat Reservation</label>
+                            <input type="text" class="form-control" name="minimumSeatReservationEdit"  id="minimumSeatReservationEdit" aria-describedby="emailHelp">
+                        </div>
                       </div>
-                    </div>
-                    <div class="form-row">
-                      <div class="form-group col-sm-12">
-                        <label for="editEmail">Email</label>
-                        <input type="text" class="form-control" name="editEmail" id="editEmail" aria-describedby="emailHelp">
+                      <div class="form-row">
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Booking Date From</label>
+                              <input type="date" class="form-control" name="bookingDateFromEdit" id="bookingDateFromEdit">
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Booking Date To</label>
+                              <input type="date" class="form-control" name="bookingDateToEdit" id="bookingDateToEdit" >
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Travel Date From</label>
+                              <input type="date" class="form-control" name="travelDateFromEdit" id="travelDateFromEdit">
+                          </div>
+                          <div class="form-group col-sm-3">
+                              <label for="exampleInputPassword1">Travel Date To</label>
+                              <input type="date" class="form-control" name="travelDateToEdit" id="travelDateToEdit">
+                          </div>
                       </div>
-                    </div>
+                      <div class="form-row">
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Minimum Amount</label>
+                              <input type="text" class="form-control" name="minimumAmountEdit" id="minimumAmountEdit">
+                          </div>
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Fixed Discount</label>
+                              <input type="text" class="form-control" name="fixedDiscountEdit" id="fixedDiscountEdit">
+                          </div>
+                          <div class="form-group col-sm-4">
+                              <label for="exampleInputPassword1">Percentage Discount</label>
+                              <input type="text" class="form-control" name="percentageDiscountEdit" id="percentageDiscountEdit">
+                          </div>
+                      </div>
+                      <div class="form-row">
+                          <div class="form-group col-sm-6">
+                              <label for="exampleInputPassword1">Effectivity Date</label>
+                              <input type="date" class="form-control" name="effectivityDateEdit" id="effectivityDateEdit">
+                          </div>
+                          <div class="form-group col-sm-6">
+                              <label for="exampleInputPassword1">Deactivation Date</label>
+                              <input type="date" class="form-control" name="deactivationDateEdit" id="deactivationDateEdit">
+                          </div>
+                      </div>
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-primary">
@@ -192,7 +320,7 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
       </div>
 
-      <!-- DELETE USER MODAL -->
+      <!-- DELETE PROMO MODAL -->
       <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -204,8 +332,8 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
             <div class="modal-body">
               <form id="deleteForm">
-              <input hidden type="text" id="deleteUserId" name="deleteUserId">
-              You're deactivating this user
+              <input hidden type="text" id="deletePromoId" name="deletePromoId">
+              You're deactivating this promo
               </form>
             </div>
             <div class="modal-footer">
@@ -235,16 +363,17 @@ The above copyright notice and this permission notice shall be included in all c
 <script>
     // DATA TABLES
     function loadtable(){
-        userDataTable = $('#userTable').DataTable( {
-            "ajax": "<?php echo base_url()?>user/show_user",
+        promoDataTable = $('#promoTable').DataTable( {
+            "ajax": "<?php echo base_url()?>promo/show_promo",
             "columns": [
                 { data: "id"},
-                { data: "firstName", render: function(data, type, row){
-                        return `${row.firstName} ${row.lastName}`
-                    }
-                },
-                { data: "lastName"},
-                { data: "email"},
+                { data: "code"},
+                { data: "effectivityDate", render: function(data, type, row){
+                  return moment(data).format('LL');
+                }},
+                { data: "deactivationDate", render: function(data, type, row){
+                  return moment(data).format('LL');
+                }},
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
@@ -267,31 +396,90 @@ The above copyright notice and this permission notice shall be included in all c
         })
     }
 
-    
+    // CHOOSING FIXED DISCOUNT OR PERCENTAGE DISCOUNT PROMO
+    var fixedDiscountInput = document.getElementById('fixedDiscountInput');
+    var percentageDiscountInput = document.getElementById('percentageDiscountInput');
+    var fixedDiscountEdit = document.getElementById('fixedDiscountEdit');
+    var percentageDiscountEdit = document.getElementById('percentageDiscountEdit');
 
-    loadtable();
+    var checker1 = setInterval(function() {
+        if(fixedDiscountInput.value !== '') {
+          percentageDiscountInput.disabled = true;
+        } else {
+          //when its clear, it enabled again
+          percentageDiscountInput.disabled = false;
+        }
+        if(percentageDiscountInput.value !== '') {
+          fixedDiscountInput.disabled = true
+        } else {
+          //when its clear, it enabled again
+          fixedDiscountInput.disabled = false;
+        }
+    }, 30);
+
+    var checker2 = setInterval(function() {
+        if(fixedDiscountEdit.value !== '') {
+          percentageDiscountEdit.disabled = true;
+        } else {
+          //when its clear, it enabled again
+          percentageDiscountEdit.disabled = false;
+        }
+        if(percentageDiscountEdit.value !== '') {
+          fixedDiscountEdit.disabled = true
+        } else {
+          //when its clear, it enabled again
+          fixedDiscountEdit.disabled = false;
+        }
+    }, 30);
+
+    // GET BUS TYPE
+    function getBusType(){
+    
+    $.ajax({
+      url: '<?php echo base_url()?>promo/getBusType',
+      type: "GET",
+      dataType: "JSON",
+
+      success: function(data){
+        var busTypeInfo = data.data;
+
+        var html = "";
+
+        for(var i=0; i < busTypeInfo.length; i++){
+          html += `<option value="${busTypeInfo[i].id}">${busTypeInfo[i].name}</option>`
+        }
+        
+        $('#busTypeInput').html(html);
+        $('#busTypeEdit').html(html);
+
+      }
+    })
+  }
+  
+  getBusType();
+  loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>user/show_user";
+        var url = "<?php echo base_url()?>promo/show_promo";
 
-        userDataTable.ajax.url(url).load();
+        promoDataTable.ajax.url(url).load();
     }
 
-    // CREATE USER 
-    $('#addUserForm').on('submit', function(e){
+    // CREATE PROMO 
+    $('#addPromoForm').on('submit', function(e){
         e.preventDefault();
 
-        var form = $('#addUserForm'); 
+        var form = $('#addPromoForm'); 
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>user/add_user',
+            url: '<?php echo base_url()?>promo/add_promo',
             type: "POST",
             data: form.serialize(),
         
             success: function(data){
-              document.getElementById("addUserForm").reset();
-              showNotification('create', 'Successfully added a new user!', 'success', 'top', 'right');
+              document.getElementById("addPromoForm").reset();
+              showNotification('create', 'Successfully added a new promo!', 'success', 'top', 'right');
               refresh();
 
             }
@@ -299,25 +487,34 @@ The above copyright notice and this permission notice shall be included in all c
         })
     });
 
-    // VIEW USER 
+    // VIEW PROMO 
     $(document).on("click", ".btn_view", function(){
         var id = this.value;
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>user/get_one_user',
+            url: '<?php echo base_url()?>promo/get_one_promo',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var userInfo = data.data;
+                var promoInfo = data.data;
 
-                $('#viewUserId').val(id);
-                $('#viewFirstName').html(userInfo.firstName);
-                $('#viewLastName').html(userInfo.lastName);
-                $('#viewEmail').html(userInfo.email);
+                $('#viewPromoId').val(id);
+                $('#codeView').html(promoInfo.code);
+                $('#busTypeView').html(promoInfo.busType.name);
+                $('#fixedDiscountView').html(promoInfo.fixedDiscount);
+                $('#percentageDiscountView').html(promoInfo.percentageDiscount);
+                $('#minimumAmountView').html(promoInfo.minimumAmount);
+                $('#minimumSeatReservationView').html(promoInfo.minimumSeatReservation);
+                $('#bookingDateToView').html(moment(promoInfo.bookingDateTo).format('LL'));
+                $('#bookingDateFromView').html(moment(promoInfo.bookingDateFrom).format('LL'));
+                $('#travelDateToView').html(moment(promoInfo.tavelDateTo).format('LL'));
+                $('#travelDateFromView').html(moment(promoInfo.travelDateFrom).format('LL'));
+                $('#effectivityDateView').html(moment(promoInfo.effectivityDate).format('LL'));
+                $('#deactivationDateView').html(moment(promoInfo.deactivationDate).format('LL'));
 
                 $('#viewModal').modal('show');
             }
@@ -325,49 +522,58 @@ The above copyright notice and this permission notice shall be included in all c
         })
     });
 
-    // EDIT USER 
+    // EDIT PROMO
     $(document).on("click", ".btn_edit", function(){
         var id = this.value;
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>user/get_one_user',
+            url: '<?php echo base_url()?>promo/get_one_promo',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var userInfo = data.data;
+                var promoInfo = data.data;
 
-                $('#editUserId').val(id);
-                $('#editFirstName').val(userInfo.firstName);
-                $('#editLastName').val(userInfo.lastName);
-                $('#editEmail').val(userInfo.email);
+                $('#promoIdEdit').val(id);
+                $('#codeEdit').val(promoInfo.code);
+                $('#busTypeEdit').val(promoInfo.busTypeId);
+                $('#fixedDiscountEdit').val(promoInfo.fixedDiscount);
+                $('#percentageDiscountEdit').val(promoInfo.percentageDiscount);
+                $('#minimumAmountEdit').val(promoInfo.minimumAmount);
+                $('#minimumSeatReservationEdit').val(promoInfo.minimumSeatReservation);
+                $('#bookingDateToEdit').val(moment(promoInfo.bookingDateTo).format('YYYY-MM-DD'));
+                $('#bookingDateFromEdit').val(moment(promoInfo.bookingDateFrom).format('YYYY-MM-DD'));
+                $('#travelDateToEdit').val(moment(promoInfo.tavelDateTo).format('YYYY-MM-DD'));
+                $('#travelDateFromEdit').val(moment(promoInfo.travelDateFrom).format('YYYY-MM-DD'));
+                $('#effectivityDateEdit').val(moment(promoInfo.effectivityDate).format('YYYY-MM-DD'));
+                $('#deactivationDateEdit').val(moment(promoInfo.deactivationDate).format('YYYY-MM-DD'));
 
-                $('#editUserInfoModal').modal('show');
+                $('#editPromoInfoModal').modal('show');
             }
         // ajax closing tag
         })
     });
 
-    $('#editUserForm').on('submit', function(e){
+    $('#editPromoForm').on('submit', function(e){
         e.preventDefault();
 
         console.log('working');
 
-        var form = $('#editUserForm'); 
+        var form = $('#editPromoForm'); 
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>user/edit_user',
+            url: '<?php echo base_url()?>promo/edit_promo',
             type: "POST",
             data: form.serialize(),
             dataType: "JSON",
         
             success: function(data){
-              $("#editUserInfoModal").modal('hide');
-                showNotification('update', 'Successfully update user!', 'warning', 'top', 'right');
+              $("#editPromoInfoModal").modal('hide');
+                showNotification('update', 'Successfully updated a promo!', 'warning', 'top', 'right');
                 refresh();
 
             }
@@ -375,20 +581,20 @@ The above copyright notice and this permission notice shall be included in all c
         })
     });
 
-  // DELETE USER
+  // DELETE PROMO
 $(document).on("click", ".btn_delete", function(){
   var id = this.value;
   $("#deleteModal").modal('show');
   $.ajax({
-        url:'<?php echo base_url()?>user/get_one_user',
+        url:'<?php echo base_url()?>promo/get_one_promo',
         type: "POST",
         data: { id: id},
         dataType: "JSON",
 
         success: function(data){
-          var userInfo = data.data;
-          var deleteUserId = document.getElementById('deleteUserId');
-          deleteUserId.value = userInfo.id
+          var promoInfo = data.data;
+          var deletePromoId = document.getElementById('deletePromoId');
+          deletePromoId.value = promoInfo.id
         }
     })
 });
@@ -400,14 +606,14 @@ $('.delete-confirm').on('click', function(e){
     var form = $('#deleteForm');
 
     $.ajax({
-        url:'<?php echo base_url()?>user/delete_user',
+        url:'<?php echo base_url()?>promo/delete_promo',
         type: "POST",
         data: form.serialize(),
         dataType: "JSON",
 
         success: function(data){
           $("#deleteModal").modal('hide');
-          showNotification('delete', 'Deleted a user!', 'danger', 'top', 'right');
+          showNotification('delete', 'Deactivated a promo!', 'danger', 'top', 'right');
           refresh();
         }
     })
