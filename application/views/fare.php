@@ -104,7 +104,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <th>Additional Km</th>
                                 <th>Discount Percentage</th>
                                 <th>Effectivity Date</th>
-                                <th>Actions</th>
+                                <th width="10%">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -80,13 +80,13 @@ textarea::-webkit-scrollbar{
           </div>
             <div class="card">
               <div class="card-body">
-                <table id="ChartofAccountTable" class="table">
+                <table id="ChartofaccountTable" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
                             <th>Chart of Account Name</th>
                             <th>Date Created</th> 
-                            <th>Actions</th>
+                            <th width="10%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,9 +118,9 @@ textarea::-webkit-scrollbar{
                 <div class="card-body">
                 <form id="ChartofAccountForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="ChartofAccountId" id="ChartofAccountId" aria-describedby="emailHelp">
+                        <input type="hidden" class="form-control" name="ChartofAccountIdview" id="ChartofAccountIdview" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Chart of Account Name</label>
-                        <span  class="form-control" name="ChartofAccountName" id="ChartofAccountName" aria-describedby="emailHelp"></span>
+                        <span  class="form-control" name="ChartofAccountNameview" id="ChartofAccountNameview" aria-describedby="emailHelp"></span>
                 
                         
                     </div>
@@ -207,6 +207,7 @@ textarea::-webkit-scrollbar{
 <script>
     // DATA TABLES
     function loadtable(){
+        console.log('test')
         ChartofAccountDataTable = $('#ChartofaccountTable').DataTable( {
             "ajax": "<?php echo base_url()?>ChartofAccount/show_ChartofAccount",
             "columns": [
@@ -233,7 +234,7 @@ textarea::-webkit-scrollbar{
             ],
 
             "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
-            "order": [[3, "desc"]]
+            "order": [[0, "desc"]]
         })
     }
 
@@ -242,7 +243,7 @@ textarea::-webkit-scrollbar{
     function refresh(){
         var url = "<?php echo base_url()?>ChartofAccount/show_ChartofAccount/";
 
-        chartofAccountDataTable.ajax.url(url).load();
+        ChartofAccountDataTable.ajax.url(url).load();
     }
 
 
@@ -286,8 +287,8 @@ textarea::-webkit-scrollbar{
                 console.log(data);
                 var ChartofAccountInfo = data.data;
 
-                $('#ChartofAccountId').html(id);
-                $('#ChartofAccountName').html(ChartofAccountInfo.name);
+                $('#ChartofAccountIdview').html(id);
+                $('#ChartofAccountNameview').html(ChartofAccountInfo.name);
         
 
                 $('#ChartofAccountInfoModal').modal('show');

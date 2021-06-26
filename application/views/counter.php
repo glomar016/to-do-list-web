@@ -86,7 +86,7 @@ textarea::-webkit-scrollbar{
                             <th>ID</th>
                             <th>Counter Name</th>
                             <th>Date Created</th> 
-                            <th>Actions</th>
+                            <th width="10%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

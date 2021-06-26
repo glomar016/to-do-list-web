@@ -82,14 +82,12 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-group col-sm-6">
                                 <label for="reserveRoute">Route</label>
                                 <select class="form-control" id="reserveRoute" name="reserveRoute">
-                                    <option value="" disabled selected hidden >- - Select Route - -</option>
 
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="reserveLandmark">Landmark</label>
                                 <select class="form-control" id="reserveLandmark" name="reserveLandmark">
-                                    <option value="" disabled selected hidden >- - Select Landmark - -</option>
 
                                 </select>
                             </div>
@@ -98,7 +96,6 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-group col-sm-12">
                                 <label for="reserveSchedule">Schedule</label>
                                 <select class="form-control" id="reserveSchedule" name="reserveSchedule">
-                                    <option value="" disabled selected hidden >- - Select Schedule - -</option>
 
                                 </select>
                             </div>
@@ -108,6 +105,22 @@ The above copyright notice and this permission notice shall be included in all c
                   </div>
                   </div>
               </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <table id="reservationTable" class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Reference Number</th>
+                    <th>Customer's Name</th>
+                    <th>Schedule</th>
+                    <th>Total Amount</th>
+                    <th>Status</th>
+                    <th width="10%">Actions</th>
+                </thead>
+              </table>
           </div>
               
             <!-- CLOSING TAG OF CONTENT -->
@@ -137,28 +150,136 @@ The above copyright notice and this permission notice shall be included in all c
 
 <script>
 
+function dataTable(){
+    reservationTable = $('#reservationTable').DataTable({
+      "ajax": "<?php echo base_url()?>reservation/show_reservations",
+      "columns": [
+          {data: "id"},
+          {data: "referenceNumber"},
+          {data: "name"},
+          {data: "scheduleId", render: function(data, type, row){
+              return row.schedule.route.origin.name + ' - ' + row.schedule.route.destination.name + ' - ' + moment(row.reservationDate).format('ll') + ' - ' 
+                    + moment(row.schedule.hourFrom).format('LT') + ' - ' + moment(row.schedule.hourTo).format('LT');;
+          }},
+          {data: "totalAmount", render: function(data, type, row){
+              return "P" + parseFloat(data).toFixed(2);
+          }},
+          {data: "currentStatus"},
+          {data: "status", render: function(data, type, row){
+                if (data == "Active"){
+                  return '<div class="btn-group">' +
+                          '<button class="btn btn-info btn-sm btn-view" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>'+
+                          '<button class="btn btn-warning btn-sm btn-edit" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Edit </button>'+
+                          '<button class="btn btn-danger btn-sm btn-delete" value="' + row.id + '"title = "Delete" type="button"> <i class="zmdi zmdi-delete"></i> Delete </button></div>';
+                }
+                else{
+                  return '<button class="btn btn-danger btn-sm">Activate</button>';
+                }
+              }
+          }
+        ],
+
+      "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 6] }],
+      "order": [[4, "desc"]]
+
+    })
+
+};
+
+
+dataTable();
+
+function refresh(){
+  var url="<?php echo base_url()?>reservation/show_reservations";
+
+  reservationTable.ajax.url(url).load();
+}
+
+
 
 $('#reservationForm').on('submit', function(e){
 
-e.preventDefault();
+  e.preventDefault();
 
-var form = $('#reservationForm');
-console.log(form.serialize())
+  var form = $('#reservationForm');
 
-$.ajax({
-    url:'<?php echo base_url()?>reservation/add_reservation',
-    type: "POST",
-    data: form.serialize(),
-    dataType: "JSON",
+  var reserveBusType = $('#reserveBusType').val();
+  var reserveSchedule = $('#reserveSchedule').val();
+  var initialKm, initialPrice, additionalKm, discountPercentage, routeKmDistance;
 
-    success: function(data){
-      document.getElementById("reservationForm").reset();
-      showNotification('create', 'Successfully added a new reservation!', 'success', 'top', 'right');
-    }
-})
+
+  $.ajax({
+      url:'<?php echo base_url()?>fare/get_specific_fare',
+      type: "POST",
+      data: { id: reserveBusType},
+      dataType: "JSON",
+      async: false,
+
+      success: function(data){
+        console.log(data);
+        objectdata = data.data;
+        initialKm = objectdata[0].initialKm;
+        initialPrice = objectdata[0].initialPrice;
+        additionalKm = objectdata[0].additionalKm;
+        discountPercentage = objectdata[0].discountPercentage;
+      }
+  })
+  
+  $.ajax({
+      url:'<?php echo base_url()?>schedule/get_specific_schedule',
+      type: "POST",
+      data: { id: reserveSchedule},
+      dataType: "JSON",
+      async: false,
+
+      success: function(data){
+        objectdata = data.data;
+        routeKmDistance = objectdata[0].route.kmDistance;
+      }
+  })
+
+  var totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
+  console.log(totalKm);
+  var totalPrice = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+  var totalDiscount = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+
+  var date = new Date();
+  let today = '0' + Math.floor((date.getMonth()+1).toString() + date.getDate().toString() + date.getFullYear().toString().substr(-2) + date.getHours().toString() + date.getMinutes().toString())
+  let random = (Math.random()).toString()
+  let referenceNumber = random.slice(2, 6).toString() + today.toString();
+  let currentStatus = "Pending"
+
+  let addedData = form.serializeArray()
+  addedData.push({name: 'referenceNumber', value: referenceNumber});
+  addedData.push({name: 'totalPrice', value: totalPrice});
+  addedData.push({name: 'totalDiscount', value: totalDiscount});
+  addedData.push({name: 'currentStatus', value: currentStatus});
+
+  console.log(addedData);
+
+      
+
+  $.ajax({
+      url:'<?php echo base_url()?>reservation/add_reservation',
+      type: "POST",
+      data: addedData, 
+      dataType: "JSON",
+
+      success: function(data){
+        refresh();
+        console.log(data);
+        document.getElementById("reservationForm").reset();
+        $('#reserveRoute').html("");
+        $('#reserveLandmark').html("");
+        $('#reserveSchedule').html("");
+        showNotification('create', 'Successfully added a new reservation!', 'success', 'top', 'right');
+      }
+  })
 });
 
 function get_bus_type(){
+  
+
     
     $.ajax({
       url: '<?php echo base_url()?>busInformation/get_bus_type',
@@ -231,13 +352,14 @@ function show_route(){
 
       success: function(data){
         var route = data.data;
+        console.log(route);
         var html = "";
 
         if(route.length == 0){
           var html = `<option> -- No route available -- </option>`;
         }
         else{
-          var html = "<option> -- Select available bus schedule -- </option>";
+          var html = "<option> -- Select available routes -- </option>";
         }
 
         for(var i=0; i < route.length; i++){
@@ -253,58 +375,87 @@ function show_route(){
 
 $( "#reserveRoute" ).change(function() {
     show_landmark();
-    show_avail_schedule();
-    show_landmark();
 });
 
 function show_landmark(){
-var landmarkId = document.getElementById('reserveRoute').value;
+  var routeId = document.getElementById('reserveRoute').value;
+  console.log(routeId);
+  let kmDistance, routeName;
 
-$.ajax({
-  url: '<?php echo base_url()?>RouteView/show_landmark/' + landmarkId,
-  type: "GET",
-  dataType: "JSON",
+  $.ajax({
+    url: '<?php echo base_url()?>route/get_one_route/',
+    data: {id: routeId},
+    type: "POST",
+    dataType: "JSON",
 
-  success: function(data){
-    var landmark = data.data;
-    var html = "";
-
-    if(landmark.length == 0){
-          var html = `<option> -- No landmark available -- </option>`;
-        }
-        else{
-          var html = "<option> -- Select available bus schedule -- </option>";
-        }
-
-    for(var i=0; i < landmark.length; i++){
-      html += `<option value="${landmark[i].id}">${landmark[i].name}</option>`
+    success: function(data){
+      var route = data.data;
+      var html = "";
+      kmDistance = route.kmDistance
+      routeName = route.destination.name
+      console.log(route);
     }
-    
-    $('#reserveLandmark').html(html);
-  }
+  })
+
+  $.ajax({
+    url: '<?php echo base_url()?>RouteView/show_landmark/' + routeId,
+    type: "GET",
+    dataType: "JSON",
+
+    success: function(data){
+      var landmark = data.data;
+      var html = "";
+      console.log(landmark);
+
+      if(landmark.length == 0){
+            var html = `<option> -- No landmark available -- </option>`;
+          }
+          else{
+            var html = "<option> -- Select available landmarks -- </option>";
+          }
+
+      html += `<option value="${kmDistance}">${routeName}</option>`
+      for(var i=0; i < landmark.length; i++){
+        html += `<option value="${landmark[i].kmFromOrigin}">${landmark[i].name}</option>`
+      }
+      
+      $('#reserveLandmark').html(html);
+    }
 })
 }
 
-function show_schedule(){
-var landmarkId = document.getElementById('reserveRoute').value;
 
-$.ajax({
-  url: '<?php echo base_url()?>RouteView/show_landmark/' + landmarkId,
-  type: "GET",
-  dataType: "JSON",
+$( "#reserveLandmark" ).change(function() {
+  show_avail_schedule();
+});
 
-  success: function(data){
-    var landmark = data.data;
-    var html = "";
+// function show_schedule(){
+// var scheduleId = document.getElementById('reserveRoute').value;
 
-    for(var i=0; i < landmark.length; i++){
-      html += `<option value="${landmark[i].id}">${landmark[i].name}</option>`
-    }
+// $.ajax({
+//   url: '<?php echo base_url()?>schedule/show_schedule/' + scheduleId,
+//   type: "GET",
+//   dataType: "JSON",
+
+//   success: function(data){
+//     var schedule = data.data;
+//     var html = "";
+
+//     if(schedule.length == 0){
+//           var html = `<option> -- No landmark available -- </option>`;
+//         }
+//         else{
+//           var html = "<option> -- Select available landmarks -- </option>";
+//         }
+
+//     for(var i=0; i < landmark.length; i++){
+//       html += `<option value="${landmark[i].id}">${landmark[i].name}</option>`
+//     }
     
-    $('#reserveLandmark').html(html);
-  }
-})
-}
+//     $('#reserveLandmark').html(html);
+//   }
+// })
+// }
 
 function show_avail_schedule(){
   var routeId = document.getElementById('reserveRoute').value;
@@ -328,9 +479,16 @@ function show_avail_schedule(){
     success: function(data){
       var sched = JSON.parse(data);
       var schedule = sched.data
-      // console.log(schedule);
-
+      console.log(schedule);
       var html = "";
+
+      if(schedule.length == 0){
+            var html = `<option> -- No schedule available -- </option>`;
+          }
+          else{
+            var html = "<option> -- Select available schedule -- </option>";
+          }
+      
       
       for(var i=0; i < schedule.length; i++){
         var date = moment(`${schedule[i].scheduleDate}`).format('LL');

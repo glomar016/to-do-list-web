@@ -96,7 +96,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <th>Destination</th>
                                 <th>Km Distance</th>
                                 <th>Effectivity Date</th>
-                                <th>Actions</th>
+                                <th width="10%">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

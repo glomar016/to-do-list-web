@@ -188,7 +188,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <th>Bus Owner</th>
                     <th>Plate Number</th>
                     <th>Date Created</th>
-                    <th>Actions</th>
+                    <th width="10%">Actions</th>
                 </thead>
               </table>
           </div>
@@ -570,6 +570,29 @@ function get_bus_type(){
     })
   }
 
+  function get_bus_template(){
+
+    $.ajax({
+      url: '<?php echo base_url()?>bus_template/show_bus_template',
+      type: "GET",
+      dataType: "JSON",
+
+      success: function(data){
+        var busTemplateInfo = data.data;
+        
+        var html = ""
+
+        for(var i=0; i< busTemplateInfo.length; i++){
+          html += `<option value="${busTemplateInfo[i].id}">${busTemplateInfo[i].name}</option>`
+        }
+
+        $('#busTemplateInput').html(html);
+        $('#busTemplateEdit').html(html);
+      }
+    })
+  }
+
+get_bus_template();
 get_bus_type();
 dataTable();
 

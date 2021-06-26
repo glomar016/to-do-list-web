@@ -26,7 +26,6 @@ class ChartofAccount extends CI_Controller {
     public function add_ChartofAccount()
     {
         $name = $this->input->post('ChartofAccountName');
-        $description = $this->input->post('ChartofAccountDescription');
 
         $data = array("name" => $name
                         , "description" => $description);
@@ -36,7 +35,7 @@ class ChartofAccount extends CI_Controller {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://localhost:3600/api/v1/ChartofAccount/',
+        CURLOPT_URL => 'http://localhost:3600/api/v1/Chart_of_account/',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -61,7 +60,7 @@ class ChartofAccount extends CI_Controller {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://localhost:3600/api/v1/ChartofAccount/',
+        CURLOPT_URL => 'http://localhost:3600/api/v1/Chart_of_account/',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -86,7 +85,7 @@ class ChartofAccount extends CI_Controller {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://localhost:3600/api/v1/ChartofAccount/'.$id,
+        CURLOPT_URL => 'http://localhost:3600/api/v1/Chart_of_account/'.$id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -115,7 +114,7 @@ class ChartofAccount extends CI_Controller {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://localhost:3600/api/v1/ChartofAccount/'.$id,
+        CURLOPT_URL => 'http://localhost:3600/api/v1/Chart_of_account/'.$id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -146,7 +145,7 @@ class ChartofAccount extends CI_Controller {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://localhost:3600/api/v1/ChartofAccount/'.$id,
+        CURLOPT_URL => 'http://localhost:3600/api/v1/Chart_of_account/'.$id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

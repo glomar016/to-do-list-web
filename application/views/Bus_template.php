@@ -102,7 +102,7 @@ textarea::-webkit-scrollbar{
                             <th>Rows</th>
                             <th>Columns</th>
                             <th>Created at</th>
-                            <th>Action</th>
+                            <th width="10%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -140,31 +140,6 @@ textarea::-webkit-scrollbar{
 <?php $this->load->view('includes/fixed_scripts.php')?>
 
 <script>
-
-
-$('#addBusTemplateForm').on('submit', function(e){
-        e.preventDefault();
-
-        var form = $('#addBusTemplateForm'); 
-
-        // ajax opening tag
-        $.ajax({
-            url: '<?php echo base_url()?>bus_template/add_bus_template/',
-            type: "POST",
-            data: form.serialize(),
-            dataType: "JSON",
-        
-            success: function(data){
-                // refresh();
-                showNotification('create', 'Successfully added a new bus template!', 'success', 'top', 'right');
-                $("#addBusTypeForm").trigger("reset");
-                // End of Confirmation
-
-                
-            }
-        // ajax closing tag
-        })
-    });
 
 function get_bus_type(){
     
@@ -204,10 +179,10 @@ function get_bus_type(){
             "columns": [
                 { data: "id"},
                 { data: "name"},
-                { data: "typeId"},
+                { data: "busType.name"},
                 { data: "seat"},
-                { data: "column"},
                 { data: "row"},
+                { data: "column"},
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
@@ -229,7 +204,39 @@ function get_bus_type(){
             "order": [[6, "desc"]]
         })
     }
-    loadtable();
+loadtable();
+
+function refresh(){
+        var url = "<?php echo base_url()?>bus_template/show_bus_template/";
+
+        busTemplateTable.ajax.url(url).load();
+    }
+
+
+$('#addBusTemplateForm').on('submit', function(e){
+        e.preventDefault();
+
+        var form = $('#addBusTemplateForm'); 
+
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>bus_template/add_bus_template/',
+            type: "POST",
+            data: form.serialize(),
+            dataType: "JSON",
+        
+            success: function(data){
+                refresh();
+                showNotification('create', 'Successfully added a new bus template!', 'success', 'top', 'right');
+                $("#addBusTemplateForm").trigger("reset");
+                // End of Confirmation
+                
+                
+            }
+        // ajax closing tag
+        })
+    });
+
 </script>
 
 </html>

@@ -248,4 +248,5 @@ class Route extends CI_Controller {
 
         $this->load->view('viewRoute', $data);
     }
+
 }

@@ -100,9 +100,12 @@ The above copyright notice and this permission notice shall be included in all c
                     <th>ID</th>
                     <th>Bus Number</th>
                     <th>Bus Schedule</th>
-                    <th>Plate Number</th>
+                    <th>Origin</th>
+                    <th>Destination</th>
+                    <th>Bus Type</th>
+                    <th>Time</th>
                     <th>Date Created</th>
-                    <th>Actions</th>
+                    <th width="10%">Actions</th>
                 </thead>
               </table>
           </div>
@@ -195,7 +198,12 @@ function dataTable(){
           {data: "scheduleDate", render: function(data, type, row){
                 return moment(data).format('LL');
           }},
-          {data: "busInformation.plateNumber"},
+          {data: "busSchedule.route.origin.name"},
+          {data: "busSchedule.route.destination.name"},
+          {data: "busInformation.busTypeId.name"},
+          {data: "busSchedule.hourFrom", render: function(data, type, row){
+                return moment(data).format('LT') + ' - ' + moment(row.busSchedule.hourTo).format('LT');
+          }},
           {data: "created_at", render: function(data, type, row){
                 return moment(data).format('LL');
           }},
@@ -300,11 +308,12 @@ $('#editBusScheduleForm').on('submit', function(e){
 
 $(document).on("click", ".btn-delete", function(){
   var id = this.value;
+  
   $("#deleteModal").modal('show');
   $.ajax({
         url:'<?php echo base_url()?>busSchedule/viewBusSchedule',
         type: "POST",
-        data: { id: id},
+        data: { id: id },
         dataType: "JSON",
 
         success: function(data){

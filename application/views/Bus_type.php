@@ -87,7 +87,7 @@ textarea::-webkit-scrollbar{
                             <th>Bus Type</th>
                             <th>Description</th>
                             <th>Date Created</th>
-                            <th>Actions</th>
+                            <th width="10%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

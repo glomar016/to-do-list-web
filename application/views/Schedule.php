@@ -134,7 +134,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <th>Bus Type</th>
                     <th>Time</th>
                     <th>Date Created</th>
-                    <th>Actions</th>
+                    <th width="10%">Actions</th>
                 </thead>
               </table>
           </div>
@@ -365,7 +365,6 @@ function dataTable(){
           {data: "route.name"},
           {data: "busType.name"},
           {"data": null, render: function (data, type, row) {
-            
               var time = moment(row.hourFrom).format('LT') + " - " + moment(row.hourTo).format('LT');
               return time;
           }},

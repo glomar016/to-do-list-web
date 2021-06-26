@@ -36,6 +36,7 @@ class busSchedule extends CI_Controller {
 						, "scheduleDate" => $scheduleDateInput
             , "busScheduleId" => $availableBus
 						);
+            
 		$postdata = json_encode($data);
 
 		$curl = curl_init();

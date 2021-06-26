@@ -28,13 +28,6 @@
           <p class="nav-link" style="line-height: 0px"><strong>Bus Management</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
 
-          <li <?php if($this->router->fetch_class() == 'businformation') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>businformation">
-              <!-- <i class="material-icons">account_circle</i> -->
-              <p>Bus Information</p>
-            </a>
-          </li>
-
           <li <?php if($this->router->fetch_class() == 'bus_type') {?> class="active has-sub" <?php } ?>>
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>bus_type">
               <!-- <i class="material-icons">account_circle</i> -->
@@ -42,17 +35,50 @@
             </a>
           </li>
 
+          <li <?php if($this->router->fetch_class() == 'bus_template') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>bus_template">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Bus Template</p>
+            </a>
+          </li>
+
+          <li <?php if($this->router->fetch_class() == 'businformation') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>businformation">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Bus Information</p>
+            </a>
+          </li>
+
+
+          
+
           <div class="mx-auto" style="height: 20px;"></div>
           <p class="nav-link" style="line-height: 0px"><strong>Fare Management</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
 
+  
           <li <?php if($this->router->fetch_class() == 'fare') {?> class="active has-sub" <?php } ?>>
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>fare">
               <!-- <i class="material-icons">account_circle</i> -->
               <p>Fare</p>
             </a>
           </li>
+
+          <li <?php if($this->router->fetch_class() == 'promo') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>promo">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Promos and Discount</p>
+            </a>
+          </li>
           
+          <li <?php if($this->router->fetch_class() == 'insurance') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>insurance">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>insurance</p>
+            </a>
+          </li>
+
+
           <div class="mx-auto" style="height: 20px;"></div>
           <p class="nav-link" style="line-height: 0px"><strong>Route Management</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
@@ -97,6 +123,31 @@
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>reservation">
               <!-- <i class="material-icons">account_circle</i> -->
               <p>Reservation</p>
+            </a>
+          </li>
+
+          <div class="mx-auto" style="height: 20px;"></div>
+          <p class="nav-link" style="line-height: 0px"><strong>Cashier</strong></p>
+          <div class="mx-auto" style="height: 20px;"></div>
+
+          <li <?php if($this->router->fetch_class() == 'counter') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>counter">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Counter</p>
+            </a>
+          </li>
+
+          <li <?php if($this->router->fetch_class() == 'chartofaccount') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>chartofaccount">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Chart of Account</p>
+            </a>
+          </li>
+
+          <li <?php if($this->router->fetch_class() == 'payment') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>payment">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Payment</p>
             </a>
           </li>
 

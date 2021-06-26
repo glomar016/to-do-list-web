@@ -90,7 +90,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Date Created</th>
-                            <th>Actions</th>
+                            <th width="10%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

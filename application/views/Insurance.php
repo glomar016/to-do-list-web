@@ -106,7 +106,7 @@ textarea::-webkit-scrollbar{
                             <th>Insurance Amount</th>
                             <th>Insurance Details</th>
                             <th>Insurance Document</th>
-                            <th>Actions</th>
+                            <th width="10%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
