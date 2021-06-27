@@ -14,7 +14,7 @@
  */
 /*     brand Colors              */
 .card {
-  font-size: .875rem;
+  font-size: .75rem;
 }
 
 *,
@@ -2327,7 +2327,7 @@ pre code {
   padding: 0.4375rem 0;
   font-size: 1rem;
   line-height: 1.5;
-  color: #495057;
+  color: #383f48;
   background-color: rgba(0, 0, 0, 0);
   background-clip: padding-box;
   border: 1px solid #d2d2d2;
@@ -2342,7 +2342,7 @@ pre code {
 }
 
 .form-control:focus {
-  color: #495057;
+  color: #383f48;
   background-color: rgba(0, 0, 0, 0);
   border-color: #9acffa;
   outline: 0;
@@ -2361,7 +2361,7 @@ pre code {
 }
 
 select.form-control:not([size]):not([multiple]) {
-  height: calc(2.4375rem + 2px);
+  height: .7rem;
 }
 
 select.form-control:focus::-ms-value {
@@ -4142,7 +4142,7 @@ tbody.collapse.show {
   height: calc(2.4375rem + 2px);
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   line-height: 1.5;
-  color: #495057;
+  color: #383f48;
   vertical-align: middle;
   background: #ffffff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.75rem center;
   background-size: 8px 10px;
@@ -4802,7 +4802,7 @@ tbody.collapse.show {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: #383f48;
   background-clip: border-box;
   border: 1px solid #eeeeee;
   border-radius: 0.25rem;
@@ -9461,23 +9461,23 @@ a.text-dark:focus {
 
 .btn.btn-primary {
   color: #fff;
-  background-color: #9c27b0;
-  border-color: #9c27b0;
-  box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
+  background-color: #0088cc;
+  border-color: #0088cc;
+  box-shadow: 0 2px 2px 0 rgba(34, 1, 39, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
 
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #2baab1;
+  border-color: #2baab1;
 }
 
 .btn.btn-primary:focus,
 .btn.btn-primary.focus,
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #2baab1;
+  border-color: #2baab1;
 }
 
 .btn.btn-primary:active,
@@ -9485,8 +9485,8 @@ a.text-dark:focus {
 .open>.btn.btn-primary.dropdown-toggle,
 .show>.btn.btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #701c7e;
+  background-color: #2baab1;
+  border-color: #2baab1;
   box-shadow: 0 2px 2px 0 rgba(156, 39, 176, 0.14), 0 3px 1px -2px rgba(156, 39, 176, 0.2), 0 1px 5px 0 rgba(156, 39, 176, 0.12);
 }
 
@@ -9503,31 +9503,31 @@ a.text-dark:focus {
 .show>.btn.btn-primary.dropdown-toggle:focus,
 .show>.btn.btn-primary.dropdown-toggle.focus {
   color: #fff;
-  background-color: #9124a3;
-  border-color: #3f1048;
+  background-color: #2baab1;
+  border-color: #2baab1;
 }
 
 .open>.btn.btn-primary.dropdown-toggle.bmd-btn-icon {
   color: inherit;
-  background-color: #9c27b0;
+  background-color: #2baab1;
 }
 
 .open>.btn.btn-primary.dropdown-toggle.bmd-btn-icon:hover {
-  background-color: #9124a3;
+  background-color: #2baab1;
 }
 
 .btn.btn-primary.disabled:focus,
 .btn.btn-primary.disabled.focus,
 .btn.btn-primary:disabled:focus,
 .btn.btn-primary:disabled.focus {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #2baab1;
+  border-color: #2baab1;
 }
 
 .btn.btn-primary.disabled:hover,
 .btn.btn-primary:disabled:hover {
-  background-color: #9c27b0;
-  border-color: #9c27b0;
+  background-color: #2baab1;
+  border-color: #2baab1;
 }
 
 .btn.btn-primary:focus,
@@ -9538,7 +9538,7 @@ a.text-dark:focus {
 
 .btn.btn-primary.btn-link {
   background-color: transparent;
-  color: #9c27b0;
+  color: #2baab1;
   box-shadow: none;
 }
 
@@ -9546,7 +9546,7 @@ a.text-dark:focus {
 .btn.btn-primary.btn-link:focus,
 .btn.btn-primary.btn-link:active {
   background-color: transparent;
-  color: #9c27b0;
+  color: #2baab1;
 }
 
 .btn.btn-secondary {
@@ -9821,7 +9821,7 @@ a.text-dark:focus {
 
 .btn.btn-warning {
   color: #fff;
-  background-color: #ff9800;
+  background-color: #8199d6;
   border-color: #ff9800;
   box-shadow: 0 2px 2px 0 rgba(255, 152, 0, 0.14), 0 3px 1px -2px rgba(255, 152, 0, 0.2), 0 1px 5px 0 rgba(255, 152, 0, 0.12);
 }
@@ -11865,7 +11865,7 @@ form {
   background: no-repeat center bottom, center calc(100% - 1px);
   background-size: 0 100%, 100% 100%;
   border: 0;
-  height: 36px;
+  height: 2rem;
   transition: background 0s ease-out;
   padding-left: 0;
   padding-right: 0;
@@ -12043,7 +12043,7 @@ fieldset[disabled] .is-focused .switch label:focus {
 
 .form-control,
 .is-focused .form-control {
-  background-image: linear-gradient(to top, #9c27b0 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
+  background-image: linear-gradient(to top, #0088cc 2px, rgba(156, 39, 176, 0) 2px), linear-gradient(to top, #d2d2d2 1px, rgba(210, 210, 210, 0) 1px);
 }
 
 .form-control:invalid {
@@ -12190,7 +12190,7 @@ fieldset[disabled][disabled] .form-control,
 
 .is-focused [class^='bmd-label'],
 .is-focused [class*=' bmd-label'] {
-  color: #9c27b0;
+  color: #0088cc;
 }
 
 .is-focused .bmd-label-placeholder {
@@ -13317,7 +13317,7 @@ fieldset[disabled][disabled] .has-rose .form-control,
 .bmd-form-group .bmd-label-static {
   top: 0.35rem;
   left: 0;
-  font-size: 0.875rem;
+  font-size: 0.7rem;
 }
 
 .bmd-form-group .bmd-help {
@@ -14359,7 +14359,7 @@ h6,
 .h2,
 .h3,
 .h4 {
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-weight: 300;
   line-height: 1.5em;
 }
@@ -15294,7 +15294,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar .nav li.active>a,
 .sidebar .nav li.active>a i {
-  color: #fff;
+  color: #0088cc;
 }
 
 .sidebar .nav li.separator {
@@ -15316,7 +15316,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar .nav p {
   margin: 0;
-  line-height: 30px;
+  line-height: 20px;
   font-size: 14px;
   position: relative;
   display: block;
@@ -15338,7 +15338,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a {
   margin: 10px 15px 0;
   border-radius: 3px;
-  color: #3C4858;
+  color: #ABB4BE;
   padding-left: 10px;
   padding-right: 10px;
   text-transform: capitalize;
@@ -15400,7 +15400,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   padding: 5px 0px;
   display: inline-block;
   font-size: 18px;
-  color: #3C4858;
+  color: #0088cc;
   white-space: nowrap;
   font-weight: 400;
   line-height: 30px;
@@ -16860,7 +16860,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 }
 
 .table thead tr th {
-  font-size: 1.063rem;
+  font-size: .75rem;
 }
 
 .table .th-description {
@@ -16981,12 +16981,12 @@ thead.thead-inverse th,
 .dataTable>thead>tr>td,
 .dataTable>tbody>tr>td,
 .dataTable>tfoot>tr>td {
-  padding: 5px !important;
+  padding: 1px !important;
 }
 
 body {
-  background-color: #eee;
-  color: #3C4858;
+  background-color: #ECEDEF;
+  color: #545659;
   font-weight: 300;
 }
 
@@ -17008,12 +17008,12 @@ legend {
 }
 
 a {
-  color: #9c27b0;
+  color: #383f48;
 }
 
 a:hover,
 a:focus {
-  color: #89229b;
+  color: #383f48;
   text-decoration: none;
 }
 
@@ -17028,11 +17028,12 @@ a .material-icons {
 
 .form-check,
 label {
-  font-size: 14px;
+  font-size: .7rem;
   line-height: 1.42857;
-  color: #AAAAAA;
+  color: #191C21;
   font-weight: 400;
 }
+
 
 /*           Animations              */
 .animation-transition-general,
@@ -17365,8 +17366,8 @@ html[dir="rtl"] .form-check .form-check-sign .check:before {
   margin-bottom: 30px;
   margin-top: 30px;
   border-radius: 6px;
-  color: #333333;
-  background: #fff;
+  color: #383f48;
+  background: #FFFFFF;
   width: 100%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
