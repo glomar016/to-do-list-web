@@ -233,9 +233,15 @@ $(document).ready(function(){
                 { data: "id"},
                 { data: "typeId.name"},
                 { data: "initialKm"},
-                { data: "initialPrice"},
-                { data: "additionalKm"},
-                { data: "discountPercentage"},
+                { data: "initialPrice", render: function (data, type, row){
+                    return ("P" + parseFloat(data).toFixed(2))
+                }},
+                { data: "additionalKm", render: function (data, type, row){
+                    return ("P" + parseFloat(data).toFixed(2))
+                }},
+                { data: "discountPercentage", render: function (data, type, row){
+                    return data + "%";
+                }},
                 { data: "effectivityDate", render: function (data, type, row){
                     return moment (data).format("LL");
                         }
@@ -378,9 +384,9 @@ $(document).on("click", ".btn_generate", function(){
                             </tr>
                         </thead>
                             <tr>
-                                <td>${initialKm}</td>
-                                <td>Php ${initialPrice}</td>
-                                <td>Php ${priceTotal}</td>
+                                <td>${initialKm} km</td>
+                                <td>Php ${parseFloat(initialPrice).toFixed(2)}</td>
+                                <td>Php ${parseFloat(priceTotal).toFixed(2)}</td>
                             </tr>
                     </table>`;
 
@@ -395,7 +401,7 @@ $(document).on("click", ".btn_generate", function(){
                 totalPrice = parseFloat(newPrice) - parseFloat(discountPrice);
 
                 html += `<tr>
-                            <td>${addKm}</td>
+                            <td>${addKm} km</td>
                             <td>Php ${Math.round(newPrice)}</td>
                             <td>Php ${Math.round(totalPrice)}</td>
                         </tr>`
