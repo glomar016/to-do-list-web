@@ -39,7 +39,7 @@ class Promo extends CI_Controller {
         $deactivationDateInput = $this->input->post('deactivationDateInput');
 
         $data = array("code" => $codeInput
-						// , "busTypeId" => $busTypeInput
+						, "busTypeId" => $busTypeInput
 						, "fixedDiscount" => $fixedDiscountInput
                         , "percentageDiscount" => $percentageDiscountInput
                         , "minimumAmount" => $minimumAmountInput
@@ -122,7 +122,7 @@ class Promo extends CI_Controller {
 
 	public function edit_promo(){
 		$codeEdit = $this->input->post('codeEdit');
-        // $busTypeEdit = $this->input->post('busTypeEdit');
+        $busTypeEdit = $this->input->post('busTypeEdit');
         $fixedDiscountEdit = $this->input->post('fixedDiscountEdit');
         $percentageDiscountEdit = $this->input->post('percentageDiscountEdit');
         $minimumAmountEdit = $this->input->post('minimumAmountEdit');
@@ -195,5 +195,25 @@ class Promo extends CI_Controller {
         curl_close($curl);
         echo $response;
     }
+
+    public function getBusType(){
+		$curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_type/',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+	}
 
 }
