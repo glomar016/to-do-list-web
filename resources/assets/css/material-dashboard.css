@@ -2361,7 +2361,7 @@ pre code {
 }
 
 select.form-control:not([size]):not([multiple]) {
-  height: .7rem;
+  height: 2rem;
 }
 
 select.form-control:focus::-ms-value {
@@ -11870,7 +11870,7 @@ form {
   padding-left: 0;
   padding-right: 0;
   border-radius: 0;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .form-control:focus,
@@ -14359,8 +14359,8 @@ h6,
 .h2,
 .h3,
 .h4 {
-  font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
-  font-weight: 300;
+  font-family: 'Open Sans',"Helvetica",Helvetica,Arial,sans-serif;
+  font-weight: 600;
   line-height: 1.5em;
 }
 
@@ -15294,7 +15294,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 
 .sidebar .nav li.active>a,
 .sidebar .nav li.active>a i {
-  color: #0088cc;
+  color: #1C1427;
+  background-color: #7ECA9C;
 }
 
 .sidebar .nav li.separator {
@@ -15338,7 +15339,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .sidebar .nav li .dropdown-menu a {
   margin: 10px 15px 0;
   border-radius: 3px;
-  color: #ABB4BE;
+  color: #ffffff;
   padding-left: 10px;
   padding-right: 10px;
   text-transform: capitalize;
@@ -16985,8 +16986,8 @@ thead.thead-inverse th,
 }
 
 body {
-  background-color: #ECEDEF;
-  color: #545659;
+  background-color: #d3f3df;
+  color: #7ECA9C;
   font-weight: 300;
 }
 

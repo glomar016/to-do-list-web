@@ -93,14 +93,19 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                           </div>
                           <div class="form-row">
-                          <div class="form-group col-sm-12">
+                            <div class="form-group col-sm-12">
+                              <button id="btnShowSched" class="btn btn-sm btn-info float-left">Show Available Schedule</button>
+                            </div>
+                          </div>
+                          <div class="form-row">
+                          <div id="scheduleDiv" class="form-group col-sm-12" hidden>
                                 <label for="reserveSchedule">Schedule</label>
                                 <select class="form-control" id="reserveSchedule" name="reserveSchedule">
 
                                 </select>
                             </div>
                           </div>
-                          <input type="submit" class="btn btn-primary">
+                            <input type="submit" class="btn btnd-md btn-success float-right"><br><br>
                       </form>
                   </div>
                   </div>
@@ -180,7 +185,7 @@ function dataTable(){
         ],
 
       "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 6] }],
-      "order": [[4, "desc"]]
+      "order": [[3, "desc"]]
 
     })
 
@@ -272,6 +277,7 @@ $('#reservationForm').on('submit', function(e){
         $('#reserveRoute').html("");
         $('#reserveLandmark').html("");
         $('#reserveSchedule').html("");
+        $('#scheduleDiv').attr("hidden", true)
         showNotification('create', 'Successfully added a new reservation!', 'success', 'top', 'right');
       }
   })
@@ -336,6 +342,7 @@ function show_terminal(){
       }
     })
   }
+
 
 $( "#reserveOrigin" ).change(function() {
     show_route();
@@ -425,7 +432,9 @@ function show_landmark(){
 }
 
 
-$( "#reserveLandmark" ).change(function() {
+$( "#btnShowSched" ).on('click', function(e) {
+  e.preventDefault();
+  $("#scheduleDiv").attr("hidden", false);
   show_avail_schedule();
 });
 
