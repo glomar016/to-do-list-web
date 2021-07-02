@@ -212,7 +212,6 @@ $('#reservationForm').on('submit', function(e){
   var reserveSchedule = $('#reserveSchedule').val();
   var initialKm, initialPrice, additionalKm, discountPercentage, routeKmDistance;
 
-
   $.ajax({
       url:'<?php echo base_url()?>fare/get_specific_fare',
       type: "POST",
