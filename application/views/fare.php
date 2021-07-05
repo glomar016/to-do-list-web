@@ -121,64 +121,93 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
         <!-- END OF CLOSING TAG OF CONTENT -->
 
-    
         <!-- VIEW MODAL -->
-        <div class="modal fade" id="viewfareInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">View Fare Info</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+        <div class="modal fade" id="viewfareInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewModal">View Fare</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="card-body">
+            <form id="fareForm">
                 <div class="modal-body">
-                <form id="viewFareForm" name="viewFareForm">
-                        <div class="form-row">
-                            <div class="form-group col-sm-12">
-                                <label for="fareBusTypeView">Bus Type</label> <br>
-                                <span id="fareBusTypeView" name="fareBusTypeView">
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-sm-6">
-                                <label for="initialKmView">Initial Km</label><br>
-                                <span name="initialKmView" id="initialKmView" >
-                                </span>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="initialPriceView">Initial Price</label><br>
-                                <span name="initialPriceView"  id="initialPriceView" >
-                                </span>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-sm-6">
-                                <label for="additionalKmView">Additional Km</label><br>
-                                <span name="additionalKmView"  id="additionalKmView" >
-                                </span>
-                            </div>
-                            <div class="form-group col-sm-6">
-                                <label for="discountPercentageView">Discount Percentage</label><br>
-                                <span name="discountPercentageView"  id="discountPercentageView" >
-                                </span>
-                            </div>
-                        </div>
-                            <div class="form-group col-sm-5">
-                                <label for="effectivityDateView" class="label-control">Effectivity Date</label> <br>
-                                <span id="effectivityDateView" name="effectivityDateView">
-                                </span>
-                            </div>
-                        <div class="form-row">
-                        </div>
-                                                
-                            <input type="submit" class="btn btn-primary">
-                        </form>
+                    <input hidden type="text" class="form-control" name="fareIdView" id="fareIdView" >
+                    
+                    <label for="busTypeIdView">Bus Type</label>
+                        <select id="busTypeIdView" name="busTypeIdView" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
+                            
+                        </select>
+                    <label for="exampleInputEmail1">Initial Km</label>
+                        <input type="text" class="form-control" name="initialKmView" id="initialKmView" >
+                    <label for="exampleInputEmail1">Initial Price</label>
+                        <input type="text" class="form-control" name="initialPriceView" id="initialPriceView" >
+                    <label for="exampleInputEmail1">Additional Km</label>
+                        <input type="text" class="form-control" name="additionalKmView" id="additionalKmView" >
+                    <label for="exampleInputEmail1">Discount Percentage</label>
+                        <input type="text" class="form-control" name="discountPercentageView" id="discountPercentageView" >
+                    <label for="exampleInputEmail1">Effectivity Date</label>
+                        <input type="text" class="form-control" name="effectivityDateView" id="effectivityDateView" aria-describedby="">
                 </div>
+                <div class="modal-footer">
+                    <!-- <input type="submit" class="btn btn-success"> -->
                 </div>
+            </form>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+        <!-- EDIT MODAL -->
+        <div class="modal fade" id="editfareInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editfareInfoModal">Edit Fare</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+            <div class="card-body">
+            <form id="editfareForm">
+                <div class="modal-body">
+                    <input hidden type="text" class="form-control" name="fareIdEdit" id="fareIdEdit" >
+                    <label for="busTypeIdEdit">Bus Type</label>
+                        <select id="busTypeIdEdit" name="busTypeIdEdit" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
+                            
+                        </select>
+                    <label for="exampleInputEmail1">Initial Km</label>
+                        <input type="text" class="form-control" name="initialKmEdit" id="initialKmEdit" >
+                    <label for="exampleInputEmail1">Initial Price</label>
+                        <input type="text" class="form-control" name="initialPriceEdit" id="initialPriceEdit" >
+                    <label for="exampleInputEmail1">Additional Km</label>
+                        <input type="text" class="form-control" name="additionalKmEdit" id="additionalKmEdit" >
+                    <label for="exampleInputEmail1">Discount Percentage</label>
+                        <input type="text" class="form-control" name="discountPercentageEdit" id="discountPercentageEdit" >
+                    <label for="exampleInputEmail1">Effectivity Date</label>
+                        <input type="date" class="form-control" name="effectivityDateEdit" id="effectivityDateEdit" aria-describedby="">
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="update" class="btn btn-warning">
+                </div>
+            </form>
             </div>
             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+    </div>
+
             
     <!-- END OF MAIN CONTENT -->
 </div>
@@ -426,14 +455,16 @@ $(document).on("click", ".btn_generate", function(){
             dataType: "JSON",
         
             success: function(data){
+                console.log(data);
                 var fareInfo = data.data;
+                console.log(moment(fareInfo.effectivityDate).format('MM-DD-YYYY'))
 
-                $('#fareBusTypeView').html(fareInfo.typeId.name);
-                $('#initialKmView').html(fareInfo.initialKm);
-                $('#initialPriceView').html(fareInfo.initialPrice);
-                $('#additionalKmView').html(fareInfo.additionalKm);
-                $('#discountPercentageView').html(fareInfo.discountPercentage);
-                $('#effectivityDateView').html(moment(fareInfo.effectivityDate).format('MM-DD-YYYY'));
+                $('#fareIdView').val(id);
+                $('#initialKmView').val(fareInfo.initialKm);
+                $('#initialPriceView').val(fareInfo.initialPrice);
+                $('#additionalKmView').val(fareInfo.additionalKm);
+                $('#discountPercentageView').val(fareInfo.discountPercentage);
+                $('#effectivityDateView').val(moment(fareInfo.effectivityDate).format('YYYY-MM-DD'));
 
                 $('#viewfareInfoModal').modal('show');
             }

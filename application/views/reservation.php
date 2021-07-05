@@ -93,6 +93,12 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                           </div>
                           <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <label for="promoId">Promo Code</label>
+                                <input type="text" class="form-control" id="promoId" name="promoId">
+                            </div>
+                          </div>
+                          <div class="form-row">
                             <div class="form-group col-sm-12">
                               <button id="btnShowSched" class="btn btn-sm btn-info float-left">Show Available Schedule</button>
                             </div>
@@ -162,10 +168,11 @@ function dataTable(){
           {data: "id"},
           {data: "referenceNumber"},
           {data: "name"},
-          {data: "scheduleId", render: function(data, type, row){
-              return row.schedule.route.origin.name + ' - ' + row.schedule.route.destination.name + ' - ' + moment(row.reservationDate).format('ll') + ' - ' 
-                    + moment(row.schedule.hourFrom).format('LT') + ' - ' + moment(row.schedule.hourTo).format('LT');;
-          }},
+          {data: "name"},
+          // {data: "scheduleId", render: function(data, type, row){
+          //     return row.schedule.route.origin.name + ' - ' + row.schedule.route.destination.name + ' - ' + moment(row.reservationDate).format('ll') + ' - ' 
+          //           + moment(row.schedule.hourFrom).format('LT') + ' - ' + moment(row.schedule.hourTo).format('LT');;
+          // }},
           {data: "totalAmount", render: function(data, type, row){
               return "P" + parseFloat(data).toFixed(2);
           }},
@@ -200,6 +207,135 @@ function refresh(){
   reservationTable.ajax.url(url).load();
 }
 
+var bookingDate = new Date();
+// var bookingDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+// var travelDate = $('#reserveDate').val();
+console.log(bookingDate);
+
+var code, ajaxRequest, initialKm, initialPrice, additionalKm, discountPercentage, routeKmDistance;
+var totalKm, totalPrice, totalDiscount, priceTotal, discountTotal, totalPricePromoPercent;
+
+$('#reserveBusType').on('change', function(e){
+e.preventDefault()
+var reserveBusType = document.getElementById('reserveBusType').value;
+  $.ajax({
+        url:'<?php echo base_url()?>fare/get_specific_fare',
+        type: "POST",
+        data: { id: reserveBusType},
+        dataType: "JSON",
+        async: false,
+
+        success: function(data){
+          console.log(data);
+          objectdata = data.data;
+          initialKm = objectdata[0].initialKm;
+          initialPrice = objectdata[0].initialPrice;
+          additionalKm = objectdata[0].additionalKm;
+          discountPercentage = objectdata[0].discountPercentage;
+        }
+    })
+});
+
+  $('#promoId').on('keyup', function(e){
+    e.preventDefault();
+    var promoId = document.getElementById('promoId').value;
+    var travelDate = document.getElementById('reserveDate').value;
+    var value = $(this).val();
+    clearTimeout(ajaxRequest);
+    ajaxRequest = setTimeout(function(e) {
+    $.ajax({
+      url: '<?php echo base_url()?>promo/get_one_specific_promo/',
+      data: {promoId: promoId},
+      type: "POST",
+      dataType: "JSON",
+      async: false,
+
+      success: function(data){
+        var promoInfo = data.data;
+        console.log(promoInfo);
+
+        if(promoInfo != null){
+          if(bookingDate >= new Date(promoInfo.effectivityDate).getTime() && bookingDate < new Date(promoInfo.deactivationDate).getTime()){
+            if(bookingDate >= new Date(promoInfo.bookingDateFrom).getTime() && bookingDate <= new Date(promoInfo.bookingDateTo).getTime()){
+              if(travelDate >= promoInfo.travelDateFrom && travelDate <= promoInfo.tavelDateTo){
+                code = promoInfo.id;
+                console.log("gumagana");
+                if(promoInfo.fixedDiscount){
+                  totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
+                  totalPrice = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+                  totalDiscount = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+
+                  console.log(totalPrice);
+
+                  if(totalPrice >= promoInfo.minimumAmount && totalDiscount >= promoInfo.minimumAmount){
+                    priceTotal = parseFloat(totalPrice) - parseFloat(promoInfo.fixedDiscount);
+                    discountTotal = parseFloat(totalDiscount) - parseFloat(promoInfo.fixedDiscount);
+                    showNotification('create', 'Successfully applied a Promo!', 'success', 'top', 'right');
+                  }
+                  else{
+                    code = null;
+                    priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+                    discountTotal = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+                    showNotification('error', 'Sorry, You have not reached the minimum amount of promo!', 'danger', 'top', 'right');
+                  }
+
+                  if(priceTotal < 0 || discountTotal < 0){
+                    priceTotal = 0;
+                    discountTotal = 0;
+                  }
+                }
+                else if(promoInfo.percentageDiscount){
+                  totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
+                  totalPrice = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+                  totalDiscount = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+                  
+                  console.log(totalPrice);
+                  
+                  if(totalPrice >= promoInfo.minimumAmount && totalDiscount >= promoInfo.minimumAmount){
+                    totalPricePromoPercent = (parseFloat(totalPrice) * (parseFloat(promoInfo.percentageDiscount)) / 100);
+                    priceTotal = parseFloat(totalPrice) - parseFloat(totalPricePromoPercent);
+                    discountTotal = totalDiscount - (parseFloat(totalDiscount * (parseFloat(promoInfo.percentageDiscount / 100))))
+                    showNotification('create', 'Successfully added a Promo!', 'success', 'top', 'right');
+                  }
+                  else{
+                    code = null;
+                    priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+                    discountTotal = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+                    showNotification('error', 'Sorry, You have not reached the minimum amount of promo!', 'danger', 'top', 'right');
+                  }
+                }
+                else{
+                  code = null;
+                  showNotification('error', 'Promo Code does not exist!', 'danger', 'top', 'right');
+                  totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
+                  priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+                  discountTotal = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
+                }
+              }
+              else{
+                code = null
+                showNotification('error', 'Sorry, Promo Code is out of date!', 'danger', 'top', 'right');
+              }
+            }
+            else{
+                code = null
+                showNotification('error', 'Sorry, Promo Code is out of date!', 'danger', 'top', 'right');
+              }
+          }
+          else{
+            code = null
+            showNotification('error', 'Promo is not yet implemented or has expired!', 'danger', 'top', 'right');
+          }
+        }
+        else{
+          code = null
+          showNotification('error', 'Sorry, Promo Code does not exist!', 'danger', 'top', 'right');
+        }
+
+      }
+    });
+  }, 1000, value);
+  });
 
 
 $('#reservationForm').on('submit', function(e){
@@ -208,26 +344,7 @@ $('#reservationForm').on('submit', function(e){
 
   var form = $('#reservationForm');
 
-  var reserveBusType = $('#reserveBusType').val();
   var reserveSchedule = $('#reserveSchedule').val();
-  var initialKm, initialPrice, additionalKm, discountPercentage, routeKmDistance;
-
-  $.ajax({
-      url:'<?php echo base_url()?>fare/get_specific_fare',
-      type: "POST",
-      data: { id: reserveBusType},
-      dataType: "JSON",
-      async: false,
-
-      success: function(data){
-        console.log(data);
-        objectdata = data.data;
-        initialKm = objectdata[0].initialKm;
-        initialPrice = objectdata[0].initialPrice;
-        additionalKm = objectdata[0].additionalKm;
-        discountPercentage = objectdata[0].discountPercentage;
-      }
-  })
   
   $.ajax({
       url:'<?php echo base_url()?>schedule/get_specific_schedule',
@@ -242,11 +359,14 @@ $('#reservationForm').on('submit', function(e){
       }
   })
 
-  var totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
-  console.log(totalKm);
-  var totalPrice = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
-  var totalDiscount = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+  var promoId = code;
 
+  if(promoId == null){
+    totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
+    priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+    discountTotal = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
+  }
+  
   var date = new Date();
   let today = '0' + Math.floor((date.getMonth()+1).toString() + date.getDate().toString() + date.getFullYear().toString().substr(-2) + date.getHours().toString() + date.getMinutes().toString())
   let random = (Math.random()).toString()
@@ -254,9 +374,10 @@ $('#reservationForm').on('submit', function(e){
   let currentStatus = "Pending"
 
   let addedData = form.serializeArray()
+  addedData.push({name: 'promoId', value: promoId});
   addedData.push({name: 'referenceNumber', value: referenceNumber});
-  addedData.push({name: 'totalPrice', value: totalPrice});
-  addedData.push({name: 'totalDiscount', value: totalDiscount});
+  addedData.push({name: 'totalPrice', value: priceTotal});
+  addedData.push({name: 'totalDiscount', value: discountTotal});
   addedData.push({name: 'currentStatus', value: currentStatus});
 
   console.log(addedData);
@@ -312,6 +433,35 @@ function get_bus_type(){
       }
     })
   }
+
+function show_promo(){
+
+$.ajax({
+  url: '<?php echo base_url()?>promo/show_promo',
+  type: "GET",
+  dataType: "JSON",
+
+  success: function(data){
+    var promoInfo = data.data;
+    var html = "";
+
+    if(promoInfo.length == 0){
+      var html = `<option> -- No Promo -- </option>`;
+    }
+    else{
+      var html = "<option> -- Select available Promo -- </option>";
+    }
+
+    for(var i=0; i < promoInfo.length; i++){
+      html += `<option value="${promoInfo[i].id}">${promoInfo[i].code}</option>`
+    }
+    
+    $('#promoId').html(html);
+
+  }
+})
+}
+
 
 function show_terminal(){
     
@@ -512,6 +662,7 @@ function show_avail_schedule(){
 
 }
   show_terminal();
+  show_promo();
   get_bus_type();
   // show_avail_schedule();
 </script>

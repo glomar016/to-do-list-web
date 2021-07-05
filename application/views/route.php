@@ -66,7 +66,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 <label for="kmDistance">Km Distance</label>
                                 <input type="text" class="form-control" name="kmDistance" id="kmDistance" >
                             </div>
-                            <div class="form-group col-sm-3">
+                            <div class="form-group col-sm-6">
                                 <label class="label-control">Effectivity Date</label> 
                                 <input type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
