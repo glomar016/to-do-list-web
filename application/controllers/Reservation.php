@@ -115,19 +115,34 @@ class Reservation extends CI_Controller {
 		$totalPrice = $this->input->post('totalPrice');
 		$totalDiscount = $this->input->post('totalDiscount');
 		$currentStatus = $this->input->post('currentStatus');
-		$currentStatus = $this->input->post('currentStatus');
+		$promoId = $this->input->post('promoId');
 		$reserveDate = $this->input->post('reserveDate');
 
-		$data = array("name" => $reserveName
-					, "billingAddress" => $reserveBilling
-					, "scheduleId" => $reserveSchedule
-					, "referenceNumber" => $referenceNumber
-					, "totalAmount" => $totalPrice
-					, "totalDiscount" => $totalDiscount
-					, "currentStatus" => $currentStatus
-					, "totalDistanceKm" => $totalDistanceKm
-					, "reservationDate" => $reserveDate
-		);
+		if($promoId == ""){
+			$data = array("name" => $reserveName
+						, "billingAddress" => $reserveBilling
+						, "scheduleId" => $reserveSchedule
+						, "referenceNumber" => $referenceNumber
+						, "totalAmount" => $totalPrice
+						, "totalDiscount" => $totalDiscount
+						, "currentStatus" => $currentStatus
+						, "totalDistanceKm" => $totalDistanceKm
+						, "reservationDate" => $reserveDate
+			);
+		}
+		else{
+			$data = array("name" => $reserveName
+						, "billingAddress" => $reserveBilling
+						, "scheduleId" => $reserveSchedule
+						, "referenceNumber" => $referenceNumber
+						, "totalAmount" => $totalPrice
+						, "totalDiscount" => $totalDiscount
+						, "currentStatus" => $currentStatus
+						, "promoId" => $promoId
+						, "totalDistanceKm" => $totalDistanceKm
+						, "reservationDate" => $reserveDate
+			);
+		}
 
 		// print_r($data);
 
