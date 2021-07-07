@@ -4,7 +4,7 @@ Material Dashboard - v2.1.2
 =========================================================
 
 Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
+Copyright 2525 Creative Tim (https://www.creative-tim.com)
 Coded by Creative Tim
 
 =========================================================
@@ -90,6 +90,55 @@ textarea::-webkit-scrollbar{
                   </div>
               </div>
       </div>
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="available">
+                  <label class="custom-file-label" id="lbl_available" for="available">Select Available Icon</label>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="unavailable">
+                  <label class="custom-file-label" id="lbl_unavailable" for="unavailable">Select Unavailable Icon</label>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="selected">
+                  <label class="custom-file-label" id="lbl_selected" for="selected">Select Selected Icon</label>
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="taken">
+                  <label class="custom-file-label" id="lbl_taken" for="selected">Select Taken Icon</label>
+                </div>
+              </div>
+            </div>
+
+              
+              
+          </div>
+        </div>
+        
+        
+            <div id="templateDiv" class="card" hidden>
+              <div class="card-body">
+                <div class="col-sm-12">
+                  <div class="d-flex justify-content-center">
+                      <body>
+                        <table id="templateTable">
+                         
+                        </table>
+                      </body>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           <div class="card">
               <div class="card-body">
                 <table id="busTemplateTable" class="table">
@@ -118,10 +167,11 @@ textarea::-webkit-scrollbar{
         </div>
       </div>
 
+      <!-- END OF MODALS -->
+
       <!-- END OF CLOSING TAG OF CONTENT -->
 
       <!-- FOOTER -->
-      <?php $this->load->view('includes/footer.php')?>
 
     </div>
     <!-- END OF MAIN CONTENT -->
@@ -140,6 +190,39 @@ textarea::-webkit-scrollbar{
 <?php $this->load->view('includes/fixed_scripts.php')?>
 
 <script>
+$(document).ready(function(){
+
+  $('#available').on('change', function(e){
+    e.preventDefault();
+
+    console.log(this.value);
+    $('#lbl_available').html(this.value);
+    let available = this.value;
+
+    var Extension = available.substring(
+            available.lastIndexOf('.') + 1).toLowerCase();
+
+    console.log(Extension);
+  })
+  $('#unavailable').on('change', function(e){
+    e.preventDefault();
+
+    console.log(this.value);
+    $('#lbl_unavailable').html(this.value);
+  })
+  $('#selected').on('change', function(e){
+    e.preventDefault();
+
+    console.log(this.value);
+    $('#lbl_selected').html(this.value);
+  })
+  $('#taken').on('change', function(e){
+    e.preventDefault();
+
+    console.log(this.value);
+    $('#lbl_taken').html(this.value);
+  })
+
 
 function get_bus_type(){
     
@@ -210,8 +293,84 @@ function refresh(){
         var url = "<?php echo base_url()?>bus_template/show_bus_template/";
 
         busTemplateTable.ajax.url(url).load();
-    }
+}
 
+$(document).on("click", ".btn_view", function(e){
+  e.preventDefault();
+  var id = this.value;
+
+  $('#templateDiv').attr('hidden', false);
+
+    $.ajax({
+        url: '<?php echo base_url()?>bus_template/show_bus_seats/',
+        type: 'POST',
+        data: { id, id },
+        dataType: "JSON",
+
+        success: function(response){
+          let data = response.data;
+          let html;
+          for(let tr=1; tr <= + data[0].template.row; tr++){
+            html += `<tr id=tr${tr}> </tr>`
+          }
+
+          $('#templateTable').html(html);
+          console.log(data);
+
+          let i = 0;
+          for(let col=1; col <= data[0].template.column; col++){
+              for(let row=1; row <= data[0].template.row; row++){
+                if(col == 1){
+                  if(row == 1){
+                    console.log('i =' + i);
+                    console.log('this is entrance' + data[i].code)
+                    $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"><p style="text-align:center">Entrance</p></td>`)
+                  
+                    i++;
+                  }
+                  else if(row == data[0].template.row){
+                    console.log('i =' + i);
+                    $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_driver.png" length="20" width="20"><p style="text-align:center">Driver</p></td>`)
+                    console.log('this is driver seat' + data[i].code)
+                  
+                    i++;
+                  }
+                  else{
+                    console.log('i =' + i);
+                    $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"></td>`)
+                    console.log('this is disabled seat' + data[i].code)
+                  
+                    i++;
+                  }
+                }
+                else if(row == 3){
+                  if(col == data[0].template.column){
+                    console.log('i =' + i);
+                    $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
+                    console.log('this is passenger seat - ' + data[i].code)
+                  
+                    i++;
+                  }
+                  else{
+                    console.log('i =' + i);
+                    $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"></td>`)
+                    console.log('this is disabled seat' + data[i].code)
+                  
+                    i++;
+                  }
+                }
+                else{
+                  console.log('i =' + i);
+                  console.log('this is passenger seat' + data[i].code)
+                  $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
+                
+                  i++;
+                }
+              }
+          }
+        }
+    })
+});
 
 $('#addBusTemplateForm').on('submit', function(e){
         e.preventDefault();
@@ -226,17 +385,108 @@ $('#addBusTemplateForm').on('submit', function(e){
             dataType: "JSON",
         
             success: function(data){
+                let responseData = data.data;
+
+                let templateRows = responseData[0].row;
+                let templateColumns = responseData[0].column;
+                let templateId = responseData[0].id;
+
+                $.ajax({
+                  url: '<?php echo base_url()?>bus_template/add_bus_seat/',
+                  type: "POST",
+                  data: { templateRows: templateRows, templateColumns: templateColumns, templateId: templateId},
+                  dataType: "JSON",
+
+                   success: function(data){
+                      // End of Confirmation
+                   }
+                })
+              
                 refresh();
                 showNotification('create', 'Successfully added a new bus template!', 'success', 'top', 'right');
                 $("#addBusTemplateForm").trigger("reset");
-                // End of Confirmation
-                
-                
             }
         // ajax closing tag
         })
     });
 
+        
+    $(document).on("click", ".btn_delete", function(e){
+      var id = this.value;
+
+      Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+          url: '<?php echo base_url() ?>bus_template/delete_bus_template',
+          type: 'POST',
+          data: { id: id },
+          dataType: "JSON",
+
+          success: function(data){
+            refresh();
+            showNotification('delete', 'Deleted a bus template!', 'danger', 'top', 'right');
+          }
+        })
+        }
+      })
+    });
+
+    $(document).on("click", ".btn_edit", function(e){
+      var id = this.value;
+      let templateData;
+
+      // ADD FORM FOR UPDATE
+
+          $.ajax({
+            url: '<?php echo base_url() ?>bus_template/find_one_bus_template',
+            type: 'POST',
+            data: { id: id },
+            dataType: "JSON",
+
+            success: function(data){
+              templateData = data.data;
+              $.ajax({
+                url: '<?php echo base_url() ?>bus_template/delete_seats',
+                type: 'POST',
+                data: { id: id },
+                dataType: "JSON",
+
+                success: function(data){
+                  console.log(templateData)
+                  let templateRows = templateData[0].row;
+                  let templateColumns = templateData[0].column;
+                  let templateId = templateData[0].id;
+
+                  $.ajax({
+                    url: '<?php echo base_url()?>bus_template/add_bus_seat/',
+                    type: "POST",
+                    data: { templateRows: templateRows, templateColumns: templateColumns, templateId: templateId},
+                    dataType: "JSON",
+
+                    success: function(data){
+                        // End of Confirmation
+                    }
+                  })
+                }
+              })
+
+            }
+          })
+
+          
+    });
+
+
+// END OF DOCUMENT READY FUNCTION
+});
 </script>
 
 </html>
