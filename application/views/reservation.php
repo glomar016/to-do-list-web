@@ -168,11 +168,11 @@ function dataTable(){
           {data: "id"},
           {data: "referenceNumber"},
           {data: "name"},
-          {data: "name"},
-          // {data: "scheduleId", render: function(data, type, row){
-          //     return row.schedule.route.origin.name + ' - ' + row.schedule.route.destination.name + ' - ' + moment(row.reservationDate).format('ll') + ' - ' 
-          //           + moment(row.schedule.hourFrom).format('LT') + ' - ' + moment(row.schedule.hourTo).format('LT');;
-          // }},
+          // {data: "name"},
+          {data: "scheduleId", render: function(data, type, row){
+              return row.schedule.route.origin.name + ' - ' + row.schedule.route.destination.name + ' - ' + moment(row.reservationDate).format('ll') + ' - ' 
+                    + moment(row.schedule.hourFrom).format('LT') + ' - ' + moment(row.schedule.hourTo).format('LT');;
+          }},
           {data: "totalAmount", render: function(data, type, row){
               return "P" + parseFloat(data).toFixed(2);
           }},

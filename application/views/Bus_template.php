@@ -346,7 +346,7 @@ $(document).on("click", ".btn_view", function(e){
                 else if(row == 3){
                   if(col == data[0].template.column){
                     console.log('i =' + i);
-                    $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
+                    $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
                     console.log('this is passenger seat - ' + data[i].code)
                   
                     i++;
@@ -362,7 +362,7 @@ $(document).on("click", ".btn_view", function(e){
                 else{
                   console.log('i =' + i);
                   console.log('this is passenger seat' + data[i].code)
-                  $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
+                  $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
                 
                   i++;
                 }
@@ -371,6 +371,7 @@ $(document).on("click", ".btn_view", function(e){
         }
     })
 });
+
 
 $('#addBusTemplateForm').on('submit', function(e){
         e.preventDefault();

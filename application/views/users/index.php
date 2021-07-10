@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -92,7 +94,6 @@
                         <div class="navbar-btn d-none d-sm-inline-block">
                             <ul>
                                 <li><a class="solid" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>                                       
-
                             </ul>
                         </div>
                     </nav> <!-- navbar -->
