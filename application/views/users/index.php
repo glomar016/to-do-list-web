@@ -603,9 +603,31 @@
     $('#loginForm').on('submit', function(e){
         e.preventDefault();
         // console.log("gumagana");
-        window.location.href = "<?php echo base_url()?>Main";
+        // window.location.href = "<?php echo base_url()?>Main";
+
+        var form = $('#addBusTemplateForm'); 
+
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>login/submit/',
+            type: "POST",
+            data: form.serialize(),
+            dataType: "JSON",
+        
+            success: function(data){
+                refresh();
+                showNotification('create', 'Successfully added a new bus template!', 'success', 'top', 'right');
+                $("#addBusTemplateForm").trigger("reset");
+                // End of Confirmation
+                
+                
+            }
+        // ajax closing tag
+        })
         
     });
+
+    
     </script>
     
     <!--====== Bootstrap js ======-->
