@@ -22,72 +22,70 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('users/index');
+		$this->load->view('users/user');
     }
 	
-	public function submit()
+	public function userLogin()
 	{
-		$this->load->model('auth_model');
 
-		$userStudentNo = $this->input->post('userStudentNo');
-		$userPassword = $this->input->post('userPassword');
 
-		$this->form_validation->set_rules('userStudentNo', 'Student Number', 'required');
-		$this->form_validation->set_rules('userPassword', 'Password', 'required');
+		$loginEmail = $this->input->post('loginEmail');
+		$loginPass = $this->input->post('loginPass');
 
-			if ($this->form_validation->run() == FALSE) {
-				if(isset($this->session->userdata['logged_in'])){
-					redirect(base_url().'user/vote', 'refresh');
-				}
-				else{
-					$this->load->view('user/login');
-				}
-			} 
-			else {
-				$data = array(
-					'userStudentNo' => $this->input->post('userStudentNo'),
-					'userPassword' => $this->input->post('userPassword')
-					);
-				$result = $this->auth_model->login($data);
+		$data = array("email" => $loginEmail
+                        , "password" => $loginPass);
+		
+		$postdata = json_encode($data);
+		
+		$curl = curl_init();
 
-				
-				if ($result == TRUE) {
-					$userStudentNo = $this->input->post('userStudentNo');
-					$userPassword = $this->input->post('userPassword');
-					
-					$result = $this->auth_model->read_user_information($userStudentNo, $userPassword);
-						if ($result != FALSE) {
-							$session_data = array(
-								'userStudentNo' => $result[0]->userStudentNo,
-								'userOrg' => $result[0]->userOrg,
-								'userId' => $result[0]->id,
-								'userType' => $result[0]->userType,
-							);
-						// Add user data in session
-						$this->session->set_userdata('logged_in', $session_data);
+		curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://localhost:3600/api/v1/login/',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'POST',
+			CURLOPT_POSTFIELDS =>$postdata,
+			CURLOPT_HTTPHEADER => array(
+			'Content-Type: application/json'
+			),
+		));
+		
+		$response = curl_exec($curl);
+		
+		curl_close($curl);
+		echo $response;
+		
+		$resDecoded=json_decode($response, true);
 
-						if($result[0]->userType == 1){
-							$data['result'] = 'Success';
-							$data['userType'] = 'User';
-							echo json_encode($data);
-						}
-						else if($result[0]->userType == 2){
-							$data['result'] = 'Success';
-							$data['userType'] = 'Admin';
-							echo json_encode($data);
-						}
-						
-					}
-				} 
-				else {
-					$data['result'] = 'Error';
-					echo json_encode($data);
-				}
+
+		if ($resDecoded != FALSE) {
+			$session_data = array(
+				'email' => $resDecoded['data']['email'],
+				'firstName' => $resDecoded['data']['firstName'],
+				'userId' => $resDecoded['data']['id'],
+				'userType' => $resDecoded['data']['userType'],
+			);}
+		
+			foreach($session_data as $result) {
+				echo $result, '<br>';
 			}
-	}
 
+		$this->set_userdata('logged_in', $session_data);
+
+					if($session_data[0]->userType == ""){
+						$data['result'] = 'Success';
+						$data['userType'] = 'User';
+						echo json_encode($data);
+					}
+					else{
+						$data['result'] = 'Success';
+						$data['userType'] = 'Admin';
+						echo json_encode($data);
+					}
 	
-    
-
 }
-
+}
