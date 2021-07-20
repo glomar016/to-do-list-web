@@ -519,8 +519,8 @@
                     </div>
                     <div class="modal-body">				
                         <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" class="form-control" required="required">
+                            <label>Email</label>
+                            <input type="text" class="form-control" name="loginEmail" id="loginEmail" required="required">
                         </div>
                         <div class="form-group">
                             <div class="clearfix">
@@ -528,7 +528,7 @@
                                 <a href="#" class="float-right text-muted"><small>Forgot?</small></a>
                             </div>
                             
-                            <input type="password" class="form-control" required="required">
+                            <input type="password" class="form-control" name="loginPass" id="loginPass" required="required">
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">
@@ -604,9 +604,28 @@
     $('#loginForm').on('submit', function(e){
         e.preventDefault();
         // console.log("gumagana");
-        window.location.href = "<?php echo base_url()?>Main";
+        // window.location.href = "<?php echo base_url()?>Main";
+
+        var form = $('#loginForm'); 
+
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>login/userLogin/',
+            type: "POST",
+            data: form.serialize(),
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data)
+                // window.location.href = "<?php echo base_url()?>Main";
+                
+            }
+        // ajax closing tag
+        })
         
     });
+
+    
     </script>
     
     <!--====== Bootstrap js ======-->
