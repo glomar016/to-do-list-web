@@ -56,7 +56,7 @@ The above copyright notice and this permission notice shall be included in all c
                   <form id="addBusRegistrationForm">
                           <div class="form-row">
                               <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Plate Number</label>
+                              <label for="exampleInputEmail1">Bus Number</label>
                               <select class="form-control" id="plateNumberInput" name="plateNumberInput">
                                   
                                 </select>
@@ -88,7 +88,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Plate Number</th>
+                            <th>Bus Number</th>
                             <th>Registration Status</th>
                             <th>Expiration Date</th>
                             <th>Date Created</th>
@@ -127,7 +127,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <input type="hidden" class="form-control" name="busRegistrationId" id="busRegistrationId" aria-describedby="emailHelp">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                                <label for="exampleInputEmail1">Plate Number</label>
+                                <label for="exampleInputEmail1">Bus Number</label>
                                 <span  class="form-control" name="plateNumberView" id="plateNumberView" aria-describedby="emailHelp"></span>
                             </div>
                         </div>
@@ -166,7 +166,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <input type="hidden" class="form-control" name="editBusRegistrationId" id="editBusRegistrationId" aria-describedby="emailHelp">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                                <label for="exampleInputEmail1">Plate Number</label>
+                                <label for="exampleInputEmail1">Bus Number</label>
                                 <select class="form-control" id="plateNumberEdit" name="plateNumberEdit">
                                         
                                 </select>
@@ -245,7 +245,10 @@ The above copyright notice and this permission notice shall be included in all c
             "ajax": "<?php echo base_url()?>bus_registration/show_bus_registration",
             "columns": [
                 { data: "id"},
-                { data: "busInformation.plateNumber"},
+                { data: null, render: function (data, type, row) {
+                    var name = row.busInformation.number + "  |  " + row.busInformation.plateNumber;
+                    return name;
+                }},
                 { data: "registrationStatus"},
                 { data: "expirationDate", render: function(data, type, row){
                   return moment(data).format('LL');
@@ -292,7 +295,7 @@ The above copyright notice and this permission notice shall be included in all c
         }
 
         for(var i=0; i < busInfo.length; i++){
-          html += `<option value="${busInfo[i].id}">${busInfo[i].plateNumber}</option>`
+          html += `<option value="${busInfo[i].id}">${busInfo[i].number + '  |  ' + busInfo[i].plateNumber}</option>`
         }
         
         $('#plateNumberInput').html(html);
@@ -415,7 +418,7 @@ The above copyright notice and this permission notice shall be included in all c
                 var busInfo = data.data;
 
                 $('#busRegistrationId').html(id);
-                $('#plateNumberView').html(busInfo.busInformation.plateNumber);
+                $('#plateNumberView').html(busInfo.busInformation.number + '  |  ' + busInfo.busInformation.plateNumber);
                 $('#registrationStatusView').html(busInfo.registrationStatus);
                 $('#expirationDateView').html(moment(busInfo.expirationDate).format('LL'));
 

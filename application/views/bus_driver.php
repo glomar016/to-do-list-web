@@ -57,7 +57,7 @@ The above copyright notice and this permission notice shall be included in all c
                   <form id="addBusDriverForm">
                           <div class="form-row">
                               <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Bus</label>
+                              <label for="exampleInputEmail1">Bus Number</label>
                               <select class="form-control" id="busNumberInput" name="busNumberInput">
                                   
                                 </select>
@@ -128,7 +128,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <input type="hidden" class="form-control" name="busDriverId" id="busDriverId" aria-describedby="emailHelp">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                                <label for="exampleInputEmail1">Bus</label>
+                                <label for="exampleInputEmail1">Bus Number</label>
                                 <span  class="form-control" name="busNumberView" id="busNumberView" aria-describedby="emailHelp"></span>
                             </div>
                         </div>
@@ -167,7 +167,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <input type="hidden" class="form-control" name="editBusDriverId" id="editBusDriverId" aria-describedby="emailHelp">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                                <label for="exampleInputEmail1">Bus</label>
+                                <label for="exampleInputEmail1">Bus Number</label>
                                 <select class="form-control" id="busNumberEdit" name="busNumberEdit">
                                         
                                 </select>
