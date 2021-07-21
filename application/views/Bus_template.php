@@ -346,7 +346,8 @@ $(document).on("click", ".btn_view", function(e){
                 else if(row == 3){
                   if(col == data[0].template.column){
                     console.log('i =' + i);
-                    $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
+                    $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;"><img class="seatImg" id="${data[i].id}" src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">
+                    ${(data[i].code).slice(5, 7)}</p></td>`)
                     console.log('this is passenger seat - ' + data[i].code)
                   
                     i++;
@@ -362,7 +363,8 @@ $(document).on("click", ".btn_view", function(e){
                 else{
                   console.log('i =' + i);
                   console.log('this is passenger seat' + data[i].code)
-                  $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;"><img src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">${data[i].code}</p></td>`)
+                  $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;"><img class="seatImg" id="${data[i].id}" src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">
+                  ${(data[i].code).slice(5, 7)}</p></td>`)
                 
                   i++;
                 }
@@ -388,9 +390,9 @@ $('#addBusTemplateForm').on('submit', function(e){
             success: function(data){
                 let responseData = data.data;
 
-                let templateRows = responseData[0].row;
-                let templateColumns = responseData[0].column;
-                let templateId = responseData[0].id;
+                let templateRows = responseData.row;
+                let templateColumns = responseData.column;
+                let templateId = responseData.id;
 
                 $.ajax({
                   url: '<?php echo base_url()?>bus_template/add_bus_seat/',
@@ -440,6 +442,12 @@ $('#addBusTemplateForm').on('submit', function(e){
       })
     });
 
+    $(document).on("click", ".seatImg", function(e){
+      e.preventDefault()
+
+      alert(this.id)
+    })
+
     $(document).on("click", ".btn_edit", function(e){
       var id = this.value;
       let templateData;
@@ -484,6 +492,10 @@ $('#addBusTemplateForm').on('submit', function(e){
 
           
     });
+
+    
+
+    
 
 
 // END OF DOCUMENT READY FUNCTION
