@@ -62,8 +62,6 @@ class Bus_template extends CI_Controller {
         curl_close($curl);
         echo $response;
 
-        
-
     }
 
     public function show_bus_template(){
@@ -94,7 +92,7 @@ class Bus_template extends CI_Controller {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_seat/'.$id,
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_seat/findAllTemplate/'.$id,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -226,7 +224,7 @@ class Bus_template extends CI_Controller {
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_template/createBusSeats',
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_seat/createBusSeats',
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,

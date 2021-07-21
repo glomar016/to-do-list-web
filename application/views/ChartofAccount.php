@@ -313,7 +313,6 @@ textarea::-webkit-scrollbar{
 
                  $('#editChartofAccountId').val(id);
                  $('#editChartofAccountName').val(ChartofAccountInfo.name);
-                 $('#editChartofAccountDescription').val(ChartofAccountInfo.description);
 
                  $('#editChartofAccountInfoModal').modal('show');
              }

@@ -80,6 +80,7 @@ class BusInformation extends CI_Controller {
 						, "typeId" => $busTypeInput
 						, "templateId" => $busTemplateInput
 						);
+
 		$postdata = json_encode($data);
 
 		$curl = curl_init();
@@ -205,7 +206,7 @@ class BusInformation extends CI_Controller {
 						, "hasAircon" => $withAirconEdit
 						, "hasTelevision" => $withTelevisionEdit
 						, "typeId" => $busTypeEdit
-						, "templateId" => $busTemplateEdit
+						, "busInformationId" => $busTemplateEdit
 						);
 		$postdata = json_encode($data);
 
@@ -276,4 +277,143 @@ class BusInformation extends CI_Controller {
         curl_close($curl);
         echo $response;
 	}
+
+	 public function add_bus_seat(){
+        
+        $templateRows = intval($this->input->post('templateRows'));
+        $templateColumns = intval($this->input->post('templateColumns'));
+        $templateId = $this->input->post('templateId');
+        $busInformationId = $this->input->post('busInformationId');
+    
+        $seatPostData = [];
+
+        $seatNumber = 1;
+        $sortNumber = 1;
+
+        for($col=1; $col <= $templateColumns; $col++){
+            for($row=1; $row <= $templateRows; $row++){
+                if($col == 1){
+                    if($row == 1){
+
+                        array_push($seatPostData, array("code" => "ENTRANCE"
+                            , "currentStatus" => 'Unavailable'
+                            , "type" => 'Entrance'
+                            , "busInformationId" => $busInformationId
+                            , "templateId" => $templateId
+                            , "sortNumber" => $sortNumber
+                        ));
+
+                        $sortNumber++;
+                    }
+                    else if($row == $templateRows){
+                        array_push($seatPostData, array("code" => "DRIVER"
+                            , "currentStatus" => 'Unavailable'
+                            , "type" => 'Driver'
+                            , "busInformationId" => $busInformationId
+                            , "templateId" => $templateId
+                            , "sortNumber" => $sortNumber
+                        ));
+                        $sortNumber++;
+                    }
+                    else{
+                        array_push($seatPostData, array("code" => "SPACE"
+                            , "currentStatus" => 'Unavailable'
+                            , "type" => 'Space'
+                            , "busInformationId" => $busInformationId
+                            , "templateId" => $templateId
+                            , "sortNumber" => $sortNumber
+                        ));
+                        $sortNumber++;
+                    }
+                }
+                else if($row == 3){
+                    if($col == $templateColumns){
+
+                        array_push($seatPostData, array("code" => "SEAT-".sprintf("%'02d", $seatNumber)
+                            , "currentStatus" => 'Available'
+                            , "type" => 'Passenger'
+                            , "busInformationId" => $busInformationId
+                            , "templateId" => $templateId
+                            , "sortNumber" => $sortNumber
+                        ));
+                        $seatNumber ++;
+                        $sortNumber++;
+                        
+                    }
+                    else{
+                        array_push($seatPostData, array("code" => "SPACE"
+                            , "currentStatus" => 'Unavailable'
+                            , "type" => 'Space'
+                            , "busInformationId" => $busInformationId
+                            , "templateId" => $templateId
+                            , "sortNumber" => $sortNumber
+                            
+                        ));
+                        $sortNumber++;
+                    }
+                }
+                else{
+                    array_push($seatPostData, array("code" => "SEAT-".sprintf("%'02d", $seatNumber)
+                            , "currentStatus" => 'Available'
+                            , "type" => 'Passenger'
+                            , "busInformationId" => $busInformationId
+                            , "templateId" => $templateId
+                            , "sortNumber" => $sortNumber
+                            
+                    ));
+                    $seatNumber ++;
+                    $sortNumber++;
+                }
+            }
+        }
+
+        $seatdata = json_encode($seatPostData);
+        print_r($seatdata);
+        
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_seat/createBusInformationSeats',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => $seatdata,
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
+            'Content-Type: application/json'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+    }
+
+	public function show_bus_seats(){
+        $id = $this->input->post('id');
+        
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_seat/'.$id,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+
+    }
 }

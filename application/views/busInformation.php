@@ -616,6 +616,23 @@ $('#busInformationForm').on('submit', function(e){
         dataType: "JSON",
 
         success: function(data){
+          console.log(data.data)
+          let templateRows = data.data.busTemplateId.row;
+          let templateColumns = data.data.busTemplateId.column;
+          let templateId = data.data.busTemplateId.id;
+          let busInformationId = data.data.id;
+
+          $.ajax({
+            url: '<?php echo base_url()?>busInformation/add_bus_seat/',
+            type: "POST",
+            data: { templateRows: templateRows, templateColumns: templateColumns, busInformationId: busInformationId, templateId: templateId},
+            dataType: "JSON",
+
+            success: function(data){
+                // End of Confirmation
+            }
+          })
+          
           document.getElementById("busInformationForm").reset();
           showNotification('create', 'Successfully added a new bus!', 'success', 'top', 'right');
           refresh();
