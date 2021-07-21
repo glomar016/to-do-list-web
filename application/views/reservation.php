@@ -174,6 +174,63 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
       </div>
       <!-- END OF CLOSING TAG OF CONTENT -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="viewReservationModal" tabindex="-1" role="dialog" aria-labelledby="viewReservationModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="viewReservationModalTitle">Reservation Details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h6 style="color: black">Reference Number: 
+                        <label id="referenceNumberView"></label>
+                      </h6>
+                  </div>
+                  <div class="col-md-12">
+                      <h6 style="color: black">Name: 
+                        <label id="nameView">John Raven Glomar</label>
+                      </h6>
+                  </div>
+                  <div class="col-md-12">
+                      <h6 style="color: black">Reservation Date Booked: 
+                        <label id="reservationDateView"></label>
+                      </h6>
+                  </div>
+                  <div class="col-md-12">
+                      <h6 style="color: black">Main Route: 
+                        <label id="routeNameView"></label>
+                      </h6>
+                  </div>
+                  <div class="col-md-12">
+                      <h6 style="color: black">Schedule: 
+                        <label id="scheduleNameView"></label>
+                      </h6>
+                  </div>
+              </div>
+              <br>
+              <h5>Passenger/s Details</h5>
+              <table id="passengerTableView" class="table">
+                <thead class="col-md-12">
+
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <!-- FOOTER -->
       <?php $this->load->view('includes/footer.php')?>
@@ -214,21 +271,22 @@ function dataTable(){
               return "P" + parseFloat(data).toFixed(2);
           }},
           {data: "currentStatus"},
-          {data: "status", render: function(data, type, row){
-                if (data == "Active"){
+          {data: "currentStatus", render: function(data, type, row){
+                if (data == "Paid"){
                   return '<div class="btn-group">' +
-                          '<button class="btn btn-info btn-sm btn-view" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>'+
-                          '<button class="btn btn-warning btn-sm btn-edit" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Edit </button>'+
-                          '<button class="btn btn-danger btn-sm btn-delete" value="' + row.id + '"title = "Delete" type="button"> <i class="zmdi zmdi-delete"></i> Delete </button></div>';
+                          '<button class="btn btn-warning btn-sm btn-print-reservation" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Print </button>'+
+                          '</div>';
                 }
                 else{
-                  return '<button class="btn btn-danger btn-sm">Activate</button>';
+                  return '<div class="btn-group">' +
+                          '<button class="btn btn-info btn-sm btn-view-reservation" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>'+
+                          '</div>';
                 }
               }
           }
         ],
 
-      "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 6] }],
+      "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
       "order": [[3, "desc"]]
 
     })
@@ -382,6 +440,8 @@ $('#reservationForm').on('submit', function(e){
 
   e.preventDefault();
 
+  var scheduleValue = $("#reserveSchedule").children(":selected").text();
+
   var form = $('#reservationForm');
 
   var reserveSchedule = $('#reserveSchedule').val();
@@ -460,6 +520,7 @@ $('#reservationForm').on('submit', function(e){
     let addedData = form.serializeArray()
     addedData.push({name: 'promoId', value: promoId});
     addedData.push({name: 'referenceNumber', value: referenceNumber});
+    addedData.push({name: 'scheduleName', value: scheduleValue});
     addedData.push({name: 'totalPrice', value: parseFloat(priceTotal).toFixed(2)});
     // addedData.push({name: 'totalDiscount', value: discountTotal});
     addedData.push({name: 'currentStatus', value: currentStatus});
@@ -739,7 +800,7 @@ $( "#btnShowSched" ).on('click', function(e) {
 
   $('#reserveSchedule').on('change', function(e){
       var id = $(this).children(":selected").attr("id");
-      console.log(id)
+      
 
       $('#templateDiv').attr('hidden', false);
 
@@ -917,6 +978,65 @@ $( "#btnShowSched" ).on('click', function(e) {
 
       $("#amount"+seatNumber).val(amount)
     }
+  })
+
+  $(document).on("click", ".btn-view-reservation", function(e){
+    let reservationId = this.value;
+
+    $('#passengerTableView').find('thead').html("")
+    $('#passengerTableView').find('tbody').html("")
+
+    let passengerRoute = []
+    let passengerName = []
+    let passengerSeat = []
+
+     $.ajax({
+            url: '<?php echo base_url()?>reservation/get_reservation_line/',
+            type: 'POST',
+            data: { reservationId, reservationId },
+            dataType: "JSON",
+
+            success: function(data){
+              reservationLine = data.data;
+              console.log(data.data);
+              referenceNumber = reservationLine[0].reservation.referenceNumber
+              scheduleName = reservationLine[0].reservation.scheduleName
+              name = reservationLine[0].reservation.name
+              reservationDate = reservationLine[0].reservation.reservationDate
+              routeName = reservationLine[0].reservation.schedule.route.name;
+
+              $('#referenceNumberView').html(referenceNumber)
+              $('#scheduleNameView').html(scheduleName)
+              $('#nameView').html(name)
+              $('#reservationDateView').html(reservationDate)
+              $('#routeNameView').html(routeName)
+
+              if(reservationLine.length != 0){
+                $('#passengerTableView').find('thead').append(`
+                  <th><h6 style="color: black">Passenger Seat</h6></th>
+                  <th><h6 style="color: black">Passenger Name</h6></th>
+                  <th><h6 style="color: black">Passenger Route</h6></th>
+                `)
+
+                for(i=0; i < reservationLine.length; i++){
+
+                  $('#passengerTableView').find('tbody').append(`
+                    <tr>
+                      <td><label>${reservationLine[i].seat.code}</label></td>
+                      <td><label>${reservationLine[i].passengerName}</label></td>
+                      <td><label>${reservationLine[i].route}</label></td>
+                    </tr>
+                  `)
+                }
+              }
+              console.log(passengerRoute)
+              console.log(passengerName)
+              console.log(passengerSeat)
+              $('#viewReservationModal').modal('show');
+            }
+     })
+
+
   })
 
   show_terminal();
