@@ -113,7 +113,7 @@ class Reservation extends CI_Controller {
 		$totalDistanceKm = $this->input->post('reserveLandmark');
 		$referenceNumber = $this->input->post('referenceNumber');
 		$totalPrice = $this->input->post('totalPrice');
-		// $totalDiscount = $this->input->post('totalDiscount');
+		$totalDiscount = $this->input->post('totalDiscount');
 		$currentStatus = $this->input->post('currentStatus');
 		$promoId = $this->input->post('promoId');
 		$reserveDate = $this->input->post('reserveDate');
@@ -124,7 +124,7 @@ class Reservation extends CI_Controller {
 						, "scheduleId" => $reserveSchedule
 						, "referenceNumber" => $referenceNumber
 						, "totalAmount" => $totalPrice
-						// , "totalDiscount" => $totalDiscount
+						, "totalDiscount" => $totalDiscount
 						, "currentStatus" => $currentStatus
 						, "totalDistanceKm" => $totalDistanceKm
 						, "reservationDate" => $reserveDate
@@ -136,7 +136,7 @@ class Reservation extends CI_Controller {
 						, "scheduleId" => $reserveSchedule
 						, "referenceNumber" => $referenceNumber
 						, "totalAmount" => $totalPrice
-						// , "totalDiscount" => $totalDiscount
+						, "totalDiscount" => $totalDiscount
 						, "currentStatus" => $currentStatus
 						, "promoId" => $promoId
 						, "totalDistanceKm" => $totalDistanceKm
@@ -203,67 +203,4 @@ class Reservation extends CI_Controller {
 		echo $response;
 		
 	}
-
-	public function add_reservation_line(){
-		$reservationLineData = $this->input->post('reservationLineData');
-		$reservationId = $this->input->post('reservationId');
-		$reservationPostData = [];
-
-		for($i=0; $i < count($reservationLineData["seatId"]); $i++){
-			array_push($reservationPostData, array(
-				"passengerName" => $reservationLineData["passengerName"][$i],
-				"seatId" => $reservationLineData["seatId"][$i],
-				"landmark" => $reservationLineData["landmark"][$i],
-				"passengerAmount" => $reservationLineData["passengerAmount"][$i],
-				"passengerDiscount" => $reservationLineData["passengerDiscount"][$i],
-				"reservationId" => $reservationId,
-			));
-				$curl = curl_init();
-
-				curl_setopt_array($curl, array(
-				CURLOPT_URL => 'http://localhost:3600/api/v1/bus_seat/'.$reservationLineData["seatId"][$i],
-				CURLOPT_RETURNTRANSFER => true,
-				CURLOPT_ENCODING => '',
-				CURLOPT_MAXREDIRS => 10,
-				CURLOPT_TIMEOUT => 0,
-				CURLOPT_FOLLOWLOCATION => true,
-				CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-				CURLOPT_CUSTOMREQUEST => 'PUT',
-				CURLOPT_POSTFIELDS =>'{
-					"currentStatus": "Reserved"
-				}',
-				CURLOPT_HTTPHEADER => array(
-					'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
-					'Content-Type: application/json'
-				),
-			));
-
-			$response = curl_exec($curl);
-			curl_close($curl);
-		}
-
-		$postdata = json_encode($reservationPostData);
-
-		$curl = curl_init();
-
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/reservation_line/bulkCreate',
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => '',
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 0,
-		CURLOPT_FOLLOWLOCATION => true,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => 'POST',
-		CURLOPT_POSTFIELDS => $postdata,
-		CURLOPT_HTTPHEADER => array(
-			'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
-			'Content-Type: application/json'
-		),
-		));
-
-		$response = curl_exec($curl);
-
-		curl_close($curl);
-	}	
 }

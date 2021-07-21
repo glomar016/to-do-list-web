@@ -16,11 +16,11 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/head.php'); ?>
 
 <style>
-#ChartofAccountInfoModal form,
-#editChartofAccountInfoModal form{
+#counterInfoModal form,
+#editCounterInfoModal form{
     margin-top: -15px;
 }
-#addChartofAccountForm .form-row{
+#addCounterForm .form-row{
     margin-top: 10px;
 }
 textarea::-webkit-scrollbar{
@@ -51,17 +51,17 @@ textarea::-webkit-scrollbar{
               <h5 class="card-header">
                   <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                       <i class="fa fa-chevron-down pull-right"></i>
-                      Add Chart of Account
+                      Add Counter
                   </a>
               </h5>
               <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
                   <div class="card-body">
                   <div class="card-body">
-                  <form id="addChartofAccountForm">
+                  <form id="addCounterForm">
                           <div class="form-row">
                               <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Chart of Account Name</label>
-                              <input type="text" class="form-control" id="ChartofAccountName" name="ChartofAccountName">
+                              <label for="exampleInputEmail1">Counter Name</label>
+                              <input type="text" class="form-control" id="counterName" name="counterName">
                         </div>
                           </div>
                           
@@ -80,11 +80,11 @@ textarea::-webkit-scrollbar{
           </div>
             <div class="card">
               <div class="card-body">
-                <table id="ChartofaccountTable" class="table">
+                <table id="counterTable" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Chart of Account Name</th>
+                            <th>Counter Name</th>
                             <th>Date Created</th> 
                             <th width="10%">Actions</th>
                         </tr>
@@ -105,22 +105,22 @@ textarea::-webkit-scrollbar{
 
       <!-- END OF CLOSING TAG OF CONTENT -->
 
-        <div class="modal fade" id="ChartofAccountInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="counterInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="ChartofAccountInfoModal">Chart of Account Information</h5>
+                <h5 class="modal-title" id="counterInfoModal">Counter Information</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="card-body">
-                <form id="ChartofAccountForm">
+                <form id="CounterForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="ChartofAccountIdview" id="ChartofAccountIdview" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Chart of Account Name</label>
-                        <span  class="form-control" name="ChartofAccountNameview" id="ChartofAccountNameview" aria-describedby="emailHelp"></span>
+                        <input type="hidden" class="form-control" name="CounterId" id="CounterId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Counter Name</label>
+                        <span  class="form-control" name="CounterName" id="CounterName" aria-describedby="emailHelp"></span>
                 
                         
                     </div>
@@ -134,22 +134,22 @@ textarea::-webkit-scrollbar{
 
     <!-- EDIT MODAL -->
 
-        <div class="modal fade" id="editChartofAccountInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="editCounterInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="editChartofAccountInfoModal">Edit Chart of Account</h5>
+                <h5 class="modal-title" id="editCounterInfoModal">Edit Counter</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="card-body">
-                <form id="editChartofAccountForm">
+                <form id="editCounterForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="editChartofAccountId" id="editChartofAccountId" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Chart of Account</label>
-                        <input type="text" class="form-control" name="editChartofAccountName" id="editChartofAccountName" aria-describedby="emailHelp">
+                        <input type="hidden" class="form-control" name="editCounterId" id="editCounterId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Counter</label>
+                        <input type="text" class="form-control" name="editCounterName" id="editCounterName" aria-describedby="emailHelp">
                         
                     </div>
                     <div class="modal-footer">
@@ -163,7 +163,7 @@ textarea::-webkit-scrollbar{
         </div>
         </div>
 
-        <div class="modal fade" id="deleteChartofAccountInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteCounterInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -173,10 +173,10 @@ textarea::-webkit-scrollbar{
               </button>
             </div>
             <div class="modal-body">
-                <form id="deleteChartofAccountForm">
+                <form id="deleteCounterForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="deleteChartofAccountId" id="deleteChartofAccountId" aria-describedby="emailHelp">
-                        <p>You're deactivating this Chart of Account</p>
+                        <input type="hidden" class="form-control" name="deleteCounterId" id="deleteCounterId" aria-describedby="emailHelp">
+                        <p>You're deactivating this Counter</p>
                         </span>
                     </div>
                     <div class="modal-footer">
@@ -207,9 +207,8 @@ textarea::-webkit-scrollbar{
 <script>
     // DATA TABLES
     function loadtable(){
-        console.log('test')
-        ChartofAccountDataTable = $('#ChartofaccountTable').DataTable( {
-            "ajax": "<?php echo base_url()?>ChartofAccount/show_ChartofAccount",
+        counterDataTable = $('#counterTable').DataTable( {
+            "ajax": "<?php echo base_url()?>counter/show_counter",
             "columns": [
                 { data: "id"},
                 { data: "name"},
@@ -234,36 +233,36 @@ textarea::-webkit-scrollbar{
             ],
 
             "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
-            "order": [[0, "desc"]]
+            "order": [[3, "desc"]]
         })
     }
 
     loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>ChartofAccount/show_ChartofAccount/";
+        var url = "<?php echo base_url()?>counter/show_counter/";
 
-        ChartofAccountDataTable.ajax.url(url).load();
+        counterDataTable.ajax.url(url).load();
     }
 
 
     // CREATE BUS TYPE
-    $('#addChartofAccountForm').on('submit', function(e){
+    $('#addCounterForm').on('submit', function(e){
         e.preventDefault();
 
-        var form = $('#addChartofAccountForm'); 
+        var form = $('#addCounterForm'); 
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>ChartofAccount/add_ChartofAccount/',
+            url: '<?php echo base_url()?>counter/add_counter/',
             type: "POST",
             data: form.serialize(),
             dataType: "JSON",
         
             success: function(data){
                 refresh();
-                showNotification('create', 'Successfully added a new ChartofAccount!', 'success', 'top', 'right');
-                $("#addChartofAccountForm").trigger("reset");
+                showNotification('create', 'Successfully added a new counter!', 'success', 'top', 'right');
+                $("#addCounterForm").trigger("reset");
                 // End of Confirmation
 
                 
@@ -278,20 +277,20 @@ textarea::-webkit-scrollbar{
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>ChartofAccount/get_one_ChartofAccount/',
+            url: '<?php echo base_url()?>counter/get_one_counter/',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var ChartofAccountInfo = data.data;
+                var counterInfo = data.data;
 
-                $('#ChartofAccountIdview').html(id);
-                $('#ChartofAccountNameview').html(ChartofAccountInfo.name);
+                $('#CounterId').html(id);
+                $('#CounterName').html(counterInfo.name);
         
 
-                $('#ChartofAccountInfoModal').modal('show');
+                $('#counterInfoModal').modal('show');
             }
         // ajax closing tag
         })
@@ -302,65 +301,66 @@ textarea::-webkit-scrollbar{
          console.log(id);
 
          $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/get_one_ChartofAccount/',
+             url: '<?php echo base_url()?>counter/get_one_counter/',
              type: "POST",
              data: { id: id },
              dataType: "JSON",
         
              success: function(data){
                  console.log(data);
-                 var ChartofAccountInfo = data.data;
+                 var CounterInfo = data.data;
 
-                 $('#editChartofAccountId').val(id);
-                 $('#editChartofAccountName').val(ChartofAccountInfo.name);
+                 $('#editCounterId').val(id);
+                 $('#editCounterName').val(CounterInfo.name);
+                 $('#editCounterDescription').val(CounterInfo.description);
 
-                 $('#editChartofAccountInfoModal').modal('show');
+                 $('#editCounterInfoModal').modal('show');
              }
          // ajax closing tag
          })
      });
 
-    $('#editChartofAccountForm').on('submit', function(e){
+    $('#editCounterForm').on('submit', function(e){
          e.preventDefault();
 
          console.log('working');
 
-         var form = $('#editChartofAccountForm'); 
+         var form = $('#editCounterForm'); 
 
     // ajax opening tag
         $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/edit_ChartofAccount/',
+             url: '<?php echo base_url()?>counter/edit_counter/',
              type: "POST",
              data: form.serialize(),
              dataType: "JSON",
         
              success: function(data){
                  refresh();
-                 showNotification('update', 'Successfully update a ChartofAccount!', 'warning', 'top', 'right');
-                 $('#editChartofAccountInfoModal').modal('hide');
+                 showNotification('update', 'Successfully update a Counter!', 'warning', 'top', 'right');
+                 $('#editCounterInfoModal').modal('hide');
              }
          // ajax closing tag
          })
      });
 
-     // DELETE ChartofAccount
+     // DELETE Counter
      $(document).on("click", ".btn_delete", function(){
          var id = this.value;
          // console.log(id);
 
          $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/get_one_ChartofAccount/',
+             url: '<?php echo base_url()?>counter/get_one_counter/',
              type: "POST",
              data: { id: id },
              dataType: "JSON",
         
             success: function(data){
                  console.log(data);
-                 var deleteChartofAccountInfo = data.data;
+                 var deleteCounterInfo = data.data;
 
-                 $('#deleteChartofAccountId').val(id);
+                 $('#deleteCounterId').val(id);
 
-                 $('#deleteChartofAccountInfoModal').modal('show');
+                 $('#deleteCounterInfoModal').modal('show');
              }
          // ajax closing tag
          })
@@ -369,15 +369,15 @@ textarea::-webkit-scrollbar{
      $('.delete-confirm').on('click', function(e){
          e.preventDefault();
 
-         $('#deleteChartofAccountInfoModal').modal('show');
+         $('#deleteCounterInfoModal').modal('show');
 
          console.log('working');
 
-         var form = $('#deleteChartofAccountForm'); 
+         var form = $('#deleteCounterForm'); 
 
          // ajax opening tag
          $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/delete_ChartofAccount',
+             url: '<?php echo base_url()?>counter/delete_counter',
              type: "POST",
              data: form.serialize(),
              dataType: "JSON",
@@ -385,8 +385,8 @@ textarea::-webkit-scrollbar{
              success: function(data){
                  refresh();
 
-                 showNotification('delete', 'Deleted a ChartofAccount!', 'danger', 'top', 'right');
-                 $('#deleteChartofAccountInfoModal').modal('hide');
+                 showNotification('delete', 'Deleted a Counter!', 'danger', 'top', 'right');
+                 $('#deleteCounterInfoModal').modal('hide');
              }
          // ajax closing tag
          })

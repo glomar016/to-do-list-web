@@ -28,7 +28,7 @@ class ChartofAccount extends CI_Controller {
         $name = $this->input->post('ChartofAccountName');
 
         $data = array("name" => $name
-                        );
+                        , "description" => $description);
 
         $postdata = json_encode($data);
 
@@ -107,7 +107,7 @@ class ChartofAccount extends CI_Controller {
         $id = $this->input->post('editChartofAccountId');
 
         $data = array("name" => $name
-                        );
+                        , "description" => $description);
 
         $postdata = json_encode($data);
 

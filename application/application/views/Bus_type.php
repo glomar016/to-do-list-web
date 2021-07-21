@@ -16,11 +16,11 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/head.php'); ?>
 
 <style>
-#ChartofAccountInfoModal form,
-#editChartofAccountInfoModal form{
+#busTypeInfoModal form,
+#editBusTypeInfoModal form{
     margin-top: -15px;
 }
-#addChartofAccountForm .form-row{
+#addBusTypeForm .form-row{
     margin-top: 10px;
 }
 textarea::-webkit-scrollbar{
@@ -51,25 +51,25 @@ textarea::-webkit-scrollbar{
               <h5 class="card-header">
                   <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                       <i class="fa fa-chevron-down pull-right"></i>
-                      Add Chart of Account
+                      Add Bus Type
                   </a>
               </h5>
               <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
                   <div class="card-body">
                   <div class="card-body">
-                  <form id="addChartofAccountForm">
+                  <form id="addBusTypeForm">
                           <div class="form-row">
                               <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Chart of Account Name</label>
-                              <input type="text" class="form-control" id="ChartofAccountName" name="ChartofAccountName">
+                              <label for="exampleInputEmail1">Bus Type</label>
+                              <input type="text" class="form-control" id="busTypeName" name="busTypeName">
                         </div>
                           </div>
                           
-                          <!-- <div class="form-row">
+                          <div class="form-row">
                               <div class="form-group col-sm-10">
                               <label for="exampleInputEmail1">Description</label>
                               <textarea style="margin-top: 10px;" rows="2" cols="50" class="form-control" name="busTypeDescription"  id="busTypeDescription"></textarea>
-                        </div> -->
+                        </div>
                           </div>
                       
                           <input type="submit" class="btn btn-primary">
@@ -80,12 +80,13 @@ textarea::-webkit-scrollbar{
           </div>
             <div class="card">
               <div class="card-body">
-                <table id="ChartofaccountTable" class="table">
+                <table id="busTypeTable" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Chart of Account Name</th>
-                            <th>Date Created</th> 
+                            <th>Bus Type</th>
+                            <th>Description</th>
+                            <th>Date Created</th>
                             <th width="10%">Actions</th>
                         </tr>
                     </thead>
@@ -105,24 +106,27 @@ textarea::-webkit-scrollbar{
 
       <!-- END OF CLOSING TAG OF CONTENT -->
 
-        <div class="modal fade" id="ChartofAccountInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="busTypeInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="ChartofAccountInfoModal">Chart of Account Information</h5>
+                <h5 class="modal-title" id="busTypeInfoModal">View Bus Type</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="card-body">
-                <form id="ChartofAccountForm">
+                <form id="BusTypeForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="ChartofAccountIdview" id="ChartofAccountIdview" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Chart of Account Name</label>
-                        <span  class="form-control" name="ChartofAccountNameview" id="ChartofAccountNameview" aria-describedby="emailHelp"></span>
-                
-                        
+                        <input type="hidden" class="form-control" name="BusTypeId" id="BusTypeId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Bus Type</label>
+                        <span  class="form-control" name="BusTypeName" id="BusTypeName" aria-describedby="emailHelp"></span>
+                        <label for="exampleInputEmail1">Description</label>
+                        <span  class="form-control" name="BusTypeDescription" id="BusTypeDescription" aria-describedby="emailHelp"></span>
+                        <!-- <label for="exampleInputEmail1">Status</label>
+                        <span  class="form-control" name="BusTypeStatus" id="BusTypeStatus" aria-describedby="emailHelp"></span> -->
+                        </span>
                     </div>
                 </form>
                 </div>
@@ -132,25 +136,24 @@ textarea::-webkit-scrollbar{
         </div>
         </div>
 
-    <!-- EDIT MODAL -->
-
-        <div class="modal fade" id="editChartofAccountInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="editBusTypeInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="editChartofAccountInfoModal">Edit Chart of Account</h5>
+                <h5 class="modal-title" id="editBusTypeInfoModal">Edit Bus Type</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="card-body">
-                <form id="editChartofAccountForm">
+                <form id="editBusTypeForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="editChartofAccountId" id="editChartofAccountId" aria-describedby="emailHelp">
-                        <label for="exampleInputEmail1">Chart of Account</label>
-                        <input type="text" class="form-control" name="editChartofAccountName" id="editChartofAccountName" aria-describedby="emailHelp">
-                        
+                        <input type="hidden" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Bus Type</label>
+                        <input type="text" class="form-control" name="editBusTypeName" id="editBusTypeName" aria-describedby="emailHelp">
+                        <label for="exampleInputEmail1">Description</label>
+                        <textarea rows="2" cols="50" class="form-control" name="editBusTypeDescription" id="editBusTypeDescription" aria-describedby="emailHelp"></textarea>
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary">
@@ -163,7 +166,7 @@ textarea::-webkit-scrollbar{
         </div>
         </div>
 
-        <div class="modal fade" id="deleteChartofAccountInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteBusTypeInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -173,10 +176,10 @@ textarea::-webkit-scrollbar{
               </button>
             </div>
             <div class="modal-body">
-                <form id="deleteChartofAccountForm">
+                <form id="deleteBusTypeForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="deleteChartofAccountId" id="deleteChartofAccountId" aria-describedby="emailHelp">
-                        <p>You're deactivating this Chart of Account</p>
+                        <input type="hidden" class="form-control" name="deleteBusTypeId" id="deleteBusTypeId" aria-describedby="emailHelp">
+                        <p>You're deactivating this bus type</p>
                         </span>
                     </div>
                     <div class="modal-footer">
@@ -207,16 +210,13 @@ textarea::-webkit-scrollbar{
 <script>
     // DATA TABLES
     function loadtable(){
-        console.log('test')
-        ChartofAccountDataTable = $('#ChartofaccountTable').DataTable( {
-            "ajax": "<?php echo base_url()?>ChartofAccount/show_ChartofAccount",
+        busTypeDataTable = $('#busTypeTable').DataTable( {
+            "ajax": "<?php echo base_url()?>bus_type/show_bus_type",
             "columns": [
                 { data: "id"},
                 { data: "name"},
-                { data: "created_at", render: function(data, type, row){
-                    return moment (data).format("LL");
-                        }
-                },
+                { data: "description"},
+                { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
                             return '<div class="btn-group">'+
@@ -233,37 +233,37 @@ textarea::-webkit-scrollbar{
 
             ],
 
-            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
-            "order": [[0, "desc"]]
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 3] }],
+            "order": [[3, "desc"]]
         })
     }
 
     loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>ChartofAccount/show_ChartofAccount/";
+        var url = "<?php echo base_url()?>bus_type/show_bus_type/";
 
-        ChartofAccountDataTable.ajax.url(url).load();
+        busTypeDataTable.ajax.url(url).load();
     }
 
 
     // CREATE BUS TYPE
-    $('#addChartofAccountForm').on('submit', function(e){
+    $('#addBusTypeForm').on('submit', function(e){
         e.preventDefault();
 
-        var form = $('#addChartofAccountForm'); 
+        var form = $('#addBusTypeForm'); 
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>ChartofAccount/add_ChartofAccount/',
+            url: '<?php echo base_url()?>bus_type/add_bus_type/',
             type: "POST",
             data: form.serialize(),
             dataType: "JSON",
         
             success: function(data){
                 refresh();
-                showNotification('create', 'Successfully added a new ChartofAccount!', 'success', 'top', 'right');
-                $("#addChartofAccountForm").trigger("reset");
+                showNotification('create', 'Successfully added a new bus type!', 'success', 'top', 'right');
+                $("#addBusTypeForm").trigger("reset");
                 // End of Confirmation
 
                 
@@ -278,119 +278,122 @@ textarea::-webkit-scrollbar{
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>ChartofAccount/get_one_ChartofAccount/',
+            url: '<?php echo base_url()?>bus_type/get_one_bus_type/',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var ChartofAccountInfo = data.data;
+                var busTypeInfo = data.data;
 
-                $('#ChartofAccountIdview').html(id);
-                $('#ChartofAccountNameview').html(ChartofAccountInfo.name);
-        
+                $('#BusTypeId').html(id);
+                $('#BusTypeName').html(busTypeInfo.name);
+                $('#BusTypeDescription').html(busTypeInfo.description);
+                $('#BusTypeStatus').html(busTypeInfo.status);
 
-                $('#ChartofAccountInfoModal').modal('show');
+                $('#busTypeInfoModal').modal('show');
             }
         // ajax closing tag
         })
     });
 
+    // EDIT BUS TYPE 
     $(document).on("click", ".btn_edit", function(){
         var id = this.value;
-         console.log(id);
+        // console.log(id);
 
-         $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/get_one_ChartofAccount/',
-             type: "POST",
-             data: { id: id },
-             dataType: "JSON",
-        
-             success: function(data){
-                 console.log(data);
-                 var ChartofAccountInfo = data.data;
-
-                 $('#editChartofAccountId').val(id);
-                 $('#editChartofAccountName').val(ChartofAccountInfo.name);
-
-                 $('#editChartofAccountInfoModal').modal('show');
-             }
-         // ajax closing tag
-         })
-     });
-
-    $('#editChartofAccountForm').on('submit', function(e){
-         e.preventDefault();
-
-         console.log('working');
-
-         var form = $('#editChartofAccountForm'); 
-
-    // ajax opening tag
         $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/edit_ChartofAccount/',
-             type: "POST",
-             data: form.serialize(),
-             dataType: "JSON",
-        
-             success: function(data){
-                 refresh();
-                 showNotification('update', 'Successfully update a ChartofAccount!', 'warning', 'top', 'right');
-                 $('#editChartofAccountInfoModal').modal('hide');
-             }
-         // ajax closing tag
-         })
-     });
-
-     // DELETE ChartofAccount
-     $(document).on("click", ".btn_delete", function(){
-         var id = this.value;
-         // console.log(id);
-
-         $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/get_one_ChartofAccount/',
-             type: "POST",
-             data: { id: id },
-             dataType: "JSON",
+            url: '<?php echo base_url()?>bus_type/get_one_bus_type/',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
         
             success: function(data){
-                 console.log(data);
-                 var deleteChartofAccountInfo = data.data;
+                console.log(data);
+                var busTypeInfo = data.data;
 
-                 $('#deleteChartofAccountId').val(id);
+                $('#editBusTypeId').val(id);
+                $('#editBusTypeName').val(busTypeInfo.name);
+                $('#editBusTypeDescription').val(busTypeInfo.description);
 
-                 $('#deleteChartofAccountInfoModal').modal('show');
-             }
-         // ajax closing tag
-         })
-     });
+                $('#editBusTypeInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
 
-     $('.delete-confirm').on('click', function(e){
-         e.preventDefault();
+    $('#editBusTypeForm').on('submit', function(e){
+        e.preventDefault();
 
-         $('#deleteChartofAccountInfoModal').modal('show');
+        console.log('working');
 
-         console.log('working');
+        var form = $('#editBusTypeForm'); 
 
-         var form = $('#deleteChartofAccountForm'); 
-
-         // ajax opening tag
-         $.ajax({
-             url: '<?php echo base_url()?>ChartofAccount/delete_ChartofAccount',
-             type: "POST",
-             data: form.serialize(),
-             dataType: "JSON",
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>bus_type/edit_bus_type/',
+            type: "POST",
+            data: form.serialize(),
+            dataType: "JSON",
         
-             success: function(data){
-                 refresh();
+            success: function(data){
+                refresh();
+                showNotification('update', 'Successfully update a bus type!', 'warning', 'top', 'right');
+                $('#editBusTypeInfoModal').modal('hide');
+            }
+        // ajax closing tag
+        })
+    });
 
-                 showNotification('delete', 'Deleted a ChartofAccount!', 'danger', 'top', 'right');
-                 $('#deleteChartofAccountInfoModal').modal('hide');
-             }
-         // ajax closing tag
-         })
-     });
+    // DELETE BUS TYPE
+    $(document).on("click", ".btn_delete", function(){
+        var id = this.value;
+        // console.log(id);
+
+        $.ajax({
+            url: '<?php echo base_url()?>bus_type/get_one_bus_type/',
+            type: "POST",
+            data: { id: id },
+            dataType: "JSON",
+        
+            success: function(data){
+                console.log(data);
+                var deleteBusTypeInfo = data.data;
+
+                $('#deleteBusTypeId').val(id);
+
+                $('#deleteBusTypeInfoModal').modal('show');
+            }
+        // ajax closing tag
+        })
+    });
+
+    $('.delete-confirm').on('click', function(e){
+        e.preventDefault();
+
+        $('#deleteBusTypeInfoModal').modal('show');
+
+        console.log('working');
+
+        var form = $('#deleteBusTypeForm'); 
+
+        // ajax opening tag
+        $.ajax({
+            url: '<?php echo base_url()?>bus_type/delete_bus_type',
+            type: "POST",
+            data: form.serialize(),
+            dataType: "JSON",
+        
+            success: function(data){
+                refresh();
+
+                showNotification('delete', 'Deleted a bus type!', 'danger', 'top', 'right');
+                $('#deleteBusTypeInfoModal').modal('hide');
+            }
+        // ajax closing tag
+        })
+    });
 </script>
 
 <!-- FIXED SCRIPTS -->

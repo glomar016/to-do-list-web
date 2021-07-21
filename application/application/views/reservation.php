@@ -57,13 +57,9 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                           </div>
                           <div class="form-row">
-                            <div class="form-group col-sm-8">
+                            <div class="form-group col-sm-12">
                                 <label for="reserveBilling">Billing Address</label>
                                 <input type="text" class="form-control" id="reserveBilling" name="reserveBilling">
-                            </div>
-                            <div class="form-group col-sm-4">
-                                <label for="promoId">Promo Code</label>
-                                <input type="text" class="form-control" id="promoId" name="promoId">
                             </div>
                           </div>
                           <div class="form-row">
@@ -83,25 +79,27 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                           </div>
                           <div class="form-row">
-                            <div class="form-group col-sm-12">
+                            <div class="form-group col-sm-6">
                                 <label for="reserveRoute">Route</label>
                                 <select class="form-control" id="reserveRoute" name="reserveRoute">
 
                                 </select>
                             </div>
-                            
-                            <!-- <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-6">
                                 <label for="reserveLandmark">Landmark</label>
                                 <select class="form-control" id="reserveLandmark" name="reserveLandmark">
 
                                 </select>
-                            </div> -->
+                            </div>
                           </div>
                           <div class="form-row">
-                            
+                            <div class="form-group col-sm-6">
+                                <label for="promoId">Promo Code</label>
+                                <input type="text" class="form-control" id="promoId" name="promoId">
+                            </div>
                           </div>
                           <div class="form-row">
-                            <div class="form-group col-sm-12 d-flex justify-content-center">
+                            <div class="form-group col-sm-12">
                               <button id="btnShowSched" class="btn btn-sm btn-info float-left">Show Available Schedule</button>
                             </div>
                           </div>
@@ -113,45 +111,12 @@ The above copyright notice and this permission notice shall be included in all c
                                 </select>
                             </div>
                           </div>
-                            
+                            <input type="submit" class="btn btnd-md btn-success float-right"><br><br>
+                      </form>
                   </div>
                   </div>
               </div>
           </div>
-
-          
-            <div id="templateDiv" class="card" hidden>
-              <div class="card-body">
-                <table id="templateTable" class="table">
-                    <thead>
-                    </thead>
-                </table>
-              </div>
-            </div>
-          
-            <div id="seatDiv"  class="card" hidden>
-              <div class="card-body">
-                <table id="seatTable" class="table">
-                  <thead>
-                    <tr>
-                      <th hidden>Seat ID</th>
-                      <th>Seat Number</th>
-                      <th>Passenger's Name</th>
-                      <th>Destination</th>
-                      <th>Insurance</th>
-                      <th>PWD/Senior/Student</th>
-                      <th>Amount</th>
-                  </thead>
-                  <tbody>
-
-                  </tbody>
-                </table>
-                <input type="submit" class="btn btnd-md btn-success float-right"><br><br>
-                </form>
-              </div>
-            </div>
-
-          
 
           <div class="card">
             <div class="card-body">
@@ -167,8 +132,8 @@ The above copyright notice and this permission notice shall be included in all c
                     <th width="10%">Actions</th>
                 </thead>
               </table>
-            </div>
           </div>
+              
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>
@@ -195,8 +160,6 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/fixed_scripts.php')?>
 
 <script>
-
-  let globalLandmark;
 
 function dataTable(){
     reservationTable = $('#reservationTable').DataTable({
@@ -255,9 +218,6 @@ var totalKm, totalPrice, totalDiscount, priceTotal, discountTotal, totalPricePro
 $('#reserveBusType').on('change', function(e){
 e.preventDefault()
 var reserveBusType = document.getElementById('reserveBusType').value;
-
-  var id = this.value;
-
   $.ajax({
         url:'<?php echo base_url()?>fare/get_specific_fare',
         type: "POST",
@@ -385,52 +345,6 @@ $('#reservationForm').on('submit', function(e){
   var form = $('#reservationForm');
 
   var reserveSchedule = $('#reserveSchedule').val();
-  let priceTotal = 0;
-
-  let seatId = [],
-          seatCode = [],
-          passengerName = []
-          landmark = []
-          passengerInsurance = []
-          passengerDiscount = []
-          passengerAmount = []
-          
-          let originTerminal = $('#reserveOrigin option:selected').text()
-
-          $("input[name='seatId[]']").each(function() {
-              seatId.push($(this).val());
-          });
-          $("input[name='passengerName[]']").each(function() {
-              passengerName.push($(this).val());
-          });
-          $("input[name='passengerAmount[]']").each(function() {
-              passengerAmount.push($(this).val());
-              priceTotal = parseFloat(priceTotal) + parseFloat($(this).val())
-              console.log(priceTotal);
-          });
-          $("select[name='passengerLandmark[]'] option:selected").each(function() {
-              landmark.push(originTerminal + ' - ' +$(this).text());
-          });
-          $("select[name='passengerInsurance[]'] option:selected").each(function() {
-              passengerInsurance.push($(this).val());
-          });
-          $("select[name='passengerDiscount[]'] option:selected").each(function() {
-              passengerDiscount.push($(this).val());
-          });
-          
-          console.log(landmark)
-          console.log(passengerAmount)
-
-          let reservationLineData = {
-            "seatId": seatId,
-            "seatCode": seatCode,
-            "passengerName": passengerName,
-            "landmark": landmark,
-            "passengerInsurance": passengerInsurance,
-            "passengerDiscount": passengerDiscount,
-            "passengerAmount": passengerAmount,
-          }
-
   
   $.ajax({
       url:'<?php echo base_url()?>schedule/get_specific_schedule',
@@ -445,63 +359,48 @@ $('#reservationForm').on('submit', function(e){
       }
   })
 
-    var promoId = code;
+  var promoId = code;
 
-    if(promoId == null){
-      totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
-    }
-    
-    var date = new Date();
-    let today = '0' + Math.floor((date.getMonth()+1).toString() + date.getDate().toString() + date.getFullYear().toString().substr(-2) + date.getHours().toString() + date.getMinutes().toString())
-    let random = (Math.random()).toString()
-    let referenceNumber = random.slice(2, 6).toString() + today.toString();
-    let currentStatus = "Pending"
+  if(promoId == null){
+    totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
+    priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+    discountTotal = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
+  }
+  
+  var date = new Date();
+  let today = '0' + Math.floor((date.getMonth()+1).toString() + date.getDate().toString() + date.getFullYear().toString().substr(-2) + date.getHours().toString() + date.getMinutes().toString())
+  let random = (Math.random()).toString()
+  let referenceNumber = random.slice(2, 6).toString() + today.toString();
+  let currentStatus = "Pending"
 
-    let addedData = form.serializeArray()
-    addedData.push({name: 'promoId', value: promoId});
-    addedData.push({name: 'referenceNumber', value: referenceNumber});
-    addedData.push({name: 'totalPrice', value: parseFloat(priceTotal).toFixed(2)});
-    // addedData.push({name: 'totalDiscount', value: discountTotal});
-    addedData.push({name: 'currentStatus', value: currentStatus});
+  let addedData = form.serializeArray()
+  addedData.push({name: 'promoId', value: promoId});
+  addedData.push({name: 'referenceNumber', value: referenceNumber});
+  addedData.push({name: 'totalPrice', value: priceTotal});
+  addedData.push({name: 'totalDiscount', value: discountTotal});
+  addedData.push({name: 'currentStatus', value: currentStatus});
 
-    console.log(addedData);
+  console.log(addedData);
 
-        
+      
 
-    $.ajax({
-        url:'<?php echo base_url()?>reservation/add_reservation',
-        type: "POST",
-        data: addedData, 
-        dataType: "JSON",
+  $.ajax({
+      url:'<?php echo base_url()?>reservation/add_reservation',
+      type: "POST",
+      data: addedData, 
+      dataType: "JSON",
 
-        success: function(data){
-          refresh();
-          console.log(data.data.id);
-          reservationId = data.data.id;
-
-          $.ajax({
-              url:'<?php echo base_url()?>reservation/add_reservation_line',
-              type: "POST",
-              data: { reservationLineData: reservationLineData, reservationId: reservationId },
-              dataType: "JSON",
-              async: false,
-
-              success: function(data){
-                objectdata = data.data;
-                console.log(objectdata);
-              }
-          })
-          document.getElementById("reservationForm").reset();
-          $('#seatDiv').attr("hidden", true);
-          $('#templateDiv').attr("hidden", true);
-          $('#reserveRoute').html("");
-          $('#reserveLandmark').html("");
-          $('#reserveSchedule').html("");
-          $('#scheduleDiv').attr("hidden", true)
-          showNotification('create', 'Successfully added a new reservation!', 'success', 'top', 'right');
-        }
-    })
-
+      success: function(data){
+        refresh();
+        console.log(data);
+        document.getElementById("reservationForm").reset();
+        $('#reserveRoute').html("");
+        $('#reserveLandmark').html("");
+        $('#reserveSchedule').html("");
+        $('#scheduleDiv').attr("hidden", true)
+        showNotification('create', 'Successfully added a new reservation!', 'success', 'top', 'right');
+      }
+  })
 });
 
 function get_bus_type(){
@@ -665,10 +564,10 @@ function show_landmark(){
       console.log(landmark);
 
       if(landmark.length == 0){
-            var html = `<option> -- Select option -- </option>`;
+            var html = `<option> -- No landmark available -- </option>`;
           }
           else{
-            var html = "<option> -- Select option -- </option>";
+            var html = "<option> -- Select available landmarks -- </option>";
           }
 
       html += `<option value="${kmDistance}">${routeName}</option>`
@@ -677,7 +576,6 @@ function show_landmark(){
       }
       
       $('#reserveLandmark').html(html);
-      globalLandmark = html;
     }
 })
 }
@@ -689,236 +587,80 @@ $( "#btnShowSched" ).on('click', function(e) {
   show_avail_schedule();
 });
 
+// function show_schedule(){
+// var scheduleId = document.getElementById('reserveRoute').value;
 
-  function show_avail_schedule(){
-    var routeId = document.getElementById('reserveRoute').value;
-    var date = document.getElementById('reserveDate').value;
-    var TypeId = document.getElementById('reserveBusType').value;
-    var formatDate = date + 'T00:00:00.000Z';
-    dataInfo = {
-      
-    }
+// $.ajax({
+//   url: '<?php echo base_url()?>schedule/show_schedule/' + scheduleId,
+//   type: "GET",
+//   dataType: "JSON",
 
-    $.ajax({
-      url: '<?php echo base_url()?>Reservation/show_avail_bus/',
-      type: "POST",
-      data: {date: formatDate ,
-            routeId: routeId,
-            TypeId: TypeId},
-      datatype: "JSON",
-      // contentType: 'application/json',
-      
+//   success: function(data){
+//     var schedule = data.data;
+//     var html = "";
+
+//     if(schedule.length == 0){
+//           var html = `<option> -- No landmark available -- </option>`;
+//         }
+//         else{
+//           var html = "<option> -- Select available landmarks -- </option>";
+//         }
+
+//     for(var i=0; i < landmark.length; i++){
+//       html += `<option value="${landmark[i].id}">${landmark[i].name}</option>`
+//     }
     
-      success: function(data){
-        var sched = JSON.parse(data);
-        var schedule = sched.data
-        console.log(schedule);
-        var html = "";
+//     $('#reserveLandmark').html(html);
+//   }
+// })
+// }
 
-        if(schedule.length == 0){
-              var html = `<option> -- No schedule available -- </option>`;
-            }
-            else{
-              var html = "<option> -- Select available schedule -- </option>";
-            }
-        
-        
-        for(var i=0; i < schedule.length; i++){
-          var date = moment(`${schedule[i].scheduleDate}`).format('LL');
-          var hourFrom = moment(`${schedule[i].busSchedule.hourFrom}`).format('LT');
-          var hourTo = moment(`${schedule[i].busSchedule.hourTo}`).format('LT');
-
-          html += `<option id="${schedule[i].busInformation.id}" value="${schedule[i].busSchedule.id}">` + date + " | " + hourFrom + "-" + hourTo + " | Bus Number: " + `${schedule[i].busInformation.number}</option>`;
-        }
-        
-        $('#reserveSchedule').html(html);
-      }
-    })
-
+function show_avail_schedule(){
+  var routeId = document.getElementById('reserveRoute').value;
+  var date = document.getElementById('reserveDate').value;
+  var TypeId = document.getElementById('reserveBusType').value;
+  var formatDate = date + 'T00:00:00.000Z';
+  dataInfo = {
+    
   }
 
-  $('#reserveSchedule').on('change', function(e){
-      var id = $(this).children(":selected").attr("id");
-      console.log(id)
-
-      $('#templateDiv').attr('hidden', false);
-
-        $.ajax({
-            url: '<?php echo base_url()?>busInformation/show_bus_seats/',
-            type: 'POST',
-            data: { id, id },
-            dataType: "JSON",
-
-            success: function(response){
-              let data = response.data;
-              console.log(data)
-              let html;
-              for(let tr=1; tr <= + data[0].template.row; tr++){
-                html += `<tr id=tr${tr}> </tr>`
-              }
-
-              $('#templateTable').html(html);
-              console.log(data);
-
-              let i = 0;
-              for(let col=1; col <= data[0].template.column; col++){
-                  for(let row=1; row <= data[0].template.row; row++){
-                    if(col == 1){
-                      if(row == 1){
-                        $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px; text-align:center;"><p style="text-align:center">Entrance</p></td>`)
-                      
-                        i++;
-                      }
-                      else if(row == data[0].template.row){
-                        $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px; text-align:center;"><img src="/brs-web/resources/images/seats_driver.png" length="20" width="20"><p style="text-align:center">Driver</p></td>`)
-                        console.log('this is driver seat' + data[i].code)
-                      
-                        i++;
-                      }
-                      else{
-                        $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px; text-align:center;"></td>`)
-                        i++;
-                      }
-                    }
-                    else if(row == 3){
-                      if(col == data[0].template.column){
-                        if(data[i].currentStatus == 'Available'){
-                          $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;  text-align:center;"><img class="seatImg" id="${data[i].id}" alt="${data[i].code}" src="/brs-web/resources/images/seats_available.png" length="20" width="20">
-                          <p>${(data[i].code).slice(5, 7)}</p></td>`)
-                        }
-                        else if(data[i].currentStatus == 'Reserved'){
-                          $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;  text-align:center;"><img class="seatImg" id="${data[i].id}" alt="${data[i].code}" src="/brs-web/resources/images/seats_taken.png" length="20" width="20">
-                          <p>${(data[i].code).slice(5, 7)}</p></td>`)
-                        }
-
-                        
-                      
-                        i++;
-                      }
-                      else{
-                        $('#tr'+row).append(`<td style="padding: 15px; padding-left: 50px; text-align:center;"></td>`)
-                      
-                        i++;
-                      }
-                    }
-                    else{
-                      if(data[i].currentStatus == 'Available'){
-                          $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;  text-align:center;"><img class="seatImg" id="${data[i].id}" alt="${data[i].code}" src="/brs-web/resources/images/seats_available.png" length="20" width="20">
-                          <p>${(data[i].code).slice(5, 7)}</p></td>`)
-                      }
-                      else if(data[i].currentStatus == 'Reserved'){
-                        $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;  text-align:center;"><img class="seatImg" id="${data[i].id}" alt="${data[i].code}" src="/brs-web/resources/images/seats_taken.png" length="20" width="20">
-                        <p>${(data[i].code).slice(5, 7)}</p></td>`)
-                      }
-                    
-                      i++;
-                    }
-                  }
-              }
-            }
-        })
-  })
-
-  let globalTrCount = 1;
-
-  $(document).on("click", ".seatImg", function(e){
-
-    image = $(this).attr('src');
-
-    $('#seatDiv').attr('hidden', false)
-
-    let seatCode = $(this).attr("alt");
-    let seatId = $(this).attr("id")
-
-    if(image == "/brs-web/resources/images/seats_available.png"){
-      $(this).attr('src', '/brs-web/resources/images/seats_selected.png')
-      $('#seatTable').find('tbody').append(`
-        <tr class="seatTr${seatCode.slice(5, 7)}">
-          <td hidden>
-            <input readonly type="text" value="${seatId}" class="form-control" name="seatId[]">
-          </td>
-          <td>
-            <input readonly type="text" value="${seatCode}" class="form-control" name="seatCode[]">
-          </td>
-          <td>
-            <input type="text" class="form-control" name="passengerName[]">
-          </td>
-          <td>
-            <select id="passengerLandmark${seatCode.slice(5, 7)}" class="form-control passengerLandmark" name="passengerLandmark[]">
-                ${globalLandmark}
-            </select>
-          </td>
-          <td>
-            <select id="" class="form-control" name="passengerInsurance[]">
-              <option disabled selected> -- Select Option -- </option>
-            </select>
-          </td>
-          <td>
-            <select id="passengerDiscount${seatCode.slice(5, 7)}" class="form-control passengerDiscount" name="passengerDiscount[]">
-              <option disabled selected> -- Select Option -- </option>
-              <option id="No">No</option>
-              <option id="Yes">Yes</option>
-            </select>
-          </td>
-          <td>
-            <input id="amount${seatCode.slice(5, 7)}" readonly type="text" class="form-control" name="passengerAmount[]">
-          </td>
-        </tr>
-      `)
-    }
-    else if(image == "/brs-web/resources/images/seats_selected.png"){
-      $(this).attr('src', '/brs-web/resources/images/seats_available.png')
-      $('.seatTr'+(seatCode.slice(5, 7))).remove()
-    }
+  $.ajax({
+    url: '<?php echo base_url()?>Reservation/show_avail_bus/',
+    type: "POST",
+    data: {date: formatDate ,
+          routeId: routeId,
+          TypeId: TypeId},
+    datatype: "JSON",
+    // contentType: 'application/json',
     
-  })
+  
+    success: function(data){
+      var sched = JSON.parse(data);
+      var schedule = sched.data
+      console.log(schedule);
+      var html = "";
 
-  $(document).on("change", ".passengerLandmark", function(e){
-    var kmOriginDistance = $(this).children(":selected").val()
+      if(schedule.length == 0){
+            var html = `<option> -- No schedule available -- </option>`;
+          }
+          else{
+            var html = "<option> -- Select available schedule -- </option>";
+          }
+      
+      
+      for(var i=0; i < schedule.length; i++){
+        var date = moment(`${schedule[i].scheduleDate}`).format('LL');
+        var hourFrom = moment(`${schedule[i].busSchedule.hourFrom}`).format('LT');
+        var hourTo = moment(`${schedule[i].busSchedule.hourTo}`).format('LT');
 
-    var seatNumber = this.id;
-    seatNumber = seatNumber.slice(-2)
-    
-    discounted = $("#passengerDiscount"+seatNumber).val()
-
-    if(discounted == "Yes"){
-      let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
-      discountedAmount = parseFloat(amount) - ((parseFloat(amount) * parseFloat(discountPercentage / 100)))
-
-      $("#amount"+seatNumber).val(parseFloat(discountedAmount).toFixed(2))
-    }
-    else{
-      kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
-
-      let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
-
-      $("#amount"+seatNumber).val(amount)
-    }
-
-  })
-
-  $(document).on("change", ".passengerDiscount", function(e){
-
-    var seatNumber = this.id;
-    seatNumber = seatNumber.slice(-2)
-
-    if(this.value == "Yes"){
-      kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
-
-      let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
-      discountedAmount = parseFloat(amount) - ((parseFloat(amount) * parseFloat(discountPercentage / 100)))
-
-      $("#amount"+seatNumber).val(parseFloat(discountedAmount).toFixed(2))
-    }
-    else{
-      kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
-
-      let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
-
-      $("#amount"+seatNumber).val(amount)
+        html += `<option value="${schedule[i].busSchedule.id}">` + date + " | " + hourFrom + "-" + hourTo + " | Bus Number: " + `${schedule[i].busInformation.number}</option>`;
+      }
+      
+      $('#reserveSchedule').html(html);
     }
   })
 
+}
   show_terminal();
   show_promo();
   get_bus_type();
