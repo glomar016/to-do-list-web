@@ -164,7 +164,8 @@ The above copyright notice and this permission notice shall be included in all c
                     <th>Schedule</th>
                     <th>Total Amount</th>
                     <th>Status</th>
-                    <th width="10%">Actions</th>
+                    <th hidden>Reservation Date</th>
+                    <th >Actions</th>
                 </thead>
               </table>
             </div>
@@ -226,7 +227,29 @@ The above copyright notice and this permission notice shall be included in all c
               
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="cancelReservationModal" tabindex="-1" role="dialog" aria-labelledby="cancelReservationModalTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cancelReservationModalTitle">Cancel Reservation</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h6 style="color: black">Are you sure to cancel reservation?</h6>
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="cancelReservationBtn" class="btn btn-danger cancelReservationConfirm" data-dismiss="modal">Yes</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             </div>
           </div>
         </div>
@@ -271,23 +294,26 @@ function dataTable(){
               return "P" + parseFloat(data).toFixed(2);
           }},
           {data: "currentStatus"},
+          {data: "created_at"},
           {data: "currentStatus", render: function(data, type, row){
                 if (data == "Paid"){
                   return '<div class="btn-group">' +
-                          '<button class="btn btn-warning btn-sm btn-print-reservation" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Print </button>'+
+                          '<button class="btn btn-primary btn-sm btn-print-reservation" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Print </button>&nbsp'+
+                          '<button class="btn btn-danger btn-sm btn-refund-reservation" value="' + row.id + '"title = "Refund" type="button"> <i class="zmdi zmdi-edit"> </i> Refund </button>'+
                           '</div>';
                 }
-                else{
+                else if(data == "Pending"){
                   return '<div class="btn-group">' +
-                          '<button class="btn btn-info btn-sm btn-view-reservation" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>'+
+                          '<button class="btn btn-info btn-sm btn-view-reservation" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>&nbsp'+
+                          '<button class="btn btn-default btn-sm btn-cancel-reservation" value="' + row.id + '"title = "Cancel" type="button"> <i class="zmdi zmdi-view"> </i> Cancel </button>'+
                           '</div>';
                 }
               }
           }
         ],
 
-      "aoColumnDefs": [{ "bVisible": false, "aTargets": [0] }],
-      "order": [[3, "desc"]]
+      "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 6] }],
+      "order": [[6, "desc"]]
 
     })
 
@@ -554,7 +580,9 @@ $('#reservationForm').on('submit', function(e){
           })
           document.getElementById("reservationForm").reset();
           $('#seatDiv').attr("hidden", true);
+          $('#seatTable').find('tbody').html("");
           $('#templateDiv').attr("hidden", true);
+          $('#templateTable').html(`<thead></thead>`);
           $('#reserveRoute').html("");
           $('#reserveLandmark').html("");
           $('#reserveSchedule').html("");
@@ -801,6 +829,7 @@ $( "#btnShowSched" ).on('click', function(e) {
   $('#reserveSchedule').on('change', function(e){
       var id = $(this).children(":selected").attr("id");
       
+      $('#templateTable').html(`<thead></thead>`);
 
       $('#templateDiv').attr('hidden', false);
 
@@ -1037,7 +1066,71 @@ $( "#btnShowSched" ).on('click', function(e) {
      })
 
 
-  })
+  });
+
+  $(document).on("click", ".btn-cancel-reservation", function(e){
+    $('#cancelReservationBtn').val(this.value);
+
+    $('#cancelReservationModal').modal('show');
+  });
+
+  $(document).on("click", ".cancelReservationConfirm", function(e){
+    reservationId = this.value;
+
+    seatId = []
+
+    $.ajax({
+            url: '<?php echo base_url()?>reservation/get_reservation_line/',
+            type: 'POST',
+            data: { reservationId, reservationId },
+            dataType: "JSON",
+
+            success: function(data){
+              reservationData = data.data
+
+              for(i=0; i < reservationData.length; i++){
+                seatId.push(reservationData[i].seatId);
+              }
+
+              $.ajax({
+                url: '<?php echo base_url()?>reservation/delete_reservation/',
+                  type: 'POST',
+                  data: { reservationId, reservationId },
+                  dataType: "JSON",
+
+                  success: function(data){
+                    
+                    $.ajax({
+                    url: '<?php echo base_url()?>reservation/delete_reservation_lines/',
+                    type: 'POST',
+                    data: { reservationId, reservationId },
+                    dataType: "JSON",
+
+                    success: function(data){
+                        $.ajax({
+                            url: '<?php echo base_url()?>reservation/activate_bus_seats/',
+                            type: 'POST',
+                            data: { seatId, seatId },
+                            dataType: "JSON",
+
+                            success: function(data){
+
+                            }
+                        })
+                    }
+
+                  })
+                  showNotification('delete', 'Successfully cancelled a reservation!', 'danger', 'top', 'right');
+                  refresh();
+                  }
+              })
+
+                
+            }
+     })
+
+  });
+
 
   show_terminal();
   show_promo();
