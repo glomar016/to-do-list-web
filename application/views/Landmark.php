@@ -60,6 +60,7 @@ The above copyright notice and this permission notice shall be included in all c
 
                 <!-- TABLE  -->
                 <div class="card">
+                <h4 class="card-header card-header-info">List of Landmarks</h4>
                 <div class="card-body">
                     <table id="landmarkTable" class="table">
                         <thead>

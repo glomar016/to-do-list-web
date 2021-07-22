@@ -179,6 +179,7 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
 
           <div class="card">
+          <h4 class="card-header card-header-info">List of Bus</h4>
             <div class="card-body">
               <table id="busInformationTable" class="table">
                 <thead>
@@ -216,99 +217,99 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                       <div class="form-group col-sm-12">
                       <label for="busNumberView">Bus Number</label>
-                      <span class="form-control-plaintext" id="busNumberView" name="busNumberView">
+                      <span class="form-control" id="busNumberView" name="busNumberView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                         <label for="busTypeView">Bus Type</label>
-                        <span class="form-control-plaintext" id="busTypeView" name="busTypeView">
+                        <span class="form-control" id="busTypeView" name="busTypeView">
                       </div>
                       <div class="form-group col-sm-6">
                         <label for="busTemplateView">Bus Template</label>
-                        <span class="form-control-plaintext" id="busTemplateView" name="busTemplateView">
+                        <span class="form-controlt" id="busTemplateView" name="busTemplateView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                       <label for="ownerView">Owner</label>
-                      <span class="form-control-plaintext" id="ownerView" name="ownerView">
+                      <span class="form-control" id="ownerView" name="ownerView">
                       </div>
                       <div class="form-group col-sm-6">
                       <label for="contactView">Contact Number</label>
-                      <span class="form-control-plaintext" id="contactView" name="contactView">
+                      <span class="form-control" id="contactView" name="contactView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="plateView">Plate Number</label>
-                      <span class="form-control-plaintext" id="plateView" name="plateView">
+                      <span class="form-control" id="plateView" name="plateView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="engineView">Engine Number</label>
-                      <span class="form-control-plaintext" id="engineView" name="engineView">
+                      <span class="form-control" id="engineView" name="engineView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="chasisView">Chasis Number</label>
-                      <span class="form-control-plaintext" id="chasisView" name="chasisView">
+                      <span class="form-control" id="chasisView" name="chasisView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fileNumberView">MV File Number</label>
-                      <span class="form-control-plaintext" id="fileNumberView" name="fileNumberView">
+                      <span class="form-control" id="fileNumberView" name="fileNumberView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="denominationView">Denomination</label>
-                      <span class="form-control-plaintext" id="denominationView" name="denominationView">
+                      <span class="form-control" id="denominationView" name="denominationView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="pistonView">Piston Placement</label>
-                      <span class="form-control-plaintext" id="pistonView" name="pistonView">
+                      <span class="form-control" id="pistonView" name="pistonView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fuelView">Fuel</label>
-                      <span class="form-control-plaintext" id="fuelView" name="fuelView"> 
+                      <span class="form-control" id="fuelView" name="fuelView"> 
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="yearView">Year Model</label>
-                      <span class="form-control-plaintext" id="yearView" name="yearView">
+                      <span class="form-control" id="yearView" name="yearView">
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="makeView">Make</label>
-                      <span class="form-control-plaintext" id="makeView" name="makeView">
+                      <span class="form-control" id="makeView" name="makeView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="seriesView">Series</label>
-                      <span class="form-control-plaintext" id="seriesView" name="seriesView">
+                      <span class="form-control" id="seriesView" name="seriesView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyView">Body Type</label>
-                      <span class="form-control-plaintext" id="bodyView" name="bodyView">
+                      <span class="form-control" id="bodyView" name="bodyView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyNumberView">Body Number</label>
-                      <span class="form-control-plaintext" id="bodyNumberView" name="bodyNumberView">
+                      <span class="form-control" id="bodyNumberView" name="bodyNumberView">
                       </div>
                   </div>
                   <div class="form-row">
                   <div class="form-group col-sm-3">
                       <label for="netCapacityView">Net Capacity</label>
-                      <span class="form-control-plaintext" id="netCapacityView" name="netCapacityView">
+                      <span class="form-control" id="netCapacityView" name="netCapacityView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="grossWeightView">Gross Weight (kg)</label>
-                      <span class="form-control-plaintext" id="grossWeightView" name="grossWeightView">
+                      <span class="form-control" id="grossWeightView" name="grossWeightView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="netWeightView">Net Weight (kg)</label>
-                      <span class="form-control-plaintext" id="netWeightView" name="netWeightView">
+                      <span class="form-control" id="netWeightView" name="netWeightView">
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightView">Shipping Weight (kg)</label>
-                      <span class="form-control-plaintext" id="shipWeightView" name="shipWeightView">
+                      <span class="form-control" id="shipWeightView" name="shipWeightView">
                       </div>
                   </div>
                   <div class="form-row">

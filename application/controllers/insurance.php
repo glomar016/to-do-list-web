@@ -32,12 +32,12 @@ class Insurance extends CI_Controller {
         $details = $this->input->post('insuranceDetails');
         $document = $this->input->post('insuranceDocument');
 
-        $data = array("insuranceCode" => $code,
-                      "insuranceName" => $name,
+        $data = array("code" => $code,
+                      "name" => $name,
                       "effectivityDate" => $effectivityDate,
-                      "insuranceAmount" => $amount,
-                      "insuranceDetails" => $details,
-                      "insuranceDocument" => $document,
+                      "amount" => $amount,
+                      "details" => $details,
+                      "document" => $document,
                     );
 
         $postdata = json_encode($data);

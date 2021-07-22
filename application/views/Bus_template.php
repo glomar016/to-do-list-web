@@ -140,6 +140,7 @@ textarea::-webkit-scrollbar{
             </div>
 
           <div class="card">
+          <h4 class="card-header card-header-info">List of Bus Templates</h4>
               <div class="card-body">
                 <table id="busTemplateTable" class="table">
                     <thead>
