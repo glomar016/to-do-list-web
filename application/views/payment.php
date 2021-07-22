@@ -47,23 +47,18 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="card-body">   
                         <form id="paymentForm">
                             <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="paymentReferenceNumber">Reference Number</label>
-                                    <select class="form-control" id="paymentReferenceNumber" name="paymentReferenceNumber">
-                                        
-                                    </select>
+                                <div class="form-group col-sm-6" id="paymentReferenceNumberDiv">
+                                    
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="paymentChartOfAccount">Chart of Acccount</label>
-                                    <select class="form-control" id="paymentChartOfAccount" name="paymentChartOfAccount">
-                                        
-                                    </select>
+                                <div class="form-group col-sm-6" id="paymentChartOfAccountDiv">
+                                    
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <label for="paymentTerm">Payment Term</label>
                                     <select class="form-control" id="paymentTerm" name="paymentTerm">
                                         <option value="" disabled selected hidden >- - Select Payment Term - -</option>
                                         <option value="Full Payment">Full Payment</option>
+                                        <option value="Half Payment">Half Payment</option>
                                         <!-- <option value="Down Payment">Down Payment</option> -->
 
                                     </select>
@@ -130,8 +125,6 @@ The above copyright notice and this permission notice shall be included in all c
 
 <!-- FIXED SCRIPTS -->
 <?php $this->load->view('includes/fixed_scripts.php')?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js" integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css" integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
 
 </html>
 
@@ -167,7 +160,7 @@ $(document).ready(function(){
                 },
             ],
             "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 5] }],
-            "order": [[0, "desc"]]
+            "order": [[5, "desc"]]
         })
 
         
@@ -195,13 +188,22 @@ $(document).ready(function(){
                 let reservationInfo = data.data
                 var html = ""
 
-                html += `<option value="" disabled selected hidden >- - Select Reference Number - -</option>`
+                $('#paymentReferenceNumberDiv').html(`<label for="paymentReferenceNumber">Reference Number</label>
+                                    <select class="form-control" id="paymentReferenceNumber" name="paymentReferenceNumber">
+                                        
+                                    </select>`)
+
+
+                html += `<option value="" disabled selected hidden >-- Select Reference Number - -</option>`
 
                 for(var i=0; i < reservationInfo.length; i++){
-                    html += `<option value="${reservationInfo[i].id}">${reservationInfo[i].referenceNumber}</option>`
+                    if(reservationInfo[i].currentStatus == "Pending"){
+                        html += `<option value="${reservationInfo[i].id}">${reservationInfo[i].referenceNumber}</option>`
+                    }
                 }
                     
                 $('#paymentReferenceNumber').html(html);
+                
                 $('select').selectize({
                     sortField: 'text'
                 });            
@@ -221,6 +223,11 @@ $(document).ready(function(){
                 let chartOfAccountInfo = data.data
                 var html = ""
 
+                $('#paymentChartOfAccountDiv').html(`<label for="paymentChartOfAccount">Chart of Acccount</label>
+                                    <select class="form-control" id="paymentChartOfAccount" name="paymentChartOfAccount">
+                                        
+                                    </select>`)
+
                 html += `<option value="" disabled selected hidden >- - Select Chart of Account - -</option>`
 
                 for(var i=0; i < chartOfAccountInfo.length; i++){
@@ -228,6 +235,10 @@ $(document).ready(function(){
                 }
                     
                 $('#paymentChartOfAccount').html(html);
+
+                $('select').selectize({
+                    sortField: 'text'
+                });            
             }
         })
     }
@@ -235,7 +246,7 @@ $(document).ready(function(){
     get_chart_of_account();
     get_reservation();
 
-    $('#paymentReferenceNumber').on('change', function(e){
+    $(document).on('change', '#paymentReferenceNumber', function(e){
         let id = $( "#paymentReferenceNumber option:selected" ).val();
         console.log(id); 
 
@@ -249,13 +260,14 @@ $(document).ready(function(){
                 console.log(data);
                 reservationInfo = data.data;
 
-                $('#paymentAmount').val(reservationInfo.totalAmount)
+                amountToPay = Number(reservationInfo.totalAmount) - Number(reservationInfo.paidAmount)
+
+                $('#paymentAmount').val(amountToPay)
             }
         })
     })
 
-    $('#paymentCashTendered').on('change', function(e){
-
+    $(document).on('change', '#paymentCashTendered', function(e){
 
         let paymentAmount = $('#paymentAmount').val()
         let paymentCashTendered = $('#paymentCashTendered').val()
@@ -263,10 +275,42 @@ $(document).ready(function(){
         if(paymentCashTendered == ""){
             $('#paymentChange').val(0)
         }
-        else{
-            $('#paymentChange').val(paymentCashTendered - paymentAmount)
+        else if(Number(paymentCashTendered) < Number(paymentAmount)){
+            $('#paymentChange').val(0)
         }
-        
+        else{
+            $('#paymentChange').val(parseFloat(paymentCashTendered - paymentAmount).toFixed(2))
+        }
+    })
+
+    $(document).on('change', '#paymentTerm', function(e){
+        id =  $("#paymentReferenceNumber option:selected" ).val()
+        valueSelected = $('#paymentTerm option:selected').val()
+
+        if(valueSelected == "Half Payment"){
+            paymentAmount = $('#paymentAmount').val()
+            cashTendered = (Number(paymentAmount) / 2)
+
+            $('#paymentAmount').val(cashTendered)
+        }
+        else if(valueSelected == "Full Payment"){
+            $.ajax({
+                url: '<?php echo base_url() ?>reservation/find_one_reservation',
+                type: "POST",
+                data: {id: id},
+                dataType: "JSON",
+
+                success: function(data){
+                    console.log(data);
+                    reservationInfo = data.data;
+
+                    amountToPay = Number(reservationInfo.totalAmount) - Number(reservationInfo.paidAmount)
+
+                    $('#paymentAmount').val(amountToPay)
+                }
+            })
+        }
+
     })
 
 
@@ -275,8 +319,11 @@ $(document).ready(function(){
         e.preventDefault();
         let form = $('#paymentForm')
         let cashTendered = $('#paymentCashTendered').val()
-        let reservationId;
 
+        let payingAmount = Number(cashTendered) - Number($('#paymentChange').val())
+
+        let reservationId;
+        
         $.ajax({
             url:'<?php echo base_url()?>payment/add_payment',
             type: "POST",
@@ -286,25 +333,47 @@ $(document).ready(function(){
             success: function(data){
                 refresh();
                 let objData = data.data;
-                console.log(objData);
+                console.log(objData)
                 document.getElementById("paymentForm").reset();
-                showNotification('create', 'Successfully added a new payment!', 'success', 'top', 'right');
 
                 reservationId = objData[0].reservationId;
+                totalAmount = (objData[0].reservation.totalAmount)
+                paidAmount = (objData[0].reservation.paidAmount)
+                newPaidAmount = Number(paidAmount) + Number(payingAmount)
 
-                if(parseFloat(cashTendered).toFixed(2) >= parseFloat(objData[0].reservation.totalAmount).toFixed(2)){
-                    $.ajax({
-                        url:'<?php echo base_url()?>reservation/update_status',
-                        type: "POST",
-                        data: {id : reservationId}, 
-                        dataType: "JSON",
-                        
-                        success: function(data){
-                            refresh();
-                            console.log(data.data);
+                $.ajax({
+                    url:'<?php echo base_url()?>payment/add_paid_amount',
+                    type: "POST",
+                    data: { reservationId: reservationId, paidAmount: newPaidAmount }, 
+                    dataType: "JSON",
+
+                    success: function(data){
+                        objData = (data.data);
+                        if(Number(objData.paidAmount) >= Number(objData.totalAmount)){
+                            $.ajax({
+                                url:'<?php echo base_url()?>reservation/update_status',
+                                type: "POST",
+                                data: {id : reservationId}, 
+                                dataType: "JSON",
+                                
+                                success: function(data){
+                                    
+                                }
+                            })
                         }
-                    })
-                }
+
+                        refresh();
+                        console.log(data.data);
+                        showNotification('create', 'Successfully added a new payment!', 'success', 'top', 'right');
+
+                        setInterval(function(){
+                                        location.reload()
+                                    }, 1000);
+                    }
+                })
+
+
+                
             }
         })
     })

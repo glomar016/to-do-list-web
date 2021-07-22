@@ -1,4 +1,13 @@
+<?php
+    if (isset($this->session->userdata['logged_in'])) {
+        $email = ($this->session->userdata['logged_in']['email']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
+        $firstName = ($this->session->userdata['logged_in']['firstName']);
 
+    }
+
+    
+?>
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -93,7 +102,16 @@
                         
                         <div class="navbar-btn d-none d-sm-inline-block">
                             <ul>
-                                <li><a class="solid" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>                                       
+
+                                <?php
+                                    if (isset($this->session->userdata['logged_in'])) {
+                                        echo '<li><a class="solid btn_logout" class="trigger-btn" data-toggle="modal">LOGOUT</a></li>';
+                                    }
+                                    else{
+                                        echo '<li><a class="solid" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
+                                    }
+                                ?>
+                                                                      
                             </ul>
                         </div>
                     </nav> <!-- navbar -->
@@ -600,11 +618,12 @@
     <script src="<?php echo base_url()?>resources/assets/users/assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="<?php echo base_url()?>resources/assets/users/assets/js/vendor/modernizr-3.7.1.min.js"></script>
 
+    <?php $this->load->view('includes/fixed_scripts.php')?>
+    <?php $this->load->view('includes/core_js_files.php')?>
+
     <script>
     $('#loginForm').on('submit', function(e){
         e.preventDefault();
-        // console.log("gumagana");
-        // window.location.href = "<?php echo base_url()?>Main";
 
         var form = $('#loginForm'); 
 
@@ -617,13 +636,26 @@
         
             success: function(data){
                 console.log(data)
-                // window.location.href = "<?php echo base_url()?>Main";
+                if(data.error == true){
+                    Swal.fire(
+                    'Login failed!',
+                    data.message[0],
+                    'warning'
+                    )
+                }
+                else{
+                    window.location.href = "<?php echo base_url()?>"
+                }
                 
             }
         // ajax closing tag
         })
         
     });
+
+    $('.btn_logout').on('click', function(e){
+        window.location.href = "<?php echo base_url()?>logout"
+    })
 
     
     </script>

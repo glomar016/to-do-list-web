@@ -28,7 +28,6 @@ class Login extends CI_Controller {
 	public function userLogin()
 	{
 
-
 		$loginEmail = $this->input->post('loginEmail');
 		$loginPass = $this->input->post('loginPass');
 
@@ -61,31 +60,20 @@ class Login extends CI_Controller {
 		
 		$resDecoded=json_decode($response, true);
 
-
-		if ($resDecoded != FALSE) {
+		if ($resDecoded['error'] != TRUE) {
 			$session_data = array(
 				'email' => $resDecoded['data']['email'],
 				'firstName' => $resDecoded['data']['firstName'],
 				'userId' => $resDecoded['data']['id'],
 				'userType' => $resDecoded['data']['userType'],
-			);}
+			);
+
+		$this->session->set_userdata('logged_in', $session_data);
 		
-			foreach($session_data as $result) {
-				echo $result, '<br>';
-			}
+		}
+		
 
-		$this->set_userdata('logged_in', $session_data);
 
-					if($session_data[0]->userType == ""){
-						$data['result'] = 'Success';
-						$data['userType'] = 'User';
-						echo json_encode($data);
-					}
-					else{
-						$data['result'] = 'Success';
-						$data['userType'] = 'Admin';
-						echo json_encode($data);
-					}
 	
-}
+	}
 }
