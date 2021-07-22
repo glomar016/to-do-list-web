@@ -28,7 +28,7 @@ class Logout extends CI_Controller {
 
         );
         $this->session->unset_userdata('logged_in', $sess_array);
-        $this->load->view('users/index');
+        header('Location:'. base_url());
     }
 
 
