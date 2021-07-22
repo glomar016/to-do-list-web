@@ -272,9 +272,6 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
       </div>
 
-      <div id="counterPrintReceipt" class="myDivToPrint" hidden>
-              <?php $this->load->view('receipt/user_receipt') ?>
-          </div>
 
       
       <!-- FOOTER -->

@@ -178,8 +178,6 @@ class Reservation extends CI_Controller {
 	
 		$id = $this->input->post('id');
 
-		// echo $id;
-
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
