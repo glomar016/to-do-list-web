@@ -79,6 +79,7 @@ textarea::-webkit-scrollbar{
               </div>
           </div>
             <div class="card">
+            <h4 class="card-header card-header-info">List of Counter</h4>
               <div class="card-body">
                 <table id="counterTable" class="table">
                     <thead>

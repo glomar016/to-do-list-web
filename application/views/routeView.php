@@ -58,7 +58,7 @@ The above copyright notice and this permission notice shall be included in all c
             </div>
 
             <div class="card card-nav-tabs" style="width: 100rem;">
-                    <div class="card-header card-header-danger">
+                    <div class="card-header card-header-primary">
                         Create Landmark 
                     </div>
                     <div class="card-body">
@@ -84,6 +84,7 @@ The above copyright notice and this permission notice shall be included in all c
 
                 <!-- TABLE  -->
                 <div class="card">
+                <h4 class="card-header card-header-info">List of Landmarks</h4>
                 <div class="card-body">
                     <table id="landmarkTable" class="table">
                         <thead>

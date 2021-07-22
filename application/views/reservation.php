@@ -170,6 +170,7 @@ The above copyright notice and this permission notice shall be included in all c
           
 
           <div class="card">
+          <h4 class="card-header card-header-info">List of Reservations</h4>
             <div class="card-body">
               <table id="reservationTable" class="table">
                 <thead>

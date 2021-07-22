@@ -125,6 +125,7 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
 
           <div class="card">
+          <h4 class="card-header card-header-info">List of Schedules</h4>
             <div class="card-body">
               <table id="scheduleTable" class="table">
                 <thead>
@@ -162,31 +163,31 @@ The above copyright notice and this permission notice shall be included in all c
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <label for="routeView">Route</label> <br>
-                        <span id="routeView" name="routeView">           
+                        <span type="text" class="form-control" id="routeView" name="routeView">           
                         </span>
                     </div>
                     <div class="form-group col-sm-6">
                             <label for="busTypeView">Bus Type</label> <br>
-                            <span id="busTypeView" name="busTypeView">           
+                            <span type="text" class="form-control" id="busTypeView" name="busTypeView">           
                             </span>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-3">
                             <label for="estimatedTimeTravelView">Estimated Time Travel</label>
-                            <span id="estimatedTimeTravelView" name="estimatedTimeTravelView"> </span>
+                            <span type="text" class="form-control" id="estimatedTimeTravelView" name="estimatedTimeTravelView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="hourFromView">Hour From</label> <br>
-                            <span id="hourFromView" name="hourFromView"> </span>
+                            <span type="text" class="form-control" id="hourFromView" name="hourFromView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="hourToView">Hour To</label> <br>
-                            <span id="hourToView" name="hourToView"> </span>
+                            <span type="text" class="form-control" id="hourToView" name="hourToView"> </span>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="willArriveNextDayView">Will Arrive the Next Day</label>
-                            <span id="willArriveNextDayView" name="willArriveNextDayView"> </span>
+                            <span type="text" class="form-control" id="willArriveNextDayView" name="willArriveNextDayView"> </span>
                         </div>
                     </div>
                     <div class="form-row">
