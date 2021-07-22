@@ -6,7 +6,7 @@
     
     <center id="top">
       <div>
-          <!-- <img src="<?php echo base_url()?>resources\assets\img\brs-logo.png"> -->
+          <!-- <img src="<?php echo base_url()?>resources\assets\img\brs-logo-sm.png"> -->
       </div>
       <div class="info"> 
         <h2>Bus Reservation</h2>
