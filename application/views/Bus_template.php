@@ -343,7 +343,7 @@ $(document).on("click", ".btn_view", function(e){
                     i++;
                   }
                 }
-                else if(row == 3){
+                else if(parseInt(row) == (parseInt(data[0].template.row)-2)){
                   if(col == data[0].template.column){
                     console.log('i =' + i);
                     $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;"><img class="seatImg" id="${data[i].id}" src="/brs-web/resources/images/seats_available.png" length="20" width="20"><p style="text-align:center">

@@ -180,9 +180,8 @@ class Bus_template extends CI_Controller {
                         $sortNumber++;
                     }
                 }
-                else if($row == 3){
+                else if(intval($row) == (intval($templateRows)-2)){
                     if($col == $templateColumns){
-
                         array_push($seatPostData, array("code" => "SEAT-".sprintf("%'02d", $seatNumber)
                             , "currentStatus" => 'Available'
                             , "type" => 'Passenger'

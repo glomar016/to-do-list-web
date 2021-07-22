@@ -1,5 +1,6 @@
 <!--   Core JS Files   -->
-<script src="<?php echo base_url()?>resources/assets/js/core/jquery.min.js"></script>
+<script src="<?php echo base_url()?>resources/assets/js/core/jquery-3.5.1.min.js"></script>
+<script src="<?php echo base_url()?>resources/assets/js/core/jquery-3.5.1.js"></script>
   <script src="<?php echo base_url()?>resources/assets/js/core/popper.min.js"></script>
   <script src="<?php echo base_url()?>resources/assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="<?php echo base_url()?>resources/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -41,3 +42,4 @@
   <script src="<?php echo base_url()?>resources/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="<?php echo base_url()?>resources/assets/demo/demo.js"></script>
+  <script src="<?php echo base_url()?>resources/printThis-master/printThis.js"></script>
