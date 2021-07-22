@@ -67,13 +67,11 @@ class Login extends CI_Controller {
 				'userId' => $resDecoded['data']['id'],
 				'userType' => $resDecoded['data']['userType'],
 			);
+
 		$this->session->set_userdata('logged_in', $session_data);
 		
 		}
 		
-		// foreach($session_data as $result) {
-		// 	echo $result, '<br><br>';
-		// }
 
 
 	

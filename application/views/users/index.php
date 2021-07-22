@@ -3,6 +3,7 @@
         $email = ($this->session->userdata['logged_in']['email']);
         $userId = ($this->session->userdata['logged_in']['userId']);
         $firstName = ($this->session->userdata['logged_in']['firstName']);
+
     }
 
     
@@ -101,7 +102,16 @@
                         
                         <div class="navbar-btn d-none d-sm-inline-block">
                             <ul>
-                                <li><a class="solid" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>                                       
+
+                                <?php
+                                    if (isset($this->session->userdata['logged_in'])) {
+                                        echo '<li><a class="solid btn_logout" class="trigger-btn" data-toggle="modal">LOGOUT</a></li>';
+                                    }
+                                    else{
+                                        echo '<li><a class="solid" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
+                                    }
+                                ?>
+                                                                      
                             </ul>
                         </div>
                     </nav> <!-- navbar -->
@@ -634,7 +644,7 @@
                     )
                 }
                 else{
-                    location.reload()
+                    window.location.href = "<?php echo base_url()?>"
                 }
                 
             }
@@ -642,6 +652,10 @@
         })
         
     });
+
+    $('.btn_logout').on('click', function(e){
+        window.location.href = "<?php echo base_url()?>logout"
+    })
 
     
     </script>
