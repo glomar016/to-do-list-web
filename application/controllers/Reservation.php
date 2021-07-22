@@ -22,7 +22,6 @@ class Reservation extends CI_Controller {
 	{
 		
 		$this->load->view('reservation');
-                
             
 	}
 

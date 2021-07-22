@@ -28,7 +28,9 @@ class Logout extends CI_Controller {
 
         );
         $this->session->unset_userdata('logged_in', $sess_array);
+        $this->session->unset_userdata('gcash', $sess_array);
         header('Location:'. base_url());
+
     }
 
 

@@ -5,8 +5,6 @@
         $firstName = ($this->session->userdata['logged_in']['firstName']);
 
     }
-
-    
 ?>
 
 <!doctype html>
