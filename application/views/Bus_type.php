@@ -79,6 +79,10 @@ textarea::-webkit-scrollbar{
               </div>
           </div>
             <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">List of Bus Type</h4>
+                  <!-- <p class="card-category">List of Bus Types</p> -->
+                </div>
               <div class="card-body">
                 <table id="busTypeTable" class="table">
                     <thead>

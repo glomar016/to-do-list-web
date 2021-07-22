@@ -1,4 +1,12 @@
+<?php
+    if (isset($this->session->userdata['logged_in'])) {
+        $email = ($this->session->userdata['logged_in']['email']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
+        $firstName = ($this->session->userdata['logged_in']['firstName']);
+    }
 
+    
+?>
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -600,11 +608,12 @@
     <script src="<?php echo base_url()?>resources/assets/users/assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="<?php echo base_url()?>resources/assets/users/assets/js/vendor/modernizr-3.7.1.min.js"></script>
 
+    <?php $this->load->view('includes/fixed_scripts.php')?>
+    <?php $this->load->view('includes/core_js_files.php')?>
+
     <script>
     $('#loginForm').on('submit', function(e){
         e.preventDefault();
-        // console.log("gumagana");
-        // window.location.href = "<?php echo base_url()?>Main";
 
         var form = $('#loginForm'); 
 
@@ -617,7 +626,16 @@
         
             success: function(data){
                 console.log(data)
-                // window.location.href = "<?php echo base_url()?>Main";
+                if(data.error == true){
+                    Swal.fire(
+                    'Login failed!',
+                    data.message[0],
+                    'warning'
+                    )
+                }
+                else{
+                    location.reload()
+                }
                 
             }
         // ajax closing tag
