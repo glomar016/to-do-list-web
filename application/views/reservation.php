@@ -7,6 +7,7 @@ Product Page: https://www.creative-tim.com/product/material-dashboard
 Copyright 2020 Creative Tim (https://www.creative-tim.com)
 Coded by Creative Tim
 
+
 =========================================================
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
@@ -15,6 +16,20 @@ The above copyright notice and this permission notice shall be included in all c
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
+<style>
+  .myDivToPrint {
+        background-color: white;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 0px;
+        font-size: 20px;
+        line-height: 18px;
+    }
+</style>
 
 <body class="">
 
@@ -29,6 +44,7 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- NAVBAR -->
       <?php $this->load->view('includes/navbar.php'); ?>
+
 
       <!-- OPENING TAG OF CONTENT -->
       <div class="content">
@@ -226,6 +242,7 @@ The above copyright notice and this permission notice shall be included in all c
               </table>
               
             </div>
+
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
@@ -254,12 +271,20 @@ The above copyright notice and this permission notice shall be included in all c
           </div>
         </div>
       </div>
+
+      <div id="counterPrintReceipt" class="myDivToPrint" hidden>
+              <?php $this->load->view('receipt/user_receipt') ?>
+          </div>
+
       
       <!-- FOOTER -->
       <?php $this->load->view('includes/footer.php')?>
 
     </div>
     <!-- END OF MAIN CONTENT -->
+
+    
+          
 
   </div>
   <!-- END OF WRAPPER -->
@@ -270,6 +295,8 @@ The above copyright notice and this permission notice shall be included in all c
   <?php $this->load->view('includes/core_js_files.php')?>
   
 </body>
+
+
 
 <!-- FIXED SCRIPTS -->
 <?php $this->load->view('includes/fixed_scripts.php')?>
@@ -870,7 +897,7 @@ $( "#btnShowSched" ).on('click', function(e) {
                         i++;
                       }
                     }
-                    else if(row == 3){
+                    else if(parseInt(row) == (parseInt(data[0].template.row)-2)){
                       if(col == data[0].template.column){
                         if(data[i].currentStatus == 'Available'){
                           $('#tr'+row).append(`<td  style="padding: 15px; padding-left: 50px;  text-align:center;"><img class="seatImg" id="${data[i].id}" alt="${data[i].code}" src="/brs-web/resources/images/seats_available.png" length="20" width="20">
@@ -1130,6 +1157,31 @@ $( "#btnShowSched" ).on('click', function(e) {
      })
 
   });
+
+  $(document).on('click', '.btn-print-reservation', function(){
+      $("#counterPrintReceipt").printThis({
+						debug: true,               // show the iframe for debugging
+            importCSS: true,            // import parent page css
+            importStyle: true,         // import style tags
+            printContainer: false,       // print outer container/$.selector
+            loadCSS: "",                // path to additional css file - use an array [] for multiple
+            pageTitle: "",              // add title to print page
+            removeInline: true,        // remove inline styles from print elements
+            removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
+            printDelay: 333,            // variable print delay
+            header: null,               // prefix to html
+            footer: null,               // postfix to html
+            base: false,                // preserve the BASE tag or accept a string for the URL
+            formValues: true,           // preserve input/form values
+            canvas: false,              // copy canvas content
+            doctypeString: '...',       // enter a different doctype for older markup
+            removeScripts: true,       // remove script tags from print content
+            copyTagClasses: true,      // copy classes from the html & body tag
+            beforePrintEvent: null,     // function for printEvent in iframe
+            beforePrint: null,          // function called before iframe is filled
+            afterPrint: null            // function called before iframe is removed
+					});
+  })
 
 
   show_terminal();
