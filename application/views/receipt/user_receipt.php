@@ -18,17 +18,18 @@
                         
 <div class="receipt-content">
     <div class="container bootstrap snippets bootdey">
-		<div class="row" style="margin-left: 10em; margin-right: -10em">
+		<div class="row" style="margin-left: 10em !important; margin-right: -10em !important;">
 			<div class="col-md-9">
 				<div class="invoice-wrapper">
+					<div class="col-sm-5 text-right">
+						<img src="<?php echo base_url()?>resources/assets/img/brs-logo-sm.png" alt="">
+					</div>
 					<div class="intro col-sm-7">
 						Hi <strong id="name">John McClane</strong>, 
 						<br>
 						This is the receipt for a payment of <strong id="total">$360.00</strong> (PHP) for your trip
 					</div>
-					<div class="col-sm-5 text-right">
-						<img src="<?php echo base_url()?>resources/assets/img/brs-logo.png" style="height: 8em; width: 8em;" alt="">
-					</div>
+					
 					<div class="payment-info">
 						<div class="row">
 							<div class="col-sm-6">
