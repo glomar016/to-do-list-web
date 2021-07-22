@@ -59,6 +59,11 @@ textarea::-webkit-scrollbar{
                   <div class="card-body">
                   <form id="addBusTemplateForm">
                           <div class="form-row">
+                              <div class="form-group col-sm-12">
+                              <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                              </div>
+                          </div>
+                          <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="templateName">Template Name</label>
                                 <input type="text" class="form-control" id="templateName" name="templateName">

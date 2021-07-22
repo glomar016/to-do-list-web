@@ -54,6 +54,11 @@ The above copyright notice and this permission notice shall be included in all c
                       <form id="busInformationForm">
                           <div class="form-row">
                               <div class="form-group col-sm-12">
+                              <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                              </div>
+                          </div>
+                          <div class="form-row">
+                              <div class="form-group col-sm-12">
                               <label for="busNumberInput">Bus Number</label>
                               <input type="text" class="form-control" id="busNumberInput" name="busNumberInput">
                               </div>
@@ -347,6 +352,11 @@ The above copyright notice and this permission notice shall be included in all c
 
             <div class="card-body">
               <form id="editBusInfoForm">
+                  <div class="form-row">
+                      <div class="form-group col-sm-12">
+                      <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                      </div>
+                  </div>
                   <div class="form-row">
                       <div class="form-group col-sm-12">
                       <label for="busNumberEdit">Bus Number</label>

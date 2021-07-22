@@ -26,8 +26,10 @@ class ChartofAccount extends CI_Controller {
     public function add_ChartofAccount()
     {
         $name = $this->input->post('ChartofAccountName');
+        $userId =  $this->input->post('userId');
 
         $data = array("name" => $name
+                    , "created_by" => $userId
                         );
 
         $postdata = json_encode($data);
@@ -105,8 +107,10 @@ class ChartofAccount extends CI_Controller {
         $name = $this->input->post('editChartofAccountName');
         $description = $this->input->post('editChartofAccountDescription');
         $id = $this->input->post('editChartofAccountId');
+        $userId = $this->input->post('editUserId');
 
         $data = array("name" => $name
+                     , "updated_by" => $userId
                         );
 
         $postdata = json_encode($data);

@@ -28,10 +28,12 @@ class Bus_registration extends CI_Controller {
         $plateNumberInput = $this->input->post('plateNumberInput');
         $registrationStatusInput = $this->input->post('registrationStatusInput');
         $expirationDateInput = $this->input->post('expirationDateInput');
+        $userId =  $this->input->post('userId');
 
         $data = array("informationId" => $plateNumberInput
                         , "registrationStatus" => $registrationStatusInput
-                        , "expirationDate" => $expirationDateInput);
+                        , "expirationDate" => $expirationDateInput
+                        , "created_by" => $userId);
 
         $postdata = json_encode($data);
 
@@ -108,10 +110,13 @@ class Bus_registration extends CI_Controller {
         $registrationStatusEdit = $this->input->post('registrationStatusEdit');
         $expirationDateEdit = $this->input->post('expirationDateEdit');
         $id = $this->input->post('editBusRegistrationId');
+        $userId = $this->input->post('editUserId');
 
         $data = array("informationId" => $plateNumberEdit
                         , "registrationStatus" => $registrationStatusEdit
-                        , "expirationDate" => $expirationDateEdit);
+                        , "expirationDate" => $expirationDateEdit
+                        , "updated_by" => $userId
+                    );
 
         $postdata = json_encode($data);
 

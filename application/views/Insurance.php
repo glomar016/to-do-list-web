@@ -59,6 +59,11 @@ textarea::-webkit-scrollbar{
                   <div class="card-body">
                   <form id="addInsuranceForm">
                     <div class="form-row">
+                        <div class="form-group col-sm-12">
+                        <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                        </div>
+                    </div>
+                    <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Insurance Code</label>
                                 <input type="text" class="form-control" name="insuranceCode"  id="insuranceCode" aria-describedby="emailHelp">
@@ -174,6 +179,11 @@ textarea::-webkit-scrollbar{
                 <div class="modal-body">
                 <div class="card-body">
                 <form id="editInsuranceForm">
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                        <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                        </div>
+                    </div>
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="editInsuranceId" id="editInsuranceId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Insurance Code</label>

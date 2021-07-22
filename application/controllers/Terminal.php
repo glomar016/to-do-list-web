@@ -29,10 +29,13 @@ class Terminal extends CI_Controller {
         $address = $this->input->post('terminalAddress');
         $email = $this->input->post('terminalEmail');
         $contactperson = $this->input->post('terminalContactPerson');
+        $userId = $this->input->post('userId');
 
         $data = array("name" => $name
                         , "address" => $address
-                        , "email" => $email);
+                        , "email" => $email
+                        , "created_by" => $userId
+                    );
 
         $postdata = json_encode($data);
 
@@ -110,10 +113,13 @@ class Terminal extends CI_Controller {
         $contactperson = $this->input->post('editTerminalContactPerson');
         $email = $this->input->post('editTerminalEmail');
         $id = $this->input->post('editTerminalId');
+        $userId = $this->input->post('editUserId');
 
         $data = array("name" => $name
                         , "address" => $address
-                        , "email" => $email);
+                        , "email" => $email
+                        , "updated_by" => $userId
+                    );
 
         $postdata = json_encode($data);
 

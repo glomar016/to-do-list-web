@@ -58,6 +58,11 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-body">
                   <form id="addPromoForm" name="addPromoForm">
                       <div class="form-row">
+                          <div class="form-group col-sm-12">
+                          <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                          </div>
+                      </div>
+                      <div class="form-row">
                         <div class="form-group col-sm-4">
                             <label for="exampleInputEmail1">Bus Type</label>
                             <select class="form-control" id="busTypeInput" name="busTypeInput">           
@@ -248,6 +253,11 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="card-body">
             <form id="editPromoForm">
                 <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                    <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                    </div>
+                </div>
                 <div class="form-row">
                         <div class="form-group col-sm-4">
                             <input hidden type="text" class="form-control" id="promoIdEdit" name="promoIdEdit">
