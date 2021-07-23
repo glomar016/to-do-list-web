@@ -141,7 +141,7 @@
                                     <h1 class="title">Business is Now Digital</h1>
                                     <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
                                     <ul class="slider-btn rounded-buttons">
-                                        <li><a class="main-btn rounded-one" href="#">Register</a></li>
+                                        <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
                                         <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
                                     </ul>
                                 </div>
@@ -163,7 +163,7 @@
                                     <h1 class="title">Crafted for Business</h1>
                                     <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
                                     <ul class="slider-btn rounded-buttons">
-                                        <li><a class="main-btn rounded-one" href="#">Register</a></li>
+                                        <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
                                         <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
                                     </ul>
                                 </div> <!-- slider-content -->
@@ -185,7 +185,7 @@
                                     <h1 class="title">Based on Bootstrap 4</h1>
                                     <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
                                     <ul class="slider-btn rounded-buttons">
-                                        <li><a class="main-btn rounded-one" href="#">Register</a></li>
+                                        <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
                                         <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
                                     </ul>
                                 </div> <!-- slider-content -->
