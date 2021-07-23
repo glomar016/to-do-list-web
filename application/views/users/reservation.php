@@ -397,7 +397,6 @@ var reserveBusType = document.getElementById('reserveBusType').value;
 
 $('#reservationForm').on('submit', function(e){
 
-alert('test')
   e.preventDefault();
 
   var scheduleValue = $("#reserveSchedule").children(":selected").text();
@@ -490,7 +489,7 @@ alert('test')
         
 
     $.ajax({
-        url:'<?php echo base_url()?>users/reservation/add_reservation'+ $userId,
+        url:'<?php echo base_url()?>users/reservation/add_reservation',
         type: "POST",
         data: addedData, 
         dataType: "JSON",
