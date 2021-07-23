@@ -36,6 +36,22 @@ The above copyright notice and this permission notice shall be included in all c
             <!-- END OF OPENING TAG OF CONTENT -->
 
             <!-- SESSION CHECK -->
+            <?php 
+                if (isset($this->session->userdata['logged_in'])) {
+                    $userType = ($this->session->userdata['logged_in']['userType']);
+                    $userId = ($this->session->userdata['logged_in']['userId']);
+
+                if($userType == ""){
+                    // header("location: ".base_url()."user/forbidden");
+                    echo "Logged In";
+                }
+
+                } 
+                else {
+                    header("location: ".base_url()."login");
+                }
+            ?>
+
         
         <!-- END OF SESSION CHECK -->
 
@@ -158,40 +174,46 @@ The above copyright notice and this permission notice shall be included in all c
 </body>
 <script>
     // DATA TABLES
+    var userId = "<?php echo $userId ?>";
+
     function loadtable(){
         userDataTable = $('#userTable').DataTable( {
-            "ajax": "<?php echo base_url()?>user/show_user",
-            "columns": [
-                { data: "id"},
-                { data: "firstName", render: function(data, type, row){
-                        return `${row.firstName} ${row.lastName}`
+          "ajax": "<?php echo base_url()?>users/my_reservation/show_reservations/"+userId,
+          "columns": [
+              {data: "id"},
+              {data: "referenceNumber"},
+              {data: "name"},
+              // {data: "name"},
+              {data: "scheduleId", render: function(data, type, row){
+                  return row.schedule.route.origin.name + ' - ' + row.schedule.route.destination.name + ' - ' + moment(row.reservationDate).format('ll') + ' - ' 
+                        + moment(row.schedule.hourFrom).format('LT') + ' - ' + moment(row.schedule.hourTo).format('LT');;
+              }},
+              {data: "totalAmount", render: function(data, type, row){
+                  return "P" + parseFloat(data).toFixed(2);
+              }},
+              {data: "currentStatus"},
+              {data: "created_at"},
+              {data: "currentStatus", render: function(data, type, row){
+                    if (data == "Paid"){
+                      return '<div class="btn-group">' +
+                              '<button class="btn btn-primary btn-sm btn-print-reservation" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Print </button>&nbsp'+
+                              '<button class="btn btn-danger btn-sm btn-refund-reservation" value="' + row.id + '"title = "Refund" type="button"> <i class="zmdi zmdi-edit"> </i> Refund </button>'+
+                              '</div>';
                     }
-                },
-                { data: "lastName"},
-                { data: "lastName"},
-                { data: "lastName"},
-                { data: "lastName"},
-                { data: "lastName"},
-                { data: "created_at" },
-                { data: "status", render: function(data, type, row){
-                        if(data == "Active"){
-                            return '<div class="btn-group">'+
-                                    '<button class="btn btn-primary btn-sm btn_view" value="'+row.id+'" title="View" type="button" ><i class="zmdi zmdi-eye"></i>View</button>'+
-                                    '<button class="btn btn-danger btn-sm btn_delete" value="'+row.id+'" title="Delete" type="button"> <i class="zmdi zmdi-delete"></i>Cancel</button></div>';
-                        }   
-                        else{
-                            return '<button>Activate</button>';
-                        }
+                    else if(data == "Pending"){
+                      return '<div class="btn-group">' +
+                              '<button class="btn btn-info btn-sm btn-view-reservation" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>&nbsp'+
+                              '<button class="btn btn-default btn-sm btn-cancel-reservation" value="' + row.id + '"title = "Cancel" type="button"> <i class="zmdi zmdi-view"> </i> Cancel </button>'+
+                              '</div>';
                     }
-                    
-                },
-
+                  }
+              }
             ],
 
-            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 7] }],
-            "order": [[7, "desc"]]
+          "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 6] }],
+          "order": [[6, "desc"]]
         })
-    }
+    };
 
     
 

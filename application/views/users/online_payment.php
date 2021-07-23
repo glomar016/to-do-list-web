@@ -30,6 +30,26 @@ The above copyright notice and this permission notice shall be included in all c
       <!-- NAVBAR -->
       <?php $this->load->view('includes/users/navbar.php'); ?>
 
+      <!-- SESSION CHECK -->
+    <?php 
+        if (isset($this->session->userdata['logged_in'])) {
+            $userType = ($this->session->userdata['logged_in']['userType']);
+            $userId = ($this->session->userdata['logged_in']['userId']);
+
+        if($userType == ""){
+            // header("location: ".base_url()."user/forbidden");
+            echo "Logged In";
+        }
+
+        } 
+        else {
+            header("location: ".base_url()."login");
+        }
+        ?>
+
+        
+    <!-- END OF SESSION CHECK -->
+
       <!-- OPENING TAG OF CONTENT -->
       <div class="content">
         <div class="container-fluid">

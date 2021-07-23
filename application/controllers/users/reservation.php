@@ -102,7 +102,7 @@ class Reservation extends CI_Controller {
 
 	}
 	
-	public function add_reservation()
+	public function add_reservation($userId)
 	{
 		$reserveName = $this->input->post('reserveName');
 		$reserveBilling = $this->input->post('reserveBilling');
@@ -115,6 +115,8 @@ class Reservation extends CI_Controller {
 		$promoId = $this->input->post('promoId');
 		$reserveDate = $this->input->post('reserveDate');
 		$scheduleName = $this->input->post('scheduleName');
+		$created_by = $userId;
+		$updated_by = $userId;
 
 		if($promoId == ""){
 			$data = array("name" => $reserveName
@@ -127,6 +129,8 @@ class Reservation extends CI_Controller {
 						, "currentStatus" => $currentStatus
 						, "totalDistanceKm" => $totalDistanceKm
 						, "reservationDate" => $reserveDate
+						, "created_by" => $created_by
+						, "updated_by" => $updated_by
 			);
 		}
 		else{
@@ -141,6 +145,8 @@ class Reservation extends CI_Controller {
 						, "promoId" => $promoId
 						, "totalDistanceKm" => $totalDistanceKm
 						, "reservationDate" => $reserveDate
+						, "created_by" => $created_by
+						, "updated_by" => $updated_by
 			);
 		}
 

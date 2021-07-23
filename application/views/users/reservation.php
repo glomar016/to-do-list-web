@@ -45,6 +45,26 @@ The above copyright notice and this permission notice shall be included in all c
       <!-- NAVBAR -->
       <?php $this->load->view('includes/users/navbar.php'); ?>
 
+      <!-- SESSION CHECK -->
+    <?php 
+        if (isset($this->session->userdata['logged_in'])) {
+            $userType = ($this->session->userdata['logged_in']['userType']);
+            $userId = ($this->session->userdata['logged_in']['userId']);
+
+        if($userType == ""){
+            // header("location: ".base_url()."user/forbidden");
+            echo "Logged In";
+        }
+
+        } 
+        else {
+            header("location: ".base_url()."login");
+        }
+        ?>
+
+        
+    <!-- END OF SESSION CHECK -->
+
 
       <!-- OPENING TAG OF CONTENT -->
       <div class="content" style="padding-top: 0px;">
@@ -119,7 +139,6 @@ The above copyright notice and this permission notice shall be included in all c
                                 <select class="form-control" id="reserveSchedule" name="reserveSchedule">
 
                                 </select>
-                              <input type="submit" class="btn btn-primary">
                             </div>
                           </div>
                           
@@ -196,7 +215,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 function dataTable(){
     reservationTable = $('#reservationTable').DataTable({
-      "ajax": "<?php echo base_url()?>reservation/show_reservations",
+      "ajax": "<?php echo base_url()?>users/reservation/show_reservations",
       "columns": [
           {data: "id"},
           {data: "referenceNumber"},
@@ -239,7 +258,7 @@ function dataTable(){
 dataTable();
 
 function refresh(){
-  var url="<?php echo base_url()?>reservation/show_reservations";
+  var url="<?php echo base_url()?>users/reservation/show_reservations";
 
   reservationTable.ajax.url(url).load();
 }
@@ -472,7 +491,7 @@ $('#reservationForm').on('submit', function(e){
         
 
     $.ajax({
-        url:'<?php echo base_url()?>reservation/add_reservation',
+        url:'<?php echo base_url()?>users/reservation/add_reservation'+ $userId,
         type: "POST",
         data: addedData, 
         dataType: "JSON",
@@ -483,7 +502,7 @@ $('#reservationForm').on('submit', function(e){
           reservationId = data.data.id;
 
           $.ajax({
-              url:'<?php echo base_url()?>reservation/add_reservation_line',
+              url:'<?php echo base_url()?>users/reservation/add_reservation_line',
               type: "POST",
               data: { reservationLineData: reservationLineData, reservationId: reservationId },
               dataType: "JSON",
@@ -705,7 +724,7 @@ $( "#btnShowSched" ).on('click', function(e) {
     }
 
     $.ajax({
-      url: '<?php echo base_url()?>Reservation/show_avail_bus/',
+      url: '<?php echo base_url()?>users/Reservation/show_avail_bus/',
       type: "POST",
       data: {date: formatDate ,
             routeId: routeId,
@@ -936,7 +955,7 @@ $( "#btnShowSched" ).on('click', function(e) {
     let passengerSeat = []
 
      $.ajax({
-            url: '<?php echo base_url()?>reservation/get_reservation_line/',
+            url: '<?php echo base_url()?>users/reservation/get_reservation_line/',
             type: 'POST',
             data: { reservationId, reservationId },
             dataType: "JSON",
@@ -996,7 +1015,7 @@ $( "#btnShowSched" ).on('click', function(e) {
     seatId = []
 
     $.ajax({
-            url: '<?php echo base_url()?>reservation/get_reservation_line/',
+            url: '<?php echo base_url()?>users/reservation/get_reservation_line/',
             type: 'POST',
             data: { reservationId, reservationId },
             dataType: "JSON",
@@ -1009,7 +1028,7 @@ $( "#btnShowSched" ).on('click', function(e) {
               }
 
               $.ajax({
-                url: '<?php echo base_url()?>reservation/delete_reservation/',
+                url: '<?php echo base_url()?>users/reservation/delete_reservation/',
                   type: 'POST',
                   data: { reservationId, reservationId },
                   dataType: "JSON",
@@ -1017,14 +1036,14 @@ $( "#btnShowSched" ).on('click', function(e) {
                   success: function(data){
                     
                     $.ajax({
-                    url: '<?php echo base_url()?>reservation/delete_reservation_lines/',
+                    url: '<?php echo base_url()?>users/reservation/delete_reservation_lines/',
                     type: 'POST',
                     data: { reservationId, reservationId },
                     dataType: "JSON",
 
                     success: function(data){
                         $.ajax({
-                            url: '<?php echo base_url()?>reservation/activate_bus_seats/',
+                            url: '<?php echo base_url()?>users/reservation/activate_bus_seats/',
                             type: 'POST',
                             data: { seatId, seatId },
                             dataType: "JSON",
