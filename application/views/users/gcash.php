@@ -55,7 +55,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <input id="gcashNumber" required style="color:black; font-family: Poppins; font-weight: 600; width: 75px;" maxlength="10" id="gcashNumber" type="text" class="form-control">
                         </div>
                         <div class="d-flex justify-content-center form-row">
-                            <input type="submit" style="width:250px" class="btn btn-primary btn_gcash_payment">
+                            <input id="paymentId" type="submit" style="width:250px" class="btn btn-primary btn_gcash_payment">
                         </div>                        
                     </form>
                 </div>
@@ -96,18 +96,14 @@ $(document).ready(function(){
         let name = "John Raven Glomar"
         let email = "jrglomar016@gmail.com"
         let gcashNumber = "0"+($('#gcashNumber').val())
-
-        
-        
-        console.log(gcashNumber)
+        let reservationId = '43a74ef3-ae2b-4ddf-b52c-68ce879f60bb';
 
         $.ajax({
             url: "<?php echo base_url()?>users/payment/Gcash/create_source",
             type: "POST",
-            data: {gcashNumber: gcashNumber, amount: amount
+            data: {gcashNumber: gcashNumber, amount: amount, reservationId: reservationId
                     , line1: line1 , name: name , email: email },
             datatype: "JSON",
-            
             
             success: function(data){
                 var res = JSON.parse(data);
