@@ -22,4 +22,9 @@ class User extends CI_Controller {
 	{
 		$this->load->view('users/user'); 
 	}
+
+	public function forbidden()
+	{
+		$this->load->view('users/forbidden'); 
+	}
 }

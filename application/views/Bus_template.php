@@ -12,6 +12,20 @@ The above copyright notice and this permission notice shall be included in all c
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+    if (isset($this->session->userdata['logged_in'])) {
+        $userType = ($this->session->userdata['logged_in']['userType']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
+
+        if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+        }
+
+    } 
+    else {
+        header("location: ".base_url());
+    }
+    ?>
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
