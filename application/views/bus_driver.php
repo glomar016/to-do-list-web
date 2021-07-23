@@ -16,11 +16,12 @@ The above copyright notice and this permission notice shall be included in all c
 <?php $this->load->view('includes/head.php'); ?>
 
 <style>
-.expirationDateLabel{
-    margin-top: 15px;
+#typeInput{
+    margin-top: 0px;
 }
-.expirationDate{
-    margin-top: 29px;
+#busDriverFormView,
+#editBusDriverForm{
+    margin-top: -15px;
 }
 </style>
 
@@ -47,37 +48,33 @@ The above copyright notice and this permission notice shall be included in all c
               <h5 class="card-header">
                   <a class="collapsed d-block" data-toggle="collapse" href="#collapse-collapsed" aria-expanded="true" aria-controls="collapse-collapsed" id="heading-collapsed">
                       <i class="fa fa-chevron-down pull-right"></i>
-                      Add Bus Registration
+                      Add Bus Person
                   </a>
               </h5>
               <div id="collapse-collapsed" class="collapse" aria-labelledby="heading-collapsed">
                   <div class="card-body">
                   <div class="card-body">
-                  <form id="addBusRegistrationForm">
-                          <div class="form-row">
-                              <div class="form-group col-sm-12">
-                              <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
-                              </div>
-                          </div>
+                  <form id="addBusDriverForm">
                           <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Bus Number</label>
-                              <select class="form-control" id="plateNumberInput" name="plateNumberInput">
+                              <select class="form-control" id="busNumberInput" name="busNumberInput">
                                   
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Registration Status</label>
-                              <select class="form-control" id="registrationStatusInput" name="registrationStatusInput">
-                                  <option value="Registered">Registered</option>
-                                  <option value="Expired">Expired</option>
+                              <label for="exampleInputEmail1">Name</label>
+                              <select class="form-control" id="nameInput" name="nameInput">
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label class="expirationDateLabel" for="exampleInputPassword1">Expiration Date</label>
-                                <input type="date" class="form-control expirationDate" name="expirationDateInput" id="expirationDateInput">
+                                <label class="expirationDateLabel" for="exampleInputPassword1">Type</label>
+                                <select class="form-control" id="typeInput" name="typeInput">
+                                    <option value="Driver">Driver</option>
+                                    <option value="Conductor">Conductor</option>
+                                </select>
                             </div>
                         </div>
                       
@@ -88,15 +85,13 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
           </div>
             <div class="card">
-            <h4 class="card-header card-header-info">List of Bus Registration</h4>
               <div class="card-body">
-                <table id="busRegistrationTable" class="table">
+                <table id="busDriverTable" class="table">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Bus Number</th>
-                            <th>Registration Status</th>
-                            <th>Expiration Date</th>
+                            <th>Name</th>
+                            <th>Type</th>
                             <th>Date Created</th>
                             <th width="10%">Actions</th>
                         </tr>
@@ -117,34 +112,34 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- END OF CLOSING TAG OF CONTENT -->
 
-        <div class="modal fade" id="busRegistrationInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="busDriverInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="busRegistrationInfoModal">View Bus Registration</h5>
+                <h5 class="modal-title" id="busDriverInfoModal">View Bus Driver</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="card-body">
-                <form id="busRegistrationFormView">
+                <form id="busDriverFormView">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="busRegistrationId" id="busRegistrationId" aria-describedby="emailHelp">
+                        <input type="hidden" class="form-control" name="busDriverId" id="busDriverId" aria-describedby="emailHelp">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="exampleInputEmail1">Bus Number</label>
-                                <span  class="form-control" name="plateNumberView" id="plateNumberView" aria-describedby="emailHelp"></span>
+                                <span  class="form-control" name="busNumberView" id="busNumberView" aria-describedby="emailHelp"></span>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                                <label for="exampleInputEmail1">Registration Status</label>
-                                <span  class="form-control" name="registrationStatusView" id="registrationStatusView" aria-describedby="emailHelp"></span></span>
+                                <label for="exampleInputEmail1">Name</label>
+                                <span  class="form-control" name="nameView" id="nameView" aria-describedby="emailHelp"></span>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label for="exampleInputEmail1">Expiration Date</label>
-                                <span  class="form-control" name="expirationDateView" id="expirationDateView" aria-describedby="emailHelp"></span></span>
+                                <label for="exampleInputEmail1">Type</label>
+                                <span  class="form-control" name="typeView" id="typeView" aria-describedby="emailHelp"></span>
                             </div>
                         </div>                    
                     </div>
@@ -156,44 +151,40 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
         </div>
 
-        <div class="modal fade" id="editBusRegistrationInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal fade" id="editBusDriverInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="editBusRegistrationInfoModal">Edit Bus Registration</h5>
+                <h5 class="modal-title" id="editBusDriverInfoModal">Edit Bus Driver</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body">
                 <div class="card-body">
-                <form id="editBusRegistrationForm">
+                <form id="editBusDriverForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="editBusRegistrationId" id="editBusRegistrationId" aria-describedby="emailHelp">
-                        <div class="form-row">
-                            <div class="form-group col-sm-12">
-                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
-                            </div>
-                        </div>
+                        <input type="hidden" class="form-control" name="editBusDriverId" id="editBusDriverId" aria-describedby="emailHelp">
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="exampleInputEmail1">Bus Number</label>
-                                <select class="form-control" id="plateNumberEdit" name="plateNumberEdit">
+                                <select class="form-control" id="busNumberEdit" name="busNumberEdit">
                                         
                                 </select>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Registration Status</label>
-                              <select class="form-control" id="registrationStatusEdit" name="registrationStatusEdit">
-                                  <option value="Registered">Registered</option>
-                                  <option value="Expired">Expired</option>
+                              <label for="exampleInputEmail1">Name</label>
+                              <select class="form-control" disabled="disabled" id="nameEdit" name="nameEdit">
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
-                                <label class="expirationDateLabel" for="exampleInputPassword1">Expiration Date</label>
-                                <input type="date" class="form-control expirationDate" name="expirationDateEdit" id="expirationDateEdit">
+                                <label class="expirationDateLabel" for="exampleInputPassword1">Type</label>
+                                <select class="form-control" id="typeEdit" name="typeEdit">
+                                    <option value="Driver">Driver</option>
+                                    <option value="Conductor">Conductor</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -208,7 +199,7 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
         </div>
 
-        <div class="modal fade" id="deleteBusRegistrationInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteBusDriverInfoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -218,10 +209,10 @@ The above copyright notice and this permission notice shall be included in all c
               </button>
             </div>
             <div class="modal-body">
-                <form id="deleteBusRegistrationForm">
+                <form id="deleteBusDriverForm">
                     <div class="modal-body">
-                        <input type="hidden" class="form-control" name="deleteBusRegistrationId" id="deleteBusRegistrationId" aria-describedby="emailHelp">
-                        <p>You're deactivating this bus registration</p>
+                        <input type="hidden" class="form-control" name="deleteBusDriverId" id="deleteBusDriverId" aria-describedby="emailHelp">
+                        <p>You're deactivating this bus driver</p>
                         </span>
                     </div>
                     <div class="modal-footer">
@@ -252,18 +243,15 @@ The above copyright notice and this permission notice shall be included in all c
 <script>
     // DATA TABLES
     function loadtable(){
-        busRegistrationDataTable = $('#busRegistrationTable').DataTable( {
-            "ajax": "<?php echo base_url()?>bus_registration/show_bus_registration",
+        busDriverDataTable = $('#busDriverTable').DataTable( {
+            "ajax": "<?php echo base_url()?>bus_driver/show_bus_driver",
             "columns": [
                 { data: "id"},
                 { data: null, render: function (data, type, row) {
-                    var name = row.busInformation.number + "  |  " + row.busInformation.plateNumber;
+                    var name = row.busDriver.firstName + " " + row.busDriver.lastName;
                     return name;
                 }},
-                { data: "registrationStatus"},
-                { data: "expirationDate", render: function(data, type, row){
-                  return moment(data).format('LL');
-                }},
+                { data: "type"},
                 { data: "created_at" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
@@ -281,8 +269,8 @@ The above copyright notice and this permission notice shall be included in all c
 
             ],
 
-            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 4] }],
-            "order": [[4, "desc"]]
+            "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 3] }],
+            "order": [[3, "desc"]]
         })
     }
 
@@ -299,114 +287,130 @@ The above copyright notice and this permission notice shall be included in all c
         var html = ""
 
         if(busInfo.length){
-            var html = `<option> -- Select Bus -- </option>`;
+            var html = `<option> -- Select a Bus -- </option>`;
         }
         else{
             var html = `<option> -- No Bus -- </option>`;
         }
 
         for(var i=0; i < busInfo.length; i++){
-          html += `<option value="${busInfo[i].id}">${busInfo[i].number + '  |  ' + busInfo[i].plateNumber}</option>`
+          html += `<option value="${busInfo[i].id}">${busInfo[i].number + '  |  ' + busInfo[i].plateNumber + '  |  '+ busInfo[i].busTypeId.name}</option>`
         }
         
-        $('#plateNumberInput').html(html);
-        $('#plateNumberEdit').html(html);
+        $('#busNumberInput').html(html);
+        $('#busNumberEdit').html(html);
 
       }
     })
   }
 
-  $(document).ready(function(){
-    var ajaxRequest, registrationStatus;
-    var today = new Date();
-    var value = $(this).val();
-    clearTimeout(ajaxRequest);
-    ajaxRequest = setTimeout(function(e) {
-        $.ajax({
-            url: '<?php echo base_url()?>bus_registration/show_bus_registration',
-            type: "GET",
-            dataType: "JSON",
-            async: false,
+  function get_name(){
+    
+    $.ajax({
+      url: '<?php echo base_url()?>user/show_user',
+      type: "GET",
+      dataType: "JSON",
 
-            success: function(data){
-                var busInfo = data.data;
+      success: function(data){
+        var busDriverInfo = data.data;
 
-                for(var i=0; i < busInfo.length; i++){
-                    if(today >= new Date(busInfo[i].expirationDate).getTime()){
-                        registrationStatus = "Expired";
-                        $.ajax({
-                            url: '<?php echo base_url()?>bus_registration/auto_update_expiration_date',
-                            type: "POST",
-                            data: { 
-                                id: busInfo[i].id,
-                                registrationStatus: registrationStatus
-                            },
-                            dataType: "JSON",
-                        
-                            success: function(data){
-                                console.log(data);
-                                var busInfo = data.data;
-                                console.log('expired');
-                                refresh();
-                            }
-                        // ajax closing tag
-                        })
-                    }
-                    else{
-                        registrationStatus = "Registered";
-                        $.ajax({
-                            url: '<?php echo base_url()?>bus_registration/auto_update_expiration_date',
-                            type: "POST",
-                            data: { 
-                                id: busInfo[i].id,
-                                registrationStatus: registrationStatus
-                            },
-                            dataType: "JSON",
-                        
-                            success: function(data){
-                                console.log(data);
-                                var busInfo = data.data;
-                                console.log('not expired');
-                                refresh();
-                            }
-                        // ajax closing tag
-                        })
-                    }
-                }
-            }
-        });
-    }, 1000, value);
-});
+        var html= ""
+
+        if(busDriverInfo.length){
+            var html = `<option> -- Select a Person -- </option>`;
+        }
+        else{
+            var html = `<option> -- No available -- </option>`;
+        }
+
+        for(var i=0; i < busDriverInfo.length; i++){
+          html += `<option value="${busDriverInfo[i].id}">${busDriverInfo[i].firstName + ' ' + busDriverInfo[i].lastName}</option>`
+        }
+        
+        $('#nameInput').html(html);
+        $('#nameEdit').html(html);
+
+      }
+    })
+  }
 
     get_bus();
+    get_name();
     loadtable();
     
     function refresh(){
-        var url = "<?php echo base_url()?>bus_registration/show_bus_registration/";
+        var url = "<?php echo base_url()?>bus_driver/show_bus_driver/";
 
-        busRegistrationDataTable.ajax.url(url).load();
+        busDriverDataTable.ajax.url(url).load();
     }
 
 
     // CREATE BUS REGISTRATION
-    $('#addBusRegistrationForm').on('submit', function(e){
+    $('#addBusDriverForm').on('submit', function(e){
         e.preventDefault();
 
-        var form = $('#addBusRegistrationForm'); 
+        var form = $('#addBusDriverForm'); 
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>bus_registration/add_bus_registration/',
+            url: '<?php echo base_url()?>bus_driver/show_bus_driver',
             type: "POST",
             data: form.serialize(),
             dataType: "JSON",
         
             success: function(data){
-                refresh();
-                showNotification('create', 'Successfully added a new bus registration!', 'success', 'top', 'right');
-                $("#addBusRegistrationForm").trigger("reset");
-                // End of Confirmation
-
+                var busDriverCheck;
+                var nameInput = document.getElementById("nameInput").value;
+                var busDriverId = data.data
+                console.log(busDriverId.length);
+                if(busDriverId.length){
+                    for(var i=0; i < busDriverId.length; i++){
+                        console.log(busDriverId[i].id);
+                        console.log(nameInput);
+                        if(busDriverId[i].driverUserId == nameInput){
+                            showNotification('error', 'Sorry, this person has already been assigned!', 'danger', 'top', 'right');
+                            busDriverCheck = 1;
+                        }
+                    }
+                    async function processArray(array) {
+                        // map array to promises
+                        const promises = array.map(delayedLog);
+                        // wait until all promises are resolved
+                        await Promise.all(promises);
+                    }
+                    if(busDriverCheck != 1){
+                        $.ajax({
+                            url: '<?php echo base_url()?>bus_driver/add_bus_driver',
+                            type: "POST",
+                            data: form.serialize(),
+                            dataType: "JSON",
+                        
+                            success: function(data){
+                                refresh();
+                                showNotification('create', 'Successfully added a new bus driver!', 'success', 'top', 'right');
+                                $("#addBusDriverForm").trigger("reset");
+                                // End of Confirmation               
+                            }
+                        // ajax closing tag
+                        })
+                    }
+                }
+                else{
+                    $.ajax({
+                        url: '<?php echo base_url()?>bus_driver/add_bus_driver',
+                        type: "POST",
+                        data: form.serialize(),
+                        dataType: "JSON",
+                    
+                        success: function(data){
+                            refresh();
+                            showNotification('create', 'Successfully added a new bus driver!', 'success', 'top', 'right');
+                            $("#addBusDriverForm").trigger("reset");
+                            // End of Confirmation        
+                        }
+                    // ajax closing tag
+                    })
+                }
                 
             }
         // ajax closing tag
@@ -416,24 +420,38 @@ The above copyright notice and this permission notice shall be included in all c
     // VIEW BUS REGISTRATION
     $(document).on("click", ".btn_view", function(){
         var id = this.value;
+        $('#busDriverInfoModal').modal('show');
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>bus_registration/get_one_bus_registration/',
+            url: '<?php echo base_url()?>bus_driver/viewBusDriver',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var busInfo = data.data;
+                var busDriverInfo = data.data;
 
-                $('#busRegistrationId').html(id);
-                $('#plateNumberView').html(busInfo.busInformation.number + '  |  ' + busInfo.busInformation.plateNumber);
-                $('#registrationStatusView').html(busInfo.registrationStatus);
-                $('#expirationDateView').html(moment(busInfo.expirationDate).format('LL'));
+                $('#busDriverId').val(id);
+                $('#nameView').html(busDriverInfo.busDriver.firstName + ' ' + busDriverInfo.busDriver.lastName);
+                $('#typeView').html(busDriverInfo.type);
 
-                $('#busRegistrationInfoModal').modal('show');
+                $.ajax({
+                    url: '<?php echo base_url()?>busInformation/viewBusInformation',
+                    type: "POST",
+                    data: { id: busDriverInfo.busInformationId},
+                    dataType: "JSON",
+                
+                    success: function(data){
+                        console.log(data);
+                        var busInfo = data.data;
+
+                        $('#busNumberView').html(busInfo.number + '  |  ' + busInfo.plateNumber + '  |  '+ busInfo.busTypeId.name);
+
+                    }
+                // ajax closing tag
+                })
             }
         // ajax closing tag
         })
@@ -442,47 +460,60 @@ The above copyright notice and this permission notice shall be included in all c
     // EDIT BUS REGISTRATION
     $(document).on("click", ".btn_edit", function(){
         var id = this.value;
-        // console.log(id);
+        $('#editBusDriverInfoModal').modal('show');
+        $(this).parents().find("#nameEdit").prop("disabled", true);
 
         $.ajax({
-            url: '<?php echo base_url()?>bus_registration/get_one_bus_registration/',
+            url: '<?php echo base_url()?>bus_driver/viewBusDriver',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
-                console.log(data);
-                var busInfo = data.data;
+                var busDriverInfo = data.data;
 
-                $('#editBusRegistrationId').val(id);
-                $('#plateNumberEdit').val(busInfo.informationId);
-                $('#registrationStatusEdit').val(busInfo.registrationStatus);
-                $('#expirationDateEdit').val(moment(busInfo.expirationDate).format('YYYY-MM-DD'));
+                console.log(busDriverInfo.busDriver.firstName);
 
-                $('#editBusRegistrationInfoModal').modal('show');
+                $('#editBusDriverId').val(busDriverInfo.id);
+                $('#nameEdit').val(busDriverInfo.busDriver.id);
+                $('#typeEdit').val(busDriverInfo.type);
+
+                $.ajax({
+                    url: '<?php echo base_url()?>busInformation/viewBusInformation',
+                    type: "POST",
+                    data: { id: busDriverInfo.busInformationId},
+                    dataType: "JSON",
+                
+                    success: function(data){
+                        var busInfo = data.data;
+
+                        $('#busNumberEdit').val(busInfo.id);
+                    }
+                // ajax closing tag
+                })
             }
         // ajax closing tag
         })
     });
 
-    $('#editBusRegistrationForm').on('submit', function(e){
+    $('#editBusDriverForm').on('submit', function(e){
         e.preventDefault();
 
-        console.log('working');
+        $(this).find('#nameEdit').prop('disabled', false);
 
-        var form = $('#editBusRegistrationForm'); 
+        var form = $('#editBusDriverForm'); 
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>bus_registration/edit_bus_registration/',
+            url: '<?php echo base_url()?>bus_driver/edit_bus_driver/',
             type: "POST",
             data: form.serialize(),
             dataType: "JSON",
         
             success: function(data){
                 refresh();
-                showNotification('update', 'Successfully update a bus registration!', 'warning', 'top', 'right');
-                $('#editBusRegistrationInfoModal').modal('hide');
+                showNotification('update', 'Successfully updated a bus driver!', 'warning', 'top', 'right');
+                $('#editBusDriverInfoModal').modal('hide');
             }
         // ajax closing tag
         })
@@ -494,18 +525,18 @@ The above copyright notice and this permission notice shall be included in all c
         // console.log(id);
 
         $.ajax({
-            url: '<?php echo base_url()?>bus_registration/get_one_bus_registration',
+            url: '<?php echo base_url()?>bus_driver/get_bus_driver',
             type: "POST",
             data: { id: id },
             dataType: "JSON",
         
             success: function(data){
                 console.log(data);
-                var deleteBusInfo = data.data;
+                var deleteBusDriverInfo = data.data;
 
-                $('#deleteBusRegistrationId').val(id);
+                $('#deleteBusDriverId').val(id);
 
-                $('#deleteBusRegistrationInfoModal').modal('show');
+                $('#deleteBusDriverInfoModal').modal('show');
             }
         // ajax closing tag
         })
@@ -514,15 +545,15 @@ The above copyright notice and this permission notice shall be included in all c
     $('.delete-confirm').on('click', function(e){
         e.preventDefault();
 
-        $('#deleteBusRegistrationInfoModal').modal('show');
+        $('#deleteBusDriverInfoModal').modal('show');
 
         console.log('working');
 
-        var form = $('#deleteBusRegistrationForm'); 
+        var form = $('#deleteBusDriverForm'); 
 
         // ajax opening tag
         $.ajax({
-            url: '<?php echo base_url()?>bus_registration/delete_bus_registration',
+            url: '<?php echo base_url()?>bus_driver/delete_bus_driver',
             type: "POST",
             data: form.serialize(),
             dataType: "JSON",
@@ -530,8 +561,8 @@ The above copyright notice and this permission notice shall be included in all c
             success: function(data){
                 refresh();
 
-                showNotification('delete', 'Deleted a bus registration!', 'danger', 'top', 'right');
-                $('#deleteBusRegistrationInfoModal').modal('hide');
+                showNotification('delete', 'Deleted a bus driver!', 'danger', 'top', 'right');
+                $('#deleteBusDriverInfoModal').modal('hide');
             }
         // ajax closing tag
         })
