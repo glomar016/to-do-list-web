@@ -12,9 +12,22 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+    if (isset($this->session->userdata['logged_in'])) {
+        $userType = ($this->session->userdata['logged_in']['userType']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
 
+        if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+        }
+
+    } 
+    else {
+        header("location: ".base_url());
+    }
+    ?>
 <!-- HEAD TAG -->
-<?php $this->load->view('includes/users/head.php'); ?>
+<?php $this->load->view('includes/head.php'); ?>
 
 <style>
   .myDivToPrint {
@@ -43,44 +56,27 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="main-panel">
 
       <!-- NAVBAR -->
-      <?php $this->load->view('includes/users/navbar.php'); ?>
-
-      <!-- SESSION CHECK -->
-    <?php 
-        if (isset($this->session->userdata['logged_in'])) {
-            $userType = ($this->session->userdata['logged_in']['userType']);
-            $userId = ($this->session->userdata['logged_in']['userId']);
-
-        if($userType == ""){
-            // header("location: ".base_url()."user/forbidden");
-            echo "Logged In";
-        }
-
-        } 
-        else {
-            header("location: ".base_url()."login");
-        }
-        ?>
-
-        
-    <!-- END OF SESSION CHECK -->
+      <?php $this->load->view('includes/navbar.php'); ?>
 
 
       <!-- OPENING TAG OF CONTENT -->
-      <div class="content" style="padding-top: 0px;">
+      <div class="content">
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
             <div class="card">
               <h5 class="card-header">
-                  <a>
-                      Reserve Schedule
-                  </a>
+
               </h5>
               <div>
                   <div class="card-body">
                   <div class="card-body">   
                       <form id="reservationForm">
+                          <div class="form-row">
+                              <div class="form-group col-sm-12">
+                              <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                              </div>
+                          </div>
                           <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="reserveName">Name</label>
@@ -124,6 +120,13 @@ The above copyright notice and this permission notice shall be included in all c
 
                                 </select>
                             </div>
+                            
+                            <!-- <div class="form-group col-sm-6">
+                                <label for="reserveLandmark">Landmark</label>
+                                <select class="form-control" id="reserveLandmark" name="reserveLandmark">
+
+                                </select>
+                            </div> -->
                           </div>
                           <div class="form-row">
                             
@@ -134,19 +137,21 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                           </div>
                           <div class="form-row">
-                            <div id="scheduleDiv" class="form-group col-sm-12" hidden>
+                          <div id="scheduleDiv" class="form-group col-sm-12" hidden>
                                 <label for="reserveSchedule">Schedule</label>
                                 <select class="form-control" id="reserveSchedule" name="reserveSchedule">
 
                                 </select>
                             </div>
                           </div>
-                    </div>
+                            
+                  </div>
                   </div>
               </div>
           </div>
 
-          <div id="templateDiv" class="card" hidden>
+          
+            <div id="templateDiv" class="card" hidden>
               <div class="card-body">
                 <table id="templateTable" class="table">
                     <thead>
@@ -177,90 +182,43 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
             </div>
 
+          
 
-      <div id="counterPrintReceipt" class="myDivToPrint" hidden>
-              <?php $this->load->view('receipt/counter_receipt') ?>
+            <!-- CLOSING TAG OF CONTENT -->
           </div>
+        </div>
+      </div>
+      <!-- END OF CLOSING TAG OF CONTENT -->
+
+      
 
       
       <!-- FOOTER -->
-      <?php $this->load->view('includes/users/footer.php')?>
+      <?php $this->load->view('includes/footer.php')?>
 
     </div>
     <!-- END OF MAIN CONTENT -->
 
-    
-          
-
+  
   </div>
   <!-- END OF WRAPPER -->
 
   <!-- FIXED PLUGINS -->
   
   <!-- FIXED PLUGINS -->
-  <?php $this->load->view('includes/users/core_js_files.php')?>
+  <?php $this->load->view('includes/core_js_files.php')?>
   
 </body>
 
 
 
 <!-- FIXED SCRIPTS -->
-<?php $this->load->view('includes/users/fixed_scripts.php')?>
+<?php $this->load->view('includes/fixed_scripts.php')?>
 
 <script>
 
-  let globalLandmark;
+let globalLandmark;
 
-
-function dataTable(){
-    reservationTable = $('#reservationTable').DataTable({
-      "ajax": "<?php echo base_url()?>users/reservation/show_reservations",
-      "columns": [
-          {data: "id"},
-          {data: "referenceNumber"},
-          {data: "name"},
-          // {data: "name"},
-          {data: "scheduleId", render: function(data, type, row){
-              return row.schedule.route.origin.name + ' - ' + row.schedule.route.destination.name + ' - ' + moment(row.reservationDate).format('ll') + ' - ' 
-                    + moment(row.schedule.hourFrom).format('LT') + ' - ' + moment(row.schedule.hourTo).format('LT');;
-          }},
-          {data: "totalAmount", render: function(data, type, row){
-              return "P" + parseFloat(data).toFixed(2);
-          }},
-          {data: "currentStatus"},
-          {data: "created_at"},
-          {data: "currentStatus", render: function(data, type, row){
-                if (data == "Paid"){
-                  return '<div class="btn-group">' +
-                          '<button class="btn btn-primary btn-sm btn-print-reservation" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Print </button>&nbsp'+
-                          '<button class="btn btn-danger btn-sm btn-refund-reservation" value="' + row.id + '"title = "Refund" type="button"> <i class="zmdi zmdi-edit"> </i> Refund </button>'+
-                          '</div>';
-                }
-                else if(data == "Pending"){
-                  return '<div class="btn-group">' +
-                          '<button class="btn btn-info btn-sm btn-view-reservation" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>&nbsp'+
-                          '<button class="btn btn-default btn-sm btn-cancel-reservation" value="' + row.id + '"title = "Cancel" type="button"> <i class="zmdi zmdi-view"> </i> Cancel </button>'+
-                          '</div>';
-                }
-              }
-          }
-        ],
-
-      "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 6] }],
-      "order": [[6, "desc"]]
-
-    })
-
-};
-
-
-dataTable();
-
-function refresh(){
-  var url="<?php echo base_url()?>users/reservation/show_reservations";
-
-  reservationTable.ajax.url(url).load();
-}
 
 var bookingDate = new Date();
 // var bookingDate = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
@@ -281,6 +239,7 @@ var reserveBusType = document.getElementById('reserveBusType').value;
         type: "POST",
         data: { id: reserveBusType},
         dataType: "JSON",
+        async: false,
 
         success: function(data){
           console.log(data);
@@ -404,6 +363,9 @@ $('#reservationForm').on('submit', function(e){
   var form = $('#reservationForm');
 
   var reserveSchedule = $('#reserveSchedule').val();
+
+  var userId = "<?php echo($this->session->userdata['logged_in']['userId'])?>"
+
   let priceTotal = 0;
 
   let seatId = [],
@@ -440,6 +402,7 @@ $('#reservationForm').on('submit', function(e){
           console.log(landmark)
           console.log(passengerAmount)
 
+
           let reservationLineData = {
             "seatId": seatId,
             "seatCode": seatCode,
@@ -448,6 +411,7 @@ $('#reservationForm').on('submit', function(e){
             "passengerInsurance": passengerInsurance,
             "passengerDiscount": passengerDiscount,
             "passengerAmount": passengerAmount,
+            "userId": userId
           }
 
   
@@ -489,18 +453,17 @@ $('#reservationForm').on('submit', function(e){
         
 
     $.ajax({
-        url:'<?php echo base_url()?>users/reservation/add_reservation',
+        url:'<?php echo base_url()?>reservation/add_reservation',
         type: "POST",
         data: addedData, 
         dataType: "JSON",
 
         success: function(data){
-          refresh();
           console.log(data.data.id);
           reservationId = data.data.id;
 
           $.ajax({
-              url:'<?php echo base_url()?>users/reservation/add_reservation_line',
+              url:'<?php echo base_url()?>reservation/add_reservation_line',
               type: "POST",
               data: { reservationLineData: reservationLineData, reservationId: reservationId },
               dataType: "JSON",
@@ -526,8 +489,8 @@ $('#reservationForm').on('submit', function(e){
 
 });
 
-function get_bus_type(){
-  
+  function get_bus_type(){
+    
     $.ajax({
       url: '<?php echo base_url()?>busInformation/get_bus_type',
       type: "GET",
@@ -556,6 +519,7 @@ function get_bus_type(){
   }
 
 function show_promo(){
+
 $.ajax({
   url: '<?php echo base_url()?>promo/show_promo',
   type: "GET",
@@ -644,7 +608,6 @@ function show_route(){
         
         $('#reserveRoute').html(html);
 
-
       }
     })
 }
@@ -697,6 +660,8 @@ function show_landmark(){
       
       $('#reserveLandmark').html(html);
       globalLandmark = html;
+
+      
     }
 })
 }
@@ -719,7 +684,7 @@ $( "#btnShowSched" ).on('click', function(e) {
     }
 
     $.ajax({
-      url: '<?php echo base_url()?>users/Reservation/show_avail_bus/',
+      url: '<?php echo base_url()?>Reservation/show_avail_bus/',
       type: "POST",
       data: {date: formatDate ,
             routeId: routeId,
@@ -939,152 +904,6 @@ $( "#btnShowSched" ).on('click', function(e) {
     }
   })
 
-  $(document).on("click", ".btn-view-reservation", function(e){
-    let reservationId = this.value;
-
-    $('#passengerTableView').find('thead').html("")
-    $('#passengerTableView').find('tbody').html("")
-
-    let passengerRoute = []
-    let passengerName = []
-    let passengerSeat = []
-
-     $.ajax({
-            url: '<?php echo base_url()?>users/reservation/get_reservation_line/',
-            type: 'POST',
-            data: { reservationId, reservationId },
-            dataType: "JSON",
-
-            success: function(data){
-              reservationLine = data.data;
-              console.log(data.data);
-              referenceNumber = reservationLine[0].reservation.referenceNumber
-              scheduleName = reservationLine[0].reservation.scheduleName
-              name = reservationLine[0].reservation.name
-              reservationDate = reservationLine[0].reservation.reservationDate
-              routeName = reservationLine[0].reservation.schedule.route.name;
-
-              $('#referenceNumberView').html(referenceNumber)
-              $('#scheduleNameView').html(scheduleName)
-              $('#nameView').html(name)
-              $('#reservationDateView').html(reservationDate)
-              $('#routeNameView').html(routeName)
-
-              if(reservationLine.length != 0){
-                $('#passengerTableView').find('thead').append(`
-                  <th><h6 style="color: black">Passenger Seat</h6></th>
-                  <th><h6 style="color: black">Passenger Name</h6></th>
-                  <th><h6 style="color: black">Passenger Route</h6></th>
-                `)
-
-                for(i=0; i < reservationLine.length; i++){
-
-                  $('#passengerTableView').find('tbody').append(`
-                    <tr>
-                      <td><label>${reservationLine[i].seat.code}</label></td>
-                      <td><label>${reservationLine[i].passengerName}</label></td>
-                      <td><label>${reservationLine[i].route}</label></td>
-                    </tr>
-                  `)
-                }
-              }
-              console.log(passengerRoute)
-              console.log(passengerName)
-              console.log(passengerSeat)
-              $('#viewReservationModal').modal('show');
-            }
-     })
-
-
-  });
-
-  $(document).on("click", ".btn-cancel-reservation", function(e){
-    $('#cancelReservationBtn').val(this.value);
-
-    $('#cancelReservationModal').modal('show');
-  });
-
-  $(document).on("click", ".cancelReservationConfirm", function(e){
-    reservationId = this.value;
-
-    seatId = []
-
-    $.ajax({
-            url: '<?php echo base_url()?>users/reservation/get_reservation_line/',
-            type: 'POST',
-            data: { reservationId, reservationId },
-            dataType: "JSON",
-
-            success: function(data){
-              reservationData = data.data
-
-              for(i=0; i < reservationData.length; i++){
-                seatId.push(reservationData[i].seatId);
-              }
-
-              $.ajax({
-                url: '<?php echo base_url()?>users/reservation/delete_reservation/',
-                  type: 'POST',
-                  data: { reservationId, reservationId },
-                  dataType: "JSON",
-
-                  success: function(data){
-                    
-                    $.ajax({
-                    url: '<?php echo base_url()?>users/reservation/delete_reservation_lines/',
-                    type: 'POST',
-                    data: { reservationId, reservationId },
-                    dataType: "JSON",
-
-                    success: function(data){
-                        $.ajax({
-                            url: '<?php echo base_url()?>users/reservation/activate_bus_seats/',
-                            type: 'POST',
-                            data: { seatId, seatId },
-                            dataType: "JSON",
-
-                            success: function(data){
-
-                            }
-                        })
-                    }
-
-                  })
-                  showNotification('delete', 'Successfully cancelled a reservation!', 'danger', 'top', 'right');
-                  refresh();
-                  }
-              })
-
-                
-            }
-     })
-
-  });
-
-  $(document).on('click', '.btn-print-reservation', function(){
-      $("#counterPrintReceipt").printThis({
-						debug: true,               // show the iframe for debugging
-            importCSS: true,            // import parent page css
-            importStyle: true,         // import style tags
-            printContainer: false,       // print outer container/$.selector
-            loadCSS: "",                // path to additional css file - use an array [] for multiple
-            pageTitle: "",              // add title to print page
-            removeInline: true,        // remove inline styles from print elements
-            removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
-            printDelay: 333,            // variable print delay
-            header: null,               // prefix to html
-            footer: null,               // postfix to html
-            base: false,                // preserve the BASE tag or accept a string for the URL
-            formValues: true,           // preserve input/form values
-            canvas: false,              // copy canvas content
-            doctypeString: '...',       // enter a different doctype for older markup
-            removeScripts: true,       // remove script tags from print content
-            copyTagClasses: true,      // copy classes from the html & body tag
-            beforePrintEvent: null,     // function for printEvent in iframe
-            beforePrint: null,          // function called before iframe is filled
-            afterPrint: null            // function called before iframe is removed
-					});
-  })
 
 
   show_terminal();

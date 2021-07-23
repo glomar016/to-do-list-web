@@ -28,7 +28,7 @@ The above copyright notice and this permission notice shall be included in all c
     <div class="main-panel">
 
       <!-- NAVBAR -->
-      <?php $this->load->view('includes/navbar.php'); ?>
+      
 
       <!-- OPENING TAG OF CONTENT -->
       <div class="content">
@@ -38,7 +38,6 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="card" style="width:100mm; float:center">
                 
             </div>
-              
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>
@@ -79,7 +78,7 @@ $(document).ready(function(){
             )
 
             setInterval(function(){
-                    window.location.href = 'http://localhost/brs-web/users/payment/gcash'
+                    window.location.href = '<?php echo base_url()?>users/my_reservation'
             }, 1000);
 
         }
@@ -92,7 +91,7 @@ $(document).ready(function(){
                     )
 
             setInterval(function(){
-                    window.location.href = 'http://localhost/brs-web/users/payment/gcash'
+                    window.location.href = '<?php echo base_url()?>users/online_payment'
             }, 1000);
             
         }
