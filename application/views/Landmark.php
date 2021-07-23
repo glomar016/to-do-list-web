@@ -41,15 +41,15 @@ The above copyright notice and this permission notice shall be included in all c
                         <form id="addLandmarkForm" name="addLandmarkForm">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Landmark Name</label>
-                                <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Kilometer From Origin</label>
-                                <input type="text" class="form-control" name="kmFromOrigin"  id="kmFromOrigin" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="kmFromOrigin"  id="kmFromOrigin" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label class="label-control">Effectivity Date</label> <br>
-                                <input type="date" class="form-control" id="effectivityDate" name="effectivityDate">
+                                <input required type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
                                                 
                             <input type="submit" class="btn btn-primary">
@@ -101,11 +101,11 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="modal-body">
                             <input hidden type="text" class="form-control" name="viewLandmarkId" id="viewLandmarkId" aria-describedby="emailHelp">
                             <label for="exampleInputEmail1">Landmark Name</label>
-                                <input type="text" class="form-control" name="viewLandmarkName" id="viewLandmarkName" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="viewLandmarkName" id="viewLandmarkName" aria-describedby="emailHelp">
                             <label for="exampleInputEmail1">Kilometer From Origin</label>
-                                <input type="text" class="form-control" name="viewKmFromOrigin" id="viewKmFromOrigin" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="viewKmFromOrigin" id="viewKmFromOrigin" aria-describedby="emailHelp">
                             <label for="exampleInputEmail1">Effectivity Date</label>
-                                <input type="text" class="form-control" name="viewEffectivityDate" id="viewEffectivityDate" aria-describedby="">
+                                <input required type="text" class="form-control" name="viewEffectivityDate" id="viewEffectivityDate" aria-describedby="">
                         </div>
                         <div class="modal-footer">
                             <!-- <input type="submit" class="btn btn-success"> -->

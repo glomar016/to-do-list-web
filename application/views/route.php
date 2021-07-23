@@ -69,13 +69,13 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                             <div class="form-group col-sm-12">
                                 <label for="originId">Origin</label>
-                                <select id="originId" name="originId" class="form-control" data-style="btn btn-primary btn-sm">
+                                <select required id="originId" name="originId" class="form-control" data-style="btn btn-primary btn-sm">
                                  
                                 </select>
                             </div>
                             <div class="form-group col-sm-12">
                                 <label for="destinationId">Destination</label>
-                                <select id="destinationId" name="destinationId" class="form-control" data-style="btn btn-primary btn-sm">
+                                <select required id="destinationId" name="destinationId" class="form-control" data-style="btn btn-primary btn-sm">
                               
                                 </select>
                             </div>
@@ -83,11 +83,11 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="kmDistance">Km Distance</label>
-                                <input type="text" class="form-control" name="kmDistance" id="kmDistance" >
+                                <input required type="number" class="form-control" name="kmDistance" id="kmDistance" >
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="label-control">Effectivity Date</label> 
-                                <input type="date" class="form-control" id="effectivityDate" name="effectivityDate">
+                                <input required type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
                             
                             </div>

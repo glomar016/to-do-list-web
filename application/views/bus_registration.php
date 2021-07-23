@@ -75,7 +75,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Bus Number</label>
-                              <select class="form-control" id="plateNumberInput" name="plateNumberInput">
+                              <select required class="form-control" id="plateNumberInput" name="plateNumberInput">
                                   
                                 </select>
                             </div>
@@ -83,14 +83,15 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Registration Status</label>
-                              <select class="form-control" id="registrationStatusInput" name="registrationStatusInput">
+                              <select required class="form-control" id="registrationStatusInput" name="registrationStatusInput">
+                                  <option value="">-- Select Status --</option>
                                   <option value="Registered">Registered</option>
                                   <option value="Expired">Expired</option>
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="expirationDateLabel" for="exampleInputPassword1">Expiration Date</label>
-                                <input type="date" class="form-control expirationDate" name="expirationDateInput" id="expirationDateInput">
+                                <input required type="date" class="form-control expirationDate" name="expirationDateInput" id="expirationDateInput">
                             </div>
                         </div>
                       
@@ -191,7 +192,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="exampleInputEmail1">Bus Number</label>
-                                <select class="form-control" id="plateNumberEdit" name="plateNumberEdit">
+                                <select required class="form-control" id="plateNumberEdit" name="plateNumberEdit">
                                         
                                 </select>
                             </div>
@@ -199,14 +200,14 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Registration Status</label>
-                              <select class="form-control" id="registrationStatusEdit" name="registrationStatusEdit">
+                              <select required class="form-control" id="registrationStatusEdit" name="registrationStatusEdit">
                                   <option value="Registered">Registered</option>
                                   <option value="Expired">Expired</option>
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="expirationDateLabel" for="exampleInputPassword1">Expiration Date</label>
-                                <input type="date" class="form-control expirationDate" name="expirationDateEdit" id="expirationDateEdit">
+                                <input required type="date" class="form-control expirationDate" name="expirationDateEdit" id="expirationDateEdit">
                             </div>
                         </div>
                     </div>

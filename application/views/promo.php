@@ -78,38 +78,38 @@ The above copyright notice and this permission notice shall be included in all c
                       </div>
                       <div class="form-row">
                         <div class="form-group col-sm-4">
-                            <label for="exampleInputEmail1">Bus Type</label>
-                            <select class="form-control" id="busTypeInput" name="busTypeInput">           
+                            <label for="busTypeInput">Bus Type</label>
+                            <select required class="form-control" id="busTypeInput" name="busTypeInput">           
                                         
                             </select>
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-sm-6">
-                            <label for="exampleInputEmail1">Code</label>
-                            <input type="text" class="form-control" name="codeInput"  id="codeInput" aria-describedby="emailHelp">
+                            <label for="codeInput">Code</label>
+                            <input required type="text" class="form-control" name="codeInput"  id="codeInput" aria-describedby="emailHelp">
                         </div>
-                        <div class="form-group col-sm-6">
-                            <label for="exampleInputEmail1">Minimum Seat Reservation</label>
+                        <div class="form-group col-sm-3">
+                            <label for="minimumSeatReservationInput">Minimum Seat Reservation</label>
                             <input type="number" class="form-control" name="minimumSeatReservationInput"  id="minimumSeatReservationInput" aria-describedby="emailHelp">
                         </div>
                       </div>
                       <div class="form-row">
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Booking Date From</label>
-                              <input type="date" class="form-control" name="bookingDateFromInput" id="bookingDateFromInput">
+                              <input required type="date" class="form-control" name="bookingDateFromInput" id="bookingDateFromInput">
                           </div>
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Booking Date To</label>
-                              <input type="date" class="form-control" name="bookingDateToInput" id="bookingDateToInput" >
+                              <input required type="date" class="form-control" name="bookingDateToInput" id="bookingDateToInput" >
                           </div>
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Travel Date From</label>
-                              <input type="date" class="form-control" name="travelDateFromInput" id="travelDateFromInput">
+                              <input required type="date" class="form-control" name="travelDateFromInput" id="travelDateFromInput">
                           </div>
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Travel Date To</label>
-                              <input type="date" class="form-control" name="travelDateToInput" id="travelDateToInput">
+                              <input required type="date" class="form-control" name="travelDateToInput" id="travelDateToInput">
                           </div>
                       </div>
                       <div class="form-row">
@@ -122,18 +122,18 @@ The above copyright notice and this permission notice shall be included in all c
                               <input type="number" class="form-control" name="fixedDiscountInput" id="fixedDiscountInput">
                           </div>
                           <div class="form-group col-sm-4">
-                              <label for="exampleInputPassword1">Percentage Discount</label>
+                              <label for="exampleInputPassword1">Percentage Discount (%)</label>
                               <input type="number" class="form-control" name="percentageDiscountInput" id="percentageDiscountInput">
                           </div>
                       </div>
                       <div class="form-row">
                           <div class="form-group col-sm-6">
                               <label for="exampleInputPassword1">Effectivity Date</label>
-                              <input type="date" class="form-control" name="effectivityDateInput" id="effectivityDateInput">
+                              <input required type="date" class="form-control" name="effectivityDateInput" id="effectivityDateInput">
                           </div>
                           <div class="form-group col-sm-6">
                               <label for="exampleInputPassword1">Deactivation Date</label>
-                              <input type="date" class="form-control" name="deactivationDateInput" id="deactivationDateInput">
+                              <input required type="date" class="form-control" name="deactivationDateInput" id="deactivationDateInput">
                           </div>
                       </div>
                         <input type="submit" class="btn btn-primary">
@@ -229,7 +229,7 @@ The above copyright notice and this permission notice shall be included in all c
                               <span class="form-control" name="fixedDiscountView" id="fixedDiscountView"></span>
                           </div>
                           <div class="form-group col-sm-4">
-                              <label for="exampleInputPassword1">Percentage Discount</label>
+                              <label for="exampleInputPassword1">Percentage Discount (%)</label>
                               <span class="form-control" name="percentageDiscountView" id="percentageDiscountView"></span>
                           </div>
                       </div>
@@ -284,43 +284,43 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Code</label>
-                            <input type="text" class="form-control" name="codeEdit"  id="codeEdit" aria-describedby="emailHelp">
+                            <input required type="text" class="form-control" name="codeEdit"  id="codeEdit" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Minimum Seat Reservation</label>
-                            <input type="text" class="form-control" name="minimumSeatReservationEdit"  id="minimumSeatReservationEdit" aria-describedby="emailHelp">
+                            <input type="number" class="form-control" name="minimumSeatReservationEdit"  id="minimumSeatReservationEdit" aria-describedby="emailHelp">
                         </div>
                       </div>
                       <div class="form-row">
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Booking Date From</label>
-                              <input type="date" class="form-control" name="bookingDateFromEdit" id="bookingDateFromEdit">
+                              <input required type="date" class="form-control" name="bookingDateFromEdit" id="bookingDateFromEdit">
                           </div>
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Booking Date To</label>
-                              <input type="date" class="form-control" name="bookingDateToEdit" id="bookingDateToEdit" >
+                              <input required type="date" class="form-control" name="bookingDateToEdit" id="bookingDateToEdit" >
                           </div>
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Travel Date From</label>
-                              <input type="date" class="form-control" name="travelDateFromEdit" id="travelDateFromEdit">
+                              <input required type="date" class="form-control" name="travelDateFromEdit" id="travelDateFromEdit">
                           </div>
                           <div class="form-group col-sm-3">
                               <label for="exampleInputPassword1">Travel Date To</label>
-                              <input type="date" class="form-control" name="travelDateToEdit" id="travelDateToEdit">
+                              <input required type="date" class="form-control" name="travelDateToEdit" id="travelDateToEdit">
                           </div>
                       </div>
                       <div class="form-row">
                           <div class="form-group col-sm-4">
                               <label for="exampleInputPassword1">Minimum Amount</label>
-                              <input type="text" class="form-control" name="minimumAmountEdit" id="minimumAmountEdit">
+                              <input  type="number" class="form-control" name="minimumAmountEdit" id="minimumAmountEdit">
                           </div>
                           <div class="form-group col-sm-4">
                               <label for="exampleInputPassword1">Fixed Discount</label>
-                              <input type="text" class="form-control" name="fixedDiscountEdit" id="fixedDiscountEdit">
+                              <input type="number" class="form-control" name="fixedDiscountEdit" id="fixedDiscountEdit">
                           </div>
                           <div class="form-group col-sm-4">
-                              <label for="exampleInputPassword1">Percentage Discount</label>
-                              <input type="text" class="form-control" name="percentageDiscountEdit" id="percentageDiscountEdit">
+                              <label for="exampleInputPassword1">Percentage Discount (%)</label>
+                              <input type="number" class="form-control" name="percentageDiscountEdit" id="percentageDiscountEdit">
                           </div>
                       </div>
                       <div class="form-row">
