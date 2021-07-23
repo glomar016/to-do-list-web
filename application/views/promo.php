@@ -124,6 +124,7 @@ The above copyright notice and this permission notice shall be included in all c
               </div>
           </div>
             <div class="card">
+            <h4 class="card-header card-header-info">List of Promos</h4>
               <div class="card-body">
                 <table id="promoTable" class="table">
                     <thead>

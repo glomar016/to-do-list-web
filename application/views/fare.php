@@ -93,6 +93,7 @@ The above copyright notice and this permission notice shall be included in all c
 
                 <!-- TABLE  -->
                 <div class="card">
+                <h4 class="card-header card-header-info">List of Fares</h4>
                 <div class="card-body">
                     <table id="fareTable" class="table">
                         <thead>
@@ -139,19 +140,17 @@ The above copyright notice and this permission notice shall be included in all c
                     <input hidden type="text" class="form-control" name="fareIdView" id="fareIdView" >
                     
                     <label for="busTypeIdView">Bus Type</label>
-                        <select id="busTypeIdView" name="busTypeIdView" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">
-                            
-                        </select>
+                        <span id="busTypeIdView" name="busTypeIdView" class="form-control" data-style="btn btn-primary btn-sm"> </span>
                     <label for="exampleInputEmail1">Initial Km</label>
-                        <input type="text" class="form-control" name="initialKmView" id="initialKmView" >
+                        <span type="text" class="form-control" name="initialKmView" id="initialKmView" > </span>
                     <label for="exampleInputEmail1">Initial Price</label>
-                        <input type="text" class="form-control" name="initialPriceView" id="initialPriceView" >
+                        <span type="text" class="form-control" name="initialPriceView" id="initialPriceView" > </span>
                     <label for="exampleInputEmail1">Additional Km</label>
-                        <input type="text" class="form-control" name="additionalKmView" id="additionalKmView" >
+                        <span type="text" class="form-control" name="additionalKmView" id="additionalKmView" > </span>
                     <label for="exampleInputEmail1">Discount Percentage</label>
-                        <input type="text" class="form-control" name="discountPercentageView" id="discountPercentageView" >
+                        <span type="text" class="form-control" name="discountPercentageView" id="discountPercentageView" > </span>
                     <label for="exampleInputEmail1">Effectivity Date</label>
-                        <input type="text" class="form-control" name="effectivityDateView" id="effectivityDateView" aria-describedby="">
+                        <span type="text" class="form-control" name="effectivityDateView" id="effectivityDateView" aria-describedby=""> </span>
                 </div>
                 <div class="modal-footer">
                     <!-- <input type="submit" class="btn btn-success"> -->
@@ -314,7 +313,6 @@ $(document).ready(function(){
             }
             
             $('#busTypeId').html(html);
-            $('#busTypeIdView').html(html);
             $('#busTypeIdEdit').html(html);
 
         }
@@ -459,12 +457,13 @@ $(document).on("click", ".btn_generate", function(){
                 var fareInfo = data.data;
                 console.log(moment(fareInfo.effectivityDate).format('MM-DD-YYYY'))
 
-                $('#fareIdView').val(id);
-                $('#initialKmView').val(fareInfo.initialKm);
-                $('#initialPriceView').val(fareInfo.initialPrice);
-                $('#additionalKmView').val(fareInfo.additionalKm);
-                $('#discountPercentageView').val(fareInfo.discountPercentage);
-                $('#effectivityDateView').val(moment(fareInfo.effectivityDate).format('YYYY-MM-DD'));
+                $('#fareIdView').html(id);
+                $('#busTypeIdView').html(fareInfo.typeId.name);
+                $('#initialKmView').html(fareInfo.initialKm);
+                $('#initialPriceView').html(fareInfo.initialPrice);
+                $('#additionalKmView').html(fareInfo.additionalKm);
+                $('#discountPercentageView').html(fareInfo.discountPercentage);
+                $('#effectivityDateView').html(moment(fareInfo.effectivityDate).format('YYYY-MM-DD'));
 
                 $('#viewfareInfoModal').modal('show');
             }

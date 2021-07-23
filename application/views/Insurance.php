@@ -95,6 +95,7 @@ textarea::-webkit-scrollbar{
               </div>
           </div>
             <div class="card">
+            <h4 class="card-header card-header-info">List of Insurances</h4>
               <div class="card-body">
                 <table id="insuranceTable" class="table">
                     <thead>

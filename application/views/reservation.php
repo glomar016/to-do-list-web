@@ -170,6 +170,7 @@ The above copyright notice and this permission notice shall be included in all c
           
 
           <div class="card">
+          <h4 class="card-header card-header-info">List of Reservations</h4>
             <div class="card-body">
               <table id="reservationTable" class="table">
                 <thead>
@@ -283,9 +284,7 @@ The above copyright notice and this permission notice shall be included in all c
     </div>
     <!-- END OF MAIN CONTENT -->
 
-    
-          
-
+  
   </div>
   <!-- END OF WRAPPER -->
 
@@ -741,7 +740,6 @@ function show_route(){
         
         $('#reserveRoute').html(html);
 
-
       }
     })
 }
@@ -794,6 +792,8 @@ function show_landmark(){
       
       $('#reserveLandmark').html(html);
       globalLandmark = html;
+
+      
     }
 })
 }
@@ -1046,7 +1046,7 @@ $( "#btnShowSched" ).on('click', function(e) {
     let passengerName = []
     let passengerSeat = []
 
-     $.ajax({
+    $.ajax({
             url: '<?php echo base_url()?>reservation/get_reservation_line/',
             type: 'POST',
             data: { reservationId, reservationId },
@@ -1085,9 +1085,6 @@ $( "#btnShowSched" ).on('click', function(e) {
                   `)
                 }
               }
-              console.log(passengerRoute)
-              console.log(passengerName)
-              console.log(passengerSeat)
               $('#viewReservationModal').modal('show');
             }
      })
@@ -1159,6 +1156,77 @@ $( "#btnShowSched" ).on('click', function(e) {
   });
 
   $(document).on('click', '.btn-print-reservation', function(){
+      
+    let reservationId = this.value;
+
+    $('#passengerTablePrint').find('thead').html("")
+    $('#passengerTablePrint').find('tbody').html("")
+
+    let passengerRoute = []
+    let passengerName = []
+    let passengerSeat = []
+
+    $.ajax({
+            url: '<?php echo base_url()?>reservation/get_reservation_line/',
+            type: 'POST',
+            data: { reservationId, reservationId },
+            dataType: "JSON",
+
+            success: function(data){
+              reservationLine = data.data;
+              console.log(data.data);
+              referenceNumber = reservationLine[0].reservation.referenceNumber
+              scheduleName = reservationLine[0].reservation.scheduleName
+              name = reservationLine[0].reservation.name
+              billingAddress = reservationLine[0].reservation.billingAddress
+              promoName = reservationLine[0].reservation.promo
+              reservationDate = reservationLine[0].reservation.reservationDate
+              routeName = reservationLine[0].reservation.schedule.route.name;
+              totalAmount = reservationLine[0].reservation.totalAmount;
+
+              $('#customerNamePrint').html(name)
+              $('#customerAddressPrint').html(billingAddress)
+              $('#scheduleNamePrint').html(scheduleName)
+              $('#tripPromoCodePrint').html(promoName)
+              $('#tripRouteNamePrint').html(routeName)
+
+              $('#tripAmount').html(totalAmount)
+              $('#tripPromoDiscount').html("P0.00")
+              $('#tripTotalAmount').html(totalAmount)
+
+              if(reservationLine.length != 0){
+
+                $('#passengerTablePrint').find('thead').append(`<tr>
+                                    <th width="20%" id="passengerSeatPrint">Seat No.</th>
+                                    <th width="20%" id="passengerNamePrint">Name</th>
+                                    <th width="20%" id="passengerRoutePrint">Route</th>
+                                    <th width="20%" id="passengerInsurancePrint">Insurance</th>
+                                    <th width="20%" id="passengerSubTotalPrint">Sub Total</th>
+                                </tr>`)
+
+                for(i=0; i < reservationLine.length; i++){
+
+                  if(reservationLine[i].insuranceFee == null){
+                    insurance = "P0.00";
+                  }
+                  else{
+                    insurance = reservationLine[i].insuranceFee
+                  }
+
+                  $('#passengerTablePrint').find('tbody').append(`
+                    <tr>
+                      <td><p class="pTag">${reservationLine[i].seat.code}</p></td>
+                      <td><p class="pTag">${reservationLine[i].passengerName}</p></td>
+                      <td><p class="pTag">${reservationLine[i].route}</p></td>
+                      <td><p class="pTag">${insurance}</p></td>
+                      <td><p class="pTag">${reservationLine[i].amount}</p></td>
+                    </tr>
+                  `)
+                }
+              }
+            }
+     })
+
       $("#counterPrintReceipt").printThis({
 						debug: true,               // show the iframe for debugging
             importCSS: true,            // import parent page css
@@ -1166,7 +1234,7 @@ $( "#btnShowSched" ).on('click', function(e) {
             printContainer: false,       // print outer container/$.selector
             loadCSS: "",                // path to additional css file - use an array [] for multiple
             pageTitle: "",              // add title to print page
-            removeInline: true,        // remove inline styles from print elements
+            removeInline: false,        // remove inline styles from print elements
             removeInlineSelector: "*",  // custom selectors to filter inline styles. removeInline must be true
             printDelay: 333,            // variable print delay
             header: null,               // prefix to html

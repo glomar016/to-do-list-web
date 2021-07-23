@@ -11,7 +11,7 @@
         <ul class="nav">
 
           <li <?php if($this->router->fetch_class() == 'dashboard') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" href="<?php echo base_url()?>">
+            <a class="nav-link" href="<?php echo base_url()?>dashboard">
               <!-- <i class="material-icons">dashboard</i> -->
               <p>Dashboard</p>
             </a>
