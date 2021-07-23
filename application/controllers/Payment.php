@@ -29,11 +29,13 @@ class Payment extends CI_Controller {
         $paymentChartOfAccount = $this->input->post('paymentChartOfAccount');
         $paymentTerm = $this->input->post('paymentTerm');
         $paymentCashTendered = $this->input->post('paymentCashTendered');
+        $userId =  $this->input->post('userId');
 
         $data = array("reservationId" => $paymentReferenceNumber
                         , "chartOfAccountId" => $paymentChartOfAccount
                         , "term" => $paymentTerm
                         , "cashTendered" => $paymentCashTendered
+                        , "created_by" => $userId
         );
 
         $postdata = json_encode($data);
@@ -92,8 +94,11 @@ class Payment extends CI_Controller {
 
         $paidAmount = $this->input->post('paidAmount');
         $reservationId = $this->input->post('reservationId');
+        $userId = $this->input->post('editUserId');
 
-        $data = array("paidAmount" => $paidAmount);
+        $data = array("paidAmount" => $paidAmount
+                    ,"updated_by" => $userId
+                    );
 
         $postdata = json_encode($data);
             

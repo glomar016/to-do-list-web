@@ -53,6 +53,7 @@ class BusInformation extends CI_Controller {
 		$withTelevision =  $this->input->post('withTelevision');
 		$withAircon =  $this->input->post('withAircon');
 		$withWifi =  $this->input->post('withWifi');
+		$userId =  $this->input->post('userId');
 
 		$data = array("number" => $busNumberInput
 						, "busTypeId" => $busTypeInput
@@ -79,6 +80,7 @@ class BusInformation extends CI_Controller {
 						, "hasTelevision" => $withTelevision
 						, "typeId" => $busTypeInput
 						, "templateId" => $busTemplateInput
+						, "created_by" => $userId
 						);
 
 		$postdata = json_encode($data);
@@ -181,6 +183,7 @@ class BusInformation extends CI_Controller {
 		$withTelevisionEdit =  $this->input->post('withTelevisionEdit');
 		$withAirconEdit =  $this->input->post('withAirconEdit');
 		$withWifiEdit =  $this->input->post('withWifiEdit');
+		$id = $this->input->post('editBusTypeId');
 
 		$data = array("number" => $busNumberEdit
 						, "busTypeId" => $busTypeEdit
@@ -207,6 +210,7 @@ class BusInformation extends CI_Controller {
 						, "hasTelevision" => $withTelevisionEdit
 						, "typeId" => $busTypeEdit
 						, "busInformationId" => $busTemplateEdit
+						, "updated_by" => $userId
 						);
 		$postdata = json_encode($data);
 

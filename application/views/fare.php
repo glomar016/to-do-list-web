@@ -51,6 +51,11 @@ The above copyright notice and this permission notice shall be included in all c
                         <form id="addfareForm" name="addfareForm">
                         <div class="form-row">
                             <div class="form-group col-sm-12">
+                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
                                 <label for="busTypeId">Bus Type</label>
                                 <select id="busTypeId" name="busTypeId" class="form-control" data-style="btn btn-primary btn-sm">
                                  
@@ -178,6 +183,11 @@ The above copyright notice and this permission notice shall be included in all c
             <div class="card-body">
             <form id="editfareForm">
                 <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                        <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                        </div>
+                    </div>
                     <input hidden type="text" class="form-control" name="fareIdEdit" id="fareIdEdit" >
                     <label for="busTypeIdEdit">Bus Type</label>
                         <select id="busTypeIdEdit" name="busTypeIdEdit" class="form-control" data-style="btn btn-primary btn-sm" title="Single Select">

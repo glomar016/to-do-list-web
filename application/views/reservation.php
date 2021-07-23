@@ -63,6 +63,11 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-body">   
                       <form id="reservationForm">
                           <div class="form-row">
+                              <div class="form-group col-sm-12">
+                              <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                              </div>
+                          </div>
+                          <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="reserveName">Name</label>
                                 <input type="text" class="form-control" id="reserveName" name="reserveName">
@@ -497,6 +502,9 @@ $('#reservationForm').on('submit', function(e){
   var form = $('#reservationForm');
 
   var reserveSchedule = $('#reserveSchedule').val();
+
+  var userId = "<?php echo($this->session->userdata['logged_in']['userId'])?>"
+
   let priceTotal = 0;
 
   let seatId = [],
@@ -533,6 +541,7 @@ $('#reservationForm').on('submit', function(e){
           console.log(landmark)
           console.log(passengerAmount)
 
+
           let reservationLineData = {
             "seatId": seatId,
             "seatCode": seatCode,
@@ -541,6 +550,7 @@ $('#reservationForm').on('submit', function(e){
             "passengerInsurance": passengerInsurance,
             "passengerDiscount": passengerDiscount,
             "passengerAmount": passengerAmount,
+            "userId": userId
           }
 
   

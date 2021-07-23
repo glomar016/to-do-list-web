@@ -31,10 +31,12 @@ class busSchedule extends CI_Controller {
 		$busNumberInput = $this->input->post('busNumberInput');
 		$scheduleDateInput =  $this->input->post('scheduleDateInput');
     $availableBus =  $optionId;
+    $userId =  $this->input->post('userId');
 
 		$data = array("busInformationId" => $busNumberInput
 						, "scheduleDate" => $scheduleDateInput
             , "busScheduleId" => $availableBus
+            , "created_by" => $userId
 						);
             
 		$postdata = json_encode($data);
@@ -113,9 +115,11 @@ class busSchedule extends CI_Controller {
 	{
 		$editScheduleId = $this->input->post('editScheduleId');
 		$editScheduleDateInput = $this->input->post('editScheduleDateInput');
+    $userId = $this->input->post('editUserId');
 		
 
 		$data = array("scheduleDate" => $editScheduleDateInput
+                , "updated_by" => $userId
 						);
 		$postdata = json_encode($data);
 

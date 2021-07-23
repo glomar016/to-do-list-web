@@ -30,12 +30,14 @@ class Route extends CI_Controller {
         $kmDistance = $this->input->post('kmDistance');
         $effectivityDate = $this->input->post('effectivityDate');
         $name = $this->input->post('routeName');
+        $userId =  $this->input->post('userId');
 
         $data = array("kmDistance" => $kmDistance
 						, "effectivityDate" => $effectivityDate
 						, "originId" => $originId
 						, "destinationId" => $destinationId
 						, "name" => $name
+                        , "created_by" => $userId
                     );
 
 
@@ -149,11 +151,13 @@ class Route extends CI_Controller {
         $destinationId = $this->input->post('destinationIdEdit');
         $kmDistance = $this->input->post('kmDistanceEdit');
         $effectivityDate = $this->input->post('effectivityDateEdit');
+        $userId = $this->input->post('editUserId');
 
         $data = array("kmDistance" => $kmDistance
 						, "effectivityDate" => $effectivityDate
 						, "originId" => $originId
 						, "destinationId" => $destinationId
+                        , "updated_by" => $userId
                     );
 
 		$postdata = json_encode($data);

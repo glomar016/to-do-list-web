@@ -27,9 +27,11 @@ class Bus_type extends CI_Controller {
     {
         $name = $this->input->post('busTypeName');
         $description = $this->input->post('busTypeDescription');
+        $userId =  $this->input->post('userId');
 
         $data = array("name" => $name
-                        , "description" => $description);
+                        , "description" => $description
+                        , "created_by" => $userId);
 
         $postdata = json_encode($data);
 
@@ -108,7 +110,9 @@ class Bus_type extends CI_Controller {
         $id = $this->input->post('editBusTypeId');
 
         $data = array("name" => $name
-                        , "description" => $description);
+                        , "description" => $description
+                        , "updated_by" => $userId
+                    );
 
         $postdata = json_encode($data);
 

@@ -30,11 +30,12 @@ class Reservation extends CI_Controller {
 		$date = $this->input->post('date');
 		$TypeId = $this->input->post('TypeId');
 		$routeId = $this->input->post('routeId');
+		$userId =  $this->input->post('userId');
 
 		$curl = curl_init();
 
 		curl_setopt_array($curl, array(
-		CURLOPT_URL => 'http://localhost:3600/api/v1/bus_schedule/schedule/'.$date.'/'.$TypeId.'/'.$routeId,
+		CURLOPT_URL => 'http://localhost:3600/api/v1/bus_schedule/schedule/'.$date.'/'.$TypeId.'/'.$routeId.'/',
 		CURLOPT_RETURNTRANSFER => true,
 		CURLOPT_ENCODING => '',
 		CURLOPT_MAXREDIRS => 10,
@@ -117,6 +118,7 @@ class Reservation extends CI_Controller {
 		$promoId = $this->input->post('promoId');
 		$reserveDate = $this->input->post('reserveDate');
 		$scheduleName = $this->input->post('scheduleName');
+		$userId =  $this->input->post('userId');
 
 		if($promoId == ""){
 			$data = array("name" => $reserveName
@@ -129,6 +131,7 @@ class Reservation extends CI_Controller {
 						, "currentStatus" => $currentStatus
 						, "totalDistanceKm" => $totalDistanceKm
 						, "reservationDate" => $reserveDate
+						, "created_by" => $userId
 			);
 		}
 		else{
@@ -209,6 +212,7 @@ class Reservation extends CI_Controller {
 		$reservationId = $this->input->post('reservationId');
 		$reservationPostData = [];
 
+
 		for($i=0; $i < count($reservationLineData["seatId"]); $i++){
 			array_push($reservationPostData, array(
 				"passengerName" => $reservationLineData["passengerName"][$i],
@@ -216,6 +220,7 @@ class Reservation extends CI_Controller {
 				"route" => $reservationLineData["landmark"][$i],
 				"amount" => $reservationLineData["passengerAmount"][$i],
 				"reservationId" => $reservationId,
+				"created_by" => $reservationLineData["userId"],
 			));
 				$curl = curl_init();
 

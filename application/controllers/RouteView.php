@@ -31,12 +31,15 @@ class RouteView extends CI_Controller {
         $routeId = $this->input->post('routeId');
         $effectivityDate = $this->input->post('effectivityDate');
 		$kmFromOrigin = $this->input->post('kmFromOrigin');
+		$userId =  $this->input->post('userId');
 
 
         $data = array("name" => $name
 						, "routeId" => $routeId
 						, "kmFromOrigin" => $kmFromOrigin
-						, "effectivityDate" => $effectivityDate);
+						, "effectivityDate" => $effectivityDate
+						, "created_by" => $userId
+					);
 
 
 		$postdata = json_encode($data);
@@ -126,11 +129,13 @@ class RouteView extends CI_Controller {
         $kmFromOrigin = $this->input->post('editKmFromOrigin');
         $effectivityDate = $this->input->post('editEffectivityDate');
 		$id = $this->input->post('editLandmarkId');
-
+		$userId = $this->input->post('editUserId');
 
         $data = array("name" => $name
 						, "kmFromOrigin" => $kmFromOrigin
-						, "effectivityDate" => $effectivityDate);
+						, "effectivityDate" => $effectivityDate
+						, "updated_by" => $userId
+					);
 
 		$postdata = json_encode($data);
 

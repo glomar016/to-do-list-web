@@ -26,8 +26,10 @@ class Counter extends CI_Controller {
     public function add_counter()
     {
         $name = $this->input->post('counterName');
+        $userId =  $this->input->post('userId');
 
         $data = array("name" => $name
+                    , "created_by" => $userId
                     );
 
         $postdata = json_encode($data);
@@ -103,8 +105,10 @@ class Counter extends CI_Controller {
      public function edit_counter(){
          $name = $this->input->post('editCounterName');
          $id = $this->input->post('editCounterId');
+         $userId = $this->input->post('editUserId');
 
          $data = array("name" => $name
+                        ,"updated_by" => $userId
                       );
 
          $postdata = json_encode($data);

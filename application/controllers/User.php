@@ -29,11 +29,13 @@ class User extends CI_Controller {
         $lastName = $this->input->post('lastName');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
+		$userType = $this->input->post('userType');
 
         $data = array("firstName" => $firstName
 						, "lastName" => $lastName
 						, "email" => $email
-						, "password" => $password);
+						, "password" => $password
+						, "userType" => $userType);
 
 		$postdata = json_encode($data);
 
@@ -114,11 +116,13 @@ class User extends CI_Controller {
 	public function edit_user(){
 		$firstName = $this->input->post('editFirstName');
         $lastName = $this->input->post('editLastName');
-        $email = $this->input->post('editEmail');;
+        $email = $this->input->post('editEmail');
+		$userType = $this->input->post('editUserType');
 		$id = $this->input->post('editUserId');
 
         $data = array("firstName" => $firstName
 						, "lastName" => $lastName
+						, "userType" => $userType
 						, "email" => $email);
 
 		$postdata = json_encode($data);

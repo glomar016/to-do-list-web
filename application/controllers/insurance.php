@@ -31,6 +31,7 @@ class Insurance extends CI_Controller {
         $amount = $this->input->post('insuranceAmount');
         $details = $this->input->post('insuranceDetails');
         $document = $this->input->post('insuranceDocument');
+        $userId =  $this->input->post('userId');
 
         $data = array("code" => $code,
                       "name" => $name,
@@ -38,6 +39,7 @@ class Insurance extends CI_Controller {
                       "amount" => $amount,
                       "details" => $details,
                       "document" => $document,
+                      "created_by" => $userId
                     );
 
         $postdata = json_encode($data);
@@ -113,8 +115,10 @@ class Insurance extends CI_Controller {
      public function edit_insurance(){
          $name = $this->input->post('editinsuranceName');
          $id = $this->input->post('editinsuranceId');
+         $userId = $this->input->post('editUserId');
 
          $data = array("name" => $name
+                        ,"updated_by" => $userId
                       );
 
          $postdata = json_encode($data);

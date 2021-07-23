@@ -58,10 +58,15 @@ textarea::-webkit-scrollbar{
                   <div class="card-body">
                   <div class="card-body">
                   <form id="addCounterForm">
-                          <div class="form-row">
-                              <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Counter Name</label>
-                              <input type="text" class="form-control" id="counterName" name="counterName">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Counter Name</label>
+                            <input type="text" class="form-control" id="counterName" name="counterName">
                         </div>
                           </div>
                           
