@@ -212,7 +212,6 @@ The above copyright notice and this permission notice shall be included in all c
               </table>
           </div>
           
-              
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>

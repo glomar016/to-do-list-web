@@ -85,6 +85,28 @@ class busSchedule extends CI_Controller {
         echo $response;
 	}
 
+  public function showBusScheduleDashboard(){
+
+    $date = date("Y-m-d")."T00:00:00.000Z";
+		$curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/bus_schedule/dashboard/'.$date,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+	}
+
 	public function viewBusSchedule(){
 
 		$id = $this->input->post('id');

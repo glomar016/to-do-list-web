@@ -255,7 +255,7 @@ $(document).ready(function(){
     //DATA TABLES
     function loadtable(){
         routeDataTable = $('#routeTable').DataTable({
-            "ajax": "<?php echo base_url()?>route/show_route",
+            "ajax": "<?php echo base_url()?>route/show_routeDashboard",
             "columns": [
                 { data: "id"},
                 { data: "origin.name"},
