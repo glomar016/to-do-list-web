@@ -22,4 +22,9 @@ class Online_payment extends CI_Controller {
 	{
 		$this->load->view('users/online_payment'); 
 	}
+
+	public function forbidden()
+	{
+		$this->load->view('users/forbidden'); 
+	}
 }
