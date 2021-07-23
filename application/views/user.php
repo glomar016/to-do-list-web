@@ -11,7 +11,21 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+    if (isset($this->session->userdata['logged_in'])) {
+        $userType = ($this->session->userdata['logged_in']['userType']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
 
+        if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+        }
+
+
+    } 
+    else {
+        header("location: ".base_url());
+    }
+    ?>
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
@@ -74,6 +88,15 @@ The above copyright notice and this permission notice shall be included in all c
                                 <input type="password" name="password"  class="form-control" id="password" >
                             </div>
                         </div>
+                      <div class="form-row">
+                          <div class="form-group col-sm-12">
+                              <label for="userType">User Type:</label>
+                              <select name="userType"  class="form-control" id="userType" >
+                                <option value="Admin">Administrator</option>
+                                <option value="Passenger">Passenger</option>
+                              </select>
+                          </div>
+                      </div>
                         <input type="submit" class="btn btn-primary">
                     </form>
                   </div>
@@ -91,6 +114,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Date Created</th>
+                            <th>User Type</th>
                             <th width="10%">Actions</th>
                         </tr>
                     </thead>
@@ -140,6 +164,12 @@ The above copyright notice and this permission notice shall be included in all c
                         <span class="form-control" name="viewEmail" id="viewEmail" aria-describedby="emailHelp"></span>
                       </div>
                     </div>
+                    <div class="form-row">
+                      <div class="form-group col-sm-12">
+                        <label for="viewUserType">User Type:</label>
+                        <span class="form-control" name="viewUserType" id="viewUserType" aria-describedby="emailHelp"></span>
+                      </div>
+                    </div>
                 </div>
                 </form>
             </div>
@@ -181,6 +211,15 @@ The above copyright notice and this permission notice shall be included in all c
                         <input type="text" class="form-control" name="editEmail" id="editEmail" aria-describedby="emailHelp">
                       </div>
                     </div>
+                    <div class="form-row">
+                          <div class="form-group col-sm-12">
+                              <label for="editUserType">User Type:</label>
+                              <select name="editUserType"  class="form-control" id="editUserType" >
+                                <option value="Admin">Administrator</option>
+                                <option value="Passenger">Passenger</option>
+                              </select>
+                          </div>
+                      </div>
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-primary">
@@ -247,6 +286,7 @@ The above copyright notice and this permission notice shall be included in all c
                 { data: "lastName"},
                 { data: "email"},
                 { data: "created_at" },
+                { data: "userType" },
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
                             return '<div class="btn-group">'+
@@ -289,12 +329,21 @@ The above copyright notice and this permission notice shall be included in all c
             url: '<?php echo base_url()?>user/add_user',
             type: "POST",
             data: form.serialize(),
-        
-            success: function(data){
-              document.getElementById("addUserForm").reset();
-              showNotification('create', 'Successfully added a new user!', 'success', 'top', 'right');
-              refresh();
+            dataType: "JSON",
 
+            success: function(data){
+              console.log(data)
+              if (data.error == true){
+                var msg = data.message;
+                showNotification('create', msg, 'danger', 'top', 'right');
+                refresh();
+              }
+
+              else{
+                  document.getElementById("addUserForm").reset();
+                  showNotification('create', 'Successfully added a new user!', 'success', 'top', 'right');
+                  refresh();
+                }
             }
         // ajax closing tag
         })
@@ -319,6 +368,7 @@ The above copyright notice and this permission notice shall be included in all c
                 $('#viewFirstName').html(userInfo.firstName);
                 $('#viewLastName').html(userInfo.lastName);
                 $('#viewEmail').html(userInfo.email);
+                $('#viewUserType').html(userInfo.userType);
 
                 $('#viewModal').modal('show');
             }
@@ -345,6 +395,7 @@ The above copyright notice and this permission notice shall be included in all c
                 $('#editFirstName').val(userInfo.firstName);
                 $('#editLastName').val(userInfo.lastName);
                 $('#editEmail').val(userInfo.email);
+                $('#editUserType').val(userInfo.userType);
 
                 $('#editUserInfoModal').modal('show');
             }

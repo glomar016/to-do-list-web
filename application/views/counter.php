@@ -12,6 +12,21 @@ The above copyright notice and this permission notice shall be included in all c
 <!DOCTYPE html>
 <html lang="en">
 
+<?php 
+        if (isset($this->session->userdata['logged_in'])) {
+            $userType = ($this->session->userdata['logged_in']['userType']);
+            $userId = ($this->session->userdata['logged_in']['userId']);
+
+          if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+          }
+
+        } 
+        else {
+            header("location: ".base_url());
+        }
+        ?>
+
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
@@ -58,10 +73,15 @@ textarea::-webkit-scrollbar{
                   <div class="card-body">
                   <div class="card-body">
                   <form id="addCounterForm">
-                          <div class="form-row">
-                              <div class="form-group col-sm-6">
-                              <label for="exampleInputEmail1">Counter Name</label>
-                              <input type="text" class="form-control" id="counterName" name="counterName">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                            <label for="exampleInputEmail1">Counter Name</label>
+                            <input type="text" class="form-control" id="counterName" name="counterName">
                         </div>
                           </div>
                           

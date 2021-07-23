@@ -1,3 +1,5 @@
+
+
 <!--
 =========================================================
 Material Dashboard - v2.1.2
@@ -11,25 +13,9 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
-<?php 
-    if (isset($this->session->userdata['logged_in'])) {
-        $userType = ($this->session->userdata['logged_in']['userType']);
-        $userId = ($this->session->userdata['logged_in']['userId']);
-
-        if($userType == "Passenger"){
-            header("location: ".base_url()."users/user/forbidden");
-        }
-
-
-    } 
-    else {
-        header("location: ".base_url());
-    }
-    ?>
 
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
-
 
 <body class="">
 
@@ -37,22 +23,21 @@ The above copyright notice and this permission notice shall be included in all c
   <div class="wrapper ">
 
     <!-- SIDEBAR -->
-    <?php $this->load->view('includes/sidebar.php'); ?>
     
     <!-- MAIN CONTENT -->
     <div class="main-panel">
 
       <!-- NAVBAR -->
-      <?php $this->load->view('includes/navbar.php'); ?>
+      
 
       <!-- OPENING TAG OF CONTENT -->
       <div class="content">
         <div class="container-fluid">
           <div class="row">
             <!-- END OF OPENING TAG OF CONTENT -->
-            
-              
-            
+            <div class="card" style="width:100mm; float:center">
+                
+            </div>
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>
@@ -77,5 +62,46 @@ The above copyright notice and this permission notice shall be included in all c
 
 <!-- FIXED SCRIPTS -->
 <?php $this->load->view('includes/fixed_scripts.php')?>
+
+<script>
+$(document).ready(function(){
+    function paid_process(){
+
+        let messageType = "<?php echo $messageType?>";
+
+        if(messageType == 'Success'){
+           
+            Swal.fire(
+                'Success!',
+                'Payment success!',
+                'success'
+            )
+
+            setInterval(function(){
+                    window.location.href = '<?php echo base_url()?>users/my_reservation'
+            }, 1000);
+
+        }
+        else if(messageType == 'Failed'){
+
+            Swal.fire(
+                        'Failed!',
+                        'Payment failed!',
+                        'error'
+                    )
+
+            setInterval(function(){
+                    window.location.href = '<?php echo base_url()?>users/online_payment'
+            }, 1000);
+            
+        }
+
+        
+    }
+
+    paid_process()
+
+})
+</script>
 
 </html>

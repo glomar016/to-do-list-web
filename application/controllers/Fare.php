@@ -31,6 +31,7 @@ class Fare extends CI_Controller {
         $discountPercentage = $this->input->post('discountPercentage');
         $effectivityDate = $this->input->post('effectivityDate');
         $busTypeId = $this->input->post('busTypeId');
+        $userId =  $this->input->post('userId');
 
         $data = array("initialKm" => $initialKm
 						, "initialPrice" => $initialPrice
@@ -38,6 +39,7 @@ class Fare extends CI_Controller {
 						, "discountPercentage" => $discountPercentage
 						, "effectivityDate" => $effectivityDate
 						, "busTypeId" => $busTypeId
+                        , "created_by" => $userId
                     );
 
 
@@ -129,12 +131,14 @@ class Fare extends CI_Controller {
         $discountPercentage = $this->input->post('discountPercentageEdit');
         $effectivityDate = $this->input->post('effectivityDateEdit');
         $busTypeId = $this->input->post('busTypeId');
+        $userId = $this->input->post('editUserId');
 
         $data = array("initialKm" => $initialKm
 						, "initialPrice" => $initialPrice
 						, "additionalKm" => $additionalKm
 						, "discountPercentage" => $discountPercentage
 						, "effectivityDate" => $effectivityDate
+                        , "updated_by" => $userId
                     );
 		$postdata = json_encode($data);
 

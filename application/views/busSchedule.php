@@ -11,7 +11,19 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
-    
+<?php 
+    if (isset($this->session->userdata['logged_in'])) {
+        $userType = ($this->session->userdata['logged_in']['userType']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
+
+        if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+        }
+    } 
+    else {
+        header("location: ".base_url());
+    }
+    ?>
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 <style>
@@ -50,6 +62,11 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-body">
                   
                       <form id="busScheduleForm">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                            </div>
+                        </div>
                           <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label class="label-control" for="scheduleDateInput">Schedule Date</label> <br>
@@ -129,6 +146,11 @@ The above copyright notice and this permission notice shall be included in all c
 
             <div class="card-body">
               <form id="editBusScheduleForm">
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                    <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                    </div>
+                </div>
                 <div class="form-row">
                     <div class="form-group col-sm-6">
                         <label class="drpdwn-label" for="editBusNumberInput">Bus Number</label>

@@ -31,12 +31,14 @@ class Bus_template extends CI_Controller {
         $passengersNumber = $this->input->post('passengersNumber');
         $templateRows = $this->input->post('templateRows');
         $templateColumns = $this->input->post('templateColumns');
+        $userId =  $this->input->post('userId');
 
         $data = array("name" => $name
                         , "seat" => $seat
                         , "column" => $templateColumns
                         , "row" => $templateRows
-                        , "typeId" => $busTypeId);
+                        , "typeId" => $busTypeId
+                        , "created_by" => $userId);
 
         $postdata = json_encode($data);
 

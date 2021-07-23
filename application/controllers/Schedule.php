@@ -41,6 +41,7 @@ class Schedule extends CI_Controller {
 		$fridayInput = $this->input->post('fridayInput');
 		$saturdayInput = $this->input->post('saturdayInput');
 		$sundayInput = $this->input->post('sundayInput');
+		$userId =  $this->input->post('userId');
 
 		$data = array("routeId" => $routeInput
 						,"busTypeId" => $busTypeInput
@@ -55,6 +56,7 @@ class Schedule extends CI_Controller {
 						,"friday" => $fridayInput
 						,"saturday" => $saturdayInput
 						,"sunday" => $sundayInput
+						, "created_by" => $userId
 						);
 		$postdata = json_encode($data);
 
@@ -143,6 +145,7 @@ class Schedule extends CI_Controller {
 		$fridayEdit = $this->input->post('fridayEdit');
 		$saturdayEdit = $this->input->post('saturdayEdit');
 		$sundayEdit = $this->input->post('sundayEdit');
+		$userId = $this->input->post('editUserId');
 
 		$data = array("routeId" => $routeEdit
 						,"busTypeId" => $busTypeEdit
@@ -157,6 +160,7 @@ class Schedule extends CI_Controller {
 						,"friday" => $fridayEdit
 						,"saturday" => $saturdayEdit
 						,"sunday" => $sundayEdit
+						,"updated_by" => $userId
 						);
 		$postdata = json_encode($data);
 

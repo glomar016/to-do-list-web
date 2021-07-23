@@ -11,7 +11,20 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+    if (isset($this->session->userdata['logged_in'])) {
+        $userType = ($this->session->userdata['logged_in']['userType']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
 
+        if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+        }
+
+    } 
+    else {
+        header("location: ".base_url());
+    }
+    ?>
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
@@ -58,7 +71,12 @@ textarea::-webkit-scrollbar{
                   <div class="card-body">
                   <div class="card-body">
                   <form id="addBusTypeForm">
-                          <div class="form-row">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                            </div>
+                        </div>
+                        <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Bus Type</label>
                               <input type="text" class="form-control" id="busTypeName" name="busTypeName">
@@ -149,6 +167,11 @@ textarea::-webkit-scrollbar{
                 <div class="modal-body">
                 <div class="card-body">
                 <form id="editBusTypeForm">
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                        <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                        </div>
+                    </div>
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="editBusTypeId" id="editBusTypeId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Bus Type</label>

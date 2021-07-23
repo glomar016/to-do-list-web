@@ -11,7 +11,20 @@ Coded by Creative Tim
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
+<?php 
+    if (isset($this->session->userdata['logged_in'])) {
+        $userType = ($this->session->userdata['logged_in']['userType']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
 
+        if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+        }
+
+    } 
+    else {
+        header("location: ".base_url());
+    }
+    ?>
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
 
@@ -48,6 +61,11 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-body">
                   <div class="card-body">
                     <form id="addTerminalForm" name="addTerminalForm">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                            </div>
+                        </div>
                         <div class="form-group col-sm12">
                             <div class="form-row">
                                 <label for="exampleInputEmail1">Terminal</label>
@@ -146,6 +164,11 @@ The above copyright notice and this permission notice shall be included in all c
                     </button>
                 </div>
                 <form id="editTerminalForm">
+                    <div class="form-row">
+                        <div class="form-group col-sm-12">
+                        <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                        </div>
+                    </div>
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="editTerminalId" id="editTerminalId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Terminal</label>

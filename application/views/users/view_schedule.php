@@ -43,7 +43,7 @@ The above copyright notice and this permission notice shall be included in all c
 
         if($userType == ""){
             // header("location: ".base_url()."user/forbidden");
-            echo "Logged In";
+            // echo "Logged In";
         }
 
         } 

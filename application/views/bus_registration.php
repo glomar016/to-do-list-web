@@ -14,6 +14,19 @@ The above copyright notice and this permission notice shall be included in all c
 
 <!-- HEAD TAG -->
 <?php $this->load->view('includes/head.php'); ?>
+<?php 
+    if (isset($this->session->userdata['logged_in'])) {
+        $userType = ($this->session->userdata['logged_in']['userType']);
+        $userId = ($this->session->userdata['logged_in']['userId']);
+
+        if($userType == "Passenger"){
+            header("location: ".base_url()."users/user/forbidden");
+        }
+    } 
+    else {
+        header("location: ".base_url());
+    }
+    ?>
 
 <style>
 .expirationDateLabel{
@@ -54,6 +67,11 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="card-body">
                   <div class="card-body">
                   <form id="addBusRegistrationForm">
+                          <div class="form-row">
+                              <div class="form-group col-sm-12">
+                              <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                              </div>
+                          </div>
                           <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Bus Number</label>
@@ -165,6 +183,11 @@ The above copyright notice and this permission notice shall be included in all c
                 <form id="editBusRegistrationForm">
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="editBusRegistrationId" id="editBusRegistrationId" aria-describedby="emailHelp">
+                        <div class="form-row">
+                            <div class="form-group col-sm-12">
+                            <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="editUserId" name="editUserId">
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="exampleInputEmail1">Bus Number</label>

@@ -29,11 +29,13 @@ class Payment extends CI_Controller {
         $paymentChartOfAccount = $this->input->post('paymentChartOfAccount');
         $paymentTerm = $this->input->post('paymentTerm');
         $paymentCashTendered = $this->input->post('paymentCashTendered');
+        $userId =  $this->input->post('userId');
 
         $data = array("reservationId" => $paymentReferenceNumber
                         , "chartOfAccountId" => $paymentChartOfAccount
                         , "term" => $paymentTerm
                         , "cashTendered" => $paymentCashTendered
+                        , "created_by" => $userId
         );
 
         $postdata = json_encode($data);
@@ -92,8 +94,11 @@ class Payment extends CI_Controller {
 
         $paidAmount = $this->input->post('paidAmount');
         $reservationId = $this->input->post('reservationId');
+        $userId = $this->input->post('editUserId');
 
-        $data = array("paidAmount" => $paidAmount);
+        $data = array("paidAmount" => $paidAmount
+                    ,"updated_by" => $userId
+                    );
 
         $postdata = json_encode($data);
             
@@ -112,6 +117,34 @@ class Payment extends CI_Controller {
         CURLOPT_HTTPHEADER => array(
             'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q',
             'Content-Type: application/json'
+        ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+
+    }
+
+    public function show_user_payment()
+    {
+        
+        $userId = ($this->session->userdata['logged_in']['userId']);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => 'http://localhost:3600/api/v1/payment/show_user_payment/'.$userId,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijk2MGY4YTZmLWU0MjEtNDI5OS1iNzQxLTYwZjAwNjQxMTY1MSIsImVtYWlsIjoianJnbG9tYXIwMTZAZ21haWwuY29tIiwiaWF0IjoxNjIxMDQ2MjA0LCJleHAiOjE2MjEwNTM0MDR9.Mgy75XVlGCk84xviMqVa7bKUAe60fJOGqVqrvdtQU0Q'
         ),
         ));
 

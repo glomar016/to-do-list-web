@@ -5,8 +5,6 @@
         $firstName = ($this->session->userdata['logged_in']['firstName']);
 
     }
-
-    
 ?>
 
 <!doctype html>
@@ -90,6 +88,17 @@
 
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarTwo">
                             <ul class="navbar-nav m-auto">
+                                <?php
+                                    if (isset($this->session->userdata['logged_in'])) {
+                                        $userType = ($this->session->userdata['logged_in']['userType']);
+                                        if($userType == "Passenger"){
+                                            echo '<li class="nav-item"><a> Hello, '.$firstName.'</a></li>';
+                                        }
+                                        else{
+                                            echo '<li class="nav-item"><a>Hello Admin, '.$firstName.'</a></li>';
+                                        }
+                                    }
+                                ?> 
                                 <li class="nav-item active"><a class="page-scroll" href="#home">home</a></li>
                                 <li class="nav-item"><a href="<?php echo base_url()?>BusSchedule">
                                 Schedule</a></li>
@@ -111,7 +120,7 @@
                                         echo '<li><a class="solid" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
                                     }
                                 ?>
-                                                                      
+                                                                
                             </ul>
                         </div>
                     </nav> <!-- navbar -->
@@ -138,11 +147,24 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="slider-content">
-                                    <h1 class="title">Business is Now Digital</h1>
-                                    <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
+                                    <h1 class="title">Bus Reservation</h1>
+                                    <p class="text">Increase the speed, convenience, and comfort of the booking process.</p>
                                     <ul class="slider-btn rounded-buttons">
+<<<<<<< HEAD
                                         <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
                                         <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
+=======
+                                            <?php
+                                        if (isset($this->session->userdata['logged_in'])) {
+                                            echo '<li></li>';
+                                            echo '<li></li>';
+                                        }
+                                        else{
+                                            echo '<li><a class="main-btn rounded-one" href="#">Register</a></li>';
+                                            echo '<li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
+                                        }
+                                             ?>
+>>>>>>> master
                                     </ul>
                                 </div>
                             </div>
@@ -160,12 +182,25 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="slider-content">
-                                    <h1 class="title">Crafted for Business</h1>
-                                    <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
+                                    <h1 class="title">Express Bus Trips</h1>
+                                    <p class="text">Know your bus information, driver's name, departure time, and destination.</p>
                                     <ul class="slider-btn rounded-buttons">
+<<<<<<< HEAD
                                         <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
                                         <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
                                     </ul>
+=======
+                                    <?php
+                                        if (isset($this->session->userdata['logged_in'])) {
+                                            echo '<li></li>';
+                                            echo '<li></li>';
+                                        }
+                                        else{
+                                            echo '<li><a class="main-btn rounded-one" href="#">Register</a></li>';
+                                            echo '<li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
+                                        }
+                                             ?>
+>>>>>>> master
                                 </div> <!-- slider-content -->
                             </div>
                         </div> <!-- row -->
@@ -182,11 +217,24 @@
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="slider-content">
-                                    <h1 class="title">Based on Bootstrap 4</h1>
-                                    <p class="text">We blend insights and strategy to create digital products for forward-thinking organisations.</p>
+                                    <h1 class="title">Promo and Discount</h1>
+                                    <p class="text">Get promo code to avail exciting discounts.</p>
                                     <ul class="slider-btn rounded-buttons">
+<<<<<<< HEAD
                                         <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
                                         <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
+=======
+                                    <?php
+                                        if (isset($this->session->userdata['logged_in'])) {
+                                            echo '<li></li>';
+                                            echo '<li></li>';
+                                        }
+                                        else{
+                                            echo '<li><a class="main-btn rounded-one" href="#">Register</a></li>';
+                                            echo '<li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
+                                        }
+                                             ?>
+>>>>>>> master
                                     </ul>
                                 </div> <!-- slider-content -->
                             </div>
@@ -219,7 +267,8 @@
                 <div class="col-lg-6 col-md-10">
                     <div class="section-title text-center pb-25">
                         <h3 class="title">The System</h3>
-                        <p class="text">Stop wasting time and money designing and managing a website that doesn’t get results. Happiness guaranteed!</p>
+                        <p class="text">The Bus Reservation System with Online Payment is an easy-to-use online booking system which helps users to reserve and pay bus tours with ease and convenience. The system also allows users to reserve for different routes and landmarks. In addition, it also enables users to manage reservations,
+                            and passengers list and their information as well as set bus schedule and set the availability of the seats.</p>
                     </div> <!-- section title -->
                 </div>
             </div> <!-- row -->
@@ -245,52 +294,79 @@
                             <div class="accordion" id="accordionExample">
                                 <div class="card">
                                     <div class="card-header" id="headingOne">
-                                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Frequently Asked Question One</a>
+                                        <a href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">What is BRS?</a>
                                     </div>
 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <p class="text">Morbi vehicula arcu et pellentesque tincidunt. Nunc ligula nulla, lobortis a elementum non, vulputate ut arcu. Aliquam erat volutpat. Nullam lacinia felis.</p>
+                                            <p class="text">The Bus Reservation System with Online Payment is an easy-to-use online booking system which helps users to
+                                                reserve and pay bus tours with ease and convenience. The system also allows users to reserve for different routes and landmarks.
+                                                In addition, it also enables users to manage reservations, and passengers list and their information as well as set bus schedule
+                                                and set the availability of the seats.</p>
                                         </div>
                                     </div> 
                                 </div> <!-- card -->
                                 <div class="card">
                                     <div class="card-header" id="headingTwo">
-                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Frequently Asked Question Two</a>
+                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Why would I have to reserve a seat in advance?</a>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <p class="text">Morbi vehicula arcu et pellentesque tincidunt. Nunc ligula nulla, lobortis a elementum non, vulputate ut arcu. Aliquam erat volutpat. Nullam lacinia felis.</p>
+                                            <p class="text">To ensure that you have a seat on the date and time of your choice,
+                                                we recommend that you book early because there are limited seats available - especially during busy seasons or on weekends.</p>
                                         </div>
                                     </div>
                                 </div> <!-- card -->
                                 <div class="card">
                                     <div class="card-header" id="headingThree">
-                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Frequently Asked Question Three</a>
+                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">How do I pay for my reservation?</a>
                                     </div>
                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <p class="text">Morbi vehicula arcu et pellentesque tincidunt. Nunc ligula nulla, lobortis a elementum non, vulputate ut arcu. Aliquam erat volutpat. Nullam lacinia felis.</p>
+                                            <p class="text">You can pay over the counter or pay online via PayMaya payment method.</p>
                                         </div>
                                     </div>
                                 </div> <!-- card -->
                                 <div class="card">
                                     <div class="card-header" id="headingFore">
-                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFore" aria-expanded="false" aria-controls="collapseFore">Frequently Asked Question Four</a>
+                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFore" aria-expanded="false" aria-controls="collapseFore">How will I get the bus ticket?</a>
                                     </div>
                                     <div id="collapseFore" class="collapse" aria-labelledby="headingFore" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <p class="text">Morbi vehicula arcu et pellentesque tincidunt. Nunc ligula nulla, lobortis a elementum non, vulputate ut arcu. Aliquam erat volutpat. Nullam lacinia felis.</p>
+                                            <p class="text">Upon receipt of payment, we will email you a ticket, which you must bring with you on your trip.
+                                                In the bus station, you give over the ticket to the appointed person.</p>
                                         </div>
                                     </div>
                                 </div> <!-- card -->
                                 <div class="card">
                                     <div class="card-header" id="headingFive">
-                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Frequently Asked Question Five</a>
+                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Is it possible to cancel/ re-book my reservation?</a>
                                     </div>
                                     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
                                         <div class="card-body">
-                                            <p class="text">Morbi vehicula arcu et pellentesque tincidunt. Nunc ligula nulla, lobortis a elementum non, vulputate ut arcu. Aliquam erat volutpat. Nullam lacinia felis.</p>
+                                            <p class="text">Re-booking is generally allowed without additional fees when a trip is cancelled due to bad weather or by the bus company for other reasons.
+                                                You may incur charges if you requested a re-booking.</p>
+                                        </div>
+                                    </div>
+                                </div> <!-- card -->
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">If I missed my bus, what do I do?</a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <p class="text">If you miss your bus, you will need to purchase a new ticket to board another.</p>
+                                        </div>
+                                    </div>
+                                </div> <!-- card -->
+                                <div class="card">
+                                    <div class="card-header" id="headingFive">
+                                        <a href="#" class="collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Why can't I book for a large group?</a>
+                                    </div>
+                                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <p class="text">The number of seats available per request is limited. If you have a large group (9 or more) and are having trouble getting confirmation,
+                                                please email us at support@brs.com.ph</p>
                                         </div>
                                     </div>
                                 </div> <!-- card -->
@@ -324,7 +400,8 @@
                             <li></li>
                             <li></li>
                         </ul>
-                        <p class="text">Duis et metus et massa tempus lacinia. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas ultricies, orci molestie blandit interdum. <br> <br> ipsum ante pellentesque nisl, eget mollis turpis quam nec eros. ultricies, orci molestie blandit interdum.</p>
+                        <p class="text">We are really happy with the positive feedback we have received for the high quality of our work and our dedication to make every transaction a success,
+                            and we are grateful for that. <br><br>This is what they have to say about us.</p>
                     </div> <!-- testimonial left content -->
                 </div>
                 <div class="col-lg-6">
@@ -335,7 +412,7 @@
                         <div class="testimonial-content-wrapper testimonial-active">
                             <div class="single-testimonial">
                                 <div class="testimonial-text">
-                                    <p class="text">“Praesent scelerisque, odio eu fermentum malesuada, nisi arcu volutpat nisl, sit amet convallis nunc turp.”</p>
+                                    <p class="text">“The bus service is nice and had a good comfortable seat. Aside from that, the bus was on time.”</p>
                                 </div>
                                 <div class="testimonial-author d-sm-flex justify-content-between">
                                     <div class="author-info d-flex align-items-center">
@@ -343,8 +420,8 @@
                                             <img src="<?php echo base_url()?>resources/assets/users/assets/images/author-1.jpg" alt="author">
                                         </div>
                                         <div class="author-name media-body">
-                                            <h5 class="name">Mr. Jems Bond</h5>
-                                            <span class="sub-title">CEO Mbuild Firm</span>
+                                            <h5 class="name">Juan Dela Cruz</h5>
+                                            <span class="sub-title">Social Media Influencer</span>
                                         </div>
                                     </div>
                                     <div class="author-review">
@@ -361,7 +438,7 @@
                             </div> <!-- single testimonial -->
                             <div class="single-testimonial">
                                 <div class="testimonial-text">
-                                    <p class="text">“Praesent scelerisque, odio eu fermentum malesuada, nisi arcu volutpat nisl, sit amet convallis nunc turp.”</p>
+                                    <p class="text">“Very nice service and had a nice travel!”</p>
                                 </div>
                                 <div class="testimonial-author d-sm-flex justify-content-between">
                                     <div class="author-info d-flex align-items-center">
@@ -369,8 +446,8 @@
                                                 <img src="<?php echo base_url()?>resources/assets/users/assets/images/author-2.jpg" alt="author">
                                         </div>
                                         <div class="author-name media-body">
-                                            <h5 class="name">Mr. Jems Bond</h5>
-                                            <span class="sub-title">CEO Mbuild Firm</span>
+                                            <h5 class="name">Dennis Santos</h5>
+                                            <span class="sub-title">Actor</span>
                                         </div>
                                     </div>
                                     <div class="author-review">
@@ -387,7 +464,7 @@
                             </div> <!-- single testimonial -->
                             <div class="single-testimonial">
                                 <div class="testimonial-text">
-                                    <p class="text">“Praesent scelerisque, odio eu fermentum malesuada, nisi arcu volutpat nisl, sit amet convallis nunc turp.”</p>
+                                    <p class="text">“I strongly recommend BRS.”</p>
                                 </div>
                                 <div class="testimonial-author d-sm-flex justify-content-between">
                                     <div class="author-info d-flex align-items-center">
@@ -395,8 +472,8 @@
                                                 <img src="<?php echo base_url()?>resources/assets/users/assets/images/author-3.jpg" alt="author">
                                         </div>
                                         <div class="author-name media-body">
-                                            <h5 class="name">Mr. Jems Bond</h5>
-                                            <span class="sub-title">CEO Mbuild Firm</span>
+                                            <h5 class="name">Mark Lee</h5>
+                                            <span class="sub-title">CEO of our rival company</span>
                                         </div>
                                     </div>
                                     <div class="author-review">
@@ -439,7 +516,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="contact-map mt-30">
-                        <iframe id="gmap_canvas" src="https://maps.google.com/maps?q=Mission%20District%2C%20San%20Francisco%2C%20CA%2C%20USA&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.227157676692!2d121.08190763653144!3d14.699742112570096!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397ba7528549fb1%3A0x62d21f0cc60f364d!2sPolytechnic%20University%20of%20the%20Philippines%20Quezon%20City!5e0!3m2!1sen!2sph!4v1627026400299!5m2!1sen!2sph" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div> <!-- row -->
                 </div>
             </div> <!-- row -->
@@ -451,7 +528,7 @@
                                 <i class="lni lni-map-marker"></i>
                             </div>
                             <div class="contact-info-content media-body">
-                                <p class="text"> Elizabeth St, Melbourne<br>1202 Australia.</p>
+                                <p class="text"> Address 1, Address 2<br>Quezon City.</p>
                             </div>
                         </div> <!-- single contact info -->
                     </div>

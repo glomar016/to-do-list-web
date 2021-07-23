@@ -17,12 +17,6 @@
             </a>
           </li>
 
-          <li <?php if($this->router->fetch_class() == 'view_schedule') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>users/view_schedule">
-              <!-- <i class="material-icons">account_circle</i> -->
-              <p>View Schedule</p>
-            </a>
-          </li>
 
           <li <?php if($this->router->fetch_class() == 'reservation') {?> class="active has-sub" <?php } ?>>
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>users/reservation">
@@ -35,6 +29,13 @@
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>users/online_payment">
               <!-- <i class="material-icons">account_circle</i> -->
               <p>Online Payment</p>
+            </a>
+          </li>
+
+          <li <?php if($this->router->fetch_class() == 'logout') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>logout">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Logout</p>
             </a>
           </li>
 

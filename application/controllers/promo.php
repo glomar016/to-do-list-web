@@ -37,6 +37,7 @@ class Promo extends CI_Controller {
         $travelDateFromInput = $this->input->post('travelDateFromInput');
         $effectivityDateInput = $this->input->post('effectivityDateInput');
         $deactivationDateInput = $this->input->post('deactivationDateInput');
+        $userId =  $this->input->post('userId');
 
         $data = array("code" => $codeInput
 						, "busTypeId" => $busTypeInput
@@ -49,7 +50,9 @@ class Promo extends CI_Controller {
                         , "tavelDateTo" => $travelDateToInput
                         , "travelDateFrom" => $travelDateFromInput
                         , "effectivityDate" => $effectivityDateInput
-						, "deactivationDate" => $deactivationDateInput);
+						, "deactivationDate" => $deactivationDateInput
+                        , "created_by" => $userId
+                    );
 
 		$postdata = json_encode($data);
 
@@ -157,6 +160,7 @@ class Promo extends CI_Controller {
         $effectivityDateEdit = $this->input->post('effectivityDateEdit');
         $deactivationDateEdit = $this->input->post('deactivationDateEdit');
         $id = $this->input->post('promoIdEdit');
+        $userId = $this->input->post('editUserId');
 
         $data = array("code" => $codeEdit
 						, "busTypeId" => $busTypeEdit
@@ -169,7 +173,9 @@ class Promo extends CI_Controller {
                         , "tavelDateTo" => $travelDateToEdit
                         , "travelDateFrom" => $travelDateFromEdit
                         , "effectivityDate" => $effectivityDateEdit
-						, "deactivationDate" => $deactivationDateEdit);
+						, "deactivationDate" => $deactivationDateEdit
+                        , "updated_by" => $userId
+                    );
 
 		$postdata = json_encode($data);
 
