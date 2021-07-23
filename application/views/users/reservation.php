@@ -141,8 +141,6 @@ The above copyright notice and this permission notice shall be included in all c
                                 </select>
                             </div>
                           </div>
-                          
-                      </form>
                     </div>
                   </div>
               </div>
@@ -213,6 +211,7 @@ The above copyright notice and this permission notice shall be included in all c
 
   let globalLandmark;
 
+
 function dataTable(){
     reservationTable = $('#reservationTable').DataTable({
       "ajax": "<?php echo base_url()?>users/reservation/show_reservations",
@@ -282,7 +281,6 @@ var reserveBusType = document.getElementById('reserveBusType').value;
         type: "POST",
         data: { id: reserveBusType},
         dataType: "JSON",
-        async: false,
 
         success: function(data){
           console.log(data);
@@ -399,6 +397,7 @@ var reserveBusType = document.getElementById('reserveBusType').value;
 
 $('#reservationForm').on('submit', function(e){
 
+alert('test')
   e.preventDefault();
 
   var scheduleValue = $("#reserveSchedule").children(":selected").text();
@@ -530,8 +529,6 @@ $('#reservationForm').on('submit', function(e){
 
 function get_bus_type(){
   
-
-    
     $.ajax({
       url: '<?php echo base_url()?>busInformation/get_bus_type',
       type: "GET",
@@ -560,7 +557,6 @@ function get_bus_type(){
   }
 
 function show_promo(){
-
 $.ajax({
   url: '<?php echo base_url()?>promo/show_promo',
   type: "GET",

@@ -31,8 +31,8 @@
             </a>
           </li>
 
-          <li <?php if($this->router->fetch_class() == 'online_payment') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>users/online_payment">
+          <li <?php if($this->router->fetch_class() == 'gcash') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>users/payment/gcash">
               <!-- <i class="material-icons">account_circle</i> -->
               <p>Online Payment</p>
             </a>

@@ -38,7 +38,7 @@ The above copyright notice and this permission notice shall be included in all c
 
           if($userType == "Passenger"){
               // header("location: ".base_url()."user/forbidden");
-              echo "Logged In";
+              // echo "Logged In";
           }
           else{
             header("location: ".base_url()."dashboard");
