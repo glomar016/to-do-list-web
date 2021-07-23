@@ -150,10 +150,6 @@
                                     <h1 class="title">Bus Reservation</h1>
                                     <p class="text">Increase the speed, convenience, and comfort of the booking process.</p>
                                     <ul class="slider-btn rounded-buttons">
-<<<<<<< HEAD
-                                        <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
-                                        <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
-=======
                                             <?php
                                         if (isset($this->session->userdata['logged_in'])) {
                                             echo '<li></li>';
@@ -164,7 +160,6 @@
                                             echo '<li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
                                         }
                                              ?>
->>>>>>> master
                                     </ul>
                                 </div>
                             </div>
@@ -185,11 +180,6 @@
                                     <h1 class="title">Express Bus Trips</h1>
                                     <p class="text">Know your bus information, driver's name, departure time, and destination.</p>
                                     <ul class="slider-btn rounded-buttons">
-<<<<<<< HEAD
-                                        <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
-                                        <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
-                                    </ul>
-=======
                                     <?php
                                         if (isset($this->session->userdata['logged_in'])) {
                                             echo '<li></li>';
@@ -200,7 +190,6 @@
                                             echo '<li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
                                         }
                                              ?>
->>>>>>> master
                                 </div> <!-- slider-content -->
                             </div>
                         </div> <!-- row -->
@@ -220,10 +209,6 @@
                                     <h1 class="title">Promo and Discount</h1>
                                     <p class="text">Get promo code to avail exciting discounts.</p>
                                     <ul class="slider-btn rounded-buttons">
-<<<<<<< HEAD
-                                        <li><a class="main-btn rounded-one" href="<?php echo base_url()?>users/register">Register</a></li>
-                                        <li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>
-=======
                                     <?php
                                         if (isset($this->session->userdata['logged_in'])) {
                                             echo '<li></li>';
@@ -234,7 +219,6 @@
                                             echo '<li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
                                         }
                                              ?>
->>>>>>> master
                                     </ul>
                                 </div> <!-- slider-content -->
                             </div>
