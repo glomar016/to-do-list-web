@@ -103,8 +103,9 @@ textarea::-webkit-scrollbar{
                               <input required type="text" class="form-control" name="templateColumns"  id="templateColumns">
                             </div>
                           </div>
-                      
+                        <div class="float-right">
                           <input type="submit" class="btn btn-primary">
+                      </div>
                       </form>
                   </div>
               </div>

@@ -189,7 +189,10 @@ The above copyright notice and this permission notice shall be included in all c
                               <label class="form-check-label" for="withWifi" style="padding-left: 5px;">with WiFi</label>
                             </div>
                           </div>
+                          <div class="float-right">
+
                           <input type="submit" class="btn btn-primary">
+                          </div>
                       </form>
                   </div>
                   </div>

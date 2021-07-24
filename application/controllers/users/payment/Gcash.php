@@ -216,6 +216,7 @@ class Gcash extends CI_Controller {
         $data = array("reservationId" => $reservationId
                         , "cashTendered" => substr($paymentCashTendered, 0, -2)
                         , "created_by" => $userId
+                        , "type" => 'Online Payment'
         );
 
         $postdata = json_encode($data);

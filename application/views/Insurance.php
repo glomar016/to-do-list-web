@@ -107,7 +107,10 @@ textarea::-webkit-scrollbar{
                                 <input required type="text" class="form-control" name="insuranceDocument"  id="insuranceDocument" aria-describedby="emailHelp">
                         </div>
                     </div>
+                    <div class="float-right">
                           <input type="submit" class="btn btn-primary">
+
+                    </div>
                       </form>
                   </div>
                   </div>

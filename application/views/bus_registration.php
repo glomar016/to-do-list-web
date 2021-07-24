@@ -94,8 +94,10 @@ The above copyright notice and this permission notice shall be included in all c
                                 <input required type="date" class="form-control expirationDate" name="expirationDateInput" id="expirationDateInput">
                             </div>
                         </div>
-                      
+                      <div class="float-right">
                           <input type="submit" class="btn btn-primary">
+                          
+                      </div>
                       </form>
                   </div>
                   </div>

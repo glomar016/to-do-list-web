@@ -178,7 +178,10 @@ The above copyright notice and this permission notice shall be included in all c
 
                   </tbody>
                 </table>
+                <div class="float-right">
                 <input type="submit" class="btn btnd-md btn-success float-right"><br><br>
+
+                </div>
                 </form>
               </div>
             </div>

@@ -95,10 +95,14 @@ The above copyright notice and this permission notice shall be included in all c
                                 <option value="">--Select User Type--</option>
                                 <option value="Admin">Administrator</option>
                                 <option value="Passenger">Passenger</option>
+                                <option value="Employee">Employee</option>
                               </select>
                           </div>
                       </div>
+                      <div class="float-right">
                         <input type="submit" class="btn btn-primary">
+
+                      </div>
                     </form>
                   </div>
                   </div>

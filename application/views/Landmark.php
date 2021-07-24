@@ -51,8 +51,10 @@ The above copyright notice and this permission notice shall be included in all c
                                 <label class="label-control">Effectivity Date</label> <br>
                                 <input required type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
-                                                
+                                                <div class="float-right">
                             <input type="submit" class="btn btn-primary">
+                                                    
+                                                </div>
                         </form>
                     </div>
                 </div>

@@ -91,7 +91,10 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                             
                             </div>
+                            <div class="float-right">
                             <input type="submit" class="btn btn-primary">
+
+                            </div>
                         </div>           
                         
                         </div>

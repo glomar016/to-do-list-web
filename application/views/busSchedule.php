@@ -99,7 +99,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 </div>
                             </div>
                             
-                            <div class="form-row">
+                            <div class="float-right">
                               <input type="submit" class="btn btn-primary">
                             </div>
                             
@@ -275,7 +275,23 @@ $('#busScheduleForm').on('submit', function(e){
         dataType: "JSON",
 
         success: function(data){
-          
+          busSched = data.data;
+
+          // busSched.busInformationId;
+          console.log(busSched.busInformationId)
+          busId = busSched.busInformationId;
+
+          $.ajax({
+            url:'<?php echo base_url()?>busSchedule/resetBusSeat',
+            type: "POST",
+            data: {busId: busId},
+            dataType: "JSON",
+
+            success: function(data){
+
+            }
+          })
+
           $("#busNumberAvailable").attr('hidden', true);;
           $("#availableBusDiv").attr('hidden', true);;
 

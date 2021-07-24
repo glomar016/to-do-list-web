@@ -181,7 +181,10 @@ The above copyright notice and this permission notice shall be included in all c
 
                   </tbody>
                 </table>
+                <div class="float-right">
                 <input type="submit" class="btn btnd-md btn-success float-right"><br><br>
+
+                </div>
                 </form>
               </div>
             </div>
@@ -422,6 +425,20 @@ var reserveBusType = document.getElementById('reserveBusType').value;
         var promoInfo = data.data;
         console.log(promoInfo);
 
+        let passengerAmount = []
+
+        let priceTotal = 0;
+
+        $("input[name='passengerAmount[]']").each(function() {
+              passengerAmount.push($(this).val());
+              priceTotal = parseFloat(priceTotal) + parseFloat($(this).val())
+              console.log(priceTotal);
+        });
+
+        console.log(priceTotal);
+
+
+
         if(promoInfo != null){
           if(bookingDate >= new Date(promoInfo.effectivityDate).getTime() && bookingDate < new Date(promoInfo.deactivationDate).getTime()){
             if(bookingDate >= new Date(promoInfo.bookingDateFrom).getTime() && bookingDate <= new Date(promoInfo.bookingDateTo).getTime()){
@@ -430,20 +447,17 @@ var reserveBusType = document.getElementById('reserveBusType').value;
                 console.log("gumagana");
                 if(promoInfo.fixedDiscount){
                   totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
-                  totalPrice = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
-                  totalDiscount = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+                  totalDiscount = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
 
-                  console.log(totalPrice);
+                  console.log(priceTotal);
 
-                  if(totalPrice >= promoInfo.minimumAmount && totalDiscount >= promoInfo.minimumAmount){
-                    priceTotal = parseFloat(totalPrice) - parseFloat(promoInfo.fixedDiscount);
+                  if(priceTotal >= promoInfo.minimumAmount && totalDiscount >= promoInfo.minimumAmount){
                     discountTotal = parseFloat(totalDiscount) - parseFloat(promoInfo.fixedDiscount);
                     showNotification('create', 'Successfully applied a Promo!', 'success', 'top', 'right');
                   }
                   else{
                     code = null;
-                    priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
-                    discountTotal = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+                    discountTotal = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
                     showNotification('error', 'Sorry, You have not reached the minimum amount of promo!', 'danger', 'top', 'right');
                   }
 
@@ -454,21 +468,18 @@ var reserveBusType = document.getElementById('reserveBusType').value;
                 }
                 else if(promoInfo.percentageDiscount){
                   totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
-                  totalPrice = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
-                  totalDiscount = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+                  priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
+                  totalDiscount = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
                   
-                  console.log(totalPrice);
                   
-                  if(totalPrice >= promoInfo.minimumAmount && totalDiscount >= promoInfo.minimumAmount){
-                    totalPricePromoPercent = (parseFloat(totalPrice) * (parseFloat(promoInfo.percentageDiscount)) / 100);
-                    priceTotal = parseFloat(totalPrice) - parseFloat(totalPricePromoPercent);
+                  if(priceTotal >= promoInfo.minimumAmount && totalDiscount >= promoInfo.minimumAmount){
+                    totalPricePromoPercent = (parseFloat(priceTotal) * (parseFloat(promoInfo.percentageDiscount)) / 100);
                     discountTotal = totalDiscount - (parseFloat(totalDiscount * (parseFloat(promoInfo.percentageDiscount / 100))))
                     showNotification('create', 'Successfully added a Promo!', 'success', 'top', 'right');
                   }
                   else{
                     code = null;
-                    priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
-                    discountTotal = totalPrice - (parseFloat(totalPrice * (parseFloat(discountPercentage / 100))))
+                    discountTotal = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
                     showNotification('error', 'Sorry, You have not reached the minimum amount of promo!', 'danger', 'top', 'right');
                   }
                 }
@@ -476,7 +487,6 @@ var reserveBusType = document.getElementById('reserveBusType').value;
                   code = null;
                   showNotification('error', 'Promo Code does not exist!', 'danger', 'top', 'right');
                   totalKm = parseInt($('#reserveLandmark').val()) - (parseInt(initialKm));
-                  priceTotal = parseFloat((parseFloat(totalKm + 1) * parseFloat(additionalKm)));
                   discountTotal = priceTotal - (parseFloat(priceTotal * (parseFloat(discountPercentage / 100))))
                 }
               }

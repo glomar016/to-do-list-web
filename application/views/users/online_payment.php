@@ -119,7 +119,10 @@ The above copyright notice and this permission notice shall be included in all c
                                 </div>
                                 <div class="form-group col-sm-4" hidden>
                                     <label for="paymentChange">Change</label>
+                                    <div class="float-right">
                                     <input type="number" class="form-control" id="paymentChange" name="paymentChange" disabled>
+
+                                    </div>
                                 </div>
                             </div>
                                 <div class="gcash_container">

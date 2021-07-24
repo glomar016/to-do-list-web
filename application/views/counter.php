@@ -91,8 +91,10 @@ textarea::-webkit-scrollbar{
                               <textarea style="margin-top: 10px;" rows="2" cols="50" class="form-control" name="busTypeDescription"  id="busTypeDescription"></textarea>
                         </div> -->
                           </div>
-                      
+                      <div class="float-right">
                           <input type="submit" class="btn btn-primary">
+
+                      </div>
                       </form>
                   </div>
                   </div>

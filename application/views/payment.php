@@ -97,7 +97,10 @@ The above copyright notice and this permission notice shall be included in all c
                                     <input required type="text" class="form-control" id="paymentChange" name="paymentChange" disabled>
                                 </div>
                             </div>
+                            <div class="float-right">
                             <input type="submit" class="btn btn-primary">
+
+                            </div>
                         </form>
                     </div>
                     </div>
