@@ -246,9 +246,9 @@ The above copyright notice and this permission notice shall be included in all c
             "ajax": "<?php echo base_url()?>bus_driver/show_bus_driver",
             "columns": [
                 { data: "id"},
-                { data: null, render: function (data, type, row) {
-                    var name = row.busDriver.firstName + " " + row.busDriver.lastName;
-                    return name;
+                { data: "name", render: function (data, type, row) {
+                    // var name = row.name + " " + row.lastName;
+                    return row.name;
                 }},
                 { data: "type"},
                 { data: "created_at" },

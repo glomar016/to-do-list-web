@@ -70,7 +70,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label class="label-control" for="scheduleDateInput">Schedule Date</label> <br>
-                                <input required type="date" class="form-control" id="scheduleDateInput" name="scheduleDateInput">
+                                <input required type="date" class="form-control" id="scheduleDateInput" name="scheduleDateInput"  min="<?php echo date('Y-m-d')?>">
                                 <span style="color:red" class="float-right">Select schedule date first.</span>
                             </div>
                             <div class="form-group col-sm-6">
@@ -160,7 +160,7 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
                     <div class="form-group col-sm-6">
                         <label class="label-control" for="editScheduleDateInput">Schedule Date</label> <br>
-                        <input required type="date" class="form-control" id="editScheduleDateInput" name="editScheduleDateInput">
+                        <input required type="date" class="form-control" id="editScheduleDateInput" name="editScheduleDateInput" min="<?php echo date('Y-m-d')?>">
                     </div>
                 </div>
                         <input type="submit" class="btn btn-primary">

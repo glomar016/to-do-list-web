@@ -51,12 +51,7 @@
             </a>
           </li>
 
-          <li <?php if($this->router->fetch_class() == 'bus_driver') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>bus_driver">
-              <!-- <i class="material-icons">account_circle</i> -->
-              <p>Bus Driver</p>
-            </a>
-          </li>
+         
 
 
 
@@ -162,6 +157,17 @@
           </li>
 
           <div class="mx-auto" style="height: 20px;"></div>
+          <p class="nav-link" style="line-height: 0px"><strong>System Configuration</strong></p>
+          <div class="mx-auto" style="height: 20px;"></div>
+
+          <li <?php if($this->router->fetch_class() == 'system_config') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>system_config">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>System Configuration</p>
+            </a>
+          </li>
+
+          <div class="mx-auto" style="height: 20px;"></div>
           <p class="nav-link" style="line-height: 0px"><strong>User Management</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
 
@@ -169,6 +175,13 @@
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>user">
               <!-- <i class="material-icons">account_circle</i> -->
               <p>User</p>
+            </a>
+          </li>
+
+           <li <?php if($this->router->fetch_class() == 'bus_driver') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>bus_driver">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Bus Driver</p>
             </a>
           </li>
 

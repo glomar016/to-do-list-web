@@ -219,6 +219,7 @@ class Reservation extends CI_Controller {
 				"seatId" => $reservationLineData["seatId"][$i],
 				"route" => $reservationLineData["landmark"][$i],
 				"amount" => $reservationLineData["passengerAmount"][$i],
+				"insuranceFee" => $reservationLineData["passengerInsuranceFee"][$i],
 				"reservationId" => $reservationId,
 				"created_by" => $reservationLineData["userId"],
 			));

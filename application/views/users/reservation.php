@@ -84,7 +84,8 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="reserveDate">Date</label>
-                                <input required type="date" class="form-control" id="reserveDate" name="reserveDate">
+                                <?php $dateToday = date("Y-m-d"); ?>
+                                <input required type="date" class="form-control" id="reserveDate" name="reserveDate" min="<?php echo $dateToday?>">
                             </div>
                           </div>
                           <div class="form-row">

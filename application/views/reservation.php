@@ -87,7 +87,8 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="reserveDate">Date</label>
-                                <input type="date" class="form-control" id="reserveDate" name="reserveDate">
+                                <?php $dateToday = date("Y-m-d"); ?>
+                                <input type="date" class="form-control" id="reserveDate" name="reserveDate" min="<?php echo $dateToday?>">
                             </div>
                           </div>
                           <div class="form-row">
@@ -348,6 +349,7 @@ function dataTable(){
                 else if(data == "Pending"){
                   return '<div class="btn-group">' +
                           '<button class="btn btn-info btn-sm btn-view-reservation" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>&nbsp'+
+                          '<button class="btn btn-dark btn-sm btn-cancel-reservation" value="' + row.id + '"title = "Cancel" type="button"> <i class="zmdi zmdi-view"> </i> Cancel </button>&nbsp'+
                           '</div>';
                 }
               }
@@ -558,7 +560,7 @@ $('#reservationForm').on('submit', function(e){
             "seatCode": seatCode,
             "passengerName": passengerName,
             "landmark": landmark,
-            "passengerInsurance": passengerInsurance,
+            "passengerInsuranceFee": passengerInsurance,
             "passengerDiscount": passengerDiscount,
             "passengerAmount": passengerAmount,
             "userId": userId
@@ -1016,6 +1018,7 @@ $( "#btnShowSched" ).on('click', function(e) {
           <td>
             <select id="passengerInsurance${seatCode.slice(5, 7)}" class="form-control passengerInsurance" name="passengerInsurance[]">
               <option disabled selected> -- Select Option -- </option>  
+              <option value="0"> -- No -- </option>  
               ${globalInsurance}
             </select>
           </td>
@@ -1068,8 +1071,10 @@ $( "#btnShowSched" ).on('click', function(e) {
     var seatNumber = this.id;
     seatNumber = seatNumber.slice(-2)
 
+    discountChecker = $('#passengerDiscount'+seatNumber).children(":selected").val();
+
     if(this.value){
-      if(discountChecker){
+      if(discountChecker == "Yes"){
         insuranceAmount = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
         totalAmount = parseFloat(discountChecker) + parseFloat(insuranceAmount);
         discountedAmount = parseFloat(totalAmount) - ((parseFloat(totalAmount) * parseFloat(discountPercentage / 100)))
@@ -1293,6 +1298,7 @@ $( "#btnShowSched" ).on('click', function(e) {
               referenceNumber = reservationLine[0].reservation.referenceNumber
               scheduleName = reservationLine[0].reservation.scheduleName
               name = reservationLine[0].reservation.name
+              insuranceFee = reservationLine[0].reservation.insuranceFee
               billingAddress = reservationLine[0].reservation.billingAddress
               promoName = reservationLine[0].reservation.promo
               reservationDate = reservationLine[0].reservation.reservationDate
@@ -1322,7 +1328,7 @@ $( "#btnShowSched" ).on('click', function(e) {
                 for(i=0; i < reservationLine.length; i++){
 
                   if(reservationLine[i].insuranceFee == null){
-                    insurance = "P0.00";
+                    insurance = "0.00";
                   }
                   else{
                     insurance = reservationLine[i].insuranceFee
@@ -1333,8 +1339,8 @@ $( "#btnShowSched" ).on('click', function(e) {
                       <td><p class="pTag">${reservationLine[i].seat.code}</p></td>
                       <td><p class="pTag">${reservationLine[i].passengerName}</p></td>
                       <td><p class="pTag">${reservationLine[i].route}</p></td>
-                      <td><p class="pTag">${insurance}</p></td>
-                      <td><p class="pTag">${reservationLine[i].amount}</p></td>
+                      <td><p class="pTag">P${insurance}.00</p></td>
+                      <td><p class="pTag">P${reservationLine[i].amount}</p></td>
                     </tr>
                   `)
                 }
