@@ -87,7 +87,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <form id="paymentForm">
                             <div class="form-row">
                                 <div class="form-group col-sm-12">
-                                <input hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
+                                <input required hidden type="text" value="<?php echo($this->session->userdata['logged_in']['userId'])?>" class="form-control" id="userId" name="userId">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -99,7 +99,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 </div>
                                 <div class="form-group col-sm-12" hidden>
                                     <label for="paymentTerm">Payment Term</label>
-                                    <select class="form-control" id="paymentTerm" name="paymentTerm">
+                                    <select required class="form-control" id="paymentTerm" name="paymentTerm">
                                         <option value="" disabled selected hidden >- - Select Payment Term - -</option>
                                         <option value="Full Payment">Full Payment</option>
                                         <option value="Half Payment">Half Payment</option>
@@ -111,15 +111,15 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-row">
                                 <div class="form-group col-sm-12">
                                     <label for="paymentAmount">Amount to be Paid</label>
-                                    <input type="text" class="form-control" id="paymentAmount" name="paymentAmount" disabled>
+                                    <input required type="number" class="form-control" id="paymentAmount" name="paymentAmount" disabled>
                                 </div>
                                 <div class="form-group col-sm-4" hidden>
                                     <label for="paymentCashTendered">Cash Tendered</label>
-                                    <input type="text" class="form-control" id="paymentCashTendered" name="paymentCashTendered">
+                                    <input  type="number" class="form-control" id="paymentCashTendered" name="paymentCashTendered">
                                 </div>
                                 <div class="form-group col-sm-4" hidden>
                                     <label for="paymentChange">Change</label>
-                                    <input type="text" class="form-control" id="paymentChange" name="paymentChange" disabled>
+                                    <input type="number" class="form-control" id="paymentChange" name="paymentChange" disabled>
                                 </div>
                             </div>
                                 <div class="gcash_container">
@@ -278,7 +278,7 @@ $(document).ready(function(){
                 var html = ""
 
                 $('#paymentReferenceNumberDiv').html(`<label for="paymentReferenceNumber">Reference Number</label>
-                                    <select class="form-control" id="paymentReferenceNumber" name="paymentReferenceNumber">
+                                    <select required class="form-control" id="paymentReferenceNumber" name="paymentReferenceNumber">
                                         
                                     </select>`)
 
@@ -313,7 +313,7 @@ $(document).ready(function(){
                 var html = ""
 
                 $('#paymentChartOfAccountDiv').html(`<label for="paymentChartOfAccount">Chart of Acccount</label>
-                                    <select class="form-control" id="paymentChartOfAccount" name="paymentChartOfAccount">
+                                    <select required class="form-control" id="paymentChartOfAccount" name="paymentChartOfAccount">
                                         
                                     </select>`)
 

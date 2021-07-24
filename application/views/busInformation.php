@@ -73,19 +73,19 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                               <div class="form-group col-sm-12">
                               <label for="busNumberInput">Bus Number</label>
-                              <input type="text" class="form-control" id="busNumberInput" name="busNumberInput">
+                              <input required type="text" class="form-control" id="busNumberInput" name="busNumberInput">
                               </div>
                           </div>
                           <div class="form-row">
                               <div class="form-group col-sm-6">
                                 <label for="busTypeInput">Bus Type</label>
-                                <select class="form-control" id="busTypeInput" name="busTypeInput">
+                                <select required class="form-control" id="busTypeInput" name="busTypeInput">
                                   
                                 </select>
                               </div>
                               <div class="form-group col-sm-6">
                                 <label for="busTemplateInput">Bus Template</label>
-                                <select class="form-control" id="busTemplateInput" name="busTemplateInput">
+                                <select required class="form-control" id="busTemplateInput" name="busTemplateInput">
                                   
                                 </select>
                               </div>
@@ -93,83 +93,83 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="ownerInput">Owner</label>
-                              <input type="text" class="form-control" id="ownerInput" name="ownerInput">
+                              <input required  type="text" class="form-control" id="ownerInput" name="ownerInput">
                               </div>
                               <div class="form-group col-sm-6">
                               <label for="contactInput">Contact Number</label>
-                              <input type="text" class="form-control" id="contactInput" name="contactInput">
+                              <input required type="number" class="form-control" id="contactInput" name="contactInput">
                               </div>
                           </div>
                           <div class="form-row">
                               <div class="form-group col-sm-3">
                               <label for="plateInput">Plate Number</label>
-                              <input type="text" class="form-control" id="plateInput" name="plateInput">
+                              <input required type="text" class="form-control" id="plateInput" name="plateInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="engineInput">Engine Number</label>
-                              <input type="text" class="form-control" id="engineInput" name="engineInput">
+                              <input required type="text" class="form-control" id="engineInput" name="engineInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="chasisInput">Chasis Number</label>
-                              <input type="text" class="form-control" id="chasisInput" name="chasisInput">
+                              <input required type="text" class="form-control" id="chasisInput" name="chasisInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="fileNumberInput">MV File Number</label>
-                              <input type="text" class="form-control" id="fileNumberInput" name="fileNumberInput">
+                              <input required type="text" class="form-control" id="fileNumberInput" name="fileNumberInput">
                               </div>
                           </div>
                           <div class="form-row">
                               <div class="form-group col-sm-3">
                               <label for="denominationInput">Denomination</label>
-                              <input type="text" class="form-control" id="denominationInput" name="denominationInput">
+                              <input required type="text" class="form-control" id="denominationInput" name="denominationInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="pistonInput">Piston Placement</label>
-                              <input type="text" class="form-control" id="pistonInput" name="pistonInput">
+                              <input required type="text" class="form-control" id="pistonInput" name="pistonInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="fuelInput">Fuel</label>
-                              <input type="text" class="form-control" id="fuelInput" name="fuelInput">
+                              <input required type="text" class="form-control" id="fuelInput" name="fuelInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="yearInput">Year Model</label>
-                              <input type="text" class="form-control" id="yearInput" name="yearInput">
+                              <input required type="text" class="form-control" id="yearInput" name="yearInput">
                               </div>
                           </div>
                           <div class="form-row">
                               <div class="form-group col-sm-3">
                               <label for="makeInput">Make</label>
-                              <input type="text" class="form-control" id="makeInput" name="makeInput">
+                              <input required type="text" class="form-control" id="makeInput" name="makeInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="seriesInput">Series</label>
-                              <input type="text" class="form-control" id="seriesInput" name="seriesInput">
+                              <input required type="text" class="form-control" id="seriesInput" name="seriesInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="cylindersInput">Body Type</label>
-                              <input type="text" class="form-control" id="bodyInput" name="bodyInput">
+                              <input required type="text" class="form-control" id="bodyInput" name="bodyInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="bodyNumberInput">Body Number</label>
-                              <input type="text" class="form-control" id="bodyNumberInput" name="bodyNumberInput">
+                              <input required type="text" class="form-control" id="bodyNumberInput" name="bodyNumberInput">
                               </div>
                           </div>
                           <div class="form-row">
                               <div class="form-group col-sm-3">
                               <label for="netCapacityInput">Net Capacity</label>
-                              <input type="text" class="form-control" id="netCapacityInput" name="netCapacityInput">
+                              <input required type="number" class="form-control" id="netCapacityInput" name="netCapacityInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="grossWeightInput">Gross Weight (kg)</label>
-                              <input type="text" class="form-control" id="grossWeightInput" name="grossWeightInput">
+                              <input required type="number" class="form-control" id="grossWeightInput" name="grossWeightInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="netWeightInput">Net Weight (kg)</label>
-                              <input type="text" class="form-control" id="netWeightInput" name="netWeightInput">
+                              <input type="number" class="form-control" id="netWeightInput" name="netWeightInput">
                               </div>
                               <div class="form-group col-sm-3">
                               <label for="shipWeightInput">Shipping Weight (kg)</label>
-                              <input type="text" class="form-control" id="shipWeightInput" name="shipWeightInput">
+                              <input required type="number" class="form-control" id="shipWeightInput" name="shipWeightInput">
                               </div>
                           </div>
                           <div class="form-row">
@@ -212,7 +212,6 @@ The above copyright notice and this permission notice shall be included in all c
               </table>
           </div>
           
-              
             <!-- CLOSING TAG OF CONTENT -->
           </div>
         </div>
@@ -373,20 +372,20 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                       <div class="form-group col-sm-12">
                       <label for="busNumberEdit">Bus Number</label>
-                      <input type="text" class="form-control" id="busNumberEdit" name="busNumberEdit"  >
+                      <input required type="text" class="form-control" id="busNumberEdit" name="busNumberEdit"  >
                       <input hidden type="text" class="form-control" id="idBusInformationEdit" name="idBusInformationEdit"  >
                       </div>
                   </div>
                   <div class="form-row">
                               <div class="form-group col-sm-6">
                                 <label for="busTypeEdit">Bus Type</label>
-                                <select class="form-control" id="busTypeEdit" name="busTypeEdit">
+                                <select required class="form-control" id="busTypeEdit" name="busTypeEdit">
                                   
                                 </select>
                               </div>
                               <div class="form-group col-sm-6">
                                 <label for="busTemplateEdit">Bus Template</label>
-                                <select class="form-control" id="busTemplateEdit" name="busTemplateEdit">
+                                <select required class="form-control" id="busTemplateEdit" name="busTemplateEdit">
                                 
                                 </select>
                               </div>
@@ -394,83 +393,83 @@ The above copyright notice and this permission notice shall be included in all c
                   <div class="form-row">
                       <div class="form-group col-sm-6">
                       <label for="ownerEdit">Owner</label>
-                      <input type="text" class="form-control" id="ownerEdit" name="ownerEdit"  >
+                      <input required type="text" class="form-control" id="ownerEdit" name="ownerEdit"  >
                       </div>
                       <div class="form-group col-sm-6">
                       <label for="contactEdit">Contact Number</label>
-                      <input type="text" class="form-control" id="contactEdit" name="contactEdit"  >
+                      <input required type="number" class="form-control" id="contactEdit" name="contactEdit"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="plateEdit">Plate Number</label>
-                      <input type="text" class="form-control" id="plateEdit" name="plateEdit"  >
+                      <input required type="text" class="form-control" id="plateEdit" name="plateEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="engineEdit">Engine Number</label>
-                      <input type="text" class="form-control" id="engineEdit" name="engineEdit"  >
+                      <input required type="text" class="form-control" id="engineEdit" name="engineEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="chasisEdit">Chasis Number</label>
-                      <input type="text" class="form-control" id="chasisEdit" name="chasisEdit"  >
+                      <input required type="text" class="form-control" id="chasisEdit" name="chasisEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fileNumberEdit">MV File Number</label>
-                      <input type="text" class="form-control" id="fileNumberEdit" name="fileNumberEdit"  >
+                      <input required type="text" class="form-control" id="fileNumberEdit" name="fileNumberEdit"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="denominationEdit">Denomination</label>
-                      <input type="text" class="form-control" id="denominationEdit" name="denominationEdit"  >
+                      <input required type="text" class="form-control" id="denominationEdit" name="denominationEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="pistonEdit">Piston Placement</label>
-                      <input type="text" class="form-control" id="pistonEdit" name="pistonEdit"  >
+                      <input required type="text" class="form-control" id="pistonEdit" name="pistonEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="fuelEdit">Fuel</label>
-                      <input type="text" class="form-control" id="fuelEdit" name="fuelEdit"  > 
+                      <input required type="text" class="form-control" id="fuelEdit" name="fuelEdit"  > 
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="yearEdit">Year Model</label>
-                      <input type="text" class="form-control" id="yearEdit" name="yearEdit"  >
+                      <input required type="text" class="form-control" id="yearEdit" name="yearEdit"  >
                       </div>
                   </div>
                   <div class="form-row">
                       <div class="form-group col-sm-3">
                       <label for="makeEdit">Make</label>
-                      <input type="text" class="form-control" id="makeEdit" name="makeEdit"  >
+                      <input required type="text" class="form-control" id="makeEdit" name="makeEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="seriesEdit">Series</label>
-                      <input type="text" class="form-control" id="seriesEdit" name="seriesEdit"  >
+                      <input required type="text" class="form-control" id="seriesEdit" name="seriesEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyEdit">Body Type</label>
-                      <input type="text" class="form-control" id="bodyEdit" name="bodyEdit"  >
+                      <input required type="text" class="form-control" id="bodyEdit" name="bodyEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="bodyNumberEdit">Body Number</label>
-                      <input type="text" class="form-control" id="bodyNumberEdit" name="bodyNumberEdit"  >
+                      <input required type="text" class="form-control" id="bodyNumberEdit" name="bodyNumberEdit"  >
                       </div>
                   </div>
                   <div class="form-row">
                   <div class="form-group col-sm-3">
                       <label for="netCapacityEdit">Net Capacity</label>
-                      <input type="text" class="form-control" id="netCapacityEdit" name="netCapacityEdit"  >
+                      <input required type="number" class="form-control" id="netCapacityEdit" name="netCapacityEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="grossWeightEdit">Gross Weight (kg)</label>
-                      <input type="text" class="form-control" id="grossWeightEdit" name="grossWeightEdit"  >
+                      <input required type="number" class="form-control" id="grossWeightEdit" name="grossWeightEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="netWeightEdit">Net Weight (kg)</label>
-                      <input type="text" class="form-control" id="netWeightEdit" name="netWeightEdit"  >
+                      <input required type="number" class="form-control" id="netWeightEdit" name="netWeightEdit"  >
                       </div>
                       <div class="form-group col-sm-3">
                       <label for="shipWeightEdit">Shipping Weight (kg)</label>
-                      <input type="text" class="form-control" id="shipWeightEdit" name="shipWeightEdit"  >
+                      <input required type="number" class="form-control" id="shipWeightEdit" name="shipWeightEdit"  >
                       </div>
                   </div>
                   <div class="form-row">

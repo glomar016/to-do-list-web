@@ -87,7 +87,8 @@ The above copyright notice and this permission notice shall be included in all c
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="reserveDate">Date</label>
-                                <input type="date" class="form-control" id="reserveDate" name="reserveDate">
+                                <?php $dateToday = date("Y-m-d"); ?>
+                                <input type="date" class="form-control" id="reserveDate" name="reserveDate" min="<?php echo $dateToday?>">
                             </div>
                           </div>
                           <div class="form-row">
@@ -320,7 +321,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <script>
 
-  let globalLandmark;
+  let globalLandmark, globalInsurance, newAmount, discountChecker, insuranceChecker, insuranceAmount, insuranceNewAmount;
 
 function dataTable(){
     reservationTable = $('#reservationTable').DataTable({
@@ -343,13 +344,12 @@ function dataTable(){
                 if (data == "Paid"){
                   return '<div class="btn-group">' +
                           '<button class="btn btn-primary btn-sm btn-print-reservation" value="' + row.id + '"title = "Edit" type="button"> <i class="zmdi zmdi-edit"> </i> Print </button>&nbsp'+
-                          '<button class="btn btn-danger btn-sm btn-refund-reservation" value="' + row.id + '"title = "Refund" type="button"> <i class="zmdi zmdi-edit"> </i> Refund </button>'+
                           '</div>';
                 }
                 else if(data == "Pending"){
                   return '<div class="btn-group">' +
                           '<button class="btn btn-info btn-sm btn-view-reservation" value="' + row.id + '"title = "View" type="button"> <i class="zmdi zmdi-view"> </i> View </button>&nbsp'+
-                          '<button class="btn btn-default btn-sm btn-cancel-reservation" value="' + row.id + '"title = "Cancel" type="button"> <i class="zmdi zmdi-view"> </i> Cancel </button>'+
+                          '<button class="btn btn-dark btn-sm btn-cancel-reservation" value="' + row.id + '"title = "Cancel" type="button"> <i class="zmdi zmdi-view"> </i> Cancel </button>&nbsp'+
                           '</div>';
                 }
               }
@@ -560,7 +560,7 @@ $('#reservationForm').on('submit', function(e){
             "seatCode": seatCode,
             "passengerName": passengerName,
             "landmark": landmark,
-            "passengerInsurance": passengerInsurance,
+            "passengerInsuranceFee": passengerInsurance,
             "passengerDiscount": passengerDiscount,
             "passengerAmount": passengerAmount,
             "userId": userId
@@ -876,6 +876,33 @@ $( "#btnShowSched" ).on('click', function(e) {
 
   }
 
+  function show_insurance(){
+    
+    $.ajax({
+      url: '<?php echo base_url()?>insurance/show_insurance',
+      type: "GET",
+      dataType: "JSON",
+
+      success: function(data){
+        var insuranceInfo = data.data;
+
+        var html = ""
+
+        if(insuranceInfo.length == 0){
+            var html = `<option> -- Select option -- </option>`;
+          }
+
+        for(var i=0; i < insuranceInfo.length; i++){
+          html += `<option value="${insuranceInfo[i].amount}">${insuranceInfo[i].name}</option>`
+        }
+        
+        $('#passengerInsurance').html(html);
+        globalInsurance = html;
+
+      }
+    })
+  }
+
   $('#reserveSchedule').on('change', function(e){
       var id = $(this).children(":selected").attr("id");
       
@@ -989,12 +1016,14 @@ $( "#btnShowSched" ).on('click', function(e) {
             </select>
           </td>
           <td>
-            <select id="" class="form-control" name="passengerInsurance[]">
-              <option disabled selected> -- Select Option -- </option>
+            <select id="passengerInsurance${seatCode.slice(5, 7)}" class="form-control passengerInsurance" name="passengerInsurance[]">
+              <option disabled selected> -- Select Option -- </option>  
+              <option value="0"> -- No -- </option>  
+              ${globalInsurance}
             </select>
           </td>
           <td>
-            <select id="passengerDiscount${seatCode.slice(5, 7)}" class="form-control passengerDiscount" name="passengerDiscount[]">
+            <select required id="passengerDiscount${seatCode.slice(5, 7)}" class="form-control passengerDiscount" name="passengerDiscount[]">
               <option disabled selected> -- Select Option -- </option>
               <option id="No">No</option>
               <option id="Yes">Yes</option>
@@ -1037,25 +1066,93 @@ $( "#btnShowSched" ).on('click', function(e) {
 
   })
 
-  $(document).on("change", ".passengerDiscount", function(e){
-
+  $(document).on("change", ".passengerInsurance", function(e){
+    var kmOriginDistance = $(this).children(":selected").val()
     var seatNumber = this.id;
     seatNumber = seatNumber.slice(-2)
 
-    if(this.value == "Yes"){
-      kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+    discountChecker = $('#passengerDiscount'+seatNumber).children(":selected").val();
 
-      let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
-      discountedAmount = parseFloat(amount) - ((parseFloat(amount) * parseFloat(discountPercentage / 100)))
+    if(this.value){
+      if(discountChecker == "Yes"){
+        insuranceAmount = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
+        totalAmount = parseFloat(discountChecker) + parseFloat(insuranceAmount);
+        discountedAmount = parseFloat(totalAmount) - ((parseFloat(totalAmount) * parseFloat(discountPercentage / 100)))
 
-      $("#amount"+seatNumber).val(parseFloat(discountedAmount).toFixed(2))
+        insuranceChecker = 1
+
+        $("#amount"+seatNumber).val(discountedAmount)
+      }
+      else{
+        insuranceAmount = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
+
+        kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+
+        let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+        newAmount = parseFloat(amount) + parseFloat(insuranceAmount)
+
+        console.log(newAmount);
+
+        insuranceNewAmount = $("#amount"+seatNumber).val(parseFloat(newAmount).toFixed(2))
+      }
     }
     else{
-      kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+      kmOriginDistance = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
 
       let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
 
       $("#amount"+seatNumber).val(amount)
+    }
+  })
+
+  $(document).on("change", ".passengerDiscount", function(e){
+
+    var kmOriginDistance = $(this).children(":selected").val()
+    var seatNumber = this.id;
+    seatNumber = seatNumber.slice(-2)
+
+    if(this.value == "Yes"){
+      if(insuranceNewAmount){
+        discountedAmount = parseFloat(newAmount) - ((parseFloat(newAmount) * parseFloat(discountPercentage / 100)))
+
+        $("#amount"+seatNumber).val(parseFloat(discountedAmount).toFixed(2))
+      }
+      else{
+        kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+        let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+        discountedAmount = parseFloat(amount) - ((parseFloat(amount) * parseFloat(discountPercentage / 100)))
+        
+        discountChecker = amount
+
+        $("#amount"+seatNumber).val(discountedAmount)
+      }
+    }
+    else{
+      if(insuranceNewAmount){
+        totalAmount = parseFloat(newAmount)
+
+        $("#amount"+seatNumber).val(totalAmount)
+      }
+      else{
+        if(!insuranceNewAmount){
+          if(insuranceChecker){
+            insuranceAmount = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
+            kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+            let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+
+            newAmount = parseFloat(amount) + parseFloat(insuranceAmount)
+            $("#amount"+seatNumber).val(newAmount)
+
+            insuranceNewAmount = 1
+          }
+          else{
+            kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+            let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+
+            $("#amount"+seatNumber).val(amount)
+          }
+        }
+      }
     }
   })
 
@@ -1201,6 +1298,7 @@ $( "#btnShowSched" ).on('click', function(e) {
               referenceNumber = reservationLine[0].reservation.referenceNumber
               scheduleName = reservationLine[0].reservation.scheduleName
               name = reservationLine[0].reservation.name
+              insuranceFee = reservationLine[0].reservation.insuranceFee
               billingAddress = reservationLine[0].reservation.billingAddress
               promoName = reservationLine[0].reservation.promo
               reservationDate = reservationLine[0].reservation.reservationDate
@@ -1230,7 +1328,7 @@ $( "#btnShowSched" ).on('click', function(e) {
                 for(i=0; i < reservationLine.length; i++){
 
                   if(reservationLine[i].insuranceFee == null){
-                    insurance = "P0.00";
+                    insurance = "0.00";
                   }
                   else{
                     insurance = reservationLine[i].insuranceFee
@@ -1241,8 +1339,8 @@ $( "#btnShowSched" ).on('click', function(e) {
                       <td><p class="pTag">${reservationLine[i].seat.code}</p></td>
                       <td><p class="pTag">${reservationLine[i].passengerName}</p></td>
                       <td><p class="pTag">${reservationLine[i].route}</p></td>
-                      <td><p class="pTag">${insurance}</p></td>
-                      <td><p class="pTag">${reservationLine[i].amount}</p></td>
+                      <td><p class="pTag">P${insurance}.00</p></td>
+                      <td><p class="pTag">P${reservationLine[i].amount}</p></td>
                     </tr>
                   `)
                 }
@@ -1275,6 +1373,7 @@ $( "#btnShowSched" ).on('click', function(e) {
   })
 
 
+  show_insurance();
   show_terminal();
   show_promo();
   get_bus_type();

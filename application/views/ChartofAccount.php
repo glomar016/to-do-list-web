@@ -80,7 +80,7 @@ textarea::-webkit-scrollbar{
                           <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Chart of Account Name</label>
-                              <input type="text" class="form-control" id="ChartofAccountName" name="ChartofAccountName">
+                              <input required type="text" class="form-control" id="ChartofAccountName" name="ChartofAccountName">
                         </div>
                           </div>
                           
@@ -174,7 +174,7 @@ textarea::-webkit-scrollbar{
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="editChartofAccountId" id="editChartofAccountId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Chart of Account</label>
-                        <input type="text" class="form-control" name="editChartofAccountName" id="editChartofAccountName" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editChartofAccountName" id="editChartofAccountName" aria-describedby="emailHelp">
                         
                     </div>
                     <div class="modal-footer">

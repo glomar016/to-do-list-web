@@ -81,7 +81,7 @@ textarea::-webkit-scrollbar{
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Counter Name</label>
-                            <input type="text" class="form-control" id="counterName" name="counterName">
+                            <input required type="text" class="form-control" id="counterName" name="counterName">
                         </div>
                           </div>
                           
@@ -170,7 +170,7 @@ textarea::-webkit-scrollbar{
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="editCounterId" id="editCounterId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Counter</label>
-                        <input type="text" class="form-control" name="editCounterName" id="editCounterName" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editCounterName" id="editCounterName" aria-describedby="emailHelp">
                         
                     </div>
                     <div class="modal-footer">

@@ -69,29 +69,30 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">First Name</label>
-                            <input type="text" class="form-control" name="firstName" id="firstName" aria-describedby="emailHelp">
+                            <input required type="text" class="form-control" name="firstName" id="firstName" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Last Name</label>
-                            <input type="text" class="form-control" name="lastName"  id="lastName" aria-describedby="emailHelp">
+                            <input required type="text" class="form-control" name="lastName"  id="lastName" aria-describedby="emailHelp">
                         </div>
                       </div>
                       <div class="form-row">
                         <div class="form-group col-sm-12">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" name="email"  id="email" aria-describedby="emailHelp">
+                            <input required type="email" class="form-control" name="email"  id="email" aria-describedby="emailHelp">
                         </div>
                       </div>
                       <div class="form-row">
                             <div class="form-group col-sm-12">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input type="password" name="password"  class="form-control" id="password" >
+                                <input required type="password" name="password"  class="form-control" id="password" >
                             </div>
                         </div>
                       <div class="form-row">
                           <div class="form-group col-sm-12">
                               <label for="userType">User Type:</label>
-                              <select name="userType"  class="form-control" id="userType" >
+                              <select required name="userType"  class="form-control" id="userType" >
+                                <option value="">--Select User Type--</option>
                                 <option value="Admin">Administrator</option>
                                 <option value="Passenger">Passenger</option>
                               </select>
@@ -198,23 +199,24 @@ The above copyright notice and this permission notice shall be included in all c
                       <div class="form-group col-sm-6">
                         <input hidden type="text" class="form-control" name="editUserId" id="editUserId" aria-describedby="emailHelp">
                         <label for="editFirstName">First Name</label>
-                        <input type="text" class="form-control" name="editFirstName" id="editFirstName" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editFirstName" id="editFirstName" aria-describedby="emailHelp">
                       </div>
                       <div class="form-group col-sm-6">
                         <label for="editLastName">Last Name</label>
-                        <input type="text" class="form-control" name="editLastName" id="editLastName" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editLastName" id="editLastName" aria-describedby="emailHelp">
                       </div>
                     </div>
                     <div class="form-row">
                       <div class="form-group col-sm-12">
                         <label for="editEmail">Email</label>
-                        <input type="text" class="form-control" name="editEmail" id="editEmail" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editEmail" id="editEmail" aria-describedby="emailHelp">
                       </div>
                     </div>
                     <div class="form-row">
                           <div class="form-group col-sm-12">
                               <label for="editUserType">User Type:</label>
-                              <select name="editUserType"  class="form-control" id="editUserType" >
+                              <select required name="editUserType"  class="form-control" id="editUserType" >
+                                <option value="">--Select User Type--</option>
                                 <option value="Admin">Administrator</option>
                                 <option value="Passenger">Passenger</option>
                               </select>

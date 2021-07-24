@@ -80,10 +80,10 @@ textarea::-webkit-scrollbar{
                           <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="templateName">Template Name</label>
-                                <input type="text" class="form-control" id="templateName" name="templateName">
+                                <input required type="text" class="form-control" id="templateName" name="templateName">
                             </div>
                             <div class="form-group col-sm-6">
-                                <select class="form-control" id="busTypeName" name="busTypeName">
+                                <select required class="form-control" id="busTypeName" name="busTypeName">
 
                                 </select>
                             </div>
@@ -92,15 +92,15 @@ textarea::-webkit-scrollbar{
                           <div class="form-row">
                             <div class="form-group col-sm-4">
                               <label for="seatNumber">Number of seats for passenger</label>
-                              <input type="text" class="form-control" name="seatNumber"  id="seatNumber">
+                              <input required type="text" class="form-control" name="seatNumber"  id="seatNumber">
                             </div>
                             <div class="form-group col-sm-4">
                               <label for="templateRows">Number of Rows</label>
-                              <input type="text" class="form-control" name="templateRows"  id="templateRows">
+                              <input required type="text" class="form-control" name="templateRows"  id="templateRows">
                             </div>
                             <div class="form-group col-sm-4">
                               <label for="templateColumns">Number of Columns</label>
-                              <input type="text" class="form-control" name="templateColumns"  id="templateColumns">
+                              <input required type="text" class="form-control" name="templateColumns"  id="templateColumns">
                             </div>
                           </div>
                       
@@ -109,7 +109,7 @@ textarea::-webkit-scrollbar{
                   </div>
               </div>
       </div>
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-12">
@@ -141,7 +141,7 @@ textarea::-webkit-scrollbar{
               
               
           </div>
-        </div>
+        </div> -->
         
         
             <div id="templateDiv" class="card" hidden>

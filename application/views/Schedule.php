@@ -80,7 +80,7 @@ The above copyright notice and this permission notice shall be included in all c
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <label for="busTypeInput">Bus Type</label>
-                                        <select class="form-control" id="busTypeInput" name="busTypeInput">           
+                                        <select required class="form-control" id="busTypeInput" name="busTypeInput">           
                                         
                                         </select>
                                     </div>
@@ -88,19 +88,23 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-row">
                                     <div class="form-group col-sm-3">
                                         <label for="estimatedTimeTravelInput">Estimated Time Travel</label>
-                                        <input type="text" class="form-control" id="estimatedTimeTravelInput" name="estimatedTimeTravelInput">
+                                        <input required type="number" class="form-control" id="estimatedTimeTravelInput" name="estimatedTimeTravelInput">
                                     </div>
                                     <div class="form-group col-sm-3">
                                         <label for="hourFromInput">Hour From</label>
-                                        <input type="time" class="form-control" id="hourFromInput" name="hourFromInput">
+                                        <input required type="time" class="form-control" id="hourFromInput" name="hourFromInput">
                                     </div>
                                     <div class="form-group col-sm-3">
                                         <label for="hourToInput">Hour To</label>
-                                        <input type="time" class="form-control" id="hourToInput" name="hourToInput">
+                                        <input required type="time" class="form-control" id="hourToInput" name="hourToInput">
                                     </div>
                                     <div class="form-group col-sm-3">
                                         <label for="willArriveNextDayInput">Will Arrive the Next Day</label>
-                                        <input type="text" class="form-control" id="willArriveNextDayInput" name="willArriveNextDayInput">
+                                        <select required class="form-control" id="willArriveNextDayInput" name="willArriveNextDayInput">
+                                          <option value="">-- Select --</option>
+                                          <option value="Yes">Yes</option>
+                                          <option value="No">No</option>
+                                        </select>
                                     </div>
                             </div>
                             <div class="form-row">
@@ -272,13 +276,13 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="form-group col-sm-6">
                         <input hidden type="text" class="form-control" id="scheduleIdEdit" name="scheduleIdEdit">
                         <label for="routeEdit">Route</label>
-                        <select class="form-control" id="routeEdit" name="routeEdit">           
+                        <select required class="form-control" id="routeEdit" name="routeEdit">           
                         
                         </select>
                     </div>
                     <div class="form-group col-sm-6">
                             <label for="busTypeEdit">Bus Type</label>
-                            <select class="form-control" id="busTypeEdit" name="busTypeEdit">           
+                            <select required class="form-control" id="busTypeEdit" name="busTypeEdit">           
                             
                             </select>
                         </div>
@@ -286,19 +290,23 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="form-row">
                         <div class="form-group col-sm-3">
                             <label for="estimatedTimeTravelEdit">Estimated Time Travel</label>
-                            <input type="text" class="form-control" id="estimatedTimeTravelEdit" name="estimatedTimeTravelEdit">
+                            <input required type="number" class="form-control" id="estimatedTimeTravelEdit" name="estimatedTimeTravelEdit">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="hourFromEdit">Hour From</label>
-                            <input type="time" class="form-control" id="hourFromEdit" name="hourFromEdit">
+                            <input required type="time" class="form-control" id="hourFromEdit" name="hourFromEdit">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="hourToEdit">Hour To</label>
-                            <input type="time" class="form-control" id="hourToEdit" name="hourToEdit">
+                            <input required type="time" class="form-control" id="hourToEdit" name="hourToEdit">
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="willArriveNextDayEdit">Will Arrive the Next Day</label>
-                            <input type="text" class="form-control" id="willArriveNextDayEdit" name="willArriveNextDayEdit">
+                            <select required class="form-control" id="willArriveNextDayEdit" name="willArriveNextDayEdit">
+                              <option value="">-- select --</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">

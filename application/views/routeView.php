@@ -85,11 +85,11 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-group">
                                 <input hidden type="text" id="routeId" name="routeId">
                                 <label for="exampleInputEmail1">Landmark Name</label>
-                                <input type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="name" id="name" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Kilometer From Origin</label>
-                                <input type="text" class="form-control" name="kmFromOrigin"  id="kmFromOrigin" aria-describedby="emailHelp">
+                                <input required type="number" class="form-control" name="kmFromOrigin"  id="kmFromOrigin" aria-describedby="emailHelp">
                             </div>
                             <div class="form-group">
                                 <label class="label-control">Effectivity Date</label> <br>
@@ -169,11 +169,11 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="modal-body">
                             <input hidden type="text" class="form-control" name="editLandmarkId" id="editLandmarkId" aria-describedby="emailHelp">
                             <label for="exampleInputEmail1">Landmark Name</label>
-                                <input type="text" class="form-control" name="editLandmarkName" id="editLandmarkName" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="editLandmarkName" id="editLandmarkName" aria-describedby="emailHelp">
                             <label for="exampleInputEmail1">Kilometer From Origin</label>
-                                <input type="text" class="form-control" name="editKmFromOrigin" id="editKmFromOrigin" aria-describedby="emailHelp">
+                                <input required type="number" class="form-control" name="editKmFromOrigin" id="editKmFromOrigin" aria-describedby="emailHelp">
                             <label for="exampleInputEmail1">Effectivity Date</label>
-                                <input type="date" class="form-control" name="editEffectivityDate" id="editEffectivityDate" aria-describedby="">
+                                <input required type="date" class="form-control" name="editEffectivityDate" id="editEffectivityDate" aria-describedby="">
                         </div>
                         <div class="modal-footer">
                             <input type="submit" value="update" class="btn btn-warning">
