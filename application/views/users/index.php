@@ -92,20 +92,34 @@
                                     if (isset($this->session->userdata['logged_in'])) {
                                         $userType = ($this->session->userdata['logged_in']['userType']);
                                         if($userType == "Passenger"){
-                                            echo '<li class="nav-item"><a> Hello, '.$firstName.'</a></li>';
+                                            echo '<li class="nav-item"><a> Hello, '.$firstName.'</a></li>
+                                            <li class="nav-item active"><a class="page-scroll" href="#home">home</a></li>
+                                            <li class="nav-item"><a href="'.base_url().'users/my_reservation">Book/Reservation</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#theSystem">The System</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#about">About Us</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#contact">Contact Us</a></li>';
                                         }
                                         else{
-                                            echo '<li class="nav-item"><a>Hello Admin, '.$firstName.'</a></li>';
+                                            echo '<li class="nav-item"><a>Hello Admin, '.$firstName.'</a></li>
+                                            <li class="nav-item active"><a class="page-scroll" href="#home">home</a></li>
+                                            <li class="nav-item"><a href="'.base_url().'BusSchedule">
+                                            Schedule</a></li>
+                                            <li class="nav-item"><a href="'.base_url().'reservation">Reservation</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#theSystem">The System</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#about">About Us</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#contact">Contact Us</a></li>';
                                         }
+                                        
+                                    }
+                                    else{
+                                        echo '
+                                            <li class="nav-item active"><a class="page-scroll" href="#home">home</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#theSystem">The System</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#about">About Us</a></li>
+                                            <li class="nav-item"><a class="page-scroll" href="#contact">Contact Us</a></li>';
                                     }
                                 ?> 
-                                <li class="nav-item active"><a class="page-scroll" href="#home">home</a></li>
-                                <li class="nav-item"><a href="<?php echo base_url()?>BusSchedule">
-                                Schedule</a></li>
-                                <li class="nav-item"><a href="<?php echo base_url()?>reservation">Reservation</a></li>
-                                <li class="nav-item"><a class="page-scroll" href="#theSystem">The System</a></li>
-                                <li class="nav-item"><a class="page-scroll" href="#about">About Us</a></li>
-                                <li class="nav-item"><a class="page-scroll" href="#contact">Contact Us</a></li>
+                                
                             </ul>
                         </div>
                         
@@ -540,51 +554,7 @@
                     </div>
                 </div> <!-- row -->
             </div> <!-- contact info -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="contact-wrapper form-style-two pt-115">
-                        <h4 class="contact-title pb-10"><i class="lni lni-envelope"></i> Leave <span>A Message.</span></h4>
-                        
-                        <form id="contact-form" action="assets/contact.php" method="post">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-input mt-25">
-                                        <label>Name</label>
-                                        <div class="input-items default">
-                                            <input name="name" type="text" placeholder="Name">
-                                            <i class="lni lni-user"></i>
-                                        </div>
-                                    </div> <!-- form input -->
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-input mt-25">
-                                        <label>Email</label>
-                                        <div class="input-items default">
-                                            <input type="email" name="email" placeholder="Email">
-                                            <i class="lni lni-envelope"></i>
-                                        </div>
-                                    </div> <!-- form input -->
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-input mt-25">
-                                        <label>Massage</label>
-                                        <div class="input-items default">
-                                            <textarea name="message" placeholder="Message"></textarea>
-                                            <i class="lni lni-pencil-alt"></i>
-                                        </div>
-                                    </div> <!-- form input -->
-                                </div>
-                                <p class="form-message"></p>
-                                <div class="col-md-12">
-                                    <div class="form-input light-rounded-buttons mt-30">
-                                        <button class="main-btn light-rounded-two">Send Message</button>
-                                    </div> <!-- form input -->
-                                </div>
-                            </div> <!-- row -->
-                        </form>
-                    </div> <!-- contact wrapper form -->
-                </div>
-            </div> <!-- row -->
+            
         </div> <!-- container -->
     </section>
 
@@ -628,21 +598,21 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="footer-logo text-center">
-                        <a class="mt-30" href="index.html"><img src="<?php echo base_url()?>resources/assets/users/assets/images/logo.svg" alt="Logo"></a>
+                        <a class="mt-30" href="index.html"><img src="<?php echo base_url()?>resources/assets/img/brs-logo-sm.png" alt="Logo"></a>
                     </div> <!-- footer logo -->
-                    <ul class="social text-center mt-60">
+                    <!-- <ul class="social text-center mt-60">
                         <li><a href="https://facebook.com/uideckHQ"><i class="lni lni-facebook-filled"></i></a></li>
                         <li><a href="https://twitter.com/uideckHQ"><i class="lni lni-twitter-original"></i></a></li>
                         <li><a href="https://instagram.com/uideckHQ"><i class="lni lni-instagram-original"></i></a></li>
                         <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
-                    </ul> <!-- social -->
+                    </ul> social -->
                     <div class="footer-support text-center">
                         <span class="number">+8801234567890</span>
-                        <span class="mail">support@uideck.com</span>
+                        <span class="mail">support@brs_TEAM.com</span>
                     </div>
-                    <div class="copyright text-center mt-35">
+                    <!-- <div class="copyright text-center mt-35">
                         <p class="text">Designed by <a href="https://uideck.com" rel="nofollow">UIdeck</a> and Built-with <a rel="nofollow" href="https://ayroui.com">Ayro UI</a> </p>
-                    </div> <!--  copyright -->
+                    </div>  copyright -->
                 </div>
             </div> <!-- row -->
         </div> <!-- container -->
