@@ -17,7 +17,7 @@ The above copyright notice and this permission notice shall be included in all c
         $userType = ($this->session->userdata['logged_in']['userType']);
         $userId = ($this->session->userdata['logged_in']['userId']);
 
-        if($userType == "Passenger"){
+        if($userType == "Admin"){
             header("location: ".base_url()."users/user/forbidden");
         }
 
