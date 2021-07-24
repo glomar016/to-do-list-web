@@ -70,7 +70,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label class="label-control" for="scheduleDateInput">Schedule Date</label> <br>
-                                <input type="date" class="form-control" id="scheduleDateInput" name="scheduleDateInput">
+                                <input required type="date" class="form-control" id="scheduleDateInput" name="scheduleDateInput">
                                 <span style="color:red" class="float-right">Select schedule date first.</span>
                             </div>
                             <div class="form-group col-sm-6">
@@ -83,7 +83,7 @@ The above copyright notice and this permission notice shall be included in all c
                               <div class="form-row">
                                 <div class= "form-group col-sm-6">
                                     <label class="drpdwn-label" for="availableBus">Available Bus</label>
-                                    <select class="form-control drpdwn" id="availableBus" name="availableBus">
+                                    <select required class="form-control drpdwn" id="availableBus" name="availableBus">
                                       <option> -- Select available bus schedule -- </option>
                                     </select>
                                 </div>
@@ -93,7 +93,7 @@ The above copyright notice and this permission notice shall be included in all c
                             <div id="busNumberAvailable" hidden>
                               <div class="form-group">
                                     <label class="drpdwn-label" for="busNumberInput">Bus Number</label>
-                                    <select class="form-control drpdwn" id="busNumberInput" name="busNumberInput">
+                                    <select required class="form-control drpdwn" id="busNumberInput" name="busNumberInput">
                                       
                                     </select>
                                 </div>
@@ -160,7 +160,7 @@ The above copyright notice and this permission notice shall be included in all c
                     </div>
                     <div class="form-group col-sm-6">
                         <label class="label-control" for="editScheduleDateInput">Schedule Date</label> <br>
-                        <input type="date" class="form-control" id="editScheduleDateInput" name="editScheduleDateInput">
+                        <input required type="date" class="form-control" id="editScheduleDateInput" name="editScheduleDateInput">
                     </div>
                 </div>
                         <input type="submit" class="btn btn-primary">

@@ -74,7 +74,7 @@ The above copyright notice and this permission notice shall be included in all c
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <label for="paymentTerm">Payment Term</label>
-                                    <select class="form-control" id="paymentTerm" name="paymentTerm">
+                                    <select required class="form-control" id="paymentTerm" name="paymentTerm">
                                         <option value="" disabled selected hidden >- - Select Payment Term - -</option>
                                         <option value="Full Payment">Full Payment</option>
                                         <option value="Half Payment">Half Payment</option>
@@ -86,15 +86,15 @@ The above copyright notice and this permission notice shall be included in all c
                             <div class="form-row">
                                 <div class="form-group col-sm-4">
                                     <label for="paymentAmount">Amount to be Paid</label>
-                                    <input type="text" class="form-control" id="paymentAmount" name="paymentAmount" disabled>
+                                    <input required type="text" class="form-control" id="paymentAmount" name="paymentAmount" disabled>
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label for="paymentCashTendered">Cash Tendered</label>
-                                    <input type="text" class="form-control" id="paymentCashTendered" name="paymentCashTendered">
+                                    <input required type="text" class="form-control" id="paymentCashTendered" name="paymentCashTendered">
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label for="paymentChange">Change</label>
-                                    <input type="text" class="form-control" id="paymentChange" name="paymentChange" disabled>
+                                    <input required type="text" class="form-control" id="paymentChange" name="paymentChange" disabled>
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-primary">

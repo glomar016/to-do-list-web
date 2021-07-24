@@ -69,24 +69,24 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-group col-sm12">
                             <div class="form-row">
                                 <label for="exampleInputEmail1">Terminal</label>
-                                <input type="text" class="form-control" name="terminalName" id="terminalName" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="terminalName" id="terminalName" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row">
                                 <label for="exampleInputEmail1">Address</label>
-                                <input type="text" class="form-control" name="terminalAddress"  id="terminalAddress" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="terminalAddress"  id="terminalAddress" aria-describedby="emailHelp">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="exampleInputEmail1">Email</label>
-                                    <input type="text" class="form-control" name="terminalEmail"  id="terminalEmail" aria-describedby="emailHelp">
+                                    <input required type="text" class="form-control" name="terminalEmail"  id="terminalEmail" aria-describedby="emailHelp">
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="exampleInputEmail1">Contact Person</label>
-                                    <input type="text" class="form-control" name="terminalContactPerson"  id="terminalContactPerson" aria-describedby="emailHelp">
+                                    <input required type="text" class="form-control" name="terminalContactPerson"  id="terminalContactPerson" aria-describedby="emailHelp">
                                 </div>
                         </div>
                         <input type="submit" class="btn btn-primary">
@@ -172,13 +172,13 @@ The above copyright notice and this permission notice shall be included in all c
                     <div class="modal-body">
                         <input hidden type="text" class="form-control" name="editTerminalId" id="editTerminalId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Terminal</label>
-                        <input type="text" class="form-control" name="editTerminalName" id="editTerminalName" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editTerminalName" id="editTerminalName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Address</label>
-                        <input type="text" class="form-control" name="editTerminalAddress" id="editTerminalAddress" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editTerminalAddress" id="editTerminalAddress" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Email</label>
-                        <input type="email" class="form-control" name="editTerminalEmail" id="editTerminalEmail" aria-describedby="emailHelp">
+                        <input required type="email" class="form-control" name="editTerminalEmail" id="editTerminalEmail" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Contact Person</label>
-                        <input type="text" class="form-control" name="editTerminalContactPerson" id="editTerminalContactPerson" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editTerminalContactPerson" id="editTerminalContactPerson" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-success">

@@ -58,7 +58,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Bus Number</label>
-                              <select class="form-control" id="busNumberInput" name="busNumberInput">
+                              <select required class="form-control" id="busNumberInput" name="busNumberInput">
                                   
                                 </select>
                             </div>
@@ -66,12 +66,12 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Name</label>
-                              <select class="form-control" id="nameInput" name="nameInput">
-                                </select>
+                              <input required type="text" class="form-control" id="nameInput" name="nameInput">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="expirationDateLabel" for="exampleInputPassword1">Type</label>
-                                <select class="form-control" id="typeInput" name="typeInput">
+                                <select required class="form-control" id="typeInput" name="typeInput">
+                                    <option value="">-- Select Type --</option>
                                     <option value="Driver">Driver</option>
                                     <option value="Conductor">Conductor</option>
                                 </select>
@@ -176,8 +176,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Name</label>
-                              <select class="form-control" disabled="disabled" id="nameEdit" name="nameEdit">
-                                </select>
+                              <input required type="text" class="form-control" disabled="disabled" id="nameEdit" name="nameEdit">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label class="expirationDateLabel" for="exampleInputPassword1">Type</label>

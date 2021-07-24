@@ -80,17 +80,17 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="reserveName">Name</label>
-                                <input type="text" class="form-control" id="reserveName" name="reserveName">
+                                <input required type="text" class="form-control" id="reserveName" name="reserveName">
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="reserveDate">Date</label>
-                                <input type="date" class="form-control" id="reserveDate" name="reserveDate">
+                                <input required type="date" class="form-control" id="reserveDate" name="reserveDate">
                             </div>
                           </div>
                           <div class="form-row">
                             <div class="form-group col-sm-8">
                                 <label for="reserveBilling">Billing Address</label>
-                                <input type="text" class="form-control" id="reserveBilling" name="reserveBilling">
+                                <input required type="text" class="form-control" id="reserveBilling" name="reserveBilling">
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="promoId">Promo Code</label>
@@ -100,14 +100,14 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="reserveBusType">Bus Type</label>
-                                <select class="form-control" id="reserveBusType" name="reserveBusType">
+                                <select required class="form-control" id="reserveBusType" name="reserveBusType">
                                     <option value="" disabled selected hidden >- - Select Bus Type - -</option>
 
                                 </select>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="reserveOrigin">Origin Terminal</label>
-                                <select class="form-control" id="reserveOrigin" name="reserveOrigin">
+                                <select required class="form-control" id="reserveOrigin" name="reserveOrigin">
                                     <option value="" disabled selected hidden >- - Select Origin Terminal - -</option>
 
                                 </select>
@@ -116,8 +116,8 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                             <div class="form-group col-sm-12">
                                 <label for="reserveRoute">Route</label>
-                                <select class="form-control" id="reserveRoute" name="reserveRoute">
-
+                                <select required class="form-control" id="reserveRoute" name="reserveRoute">
+    
                                 </select>
                             </div>
                             
@@ -139,7 +139,7 @@ The above copyright notice and this permission notice shall be included in all c
                           <div class="form-row">
                           <div id="scheduleDiv" class="form-group col-sm-12" hidden>
                                 <label for="reserveSchedule">Schedule</label>
-                                <select class="form-control" id="reserveSchedule" name="reserveSchedule">
+                                <select required class="form-control" id="reserveSchedule" name="reserveSchedule">
 
                                 </select>
                             </div>

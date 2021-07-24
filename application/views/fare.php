@@ -71,7 +71,7 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-row">
                             <div class="form-group col-sm-12">
                                 <label for="busTypeId">Bus Type</label>
-                                <select id="busTypeId" name="busTypeId" class="form-control" data-style="btn btn-primary btn-sm">
+                                <select required id="busTypeId" name="busTypeId" class="form-control" data-style="btn btn-primary btn-sm">
                                  
                                 </select>
                             </div>
@@ -79,26 +79,26 @@ The above copyright notice and this permission notice shall be included in all c
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="initialKm">Initial Km</label>
-                                <input type="text" class="form-control" name="initialKm" id="initialKm" >
+                                <input required type="text" class="form-control" name="initialKm" id="initialKm" >
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="initialPrice">Initial Price</label>
-                                <input type="text" class="form-control" name="initialPrice"  id="initialPrice" >
+                                <input required type="text" class="form-control" name="initialPrice"  id="initialPrice" >
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="additionalKm">Additional Km</label>
-                                <input type="text" class="form-control" name="additionalKm"  id="additionalKm" >
+                                <input required type="text" class="form-control" name="additionalKm"  id="additionalKm" >
                             </div>
                             <div class="form-group col-sm-6">
                                 <label for="discountPercentage">Discount Percentage</label>
-                                <input type="text" class="form-control" name="discountPercentage"  id="discountPercentage" >
+                                <input required type="text" class="form-control" name="discountPercentage"  id="discountPercentage" >
                             </div>
                         </div>
                             <div class="form-group col-sm-3">
                                 <label class="label-control">Effectivity Date</label> 
-                                <input type="date" class="form-control" id="effectivityDate" name="effectivityDate">
+                                <input required type="date" class="form-control" id="effectivityDate" name="effectivityDate">
                             </div>
                         <div class="form-row">
                         </div>

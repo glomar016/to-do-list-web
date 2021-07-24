@@ -79,7 +79,7 @@ textarea::-webkit-scrollbar{
                         <div class="form-row">
                               <div class="form-group col-sm-6">
                               <label for="exampleInputEmail1">Bus Type</label>
-                              <input type="text" class="form-control" id="busTypeName" name="busTypeName">
+                              <input required type="text" class="form-control" id="busTypeName" name="busTypeName">
                         </div>
                           </div>
                           

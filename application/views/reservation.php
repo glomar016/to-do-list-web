@@ -992,7 +992,7 @@ $( "#btnShowSched" ).on('click', function(e) {
             </select>
           </td>
           <td>
-            <select id="passengerDiscount${seatCode.slice(5, 7)}" class="form-control passengerDiscount" name="passengerDiscount[]">
+            <select required id="passengerDiscount${seatCode.slice(5, 7)}" class="form-control passengerDiscount" name="passengerDiscount[]">
               <option disabled selected> -- Select Option -- </option>
               <option id="No">No</option>
               <option id="Yes">Yes</option>

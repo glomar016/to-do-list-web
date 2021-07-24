@@ -80,31 +80,31 @@ textarea::-webkit-scrollbar{
                     <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Insurance Code</label>
-                                <input type="text" class="form-control" name="insuranceCode"  id="insuranceCode" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="insuranceCode"  id="insuranceCode" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Insurance Name</label>
-                                <input type="text" class="form-control" name="insuranceName"  id="insuranceName" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="insuranceName"  id="insuranceName" aria-describedby="emailHelp">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Effectivity Date</label>
-                                <input type="date" class="form-control" name="effectivityDate"  id="effectivityDate" aria-describedby="emailHelp">
+                                <input required type="date" class="form-control" name="effectivityDate"  id="effectivityDate" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Insurance Amount</label>
-                                <input type="text" class="form-control" name="insuranceAmount"  id="insuranceAmount" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="insuranceAmount"  id="insuranceAmount" aria-describedby="emailHelp">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Insurance Details</label>
-                                <input type="text" class="form-control" name="insuranceDetails"  id="insuranceDetails" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="insuranceDetails"  id="insuranceDetails" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="exampleInputEmail1">Insurance Document</label>
-                                <input type="text" class="form-control" name="insuranceDocument"  id="insuranceDocument" aria-describedby="emailHelp">
+                                <input required type="text" class="form-control" name="insuranceDocument"  id="insuranceDocument" aria-describedby="emailHelp">
                         </div>
                     </div>
                           <input type="submit" class="btn btn-primary">
@@ -201,17 +201,17 @@ textarea::-webkit-scrollbar{
                     <div class="modal-body">
                         <input type="hidden" class="form-control" name="editInsuranceId" id="editInsuranceId" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Insurance Code</label>
-                        <input type="text" class="form-control" name="editInsuranceCode" id="editInsuranceCode" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editInsuranceCode" id="editInsuranceCode" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Insurance Name</label>
-                        <input type="text" class="form-control" name="editInsuranceName" id="editInsuranceName" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editInsuranceName" id="editInsuranceName" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Effectivity Date</label>
-                        <input type="text" class="form-control" name="editEffectivityDate" id="editEffectivityDate" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editEffectivityDate" id="editEffectivityDate" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Insurance Amount</label>
-                        <input type="text" class="form-control" name="editInsuranceAmount" id="editInsuranceAmount" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editInsuranceAmount" id="editInsuranceAmount" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Insurance Details</label>
-                        <input type="text" class="form-control" name="editInsuranceDetails" id="editInsuranceDetails" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editInsuranceDetails" id="editInsuranceDetails" aria-describedby="emailHelp">
                         <label for="exampleInputEmail1">Insurance Document</label>
-                        <input type="text" class="form-control" name="editInsuranceDocument" id="editInsuranceDocument" aria-describedby="emailHelp">
+                        <input required type="text" class="form-control" name="editInsuranceDocument" id="editInsuranceDocument" aria-describedby="emailHelp">
                     </div>
                     <div class="modal-footer">
                         <input type="submit" class="btn btn-primary">
