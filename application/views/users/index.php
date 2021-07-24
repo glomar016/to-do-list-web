@@ -14,7 +14,7 @@
     <meta charset="utf-8">
     
     <!--====== Title ======-->
-    <title>Smash - Bootstrap Business Template</title>
+    <title>Bus Reservation System</title>
     
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -156,7 +156,7 @@
                                             echo '<li></li>';
                                         }
                                         else{
-                                            echo '<li><a class="main-btn rounded-one" href="#">Register</a></li>';
+                                            echo '<li><a class="main-btn rounded-one" href="'.base_url().'users/register">Register</a></li>';
                                             echo '<li><a class="main-btn rounded-two" href="#loginModal" class="trigger-btn" data-toggle="modal">LOGIN</a></li>';
                                         }
                                              ?>

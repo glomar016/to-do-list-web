@@ -38,7 +38,7 @@
                                         Personal Information
                                     </h5>
                                 </div>
-                                <div class="col-sm-6 mb-3 frmValidate" style="padding-left: 0;">
+                                <!-- <div class="col-sm-6 mb-3 frmValidate" style="padding-left: 0;">
                                     <label for="photo" class="col-form-label">Photo</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -53,7 +53,7 @@
                                                 file</label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-row">
                                     <div class="form-group col-sm-4">
                                         <label for="exampleInputEmail1">First Name</label>
@@ -210,28 +210,10 @@ $("#goBack").click(function() {
     window.location.href = "<?php echo base_url()?>";
 });
 
-var input = document.getElementById('photo');
-var infoArea = document.getElementById('custom-file-label');
-
-input.addEventListener('change', showFileName);
-
-function showFileName(event) {
-
-    // the change event gives us the input it occurred in 
-    var input = event.srcElement;
-
-    // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
-    var fileName = input.files[0].name;
-
-    // use fileName however fits your app best, i.e. add it into a div
-    infoArea.textContent = fileName;
-}
 
 $('#addUserForm').on('submit', function(e) {
     e.preventDefault();
 
-    var photo = document.getElementById('photo').value;
-    console.log(photo);
 
     var email = document.getElementById('email').value;
     var emailChecker;
@@ -239,42 +221,41 @@ $('#addUserForm').on('submit', function(e) {
     var form = $('#addUserForm');
     // ajax opening tag
     $.ajax({
-        url: '<?php echo base_url()?>/user/show_user',
+        url: '<?php echo base_url()?>user/show_user',
         type: "GET",
         dataType: "JSON",
 
         success: function(data) {
             userInfo = data.data;
-            for (var i = 0; i < userInfo.length; i++) {
-                if (userInfo[i].email == email) {
-                    emailChecker = 1;
-                }
-            }
-            async function processArray(array) {
-                // map array to promises
-                const promises = array.map(delayedLog);
-                // wait until all promises are resolved
-                await Promise.all(promises);
-            }
-            if (emailChecker == 1) {
-                showNotification('warning', 'Email address is already exists!', 'danger', 'top', 'right');
-            } else {
-                $.ajax({
-                    url: '<?php echo base_url()?>users/register/register_user',
-                    type: "POST",
-                    data: form.serialize(),
-                    dataType: "JSON",
+            $.ajax({
+                url: '<?php echo base_url()?>users/register/register_user',
+                type: "POST",
+                data: form.serialize(),
+                dataType: "JSON",
 
-                    success: function(data) {
-                        $("#addUserForm").trigger("reset");
-                        console.log(data.data);
-                        alert("You are now successfully registered.");
-                        window.location.href = "<?php echo base_url()?>"
-                        // End of Confirmation
+                success: function(data) {
+                    console.log(data.data);
+
+                    if(data.error == true){
+                        showNotification('create', data.message[0], 'danger', 'top', 'right');
                     }
+                    else{
+                        $("#addUserForm").trigger("reset");
+                        Swal.fire(
+                            'Success!',
+                            'Account registered successfully!',
+                            'success'
+                        )
+
+                        setInterval(function(){
+                            window.location.href = "<?php echo base_url()?>"
+                        }, 3000)
+                        End of Confirmation
+                    }
+
+                }
                     // ajax closing tag
-                })
-            }
+            })
         }
         // ajax closing tag
     })
