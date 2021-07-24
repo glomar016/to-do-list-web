@@ -156,6 +156,13 @@
             </a>
           </li>
 
+          <li <?php if($this->router->fetch_class() == 'view_online_payment') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>view_online_payment">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Online Payment</p>
+            </a>
+          </li>
+
           <div class="mx-auto" style="height: 20px;"></div>
           <p class="nav-link" style="line-height: 0px"><strong>System Configuration</strong></p>
           <div class="mx-auto" style="height: 20px;"></div>
