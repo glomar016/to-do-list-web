@@ -109,7 +109,7 @@ textarea::-webkit-scrollbar{
                   </div>
               </div>
       </div>
-        <div class="card">
+        <!-- <div class="card">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-12">
@@ -141,7 +141,7 @@ textarea::-webkit-scrollbar{
               
               
           </div>
-        </div>
+        </div> -->
         
         
             <div id="templateDiv" class="card" hidden>

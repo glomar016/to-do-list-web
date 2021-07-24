@@ -17,12 +17,7 @@
             </a>
           </li>
 
-          <li <?php if($this->router->fetch_class() == 'user') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>user">
-              <!-- <i class="material-icons">account_circle</i> -->
-              <p>User</p>
-            </a>
-          </li>
+          
 
           <div class="mx-auto" style="height: 20px;"></div>
           <p class="nav-link" style="line-height: 0px"><strong>Bus Management</strong></p>
@@ -165,6 +160,26 @@
               <p>Payment</p>
             </a>
           </li>
+
+          <div class="mx-auto" style="height: 20px;"></div>
+          <p class="nav-link" style="line-height: 0px"><strong>User Management</strong></p>
+          <div class="mx-auto" style="height: 20px;"></div>
+
+          <li <?php if($this->router->fetch_class() == 'user') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>user">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>User</p>
+            </a>
+          </li>
+
+          <li <?php if($this->router->fetch_class() == 'logout') {?> class="active has-sub" <?php } ?>>
+            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>logout">
+              <!-- <i class="material-icons">account_circle</i> -->
+              <p>Logout</p>
+            </a>
+          </li>
+
+          
 
 
         </ul>
