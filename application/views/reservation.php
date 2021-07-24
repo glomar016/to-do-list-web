@@ -320,7 +320,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <script>
 
-  let globalLandmark;
+  let globalLandmark, globalInsurance, newAmount, discountChecker, insuranceChecker, insuranceAmount, insuranceNewAmount;
 
 function dataTable(){
     reservationTable = $('#reservationTable').DataTable({
@@ -874,6 +874,33 @@ $( "#btnShowSched" ).on('click', function(e) {
 
   }
 
+  function show_insurance(){
+    
+    $.ajax({
+      url: '<?php echo base_url()?>insurance/show_insurance',
+      type: "GET",
+      dataType: "JSON",
+
+      success: function(data){
+        var insuranceInfo = data.data;
+
+        var html = ""
+
+        if(insuranceInfo.length == 0){
+            var html = `<option> -- Select option -- </option>`;
+          }
+
+        for(var i=0; i < insuranceInfo.length; i++){
+          html += `<option value="${insuranceInfo[i].amount}">${insuranceInfo[i].name}</option>`
+        }
+        
+        $('#passengerInsurance').html(html);
+        globalInsurance = html;
+
+      }
+    })
+  }
+
   $('#reserveSchedule').on('change', function(e){
       var id = $(this).children(":selected").attr("id");
       
@@ -987,8 +1014,9 @@ $( "#btnShowSched" ).on('click', function(e) {
             </select>
           </td>
           <td>
-            <select id="" class="form-control" name="passengerInsurance[]">
-              <option disabled selected> -- Select Option -- </option>
+            <select id="passengerInsurance${seatCode.slice(5, 7)}" class="form-control passengerInsurance" name="passengerInsurance[]">
+              <option disabled selected> -- Select Option -- </option>  
+              ${globalInsurance}
             </select>
           </td>
           <td>
@@ -1035,25 +1063,91 @@ $( "#btnShowSched" ).on('click', function(e) {
 
   })
 
-  $(document).on("change", ".passengerDiscount", function(e){
-
+  $(document).on("change", ".passengerInsurance", function(e){
+    var kmOriginDistance = $(this).children(":selected").val()
     var seatNumber = this.id;
     seatNumber = seatNumber.slice(-2)
 
-    if(this.value == "Yes"){
-      kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+    if(this.value){
+      if(discountChecker){
+        insuranceAmount = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
+        totalAmount = parseFloat(discountChecker) + parseFloat(insuranceAmount);
+        discountedAmount = parseFloat(totalAmount) - ((parseFloat(totalAmount) * parseFloat(discountPercentage / 100)))
 
-      let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
-      discountedAmount = parseFloat(amount) - ((parseFloat(amount) * parseFloat(discountPercentage / 100)))
+        insuranceChecker = 1
 
-      $("#amount"+seatNumber).val(parseFloat(discountedAmount).toFixed(2))
+        $("#amount"+seatNumber).val(discountedAmount)
+      }
+      else{
+        insuranceAmount = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
+
+        kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+
+        let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+        newAmount = parseFloat(amount) + parseFloat(insuranceAmount)
+
+        console.log(newAmount);
+
+        insuranceNewAmount = $("#amount"+seatNumber).val(parseFloat(newAmount).toFixed(2))
+      }
     }
     else{
-      kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+      kmOriginDistance = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
 
       let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
 
       $("#amount"+seatNumber).val(amount)
+    }
+  })
+
+  $(document).on("change", ".passengerDiscount", function(e){
+
+    var kmOriginDistance = $(this).children(":selected").val()
+    var seatNumber = this.id;
+    seatNumber = seatNumber.slice(-2)
+
+    if(this.value == "Yes"){
+      if(insuranceNewAmount){
+        discountedAmount = parseFloat(newAmount) - ((parseFloat(newAmount) * parseFloat(discountPercentage / 100)))
+
+        $("#amount"+seatNumber).val(parseFloat(discountedAmount).toFixed(2))
+      }
+      else{
+        kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+        let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+        discountedAmount = parseFloat(amount) - ((parseFloat(amount) * parseFloat(discountPercentage / 100)))
+        
+        discountChecker = amount
+
+        $("#amount"+seatNumber).val(discountedAmount)
+      }
+    }
+    else{
+      if(insuranceNewAmount){
+        totalAmount = parseFloat(newAmount)
+
+        $("#amount"+seatNumber).val(totalAmount)
+      }
+      else{
+        if(!insuranceNewAmount){
+          if(insuranceChecker){
+            insuranceAmount = $($("#passengerInsurance"+seatNumber)).children(":selected").val()
+            kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+            let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+
+            newAmount = parseFloat(amount) + parseFloat(insuranceAmount)
+            $("#amount"+seatNumber).val(newAmount)
+
+            insuranceNewAmount = 1
+          }
+          else{
+            kmOriginDistance = $($("#passengerLandmark"+seatNumber)).children(":selected").val()
+            let amount = parseFloat(((kmOriginDistance) - parseInt(initialKm)) * parseFloat(additionalKm) + parseFloat(initialPrice)).toFixed(2)
+
+            $("#amount"+seatNumber).val(amount)
+          }
+        }
+      }
     }
   })
 
@@ -1273,6 +1367,7 @@ $( "#btnShowSched" ).on('click', function(e) {
   })
 
 
+  show_insurance();
   show_terminal();
   show_promo();
   get_bus_type();
