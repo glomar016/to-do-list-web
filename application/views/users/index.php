@@ -574,14 +574,14 @@
                         <div class="form-group">
                             <div class="clearfix">
                                 <label>Password</label>
-                                <a href="#" class="float-right text-muted"><small>Forgot?</small></a>
+                                
                             </div>
                             
                             <input type="password" class="form-control" name="loginPass" id="loginPass" required="required">
                         </div>
                     </div>
-                    <div class="modal-footer justify-content-between">
-                        <label class="form-check-label"><input type="checkbox"> Remember me</label>
+                    <div class="modal-footer justify-content-end">
+                        
                         <input type="submit" class="btn btn-primary" value="Login">
                     </div>
                 </form>
@@ -675,7 +675,7 @@
                     )
                 }
                 else{
-                    window.location.href = "<?php echo base_url()?>"
+                    // window.location.href = "<?php echo base_url()?>"
                 }
                 
             }

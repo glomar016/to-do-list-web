@@ -97,7 +97,7 @@ textarea::-webkit-scrollbar{
                   </div>
                   </div>
               </div>
-          </div>
+            </div>
             <div class="card">
             <h4 class="card-header card-header-info">List of Bus Types</h4>
               <div class="card-body">
@@ -117,7 +117,7 @@ textarea::-webkit-scrollbar{
                 </table>
               </div>
             </div>
-    </div>
+        </div>
             
 
             <!-- CLOSING TAG OF CONTENT -->

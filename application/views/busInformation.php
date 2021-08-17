@@ -209,7 +209,7 @@ The above copyright notice and this permission notice shall be included in all c
                     <th>Bus Number</th>
                     <th>Bus Owner</th>
                     <th>Plate Number</th>
-                    <th>Date Created</th>
+                    <!-- <th>Bus Type</th> -->
                     <th width="10%">Actions</th>
                 </thead>
               </table>
@@ -548,9 +548,9 @@ function dataTable(){
           {data: "number"},
           {data: "owner"},
           {data: "plateNumber"},
-          {data: "created_at", render: function(data, type, row){
-                return moment(data).format('LL');
-          }},
+          // {data: "created_at", render: function(data, type, row){
+          //       return moment(data).format('LL');
+          // }},
           {data: "status", render: function(data, type, row){
                 if (data == "Active"){
                   return '<div class="btn-group">' +

@@ -185,12 +185,12 @@
             </a>
           </li>
 
-           <li <?php if($this->router->fetch_class() == 'bus_driver') {?> class="active has-sub" <?php } ?>>
-            <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>bus_driver">
+           <!-- <li <?php if($this->router->fetch_class() == 'bus_driver') {?> class="active has-sub" <?php } ?>> -->
+            <!-- <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>bus_driver"> -->
               <!-- <i class="material-icons">account_circle</i> -->
-              <p>Bus Driver</p>
-            </a>
-          </li>
+              <!-- <p>Bus Driver</p> -->
+            <!-- </a> -->
+          <!-- </li> -->
 
           <li <?php if($this->router->fetch_class() == 'logout') {?> class="active has-sub" <?php } ?>>
             <a class="nav-link" style="margin: 0px 15px 0" href="<?php echo base_url()?>logout">

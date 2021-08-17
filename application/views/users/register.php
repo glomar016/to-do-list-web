@@ -250,7 +250,7 @@ $('#addUserForm').on('submit', function(e) {
                         setInterval(function(){
                             window.location.href = "<?php echo base_url()?>"
                         }, 3000)
-                        End of Confirmation
+                        //End of Confirmation
                     }
 
                 }

@@ -20,7 +20,6 @@ The above copyright notice and this permission notice shall be included in all c
             header("location: ".base_url()."users/user/forbidden");
         }
 
-
     } 
     else {
         header("location: ".base_url());
