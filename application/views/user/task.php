@@ -24,7 +24,7 @@
                 </h1>
                     <ol class="breadcrumb">
                         <li class="active">Task</li>
-                        <li><a href="<?php echo base_url()?>home">Home</a></li>
+                        <li><a href="<?php echo base_url()?>user/profile">Profile</a></li>
                     </ol> 				
 		    </div>
             <div id="page-inner">
@@ -97,11 +97,12 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Date Created</th>
-                                            <th>Title</th>
-                                            <th>Description</th>
-                                            <th>Start Date</th>
-                                            <th>Due Date</th>
-                                            <th>Actions</th>
+                                            <th width="10%">Status</th>
+                                            <th width="18%">Title</th>
+                                            <th width="18%">Description</th>
+                                            <th width="18%">Start Date</th>
+                                            <th width="18%">Due Date</th>
+                                            <th width="18%">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -124,9 +125,39 @@
     function loadtable(){
         taskDataTable = $('#taskTable').DataTable( {
             "ajax": "<?php echo base_url()?>user/task/show_task/",
+            "rowCallback": function (row, data) {
+                if(data.task_status == "Done") {
+                    $(row).addClass('success');
+                    $(row).attr('id', data.id);
+                }
+                else if(moment(data.end_date).isAfter(moment())) {
+                    $(row).addClass('info');
+                    $(row).attr('id', data.id);
+                }
+                else{
+                    $(row).addClass('danger');
+                    $(row).attr('id', data.id);
+                }
+            },
             "columns": [
                 { data: "id"},
                 { data: "created_at"},
+                { data: "task_status", render: function(data, type, row){
+                    if(data == "Done"){
+                        return `<p>
+                                <input checked type="checkbox" id="indeterminate-checkbox ${row.id}" value="${row.end_date}" class="cb_status">
+                                <label for="indeterminate-checkbox ${row.id}"></label>
+                            </p>
+                            `
+                    }
+                    else{
+                        return `<p>
+                                <input type="checkbox" id="indeterminate-checkbox ${row.id}" value="${row.end_date}" class="cb_status">
+                                <label for="indeterminate-checkbox ${row.id}"></label>
+                            </p>`
+                    }
+                            
+                }},
                 { data: "title"},
                 { data: "description" },
                 { data: "start_date", render: function(data, type, row){
@@ -137,6 +168,7 @@
                 }},
                 { data: "status", render: function(data, type, row){
                         if(data == "Active"){
+                            $(row).addClass("success");
                             return '<div class="btn-group">'+
                                     '<button class="btn btn-warning btn-sm btn_edit" id="'+row.id+'" title="Edit" type="button" ><i class="material-icons dp48">system_update_alt</i> Edit</button>'+
                                     '<button class="btn btn-danger btn-sm btn_delete" id="'+row.id+'" title="Delete" type="button"> <i class="material-icons dp48">delete</i> Delete</button></div>';
@@ -147,7 +179,6 @@
                     }
                     
                 },
-
             ],
 
             "aoColumnDefs": [{ "bVisible": false, "aTargets": [0, 1] }],
@@ -251,6 +282,42 @@
                 $('#btn_edit').attr('hidden', true)
             }
         })
+    })
+
+    $(document).on('change', '.cb_status', function(e){
+        e.preventDefault()
+        let id = this.id.slice(23, this.id.length);
+        
+        if($('#'+id).attr('class') == "odd danger" || $('#'+id).attr('class') == "even danger"){
+            $('#'+id).addClass('success').removeClass('danger')
+            task_status = 'Done';
+        }
+        else if($('#'+id).attr('class') == "odd success" || $('#'+id).attr('class') == "even success"){
+            if(moment($(this).val()).isAfter(moment())){
+                $('#'+id).addClass('info').removeClass('success') 
+            }
+            else{
+                $('#'+id).addClass('danger').removeClass('success') 
+            }
+            task_status = 'Pending';
+        }
+        else if($('#'+id).attr('class') == "odd info" || $('#'+id).attr('class') == "even info"){
+            $('#'+id).addClass('success').removeClass('info')
+            task_status = 'Done';
+        }
+
+        $.ajax({
+            url: '<?php echo base_url()?>user/task/update_task_status/',
+            type: "POST",
+            data: {id: id, task_status: task_status},
+            dataType: "JSON",
+
+            success: function(data){
+                
+            }
+        })
+
+
     })
 
     </script>

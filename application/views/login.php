@@ -104,7 +104,7 @@
                             form.trigger('reset')
                             
                             setInterval(() => {
-                                window.location.href = "<?php echo base_url()?>/user/home";
+                                window.location.href = "<?php echo base_url()?>/user/task";
                             }, 1000);
                         }
                     }

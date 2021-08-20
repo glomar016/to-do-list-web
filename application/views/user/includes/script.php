@@ -8,7 +8,7 @@
 <!-- Metis Menu Js -->
 <script src="<?php echo base_url()?>resources/assets/js/jquery.metisMenu.js"></script> 
 <!-- Custom Js -->
-<!-- <script src="<?php echo base_url()?>resources/assets/js/custom-scripts.js"></script>  -->
+<script src="<?php echo base_url()?>resources/assets/js/custom-scripts.js"></script> 
 <script src="<?php echo base_url()?>resources/assets/js/jquery.dataTables.js"></script> 
 <script src="<?php echo base_url()?>resources/assets/js/jquery.dataTables.min.js"></script> 
 <script src="<?php echo base_url()?>resources/assets/js/moment.min.js"></script> 
