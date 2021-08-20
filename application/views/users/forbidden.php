@@ -1,1 +1,0 @@
-<h1>FORBIDDEN PAGE</h1>

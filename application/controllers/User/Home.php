@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Logout extends CI_Controller {
+class Home extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -18,18 +18,15 @@ class Logout extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
-
-
-
 	public function index()
 	{
-		// Removing session data
-        $sess_array = array(
+		if (isset($this->session->userdata['logged_in'])) {
+			$this->load->view('user/home.php'); 
+		}
+		else{
+			header("location: ".base_url()."login");
+		}
 
-        );
-        $this->session->unset_userdata('logged_in', $sess_array);
-        header('Location:'. base_url());
-    }
 
-
+	}
 }

@@ -22,17 +22,16 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('users/user');
+		$this->load->view('login');
     }
 	
-	public function userLogin()
+	public function user_login()
 	{
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
 
-		$loginEmail = $this->input->post('loginEmail');
-		$loginPass = $this->input->post('loginPass');
-
-		$data = array("email" => $loginEmail
-                        , "password" => $loginPass);
+		$data = array("email" => $email
+                        , "password" => $password);
 		
 		$postdata = json_encode($data);
 		
@@ -64,11 +63,12 @@ class Login extends CI_Controller {
 			$session_data = array(
 				'email' => $resDecoded['data']['email'],
 				'firstName' => $resDecoded['data']['firstName'],
-				'userId' => $resDecoded['data']['id'],
-				'userType' => $resDecoded['data']['userType'],
+				'lastName' => $resDecoded['data']['lastName'],
+				'id' => $resDecoded['data']['id'],
+				'token' => $resDecoded['token'],
 			);
 
-		$this->session->set_userdata('logged_in', $session_data);
+			$this->session->set_userdata('logged_in', $session_data);
 		
 		}
 		
