@@ -22,8 +22,8 @@
         <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
         <nav id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li class="sidebar-brand"><a href="">To-do-list</a></li>
-                <li class="sidebar-nav-item"><a href="">Get Started</a></li>
+                <li class="sidebar-brand"><a href="<?php echo base_urL()?>">To-do-list</a></li>
+                <li class="sidebar-nav-item"><a href="<?php echo base_urL()?>login">Get Started</a></li>
             </ul>
         </nav>
         <!-- Header-->
